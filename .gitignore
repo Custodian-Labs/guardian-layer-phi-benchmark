@@ -1,0 +1,36 @@
+# Secrets
+.env
+.env.local
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Data (DUA-protected, never commit)
+data/n2c2_2014/
+data/n2c2_2006/
+data/mimic_iv_note/
+data/carmen_i/
+data/asq_phi/raw/
+data/meddocan/raw/
+
+# Results that may contain raw PHI excerpts
+results/raw/
+results/leaked/
+
+# HuggingFace / model caches
+.cache/
+models/
+*.bin
+*.safetensors
+
+# IDE
+.idea/
+.vscode/
+*.swp

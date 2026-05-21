@@ -1,0 +1,24 @@
+[
+  {
+    "system": "presidio",
+    "benchmark": "meddocan",
+    "mode": "relaxed",
+    "n_docs": 250,
+    "precision": 0.5234243343444557,
+    "recall": 0.5486663133721957,
+    "f1": 0.5357481673134973,
+    "leakage_rate": 0.45133368662780426,
+    "char_leakage_rate": 0.32431366002458534
+  },
+  {
+    "system": "deid_roberta_i2b2",
+    "benchmark": "meddocan",
+    "mode": "relaxed",
+    "n_docs": 250,
+    "precision": 0.49235611510791366,
+    "recall": 0.5802861685214626,
+    "f1": 0.5327171004621747,
+    "leakage_rate": 0.41971383147853736,
+    "char_leakage_rate": 0.4550407478791374
+  }
+]

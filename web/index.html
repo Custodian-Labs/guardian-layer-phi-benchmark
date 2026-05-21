@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CustodianAI · PHI Benchmark Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-semibold tracking-tight">CustodianAI · PHI Benchmark Dashboard</h1>
+        <p class="text-sm text-slate-500">Side-by-side comparison of de-identification systems on clinical PHI benchmarks</p>
+      </div>
+      <div class="text-xs text-slate-400">
+        <span id="last-updated"></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-8 space-y-8">
+
+    <!-- Controls -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
+        <label class="block text-xs font-medium text-slate-600 mb-1">Benchmark</label>
+        <select id="benchmark-select" class="w-full rounded border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"></select>
+      </div>
+      <div>
+        <label class="block text-xs font-medium text-slate-600 mb-1">Matching mode</label>
+        <select id="mode-select" class="w-full rounded border-slate-300 bg-white px-3 py-2 text-sm shadow-sm">
+          <option value="type">type (span-exact, label-agnostic)</option>
+          <option value="strict">strict (span + label)</option>
+          <option value="relaxed">relaxed (any char overlap)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-xs font-medium text-slate-600 mb-1">Highlight metric</label>
+        <select id="metric-select" class="w-full rounded border-slate-300 bg-white px-3 py-2 text-sm shadow-sm">
+          <option value="f1">F1</option>
+          <option value="recall">Recall (HIPAA-critical)</option>
+          <option value="precision">Precision</option>
+          <option value="leakage_rate">Leakage rate</option>
+          <option value="char_leakage_rate">Char-weighted leakage</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Summary cards -->
+    <section id="summary-cards" class="grid grid-cols-1 md:grid-cols-4 gap-4"></section>
+
+    <!-- Comparison table -->
+    <section class="bg-white rounded-lg shadow-sm border border-slate-200">
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-semibold">Per-system comparison</h2>
+          <p class="text-xs text-slate-500">Click a column header to sort. Rows highlighted by the selected metric.</p>
+        </div>
+        <div class="text-xs text-slate-500" id="row-meta"></div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-50 text-slate-600">
+            <tr>
+              <th class="px-4 py-3 text-left font-medium cursor-pointer" data-sort="system">System</th>
+              <th class="px-4 py-3 text-right font-medium cursor-pointer" data-sort="precision">Precision</th>
+              <th class="px-4 py-3 text-right font-medium cursor-pointer" data-sort="recall">Recall</th>
+              <th class="px-4 py-3 text-right font-medium cursor-pointer" data-sort="f1">F1</th>
+              <th class="px-4 py-3 text-right font-medium cursor-pointer" data-sort="leakage_rate">Leakage</th>
+              <th class="px-4 py-3 text-right font-medium cursor-pointer" data-sort="char_leakage_rate">Char leak</th>
+              <th class="px-4 py-3 text-right font-medium cursor-pointer" data-sort="n_docs">n</th>
+            </tr>
+          </thead>
+          <tbody id="comparison-tbody" class="divide-y divide-slate-200"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-4">
+        <h3 class="text-sm font-semibold mb-2">Precision vs Recall</h3>
+        <canvas id="pr-chart" height="280"></canvas>
+      </div>
+      <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-4">
+        <h3 class="text-sm font-semibold mb-2">Leakage rate (lower = better)</h3>
+        <canvas id="leak-chart" height="280"></canvas>
+      </div>
+    </section>
+
+    <!-- Per-doc drilldown -->
+    <section class="bg-white rounded-lg shadow-sm border border-slate-200">
+      <div class="px-6 py-4 border-b border-slate-200">
+        <h2 class="text-base font-semibold">Per-document drill-down</h2>
+        <p class="text-xs text-slate-500">Sampled docs where systems disagree most. Hover a span to see its label.</p>
+      </div>
+      <div id="drilldown" class="px-6 py-4 space-y-6"></div>
+    </section>
+
+    <footer class="text-xs text-slate-400 pt-6">
+      <p>
+        Data sourced from <code>web/data/*.json</code>, refreshed by
+        <code>scripts/publish_results.py</code>. Built with vanilla HTML + Tailwind + Chart.js,
+        deploys statically to Vercel / GitHub Pages.
+      </p>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

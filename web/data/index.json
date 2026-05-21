@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-05-21 06:13:28Z",
+  "runs": [
+    {
+      "id": "meddocan_relaxed",
+      "benchmark": "meddocan",
+      "mode": "relaxed",
+      "n_docs": 250,
+      "timestamp": "2026-05-21 06:12:23Z",
+      "summary_path": "meddocan_relaxed.summary.json",
+      "samples_path": "meddocan_relaxed.samples.json"
+    },
+    {
+      "id": "meddocan_type",
+      "benchmark": "meddocan",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-05-21 06:11:36Z",
+      "summary_path": "meddocan_type.summary.json",
+      "samples_path": "meddocan_type.samples.json"
+    }
+  ]
+}
