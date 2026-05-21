@@ -21,14 +21,38 @@ from systems.llm_openai_compatible import SYSTEM_PROMPT, _parse_spans
 class LocalLLMConfig:
     name: str
     model_id: str
-    max_new_tokens: int = 400
+    max_new_tokens: int = 1000
     dtype: str = "bfloat16"   # or "float16"; A100 prefers bf16
     device_map: str = "auto"
     trust_remote_code: bool = False
 
 
+def _patch_dynamic_cache_compat() -> None:
+    """Older custom modeling code (Moonlight / DeepSeek V2-Lite) calls
+    DynamicCache APIs that transformers 4.43+ removed or renamed. Shim them
+    back in so upstream weights work without patching the modeling files."""
+    try:
+        from transformers import DynamicCache
+        if not hasattr(DynamicCache, "seen_tokens"):
+            DynamicCache.seen_tokens = property(
+                lambda self: self.get_seq_length() if hasattr(self, "get_seq_length") else 0
+            )
+        if not hasattr(DynamicCache, "get_usable_length"):
+            def _get_usable_length(self, new_seq_length: int, layer_idx: int = 0) -> int:
+                try:
+                    return self.get_seq_length(layer_idx)
+                except Exception:
+                    return self.get_seq_length() if hasattr(self, "get_seq_length") else 0
+            DynamicCache.get_usable_length = _get_usable_length
+        if not hasattr(DynamicCache, "get_max_length"):
+            DynamicCache.get_max_length = lambda self: None
+    except Exception:
+        pass
+
+
 class LocalHFLLM(DeIDSystem):
     def __init__(self, cfg: LocalLLMConfig):
+        _patch_dynamic_cache_compat()
         from transformers import AutoTokenizer, AutoModelForCausalLM
         import torch
 

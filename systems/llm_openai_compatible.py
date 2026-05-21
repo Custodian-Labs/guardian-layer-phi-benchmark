@@ -92,17 +92,7 @@ def _parse_spans(content: str, original: str) -> list[PredictedSpan]:
     their offsets only as a hint to disambiguate when the predicted substring
     occurs multiple times in the document.
     """
-    try:
-        data = json.loads(content)
-    except json.JSONDecodeError:
-        match = re.search(r"\{.*\}", content, re.S)
-        if not match:
-            return []
-        try:
-            data = json.loads(match.group(0))
-        except json.JSONDecodeError:
-            return []
-
+    data = _robust_json_parse(content)
     spans_raw = data.get("spans", []) if isinstance(data, dict) else []
     out: list[PredictedSpan] = []
     used: set[tuple[int, int]] = set()
@@ -133,6 +123,47 @@ def _parse_spans(content: str, original: str) -> list[PredictedSpan]:
             text=surface,
         ))
     return out
+
+
+def _robust_json_parse(content: str) -> dict:
+    """Best-effort JSON parser that recovers from truncated LLM output.
+
+    Tries in order:
+      1. parse the whole content as JSON
+      2. strip ``` fences and retry
+      3. extract every well-formed span object via regex, even if the outer
+         array / object was cut off by max_new_tokens.
+    """
+    candidates = [content]
+    # Drop ``` fences and language tags
+    stripped = re.sub(r"^```(?:json)?\s*|\s*```$", "", content.strip(), flags=re.M | re.S)
+    if stripped != content:
+        candidates.append(stripped)
+    # Grab the first top-level object
+    m = re.search(r"\{.*\}", stripped, re.S)
+    if m:
+        candidates.append(m.group(0))
+
+    for c in candidates:
+        try:
+            return json.loads(c)
+        except json.JSONDecodeError:
+            continue
+
+    # Truncated JSON: harvest complete span objects via regex.
+    span_re = re.compile(
+        r'\{\s*"start"\s*:\s*\d+\s*,\s*"end"\s*:\s*\d+\s*,'
+        r'\s*"label"\s*:\s*"[^"]*"\s*,'
+        r'\s*"text"\s*:\s*"(?:\\.|[^"\\])*"\s*\}',
+        re.S,
+    )
+    objs = []
+    for chunk in span_re.findall(stripped):
+        try:
+            objs.append(json.loads(chunk))
+        except json.JSONDecodeError:
+            continue
+    return {"spans": objs}
 
 
 def _mask(text: str, spans: list[PredictedSpan]) -> str:
