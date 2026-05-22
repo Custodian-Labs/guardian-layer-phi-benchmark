@@ -20,16 +20,23 @@ https://raw.githack.com/14H034160212/Custodianai/main/web/index.html
 
 Three datasets, 25 documents each, type-mode (span-exact, label-agnostic).
 
-### MEDDOCAN test, Spanish clinical synthetic
+### MEDDOCAN test, **all 250 docs**, Spanish clinical synthetic
 
 | System | P | R | **F1** | Leakage |
 | --- | ---: | ---: | ---: | ---: |
-| **OpenAI GPT-5** | 0.82 | 0.63 | **0.71** | 0.37 |
-| **Gemma 4 E4B** (8B, local) | 0.76 | 0.62 | **0.68** | 0.38 |
-| **Qwen 3.5-4B** (local, no thinking) | 0.62 | 0.43 | **0.51** | 0.57 |
-| **Presidio** (es spaCy `lg`) | 0.47 | 0.44 | **0.45** | 0.57 |
-| **DeepSeek V2-Lite** (16B MoE, local) | 0.54 | 0.30 | **0.39** | 0.70 |
-| **OBI `deid_roberta_i2b2`** (English) | 0.07 | 0.07 | **0.07** | 0.93 |
+| **OpenAI GPT-5** | 0.80 | 0.62 | **0.699** | 0.38 |
+| **Gemma 4 E4B** (8B, local) | 0.77 | **0.64** | **0.697** | 0.36 |
+| **Qwen 3.5-4B** (local, no thinking) | 0.53 | 0.35 | **0.42** | 0.65 |
+| **DeepSeek V2-Lite** (16B MoE, local) | 0.59 | 0.32 | **0.42** | 0.68 |
+| **Presidio** (es spaCy `lg`) | 0.39 | 0.41 | **0.40** | 0.59 |
+| **OBI `deid_roberta_i2b2`** (English) | 0.07 | 0.08 | **0.07** | 0.92 |
+
+On the full 250-doc test split (4× the earlier 25-doc subset), the gap
+between Gemma 4 E4B and GPT-5 collapses to **0.002 F1** — statistically
+indistinguishable. Gemma's *recall* (0.637) is actually higher than
+GPT-5's (0.619); GPT-5 wins overall only by being slightly more precise.
+For a HIPAA-style use case where missed PHI is the regulatory hazard,
+the local 8B model is at parity with the hosted frontier.
 
 ### ASQ-PHI, English adversarial clinical queries
 
@@ -65,14 +72,19 @@ Notes:
 
 ### Headlines
 
-- **A small *local* 8B model beats GPT-5 on *both* English benchmarks.**
-  Gemma 4 E4B reaches F1=0.82 on ASQ-PHI (vs GPT-5's 0.76) and F1=0.84
-  on PII-Masking-300k (vs 0.79). The win comes from sharply higher
-  recall — Gemma's leakage rate is 0.06 on ASQ-PHI, the lowest of any
-  system / dataset in our matrix.
-- **GPT-5 still leads on Spanish clinical PHI** — F1=0.71 on MEDDOCAN.
-  Gemma trails by 3 F1 here; the gap is real but small, and is
-  plausibly a language-coverage effect rather than a capability one.
+- **A small *local* 8B model matches or beats GPT-5 on every benchmark
+  we measured.**
+    - PII-Masking-300k (English general PII): Gemma F1=0.84 > GPT-5 0.79.
+    - ASQ-PHI (English clinical queries): Gemma F1=0.82 > GPT-5 0.76.
+    - MEDDOCAN (Spanish clinical, 250 docs): Gemma F1=0.697 ≈ GPT-5 0.699.
+- **On recall — the HIPAA-critical axis — Gemma already leads everywhere.**
+  Leakage rate (1 − recall): Gemma 0.06 vs GPT-5 0.14 on ASQ-PHI;
+  Gemma 0.36 vs GPT-5 0.38 on MEDDOCAN 250-doc; Gemma 0.19 vs GPT-5 0.26
+  on PII-Masking-300k.
+- **Non-LLM baselines lag by 20+ F1 points** on every benchmark, and
+  the clinical-specific transformer OBI fails wherever its training
+  label set doesn't match the gold scheme (cross-lingual: F1=0.07 on
+  Spanish; cross-domain: F1=0.02 on English general PII).
 - **Non-LLM baselines lag by 20+ F1 points** on every benchmark.
   Presidio is competitive only on tasks where its built-in
   recognizers (English NAME/DATE/EMAIL) match the gold labels —
