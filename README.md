@@ -18,41 +18,59 @@ https://raw.githack.com/14H034160212/Custodianai/main/web/index.html
 
 ## Current numbers (2026-05-22)
 
-### MEDDOCAN test set, 25 docs, Spanish clinical synthetic, type-mode span match
+Three datasets, 25 documents each, type-mode (span-exact, label-agnostic).
 
-| System | P | R | **F1** | Leakage | Notes |
-| --- | ---: | ---: | ---: | ---: | --- |
-| **OpenAI GPT-5** | 0.82 | 0.63 | **0.71** | 0.37 | hosted API |
-| **Gemma 4 E4B** (8B, local A100) | 0.76 | 0.62 | **0.68** | 0.38 | strongest open-source on this task |
-| **Qwen 3.5-4B** (dense, local A100) | 0.62 | 0.43 | **0.51** | 0.57 | thinking disabled |
-| **Presidio** (es spaCy `lg`) | 0.47 | 0.44 | **0.45** | 0.57 | best non-LLM baseline |
-| **DeepSeek V2-Lite** (16B MoE, local) | 0.54 | 0.30 | **0.39** | 0.70 | older Chinese model |
-| **OBI `deid_roberta_i2b2`** (English) | 0.07 | 0.07 | **0.07** | 0.93 | catastrophic cross-lingual, as expected |
-
-On the same 25 docs in **relaxed-overlap mode** (250-doc subset), Presidio
-and OBI both rise to F1 ≈ 0.54 — they were finding the right *area* but with
-wrong span boundaries.
-
-### PII-Masking-300k validation, 25 English docs, type-mode span match
+### MEDDOCAN test, Spanish clinical synthetic
 
 | System | P | R | **F1** | Leakage |
 | --- | ---: | ---: | ---: | ---: |
+| **OpenAI GPT-5** | 0.82 | 0.63 | **0.71** | 0.37 |
+| **Gemma 4 E4B** (8B, local) | 0.76 | 0.62 | **0.68** | 0.38 |
+| **Qwen 3.5-4B** (local, no thinking) | 0.62 | 0.43 | **0.51** | 0.57 |
+| **Presidio** (es spaCy `lg`) | 0.47 | 0.44 | **0.45** | 0.57 |
+| **DeepSeek V2-Lite** (16B MoE, local) | 0.54 | 0.30 | **0.39** | 0.70 |
+| **OBI `deid_roberta_i2b2`** (English) | 0.07 | 0.07 | **0.07** | 0.93 |
+
+### ASQ-PHI, English adversarial clinical queries
+
+| System | P | R | **F1** | Leakage |
+| --- | ---: | ---: | ---: | ---: |
+| **OpenAI GPT-5** | 0.69 | 0.86 | **0.76** | 0.14 |
+| **Presidio** (en spaCy `lg`) | 0.42 | 0.69 | **0.52** | 0.31 |
+| **OBI `deid_roberta_i2b2`** | 0.03 | 0.08 | **0.05** | 0.92 |
+
+Note: Presidio's recall (0.69) is much higher on ASQ-PHI than on MEDDOCAN
+(0.41) or PII-Masking-300k (0.35), because ASQ-PHI's NAME / DATE /
+GEOGRAPHIC_LOCATION labels match Presidio's English recognizers exactly.
+
+### PII-Masking-300k validation (English), general PII
+
+| System | P | R | **F1** | Leakage |
+| --- | ---: | ---: | ---: | ---: |
+| **Gemma 4 E4B** (8B, local) | 0.88 | 0.81 | **0.84** | 0.19 |
 | **OpenAI GPT-5** | 0.85 | 0.74 | **0.79** | 0.26 |
-| **Presidio** (en spaCy `lg`) | 0.30 | 0.35 | **0.32** | 0.65 |
+| **Qwen 3.5-4B** (local) | 0.92 | 0.64 | **0.75** | 0.36 |
+| **Presidio** (en) | 0.30 | 0.35 | **0.32** | 0.65 |
+| **DeepSeek V2-Lite** (local) | 0.56 | 0.22 | **0.31** | 0.78 |
 | **OBI `deid_roberta_i2b2`** | 0.02 | 0.04 | **0.02** | 0.96 |
 
-OBI's collapse here is interesting and a useful finding: it is *English-
-trained on clinical PHI labels* (PATIENT, DOCTOR, …), so even on English
-text it predicts almost nothing for general-PII labels like USERNAME,
-EMAIL, ADDRESS. Domain-specific transformer models do not transfer to
-other PII domains.
+### Headlines
 
-### Headline takeaway
-
-A *small* local open-source LLM (Gemma 4 E4B, 8 B params) reaches
-**near-parity with GPT-5** on Spanish clinical PHI detection. The
-non-LLM baselines lag by 20+ F1 points, and the clinical-specific
-transformer (OBI) only works on the exact label set it was trained on.
+- **A small *local* 8B model beats GPT-5 on general PII.** Gemma 4 E4B
+  reaches F1=0.84 on PII-Masking-300k, ~5 F1 above GPT-5. First task
+  where open-source ≥ hosted in our matrix.
+- **GPT-5 still leads on clinical PHI** — F1=0.71 (Spanish, MEDDOCAN)
+  and 0.76 (English, ASQ-PHI). Gemma trails by 3-5 F1 on clinical
+  text; the gap is real but small.
+- **Non-LLM baselines lag by 20+ F1 points** on every benchmark.
+  Presidio is competitive only on tasks where its built-in
+  recognizers (English NAME/DATE/EMAIL) match the gold labels —
+  evident in the ASQ-PHI score jumping to F1=0.52.
+- **Domain-specific transformers do not transfer.** OBI
+  `deid_roberta_i2b2` predicts clinical PHI labels (PATIENT, DOCTOR,
+  HOSP, …); on general PII its F1 collapses to 0.02 even though the
+  input is English. Cross-domain failure is the rule, not the
+  exception, for token-classification de-id models.
 
 ### Models attempted but blocked
 

@@ -17,6 +17,23 @@
     "why_we_include_it": "Largest *public* Spanish clinical de-id corpus. Every Spanish clinical NLP paper cites it. Reviewer-credible. No DUA required.",
     "example": "Nombre: Ignacio.\nApellidos: Rico Pedroza.\nNHC: 5467980.\nDomicilio: Av. Beniarda, 13.\nLocalidad/ Provincia: Valencia.\nFecha de nacimiento: 11/02/1970..."
   },
+  "asq_phi": {
+    "title": "ASQ-PHI",
+    "subtitle": "Adversarial Synthetic Queries for clinical PHI (English)",
+    "language": "English",
+    "size": "1,051 queries (832 PHI+, 219 hard negatives)",
+    "license": "MIT (Mendeley DOI 10.17632/csz5dzp7nx.1)",
+    "dua_required": false,
+    "phi_density": "~3.6 PHI elements per positive query, 2,973 across corpus",
+    "entity_types": [
+      "NAME", "DATE", "GEOGRAPHIC_LOCATION",
+      "ID_NUMBER", "AGE", "PHONE_NUMBER", "EMAIL_ADDRESS",
+      "...13 HIPAA Safe Harbor identifier types"
+    ],
+    "url": "https://doi.org/10.17632/csz5dzp7nx.1",
+    "why_we_include_it": "Built for exactly the Guardian-Layer use case: clinician-style queries that need PHI removal before going to external LLM/search tools. Includes 219 hard negatives that test over-redaction — a unique signal no other dataset gives us.",
+    "example": "What is the latest treatment protocol for a 34-year-old female diagnosed with MS like Anna S., previously treated at Methodist Hospital on April 12, 2023?"
+  },
   "pii_masking_300k": {
     "title": "PII-Masking-300k",
     "subtitle": "Multilingual general PII (synthetic)",
@@ -31,7 +48,7 @@
       "...27 PII classes total"
     ],
     "url": "https://huggingface.co/datasets/ai4privacy/pii-masking-300k",
-    "why_we_include_it": "Used to widen the comparison beyond Spanish clinical to general English PII. Human-validated (~98% token label accuracy). Complements MEDDOCAN's narrow clinical focus with broad use-case coverage (education, health, psychology).",
+    "why_we_include_it": "Widens the comparison beyond Spanish clinical to general English PII. Human-validated (~98% token label accuracy). Complements MEDDOCAN's narrow clinical focus.",
     "example": "On the video sharing platform for educational content, a lively discussion unfolded among users from different locales within the UK. The comment thread began with paaltwvkjuijwbj957 expressing admir..."
   }
 }

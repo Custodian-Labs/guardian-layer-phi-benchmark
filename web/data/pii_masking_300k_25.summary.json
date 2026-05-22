@@ -1,25 +1,14 @@
 [
   {
-    "system": "presidio",
+    "system": "gemma_4_e4b",
     "benchmark": "pii_masking_300k",
     "mode": "type",
     "n_docs": 25,
-    "precision": 0.2978723404255319,
-    "recall": 0.35,
-    "f1": 0.3218390804597701,
-    "leakage_rate": 0.65,
-    "char_leakage_rate": 0.6231656184486373
-  },
-  {
-    "system": "deid_roberta_i2b2",
-    "benchmark": "pii_masking_300k",
-    "mode": "type",
-    "n_docs": 25,
-    "precision": 0.015544041450777202,
-    "recall": 0.0375,
-    "f1": 0.021978021978021976,
-    "leakage_rate": 0.9625,
-    "char_leakage_rate": 0.9868972746331237
+    "precision": 0.8783783783783784,
+    "recall": 0.8125,
+    "f1": 0.8441558441558441,
+    "leakage_rate": 0.1875,
+    "char_leakage_rate": 0.10429769392033543
   },
   {
     "system": "openai_gpt",
@@ -31,5 +20,49 @@
     "f1": 0.7892976588628763,
     "leakage_rate": 0.26249999999999996,
     "char_leakage_rate": 0.22327044025157233
+  },
+  {
+    "system": "qwen3.5_4b",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.918918918918919,
+    "recall": 0.6375,
+    "f1": 0.7527675276752767,
+    "leakage_rate": 0.36250000000000004,
+    "char_leakage_rate": 0.29874213836477986
+  },
+  {
+    "system": "presidio",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.2978723404255319,
+    "recall": 0.35,
+    "f1": 0.3218390804597701,
+    "leakage_rate": 0.65,
+    "char_leakage_rate": 0.6231656184486373
+  },
+  {
+    "system": "deepseek_v2_lite",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.5555555555555556,
+    "recall": 0.21875,
+    "f1": 0.31390134529147984,
+    "leakage_rate": 0.78125,
+    "char_leakage_rate": 0.7678197064989518
+  },
+  {
+    "system": "deid_roberta_i2b2",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.015544041450777202,
+    "recall": 0.0375,
+    "f1": 0.021978021978021976,
+    "leakage_rate": 0.9625,
+    "char_leakage_rate": 0.9868972746331237
   }
 ]

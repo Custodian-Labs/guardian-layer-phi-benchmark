@@ -9,6 +9,14 @@
   background: rgba(16, 185, 129, 0.18);
   border-bottom-color: rgba(16, 185, 129, 0.7);
 }
+.dark .phi-span {
+  background: rgba(244, 63, 94, 0.28);
+  border-bottom-color: rgba(251, 113, 133, 0.9);
+}
+.dark .phi-span[data-system="gold"] {
+  background: rgba(16, 185, 129, 0.30);
+  border-bottom-color: rgba(52, 211, 153, 0.9);
+}
 .metric-pill {
   display: inline-flex;
   align-items: center;
@@ -20,7 +28,15 @@
   background: rgb(241 245 249);
   color: rgb(71 85 105);
 }
+.dark .metric-pill { background: rgb(30 41 59); color: rgb(203 213 225); }
 .metric-pill.good { background: rgba(16, 185, 129, 0.12); color: rgb(4 120 87); }
 .metric-pill.bad  { background: rgba(244, 63, 94, 0.12); color: rgb(159 18 57); }
+.dark .metric-pill.good { background: rgba(16, 185, 129, 0.22); color: rgb(110 231 183); }
+.dark .metric-pill.bad  { background: rgba(244, 63, 94, 0.22); color: rgb(253 164 175); }
 .highlight-row { background: rgba(99, 102, 241, 0.06); }
+.dark .highlight-row { background: rgba(99, 102, 241, 0.18); }
 .doc-text { white-space: pre-wrap; line-height: 1.6; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+.dark .doc-text { color: rgb(226 232 240); }
+@media (max-width: 640px) {
+  .doc-text { font-size: 12px; }
+}

@@ -21,7 +21,31 @@ async function fetchJSON(path) {
   return resp.json();
 }
 
+function isDark() { return document.documentElement.classList.contains("dark"); }
+
+function applyChartTheme() {
+  if (!window.Chart) return;
+  const dark = isDark();
+  Chart.defaults.color = dark ? "rgb(203 213 225)" : "rgb(51 65 85)";
+  Chart.defaults.borderColor = dark ? "rgba(148, 163, 184, 0.2)" : "rgba(148, 163, 184, 0.3)";
+}
+
+function setupThemeToggle() {
+  const btn = $("#theme-toggle");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const next = isDark() ? "light" : "dark";
+    document.documentElement.classList.toggle("dark", next === "dark");
+    localStorage.setItem("theme", next);
+    applyChartTheme();
+    if (state.rows.length) renderCharts();
+  });
+}
+
 async function init() {
+  setupThemeToggle();
+  applyChartTheme();
+
   try {
     state.datasets_meta = await fetchJSON("./data/datasets_meta.json");
   } catch { state.datasets_meta = {}; }

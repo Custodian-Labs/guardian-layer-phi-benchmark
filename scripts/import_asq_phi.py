@@ -1,67 +1,103 @@
-"""Convert a manually-downloaded ASQ-PHI .txt into the JSONL format the
-loader expects.
+"""Convert the upstream ASQ-PHI flat-file release into one JSONL row per
+query, with character-level PHI spans.
 
-Mendeley does not allow programmatic anonymous download, so do this first:
+Upstream format (in `synthetic_clinical_queries.txt`):
 
-  1. Open https://data.mendeley.com/datasets/csz5dzp7nx/1 in a browser
-  2. Click `synthetic_clinical_queries.txt` -> Download
-  3. scp it to <repo>/data/asq_phi/raw/synthetic_clinical_queries.txt
+    ===QUERY===
+    <free-text query string>
+    ===PHI_TAGS===
+    {"identifier_type": "NAME", "value": "Anna S."}
+    {"identifier_type": "DATE", "value": "April 12, 2023"}
 
-Then:
+    ===QUERY===
+    <next query>
+    ===PHI_TAGS===
+    (empty for hard negatives)
 
-  python scripts/import_asq_phi.py
-  python scripts/run_benchmark.py --benchmark asq_phi --systems presidio obi --include-text
-  python scripts/publish_results.py
-
-The upstream format is one query per line with PHI tagged inline using a
-`<PHI type="...">value</PHI>` markup. This script strips the tags, recovers
-character offsets, and writes one JSONL row per query with fields
-{id, text, phi_spans:[{start,end,label,text}]}.
+PHI is annotated by *value*, not by offset. We recover (start, end) by
+locating each value in the query text. Repeated values are assigned to the
+first un-claimed occurrence so two "John" entities in one query each get
+distinct spans.
 """
 from __future__ import annotations
 
 import argparse
 import json
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TAG_RE = re.compile(r'<PHI\s+type="([^"]+)">(.*?)</PHI>', re.DOTALL)
 
 
-def convert(src: Path, dst: Path) -> int:
-    n = 0
-    with src.open(encoding="utf-8") as f_in, dst.open("w", encoding="utf-8") as f_out:
-        for i, line in enumerate(f_in):
-            line = line.rstrip("\n")
-            if not line.strip():
+def parse_file(src: Path) -> list[dict]:
+    text = src.read_text(encoding="utf-8")
+    blocks = []
+    cur_query: str | None = None
+    cur_tags: list[dict] = []
+    state = "outside"
+    lines = text.splitlines()
+
+    def flush():
+        if cur_query is not None:
+            blocks.append({"query": cur_query.strip("\n"), "tags": list(cur_tags)})
+
+    buf: list[str] = []
+    for raw in lines:
+        line = raw.rstrip("\n")
+        if line.strip() == "===QUERY===":
+            if state != "outside":
+                if state == "in_query":
+                    cur_query = "\n".join(buf).rstrip()
+                flush()
+            cur_query = None
+            cur_tags = []
+            buf = []
+            state = "in_query"
+            continue
+        if line.strip() == "===PHI_TAGS===":
+            cur_query = "\n".join(buf).rstrip()
+            buf = []
+            state = "in_tags"
+            continue
+        if state == "in_query":
+            buf.append(line)
+        elif state == "in_tags":
+            stripped = line.strip()
+            if not stripped:
                 continue
-            text, spans = _strip_tags(line)
-            row = {
-                "id": f"asq_{i:05d}",
-                "text": text,
-                "phi_spans": spans,
-                "hard_negative": len(spans) == 0,
-            }
-            f_out.write(json.dumps(row, ensure_ascii=False) + "\n")
-            n += 1
-    return n
+            try:
+                cur_tags.append(json.loads(stripped))
+            except json.JSONDecodeError:
+                continue
+    flush()
+    return blocks
 
 
-def _strip_tags(text: str) -> tuple[str, list[dict]]:
-    """Return (plain_text, spans) where spans use offsets into plain_text."""
-    out, spans, cursor = [], [], 0
-    for m in TAG_RE.finditer(text):
-        out.append(text[cursor:m.start()])
-        plain_so_far = "".join(out)
-        start = len(plain_so_far)
-        value = m.group(2)
-        out.append(value)
+def to_spans(query: str, tags: list[dict]) -> list[dict]:
+    """Locate each tag value in the query; allocate distinct occurrences."""
+    used: list[tuple[int, int]] = []
+    spans: list[dict] = []
+    for tag in tags:
+        value = (tag.get("value") or "").strip()
+        label = (tag.get("identifier_type") or "OTHER").strip().upper()
+        if not value:
+            continue
+        start = -1
+        cursor = 0
+        while True:
+            idx = query.find(value, cursor)
+            if idx == -1:
+                break
+            if not any(s <= idx < e for s, e in used):
+                start = idx
+                break
+            cursor = idx + 1
+        if start == -1:
+            continue  # value not literally present (paraphrased); skip
         end = start + len(value)
-        spans.append({"start": start, "end": end, "label": m.group(1).upper(), "text": value})
-        cursor = m.end()
-    out.append(text[cursor:])
-    return "".join(out), spans
+        used.append((start, end))
+        spans.append({"start": start, "end": end, "label": label, "text": value})
+    spans.sort(key=lambda s: s["start"])
+    return spans
 
 
 def main() -> int:
@@ -72,11 +108,25 @@ def main() -> int:
 
     src = Path(args.src)
     if not src.exists():
-        print(f"missing {src}. Download via browser first; see file docstring.")
+        print(f"missing {src}")
         return 1
 
-    n = convert(src, Path(args.dst))
-    print(f"wrote {n} queries to {args.dst}")
+    blocks = parse_file(src)
+    n_pos = sum(1 for b in blocks if b["tags"])
+    n_neg = len(blocks) - n_pos
+
+    with open(args.dst, "w", encoding="utf-8") as f:
+        for i, b in enumerate(blocks):
+            spans = to_spans(b["query"], b["tags"])
+            row = {
+                "id": f"asq_{i:05d}",
+                "text": b["query"],
+                "phi_spans": spans,
+                "hard_negative": len(b["tags"]) == 0,
+            }
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    print(f"wrote {len(blocks)} queries to {args.dst} ({n_pos} PHI+, {n_neg} hard negatives)")
     return 0
 
 
