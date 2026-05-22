@@ -33,7 +33,7 @@ RESULTS = ROOT / "results"
 WEB_DATA = ROOT / "web" / "data"
 
 # Benchmarks safe to publish per-doc samples of (synthetic / public license).
-SAMPLE_SAFE = {"asq_phi", "meddocan"}
+SAMPLE_SAFE = {"asq_phi", "meddocan", "pii_masking_300k"}
 SAMPLE_LIMIT = 12  # docs per run in the drilldown panel
 
 

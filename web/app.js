@@ -111,10 +111,104 @@ async function loadRun(runId) {
 
 function render() {
   renderDatasetIntro();
+  renderExampleIO();
   renderCards();
   renderTable();
   renderCharts();
   renderDrilldown();
+}
+
+function renderExampleIO() {
+  const root = $("#example-io");
+  if (!root) return;
+  if (!state.samples?.length) {
+    root.innerHTML = `
+      <div class="px-4 sm:px-6 py-4">
+        <h2 class="text-sm sm:text-base font-semibold">Worked example · input → detection → masked output</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">No samples bundled for this run; per-document text is only published for synthetic / open-license benchmarks.</p>
+      </div>`;
+    return;
+  }
+
+  // Pick the first sample with predictions (drop the empty placeholder rows).
+  const sample = state.samples.find((s) => s.predictions && Object.keys(s.predictions).length) || state.samples[0];
+  if (!sample || !sample.text) {
+    root.innerHTML = `
+      <div class="px-4 sm:px-6 py-4">
+        <h2 class="text-sm sm:text-base font-semibold">Worked example</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sample doc has no text payload.</p>
+      </div>`;
+    return;
+  }
+
+  // Within the sample, pick the system with the highest per-doc F1 for this drilldown.
+  const sysEntries = Object.entries(sample.predictions);
+  sysEntries.sort((a, b) => (b[1].score?.f1 ?? 0) - (a[1].score?.f1 ?? 0));
+  const [bestName, bestPred] = sysEntries[0] || ["—", { spans: [], score: {} }];
+  const bestMeta = sysMeta(bestName);
+
+  const goldSpans = sample.gold_spans || [];
+  const predSpans = bestPred.spans || [];
+  const maskedText = applyMask(sample.text, predSpans);
+  const predJson = predSpans.map((s) => ({
+    start: s.start, end: s.end, label: s.label, text: sample.text.slice(s.start, s.end),
+  }));
+  const predJsonStr = JSON.stringify({ spans: predJson }, null, 2);
+
+  root.innerHTML = `
+    <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-200 dark:border-slate-800">
+      <h2 class="text-sm sm:text-base font-semibold">Worked example · input → detection → masked output</h2>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+        One real document from this benchmark, taken through the strongest system on this doc
+        (<span class="font-medium text-slate-700 dark:text-slate-300">${escapeHtml(bestMeta.display)}</span>,
+        <code class="text-[11px]">${escapeHtml(bestMeta.model_id)}</code>,
+        per-doc F1 ${pct(bestPred.score?.f1)}).
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-px bg-slate-200 dark:bg-slate-800">
+      <!-- 1. Input -->
+      <div class="bg-white dark:bg-slate-900 p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">1 · Input (with gold PHI)</span>
+          <span class="metric-pill">${sample.gold_n ?? goldSpans.length} gold span${goldSpans.length === 1 ? "" : "s"}</span>
+        </div>
+        <div class="doc-text bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded p-3 max-h-72 overflow-y-auto">${highlight(sample.text, goldSpans, "gold")}</div>
+      </div>
+
+      <!-- 2. System output (JSON) -->
+      <div class="bg-white dark:bg-slate-900 p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">2 · Detector output</span>
+          <span class="metric-pill ${bestPred.score?.f1 > 0.8 ? "good" : "bad"}">F1 ${pct(bestPred.score?.f1)}</span>
+        </div>
+        <pre class="doc-text bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded p-3 max-h-72 overflow-y-auto text-[11px]">${escapeHtml(predJsonStr)}</pre>
+      </div>
+
+      <!-- 3. After masking -->
+      <div class="bg-white dark:bg-slate-900 p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">3 · Masked output (safe to send)</span>
+          <span class="metric-pill good">[LABEL] placeholders</span>
+        </div>
+        <div class="doc-text bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded p-3 max-h-72 overflow-y-auto">${escapeHtml(maskedText)}</div>
+      </div>
+    </div>
+  `;
+}
+
+function applyMask(text, spans) {
+  if (!spans || !spans.length) return text;
+  const sorted = [...spans].sort((a, b) => a.start - b.start);
+  let out = "", cursor = 0;
+  for (const s of sorted) {
+    if (s.start < cursor) continue;
+    out += text.slice(cursor, s.start);
+    out += `[${s.label}]`;
+    cursor = s.end;
+  }
+  out += text.slice(cursor);
+  return out;
 }
 
 function renderDatasetIntro() {

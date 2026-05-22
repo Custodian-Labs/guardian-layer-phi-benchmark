@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22 01:58:54Z",
+  "generated_at": "2026-05-22 02:17:45Z",
   "runs": [
     {
       "id": "asq_phi_25",
@@ -44,7 +44,7 @@
       "n_docs": 25,
       "timestamp": "2026-05-22 01:40:48Z",
       "summary_path": "pii_masking_300k_25.summary.json",
-      "samples_path": null
+      "samples_path": "pii_masking_300k_25.samples.json"
     }
   ]
 }
