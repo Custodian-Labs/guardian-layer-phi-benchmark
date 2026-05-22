@@ -1,0 +1,37 @@
+{
+  "meddocan": {
+    "title": "MEDDOCAN",
+    "subtitle": "Spanish clinical de-identification (synthetic)",
+    "language": "Spanish",
+    "size": "1,000 case reports (250 test)",
+    "license": "Open (CC, Zenodo)",
+    "dua_required": false,
+    "phi_density": "~21 PHI spans / doc",
+    "entity_types": [
+      "NOMBRE_SUJETO_ASISTENCIA", "EDAD_SUJETO_ASISTENCIA",
+      "ID_TITULACION_PERSONAL_SANITARIO", "CORREO_ELECTRONICO",
+      "TERRITORIO", "FECHAS", "HOSPITAL", "CALLE",
+      "...29 fine-grained types total"
+    ],
+    "url": "https://zenodo.org/records/4279323",
+    "why_we_include_it": "Largest *public* Spanish clinical de-id corpus. Every Spanish clinical NLP paper cites it. Reviewer-credible. No DUA required.",
+    "example": "Nombre: Ignacio.\nApellidos: Rico Pedroza.\nNHC: 5467980.\nDomicilio: Av. Beniarda, 13.\nLocalidad/ Provincia: Valencia.\nFecha de nacimiento: 11/02/1970..."
+  },
+  "pii_masking_300k": {
+    "title": "PII-Masking-300k",
+    "subtitle": "Multilingual general PII (synthetic)",
+    "language": "English / French / German + others",
+    "size": "225k entries (178k train, 47.7k validation)",
+    "license": "Open (HuggingFace ai4privacy)",
+    "dua_required": false,
+    "phi_density": "varies — usernames, emails, addresses, names, etc.",
+    "entity_types": [
+      "USERNAME", "EMAIL", "PHONE", "ADDRESS",
+      "FIRSTNAME", "LASTNAME", "DATE",
+      "...27 PII classes total"
+    ],
+    "url": "https://huggingface.co/datasets/ai4privacy/pii-masking-300k",
+    "why_we_include_it": "Used to widen the comparison beyond Spanish clinical to general English PII. Human-validated (~98% token label accuracy). Complements MEDDOCAN's narrow clinical focus with broad use-case coverage (education, health, psychology).",
+    "example": "On the video sharing platform for educational content, a lively discussion unfolded among users from different locales within the UK. The comment thread began with paaltwvkjuijwbj957 expressing admir..."
+  }
+}

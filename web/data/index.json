@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-21 23:32:30Z",
+  "generated_at": "2026-05-22 00:39:06Z",
   "runs": [
     {
       "id": "meddocan_llm_25",
       "benchmark": "meddocan",
       "mode": "type",
       "n_docs": 25,
-      "timestamp": "2026-05-21 23:32:03Z",
+      "timestamp": "2026-05-22 00:39:06Z",
       "summary_path": "meddocan_llm_25.summary.json",
       "samples_path": "meddocan_llm_25.samples.json"
     },
@@ -27,6 +27,15 @@
       "timestamp": "2026-05-21 06:11:36Z",
       "summary_path": "meddocan_type.summary.json",
       "samples_path": "meddocan_type.samples.json"
+    },
+    {
+      "id": "pii_masking_300k_25",
+      "benchmark": "pii_masking_300k",
+      "mode": "type",
+      "n_docs": 25,
+      "timestamp": "2026-05-22 00:39:06Z",
+      "summary_path": "pii_masking_300k_25.summary.json",
+      "samples_path": null
     }
   ]
 }

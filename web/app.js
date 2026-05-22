@@ -23,6 +23,10 @@ async function fetchJSON(path) {
 
 async function init() {
   try {
+    state.datasets_meta = await fetchJSON("./data/datasets_meta.json");
+  } catch { state.datasets_meta = {}; }
+
+  try {
     state.manifest = await fetchJSON("./data/index.json");
   } catch {
     document.body.insertAdjacentHTML("afterbegin",
@@ -78,10 +82,44 @@ async function loadRun(runId) {
 }
 
 function render() {
+  renderDatasetIntro();
   renderCards();
   renderTable();
   renderCharts();
   renderDrilldown();
+}
+
+function renderDatasetIntro() {
+  const root = $("#dataset-intro");
+  const run = state.manifest?.runs?.find((r) => r.id === state.currentBenchmark);
+  const bench = run?.benchmark;
+  const meta = state.datasets_meta?.[bench];
+  if (!meta) { root.innerHTML = ""; return; }
+
+  const entityList = (meta.entity_types || []).map((e) => `<code class="metric-pill">${escapeHtml(e)}</code>`).join(" ");
+  root.innerHTML = `
+    <div class="flex items-start justify-between gap-6 flex-wrap">
+      <div class="flex-1 min-w-[280px]">
+        <div class="text-xs uppercase tracking-wide text-slate-500">Benchmark</div>
+        <h2 class="text-lg font-semibold">${escapeHtml(meta.title)}</h2>
+        <div class="text-sm text-slate-600">${escapeHtml(meta.subtitle)}</div>
+        <p class="mt-2 text-sm text-slate-700">${escapeHtml(meta.why_we_include_it || "")}</p>
+        <div class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+          <div><span class="text-slate-500">Language:</span> ${escapeHtml(meta.language || "?")}</div>
+          <div><span class="text-slate-500">Size:</span> ${escapeHtml(meta.size || "?")}</div>
+          <div><span class="text-slate-500">License:</span> ${escapeHtml(meta.license || "?")}</div>
+          <div><span class="text-slate-500">DUA needed:</span> ${meta.dua_required ? "<span class='text-rose-700'>yes</span>" : "<span class='text-emerald-700'>no</span>"}</div>
+        </div>
+        <div class="mt-3 text-xs"><span class="text-slate-500">PHI density:</span> ${escapeHtml(meta.phi_density || "?")}</div>
+        <div class="mt-2 text-xs flex flex-wrap gap-1">${entityList}</div>
+        ${meta.url ? `<div class="mt-2 text-xs"><a class="text-indigo-600 hover:underline" href="${meta.url}" target="_blank" rel="noopener">${escapeHtml(meta.url)}</a></div>` : ""}
+      </div>
+      <div class="flex-1 min-w-[280px]">
+        <div class="text-xs uppercase tracking-wide text-slate-500 mb-1">Example excerpt</div>
+        <pre class="doc-text bg-slate-50 border border-slate-200 rounded p-3 max-h-44 overflow-y-auto">${escapeHtml(meta.example || "")}</pre>
+      </div>
+    </div>
+  `;
 }
 
 function renderCards() {

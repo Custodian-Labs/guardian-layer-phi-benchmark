@@ -25,6 +25,7 @@ class LocalLLMConfig:
     dtype: str = "bfloat16"   # or "float16"; A100 prefers bf16
     device_map: str = "auto"
     trust_remote_code: bool = False
+    chat_template_kwargs: dict | None = None  # e.g. {"enable_thinking": False} for Qwen3
 
 
 def _patch_dynamic_cache_compat() -> None:
@@ -79,6 +80,7 @@ class LocalHFLLM(DeIDSystem):
         ]
         prompt = self._tokenizer.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True,
+            **(self._cfg.chat_template_kwargs or {}),
         )
         inputs = self._tokenizer(prompt, return_tensors="pt").to(self._model.device)
 
@@ -129,4 +131,14 @@ DEEPSEEK_V2_LITE = LocalLLMConfig(
     name="deepseek_v2_lite",
     model_id="deepseek-ai/DeepSeek-V2-Lite-Chat",
     trust_remote_code=True,
+)
+KIMI_VL_A3B = LocalLLMConfig(
+    name="kimi_vl_a3b_thinking",
+    model_id="moonshotai/Kimi-VL-A3B-Thinking-2506",
+    trust_remote_code=True,
+)
+QWEN3_5_4B = LocalLLMConfig(
+    name="qwen3.5_4b",
+    model_id="Qwen/Qwen3.5-4B",
+    chat_template_kwargs={"enable_thinking": False},
 )

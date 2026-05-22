@@ -1,0 +1,35 @@
+[
+  {
+    "system": "presidio",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.2978723404255319,
+    "recall": 0.35,
+    "f1": 0.3218390804597701,
+    "leakage_rate": 0.65,
+    "char_leakage_rate": 0.6231656184486373
+  },
+  {
+    "system": "deid_roberta_i2b2",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.015544041450777202,
+    "recall": 0.0375,
+    "f1": 0.021978021978021976,
+    "leakage_rate": 0.9625,
+    "char_leakage_rate": 0.9868972746331237
+  },
+  {
+    "system": "openai_gpt",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.8489208633093526,
+    "recall": 0.7375,
+    "f1": 0.7892976588628763,
+    "leakage_rate": 0.26249999999999996,
+    "char_leakage_rate": 0.22327044025157233
+  }
+]

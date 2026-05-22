@@ -91,6 +91,12 @@ def _build_system(name: str, language: str):
     if name == "deepseek_v2_lite":
         from systems.llm_local_hf import LocalHFLLM, DEEPSEEK_V2_LITE
         return LocalHFLLM(DEEPSEEK_V2_LITE)
+    if name == "kimi_vl":
+        from systems.llm_local_hf import LocalHFLLM, KIMI_VL_A3B
+        return LocalHFLLM(KIMI_VL_A3B)
+    if name == "qwen3_5_4b":
+        from systems.llm_local_hf import LocalHFLLM, QWEN3_5_4B
+        return LocalHFLLM(QWEN3_5_4B)
     raise ValueError(f"unknown system: {name}")
 
 
