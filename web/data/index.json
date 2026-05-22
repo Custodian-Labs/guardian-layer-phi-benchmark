@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22 02:17:45Z",
+  "generated_at": "2026-05-22 02:24:45Z",
   "runs": [
     {
       "id": "asq_phi_25",
@@ -18,24 +18,6 @@
       "timestamp": "2026-05-22 00:39:06Z",
       "summary_path": "meddocan_llm_25.summary.json",
       "samples_path": "meddocan_llm_25.samples.json"
-    },
-    {
-      "id": "meddocan_relaxed",
-      "benchmark": "meddocan",
-      "mode": "relaxed",
-      "n_docs": 250,
-      "timestamp": "2026-05-21 06:12:23Z",
-      "summary_path": "meddocan_relaxed.summary.json",
-      "samples_path": "meddocan_relaxed.samples.json"
-    },
-    {
-      "id": "meddocan_type",
-      "benchmark": "meddocan",
-      "mode": "type",
-      "n_docs": 250,
-      "timestamp": "2026-05-21 06:11:36Z",
-      "summary_path": "meddocan_type.summary.json",
-      "samples_path": "meddocan_type.samples.json"
     },
     {
       "id": "pii_masking_300k_25",
