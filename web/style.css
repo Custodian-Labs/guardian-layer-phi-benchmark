@@ -35,6 +35,22 @@
 .dark .metric-pill.bad  { background: rgba(244, 63, 94, 0.22); color: rgb(253 164 175); }
 .highlight-row { background: rgba(99, 102, 241, 0.06); }
 .dark .highlight-row { background: rgba(99, 102, 241, 0.18); }
+.cell-best {
+  background: rgba(16, 185, 129, 0.16);
+  color: rgb(4 120 87);
+  position: relative;
+}
+.cell-best::after {
+  content: "▲";
+  font-size: 9px;
+  margin-left: 4px;
+  vertical-align: super;
+  opacity: 0.8;
+}
+.dark .cell-best {
+  background: rgba(16, 185, 129, 0.28);
+  color: rgb(110 231 183);
+}
 .doc-text { white-space: pre-wrap; line-height: 1.6; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
 .dark .doc-text { color: rgb(226 232 240); }
 @media (max-width: 640px) {

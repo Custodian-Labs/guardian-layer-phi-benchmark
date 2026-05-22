@@ -1,0 +1,72 @@
+{
+  "openai_gpt": {
+    "display": "OpenAI GPT-5",
+    "model_id": "openai/gpt-5",
+    "provider": "OpenAI (hosted API)",
+    "size": "undisclosed",
+    "access": "hosted"
+  },
+  "gemma_4_e4b": {
+    "display": "Gemma 4 E4B",
+    "model_id": "google/gemma-4-E4B-it",
+    "provider": "Google DeepMind",
+    "size": "8 B params (E-class)",
+    "access": "local · HF transformers"
+  },
+  "qwen3.5_4b": {
+    "display": "Qwen 3.5-4B",
+    "model_id": "Qwen/Qwen3.5-4B",
+    "provider": "Alibaba",
+    "size": "4 B params (dense, thinking disabled)",
+    "access": "local · HF transformers"
+  },
+  "deepseek_v2_lite": {
+    "display": "DeepSeek V2-Lite",
+    "model_id": "deepseek-ai/DeepSeek-V2-Lite-Chat",
+    "provider": "DeepSeek",
+    "size": "16 B MoE / 2.4 B active",
+    "access": "local · HF transformers"
+  },
+  "moonlight_16b_a3b": {
+    "display": "Moonlight 16B-A3B",
+    "model_id": "moonshotai/Moonlight-16B-A3B-Instruct",
+    "provider": "Moonshot AI",
+    "size": "16 B MoE / 3 B active",
+    "access": "blocked · attention-mask shape incompat"
+  },
+  "kimi_vl_a3b_thinking": {
+    "display": "Kimi-VL-A3B-Thinking",
+    "model_id": "moonshotai/Kimi-VL-A3B-Thinking-2506",
+    "provider": "Moonshot AI",
+    "size": "16 B MoE / 2.8 B active (VLM)",
+    "access": "blocked · transformers compat"
+  },
+  "presidio": {
+    "display": "Microsoft Presidio",
+    "model_id": "presidio-analyzer + spaCy lg",
+    "provider": "Microsoft",
+    "size": "rule-based + spaCy NER",
+    "access": "local · pip install"
+  },
+  "deid_roberta_i2b2": {
+    "display": "OBI deid_roberta_i2b2",
+    "model_id": "obi/deid_roberta_i2b2",
+    "provider": "OBI / RoBERTa-large fine-tuned",
+    "size": "355 M params",
+    "access": "local · HF transformers"
+  },
+  "custodian_proprietary_transform": {
+    "display": "Custodian Guardian (PROPRIETARY/transform)",
+    "model_id": "custodian-labs Guardian Layer",
+    "provider": "Custodian Labs",
+    "size": "proprietary",
+    "access": "hosted · API key required"
+  },
+  "custodian_masked_redact": {
+    "display": "Custodian (MASKED/redact)",
+    "model_id": "custodian-labs MASKED mode",
+    "provider": "Custodian Labs",
+    "size": "proprietary",
+    "access": "hosted · API key required"
+  }
+}

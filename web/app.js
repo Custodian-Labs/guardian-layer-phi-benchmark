@@ -51,6 +51,10 @@ async function init() {
   } catch { state.datasets_meta = {}; }
 
   try {
+    state.systems_meta = await fetchJSON("./data/systems_meta.json");
+  } catch { state.systems_meta = {}; }
+
+  try {
     state.manifest = await fetchJSON("./data/index.json");
   } catch {
     document.body.insertAdjacentHTML("afterbegin",
@@ -146,6 +150,14 @@ function renderDatasetIntro() {
   `;
 }
 
+function sysMeta(name) {
+  return state.systems_meta?.[name] || { display: name, model_id: name, provider: "—", size: "—", access: "—" };
+}
+
+function sysDisplay(name) {
+  return sysMeta(name).display || name;
+}
+
 function renderCards() {
   const best = (key, lowerBetter = false) => {
     const sorted = [...state.rows].sort((a, b) => lowerBetter ? a[key] - b[key] : b[key] - a[key]);
@@ -158,41 +170,67 @@ function renderCards() {
     { title: "Lowest Char Leak", row: best("char_leakage_rate", true), key: "char_leakage_rate", fmt: pct },
   ];
   $("#summary-cards").innerHTML = cards.map((c) => `
-    <div class="bg-white rounded-lg border border-slate-200 p-4 shadow-sm">
-      <div class="text-xs uppercase tracking-wide text-slate-500">${c.title}</div>
+    <div class="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 p-4 shadow-sm">
+      <div class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">${c.title}</div>
       <div class="mt-1 text-2xl font-semibold">${c.row ? c.fmt(c.row[c.key]) : "—"}</div>
-      <div class="mt-1 text-xs text-slate-500">${c.row ? c.row.system : ""}</div>
+      <div class="mt-1 text-xs text-slate-500 dark:text-slate-400 truncate" title="${c.row ? escapeHtml(sysMeta(c.row.system).model_id) : ""}">${c.row ? escapeHtml(sysDisplay(c.row.system)) : ""}</div>
     </div>
   `).join("");
+}
+
+function _bestByCol(key, lowerBetter = false) {
+  if (!state.rows.length) return null;
+  const vals = state.rows.map((r) => r[key]).filter((v) => v != null && !Number.isNaN(v));
+  if (!vals.length) return null;
+  return lowerBetter ? Math.min(...vals) : Math.max(...vals);
 }
 
 function renderTable() {
   const tbody = $("#comparison-tbody");
   const metric = state.metric;
+
+  // Best value per column (used to colour each cell independently).
+  const bestP = _bestByCol("precision");
+  const bestR = _bestByCol("recall");
+  const bestF1 = _bestByCol("f1");
+  const bestLeak = _bestByCol("leakage_rate", true);
+  const bestCharLeak = _bestByCol("char_leakage_rate", true);
+
+  const cell = (val, best, fmt = pct) => {
+    if (val == null) return `<td class="px-3 sm:px-4 py-2 sm:py-2.5 text-right tabular-nums">—</td>`;
+    const isBest = best != null && Math.abs(val - best) < 1e-9;
+    return `<td class="px-3 sm:px-4 py-2 sm:py-2.5 text-right tabular-nums ${isBest ? "cell-best font-semibold" : ""}">${fmt(val)}</td>`;
+  };
+
+  const lowerBetter = metric.includes("leakage");
   const metricVals = state.rows.map((r) => r[metric] ?? 0);
-  const max = Math.max(...metricVals);
+  const metricBest = lowerBetter ? Math.min(...metricVals) : Math.max(...metricVals);
 
   tbody.innerHTML = state.rows.map((r) => {
-    const lowerBetter = metric.includes("leakage");
-    const isBest = lowerBetter ? r[metric] === Math.min(...metricVals) : r[metric] === max;
+    const meta = sysMeta(r.system);
+    const isRowBest = Math.abs(r[metric] - metricBest) < 1e-9;
     return `
-      <tr class="${isBest ? "highlight-row" : ""}">
-        <td class="px-4 py-2.5 font-medium">${r.system}</td>
-        <td class="px-4 py-2.5 text-right tabular-nums">${pct(r.precision)}</td>
-        <td class="px-4 py-2.5 text-right tabular-nums">${pct(r.recall)}</td>
-        <td class="px-4 py-2.5 text-right tabular-nums">${pct(r.f1)}</td>
-        <td class="px-4 py-2.5 text-right tabular-nums">${pct(r.leakage_rate)}</td>
-        <td class="px-4 py-2.5 text-right tabular-nums">${pct(r.char_leakage_rate)}</td>
-        <td class="px-4 py-2.5 text-right text-slate-500">${r.n_docs}</td>
+      <tr class="${isRowBest ? "highlight-row" : ""}">
+        <td class="px-3 sm:px-4 py-2 sm:py-2.5">
+          <div class="font-medium">${escapeHtml(meta.display || r.system)}</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 font-mono"><code>${escapeHtml(meta.model_id || "")}</code></div>
+          <div class="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">${escapeHtml(meta.size || "")} · ${escapeHtml(meta.access || "")}</div>
+        </td>
+        ${cell(r.precision, bestP)}
+        ${cell(r.recall, bestR)}
+        ${cell(r.f1, bestF1)}
+        ${cell(r.leakage_rate, bestLeak)}
+        ${cell(r.char_leakage_rate, bestCharLeak)}
+        <td class="px-3 sm:px-4 py-2 sm:py-2.5 text-right text-slate-500 dark:text-slate-400">${r.n_docs}</td>
       </tr>
     `;
   }).join("");
 
-  $("#row-meta").textContent = `${state.rows.length} systems · highlighted by ${metric}`;
+  $("#row-meta").textContent = `${state.rows.length} systems · row highlight = best ${metric}, cell highlight = best per column`;
 }
 
 function renderCharts() {
-  const labels = state.rows.map((r) => r.system);
+  const labels = state.rows.map((r) => sysDisplay(r.system));
   const recall = state.rows.map((r) => r.recall);
   const precision = state.rows.map((r) => r.precision);
   const leak = state.rows.map((r) => r.leakage_rate);
