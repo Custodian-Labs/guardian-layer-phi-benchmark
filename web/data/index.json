@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-05-22 07:42:45Z",
+  "generated_at": "2026-05-22 18:17:41Z",
   "runs": [
     {
-      "id": "asq_phi_25",
+      "id": "asq_phi_250",
       "benchmark": "asq_phi",
       "mode": "type",
-      "n_docs": 25,
-      "timestamp": "2026-05-22 01:58:54Z",
-      "summary_path": "asq_phi_25.summary.json",
-      "samples_path": "asq_phi_25.samples.json"
+      "n_docs": 250,
+      "timestamp": "2026-05-22 18:17:41Z",
+      "summary_path": "asq_phi_250.summary.json",
+      "samples_path": "asq_phi_250.samples.json"
     },
     {
       "id": "meddocan_250",
@@ -20,13 +20,13 @@
       "samples_path": "meddocan_250.samples.json"
     },
     {
-      "id": "pii_masking_300k_25",
+      "id": "pii_masking_300k_250",
       "benchmark": "pii_masking_300k",
       "mode": "type",
-      "n_docs": 25,
-      "timestamp": "2026-05-22 01:40:48Z",
-      "summary_path": "pii_masking_300k_25.summary.json",
-      "samples_path": "pii_masking_300k_25.samples.json"
+      "n_docs": 250,
+      "timestamp": "2026-05-22 18:17:41Z",
+      "summary_path": "pii_masking_300k_250.summary.json",
+      "samples_path": "pii_masking_300k_250.samples.json"
     }
   ]
 }
