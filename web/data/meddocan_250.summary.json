@@ -1,0 +1,68 @@
+[
+  {
+    "system": "openai_gpt",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.8029330889092575,
+    "recall": 0.6189719130895601,
+    "f1": 0.6990523690773066,
+    "leakage_rate": 0.3810280869104399,
+    "char_leakage_rate": 0.30806003672620763
+  },
+  {
+    "system": "gemma_4_e4b",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.7689684569479965,
+    "recall": 0.6373432255785197,
+    "f1": 0.6969960397952284,
+    "leakage_rate": 0.36265677442148025,
+    "char_leakage_rate": 0.3374410028379342
+  },
+  {
+    "system": "qwen3.5_4b",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.5322407307898979,
+    "recall": 0.3499381734675852,
+    "f1": 0.42225301076414795,
+    "leakage_rate": 0.6500618265324147,
+    "char_leakage_rate": 0.6754435220736649
+  },
+  {
+    "system": "deepseek_v2_lite",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.5944894651539708,
+    "recall": 0.3239710298533828,
+    "f1": 0.41939172193002516,
+    "leakage_rate": 0.6760289701466172,
+    "char_leakage_rate": 0.697904177985522
+  },
+  {
+    "system": "presidio",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.38945062352544657,
+    "recall": 0.40823176117293763,
+    "f1": 0.39862009486847777,
+    "leakage_rate": 0.5917682388270624,
+    "char_leakage_rate": 0.5985916561698511
+  },
+  {
+    "system": "deid_roberta_i2b2",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.06774580335731414,
+    "recall": 0.07984455043278572,
+    "f1": 0.07329927835887455,
+    "leakage_rate": 0.9201554495672143,
+    "char_leakage_rate": 0.9546082284916455
+  }
+]

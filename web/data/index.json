@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22 02:24:45Z",
+  "generated_at": "2026-05-22 07:42:45Z",
   "runs": [
     {
       "id": "asq_phi_25",
@@ -11,13 +11,13 @@
       "samples_path": "asq_phi_25.samples.json"
     },
     {
-      "id": "meddocan_llm_25",
+      "id": "meddocan_250",
       "benchmark": "meddocan",
       "mode": "type",
-      "n_docs": 25,
-      "timestamp": "2026-05-22 00:39:06Z",
-      "summary_path": "meddocan_llm_25.summary.json",
-      "samples_path": "meddocan_llm_25.samples.json"
+      "n_docs": 250,
+      "timestamp": "2026-05-22 07:42:45Z",
+      "summary_path": "meddocan_250.summary.json",
+      "samples_path": "meddocan_250.samples.json"
     },
     {
       "id": "pii_masking_300k_25",
