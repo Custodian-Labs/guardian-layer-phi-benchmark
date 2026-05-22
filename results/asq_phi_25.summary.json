@@ -1,25 +1,14 @@
 [
   {
-    "system": "presidio",
+    "system": "gemma_4_e4b",
     "benchmark": "asq_phi",
     "mode": "type",
     "n_docs": 25,
-    "precision": 0.42063492063492064,
-    "recall": 0.6883116883116883,
-    "f1": 0.5221674876847291,
-    "leakage_rate": 0.3116883116883117,
-    "char_leakage_rate": 0.34234234234234234
-  },
-  {
-    "system": "deid_roberta_i2b2",
-    "benchmark": "asq_phi",
-    "mode": "type",
-    "n_docs": 25,
-    "precision": 0.034482758620689655,
-    "recall": 0.07792207792207792,
-    "f1": 0.04780876494023904,
-    "leakage_rate": 0.922077922077922,
-    "char_leakage_rate": 0.955955955955956
+    "precision": 0.7346938775510204,
+    "recall": 0.935064935064935,
+    "f1": 0.822857142857143,
+    "leakage_rate": 0.06493506493506496,
+    "char_leakage_rate": 0.07307307307307308
   },
   {
     "system": "openai_gpt",
@@ -31,5 +20,49 @@
     "f1": 0.7630057803468208,
     "leakage_rate": 0.1428571428571429,
     "char_leakage_rate": 0.11511511511511512
+  },
+  {
+    "system": "presidio",
+    "benchmark": "asq_phi",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.42063492063492064,
+    "recall": 0.6883116883116883,
+    "f1": 0.5221674876847291,
+    "leakage_rate": 0.3116883116883117,
+    "char_leakage_rate": 0.34234234234234234
+  },
+  {
+    "system": "qwen3.5_4b",
+    "benchmark": "asq_phi",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.3888888888888889,
+    "recall": 0.6363636363636364,
+    "f1": 0.4827586206896552,
+    "leakage_rate": 0.36363636363636365,
+    "char_leakage_rate": 0.3963963963963964
+  },
+  {
+    "system": "deepseek_v2_lite",
+    "benchmark": "asq_phi",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.717948717948718,
+    "recall": 0.36363636363636365,
+    "f1": 0.48275862068965514,
+    "leakage_rate": 0.6363636363636364,
+    "char_leakage_rate": 0.6726726726726727
+  },
+  {
+    "system": "deid_roberta_i2b2",
+    "benchmark": "asq_phi",
+    "mode": "type",
+    "n_docs": 25,
+    "precision": 0.034482758620689655,
+    "recall": 0.07792207792207792,
+    "f1": 0.04780876494023904,
+    "leakage_rate": 0.922077922077922,
+    "char_leakage_rate": 0.955955955955956
   }
 ]

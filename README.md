@@ -35,13 +35,22 @@ Three datasets, 25 documents each, type-mode (span-exact, label-agnostic).
 
 | System | P | R | **F1** | Leakage |
 | --- | ---: | ---: | ---: | ---: |
+| **Gemma 4 E4B** (8B, local) | 0.74 | 0.94 | **0.82** | 0.06 |
 | **OpenAI GPT-5** | 0.69 | 0.86 | **0.76** | 0.14 |
 | **Presidio** (en spaCy `lg`) | 0.42 | 0.69 | **0.52** | 0.31 |
+| **Qwen 3.5-4B** (local) | 0.39 | 0.64 | **0.48** | 0.36 |
+| **DeepSeek V2-Lite** (local) | 0.72 | 0.36 | **0.48** | 0.64 |
 | **OBI `deid_roberta_i2b2`** | 0.03 | 0.08 | **0.05** | 0.92 |
 
-Note: Presidio's recall (0.69) is much higher on ASQ-PHI than on MEDDOCAN
-(0.41) or PII-Masking-300k (0.35), because ASQ-PHI's NAME / DATE /
-GEOGRAPHIC_LOCATION labels match Presidio's English recognizers exactly.
+Notes:
+- Gemma 4 E4B beats GPT-5 again — its recall (0.94) is the highest of any
+  system on any benchmark we've measured, and leakage drops to just 6%.
+- DeepSeek V2-Lite shows the opposite profile: high precision (0.72) but
+  very low recall (0.36) — it's *conservative*, only flagging things it's
+  certain about.
+- Presidio's recall (0.69) is much higher on ASQ-PHI than on MEDDOCAN
+  (0.41) or PII-Masking-300k (0.35), because ASQ-PHI's NAME / DATE /
+  GEOGRAPHIC_LOCATION labels match Presidio's English recognizers exactly.
 
 ### PII-Masking-300k validation (English), general PII
 
@@ -56,12 +65,14 @@ GEOGRAPHIC_LOCATION labels match Presidio's English recognizers exactly.
 
 ### Headlines
 
-- **A small *local* 8B model beats GPT-5 on general PII.** Gemma 4 E4B
-  reaches F1=0.84 on PII-Masking-300k, ~5 F1 above GPT-5. First task
-  where open-source ≥ hosted in our matrix.
-- **GPT-5 still leads on clinical PHI** — F1=0.71 (Spanish, MEDDOCAN)
-  and 0.76 (English, ASQ-PHI). Gemma trails by 3-5 F1 on clinical
-  text; the gap is real but small.
+- **A small *local* 8B model beats GPT-5 on *both* English benchmarks.**
+  Gemma 4 E4B reaches F1=0.82 on ASQ-PHI (vs GPT-5's 0.76) and F1=0.84
+  on PII-Masking-300k (vs 0.79). The win comes from sharply higher
+  recall — Gemma's leakage rate is 0.06 on ASQ-PHI, the lowest of any
+  system / dataset in our matrix.
+- **GPT-5 still leads on Spanish clinical PHI** — F1=0.71 on MEDDOCAN.
+  Gemma trails by 3 F1 here; the gap is real but small, and is
+  plausibly a language-coverage effect rather than a capability one.
 - **Non-LLM baselines lag by 20+ F1 points** on every benchmark.
   Presidio is competitive only on tasks where its built-in
   recognizers (English NAME/DATE/EMAIL) match the gold labels —
