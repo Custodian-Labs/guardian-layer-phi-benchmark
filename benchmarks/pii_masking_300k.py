@@ -23,17 +23,19 @@ class PIIMasking300k(Benchmark):
     name = "pii_masking_300k"
     language = "en"
 
+    DEFAULT_LANGUAGE = "English"
+
     def __init__(
         self,
         root: Path,
         split: str = "validation",
-        language: str = "English",
+        language: str | None = None,
         limit: int | None = None,
         seed: int = 0,
     ):
         super().__init__(root)
         self.split = split
-        self.target_language = language
+        self.target_language = language or self.DEFAULT_LANGUAGE
         self.limit = limit
         self.seed = seed
         self._docs: list[Document] | None = None
@@ -78,3 +80,9 @@ class PIIMasking300k(Benchmark):
         if self._docs is None:
             self._docs = self._load()
         return len(self._docs)
+
+
+class PIIMasking300kDutch(PIIMasking300k):
+    name = "pii_masking_300k_dutch"
+    language = "nl"
+    DEFAULT_LANGUAGE = "Dutch"

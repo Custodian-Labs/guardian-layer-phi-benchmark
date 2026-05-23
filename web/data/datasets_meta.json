@@ -50,5 +50,40 @@
     "url": "https://huggingface.co/datasets/ai4privacy/pii-masking-300k",
     "why_we_include_it": "Widens the comparison beyond Spanish clinical to general English PII. Human-validated (~98% token label accuracy). Complements MEDDOCAN's narrow clinical focus.",
     "example": "On the video sharing platform for educational content, a lively discussion unfolded among users from different locales within the UK. The comment thread began with paaltwvkjuijwbj957 expressing admir..."
+  },
+  "pii_masking_300k_dutch": {
+    "title": "PII-Masking-300k (Dutch)",
+    "subtitle": "Dutch general PII (synthetic) — same corpus, different language",
+    "language": "Dutch (Nederlands)",
+    "size": "~2k Dutch docs in validation",
+    "license": "Open (HuggingFace ai4privacy)",
+    "dua_required": false,
+    "phi_density": "varies — usernames, emails, addresses, names, etc.",
+    "entity_types": [
+      "USERNAME", "EMAIL", "PHONE", "ADDRESS",
+      "FIRSTNAME", "LASTNAME", "DATE",
+      "...27 PII classes total"
+    ],
+    "url": "https://huggingface.co/datasets/ai4privacy/pii-masking-300k",
+    "why_we_include_it": "Direct cross-language comparison: same task, same labels, different language. Reveals which systems generalise across languages versus which collapse on non-English text.",
+    "example": "Het programma was duidelijk gericht op een bepaalde demografie, voornamelijk personen die geboren zijn na 14-06-1953..."
+  },
+  "multiconer_v2": {
+    "title": "MultiCoNER v2",
+    "subtitle": "Fine-grained noisy NER, 33 entity types",
+    "language": "English (12 languages available)",
+    "size": "249,980 English test sentences",
+    "license": "Open (HuggingFace MultiCoNER)",
+    "dua_required": false,
+    "phi_density": "1-3 entity spans / sentence on average",
+    "entity_types": [
+      "OtherPER", "Artist", "Athlete", "Cleric", "Politician",
+      "Facility", "HumanSettlement", "OtherLOC",
+      "Disease", "Medication/Vaccine", "MedicalProcedure",
+      "ORG", "AerospaceManufacturer", "...33 fine-grained classes"
+    ],
+    "url": "https://huggingface.co/datasets/MultiCoNER/multiconer_v2",
+    "why_we_include_it": "Wikipedia/forum noisy text with 33 fine-grained entity types (people, locations, medical, products). Tests whether PII detectors handle out-of-clinical-domain entities — important because the same prompts get sent to LLMs from many contexts.",
+    "example": "the species was described by dietrich brandis after the forester t. f. bourdillon ."
   }
 }

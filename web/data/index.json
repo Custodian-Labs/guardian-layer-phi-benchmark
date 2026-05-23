@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22 18:17:41Z",
+  "generated_at": "2026-05-23 12:46:55Z",
   "runs": [
     {
       "id": "asq_phi_250",
@@ -18,6 +18,33 @@
       "timestamp": "2026-05-22 07:42:45Z",
       "summary_path": "meddocan_250.summary.json",
       "samples_path": "meddocan_250.samples.json"
+    },
+    {
+      "id": "multiconer_v2_250",
+      "benchmark": "multiconer_v2",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-05-23 12:46:55Z",
+      "summary_path": "multiconer_v2_250.summary.json",
+      "samples_path": "multiconer_v2_250.samples.json"
+    },
+    {
+      "id": "pii_dutch_250",
+      "benchmark": "pii_masking_300k_dutch",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-05-23 11:21:04Z",
+      "summary_path": "pii_dutch_250.summary.json",
+      "samples_path": "pii_dutch_250.samples.json"
+    },
+    {
+      "id": "pii_dutch_250_presidio",
+      "benchmark": "pii_masking_300k_dutch",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-05-23 11:15:04Z",
+      "summary_path": "pii_dutch_250_presidio.summary.json",
+      "samples_path": "pii_dutch_250_presidio.samples.json"
     },
     {
       "id": "pii_masking_300k_250",

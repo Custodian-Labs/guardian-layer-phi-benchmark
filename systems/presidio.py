@@ -14,6 +14,11 @@ _SPACY_BY_LANG = {
     "en": "en_core_web_lg",
     "es": "es_core_news_lg",
     "ca": "ca_core_news_lg",
+    "nl": "nl_core_news_lg",
+    "de": "de_core_news_lg",
+    "fr": "fr_core_news_lg",
+    "it": "it_core_news_lg",
+    "pt": "pt_core_news_lg",
 }
 
 

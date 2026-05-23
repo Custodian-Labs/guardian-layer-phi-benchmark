@@ -1,0 +1,13 @@
+[
+  {
+    "system": "presidio",
+    "benchmark": "pii_masking_300k_dutch",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.3942687747035573,
+    "recall": 0.4523809523809524,
+    "f1": 0.42133051742344246,
+    "leakage_rate": 0.5476190476190477,
+    "char_leakage_rate": 0.4604819277108434
+  }
+]
