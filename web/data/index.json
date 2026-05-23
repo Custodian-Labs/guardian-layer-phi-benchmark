@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23 12:46:55Z",
+  "generated_at": "2026-05-23 12:47:52Z",
   "runs": [
     {
       "id": "asq_phi_250",
@@ -33,18 +33,9 @@
       "benchmark": "pii_masking_300k_dutch",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-05-23 11:21:04Z",
+      "timestamp": "2026-05-23 12:47:52Z",
       "summary_path": "pii_dutch_250.summary.json",
       "samples_path": "pii_dutch_250.samples.json"
-    },
-    {
-      "id": "pii_dutch_250_presidio",
-      "benchmark": "pii_masking_300k_dutch",
-      "mode": "type",
-      "n_docs": 250,
-      "timestamp": "2026-05-23 11:15:04Z",
-      "summary_path": "pii_dutch_250_presidio.summary.json",
-      "samples_path": "pii_dutch_250_presidio.samples.json"
     },
     {
       "id": "pii_masking_300k_250",
