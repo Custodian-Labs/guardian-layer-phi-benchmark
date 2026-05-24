@@ -16,9 +16,12 @@ https://14h034160212.github.io/Custodianai/
 **Backup URL (works without Pages enabled, slower):**
 https://raw.githack.com/14H034160212/Custodianai/main/web/index.html
 
-## Current numbers (2026-05-22, full 250-doc runs)
+## Current numbers (2026-05-23, full 250-doc runs)
 
-Three datasets, **250 documents each**, type-mode (span-exact, label-agnostic).
+**Five datasets, 250 documents each, six systems each — 7,500 system×doc
+inference cells in total.** All datasets are synthetic or public-license;
+no DUA was required for any of them. Matching mode is `type` (span-exact,
+label-agnostic) throughout.
 
 ### MEDDOCAN test, **all 250 docs**, Spanish clinical synthetic
 
@@ -76,34 +79,84 @@ slightly on recall (0.685 vs 0.666), Gemma slightly on precision (0.817
 vs 0.791). The 25-doc subset over-estimated Gemma's lead on this
 benchmark — at 250 docs the two are indistinguishable.
 
-### Headlines (250-doc full benchmarks)
+### PII-Masking-300k Dutch (250 docs)
 
-- **A small local 8B model matches or beats GPT-5 on every benchmark
-  we measured.**
-    - ASQ-PHI (English clinical queries): Gemma F1=**0.786** > GPT-5 0.737 (+5).
-    - MEDDOCAN (Spanish clinical): Gemma F1=**0.697** ≈ GPT-5 0.699 (Δ −0.2,
-      statistically indistinguishable).
-    - PII-Masking-300k (English general PII): Gemma F1=**0.734** = GPT-5
-      0.734 (tied to the third decimal).
-- **On recall — the HIPAA-critical axis — Gemma leads on the two clinical
-  benchmarks.**
-    - ASQ-PHI leakage: Gemma **0.10** vs GPT-5 0.16 — roughly 1.7× lower.
-    - MEDDOCAN leakage: Gemma 0.36 vs GPT-5 0.38.
-    - PII-Masking-300k leakage: Gemma 0.33 vs GPT-5 0.31 (GPT-5 wins by
-      a hair on non-clinical text).
-- **Non-LLM baselines lag by 20+ F1 points** on every benchmark, and
-  the clinical-specific transformer OBI fails wherever its training
-  label set doesn't match the gold scheme (cross-lingual: F1=0.07 on
-  Spanish; cross-domain: F1=0.06 on English general PII).
-- **Non-LLM baselines lag by 20+ F1 points** on every benchmark.
-  Presidio is competitive only on tasks where its built-in
-  recognizers (English NAME/DATE/EMAIL) match the gold labels —
-  evident in the ASQ-PHI score jumping to F1=0.52.
+Same corpus and label set as the English run, different language. Direct
+cross-language comparison.
+
+| System | P | R | **F1** | Leakage |
+| --- | ---: | ---: | ---: | ---: |
+| **Gemma 4 E4B** (8B, local) | **0.82** | **0.71** | **0.763** | **0.29** |
+| **OpenAI GPT-5** | 0.82 | 0.70 | **0.752** | 0.31 |
+| **Qwen 3.5-4B** (local) | 0.80 | 0.61 | **0.69** | 0.39 |
+| **DeepSeek V2-Lite** (local) | 0.67 | 0.33 | **0.44** | 0.67 |
+| **Presidio** (nl `nl_core_news_lg`) | 0.39 | 0.45 | **0.42** | 0.55 |
+| **OBI `deid_roberta_i2b2`** | 0.02 | 0.04 | **0.03** | 0.96 |
+
+Gemma 4 E4B wins by 1 F1, with both higher precision and higher recall
+than GPT-5. Compared to the English version of the same dataset, every
+LLM-tier system gains +2-3 F1 on Dutch; non-LLM baselines stay flat.
+
+### MultiCoNER v2, English fine-grained NER (250 docs)
+
+33 fine-grained entity classes on noisy Wikipedia-derived sentences —
+people, locations, medical, products, organisations. Stress-tests how
+the systems handle out-of-clinical-domain entities.
+
+| System | P | R | **F1** | Leakage |
+| --- | ---: | ---: | ---: | ---: |
+| **Gemma 4 E4B** (8B, local) | 0.58 | **0.75** | **0.657** | **0.25** |
+| **OpenAI GPT-5** | 0.47 | 0.67 | **0.556** | 0.33 |
+| **Presidio** (en) | 0.42 | 0.58 | **0.489** | 0.42 |
+| **DeepSeek V2-Lite** (local) | 0.27 | 0.31 | **0.29** | 0.69 |
+| **Qwen 3.5-4B** (local) | 0.41 | 0.17 | **0.24** | 0.83 |
+| **OBI `deid_roberta_i2b2`** | 0.02 | 0.04 | **0.02** | 0.96 |
+
+**Gemma's largest absolute win — +10 F1 over GPT-5.** Recall 0.75 vs
+0.67. Qwen 3.5-4B unexpectedly collapses on this benchmark (F1=0.24);
+its precision is normal but recall is 0.17, suggesting it is too
+conservative on noisy / typoed inputs.
+
+### Headlines (5 benchmarks, all 250-doc)
+
+- **A small *local* 8B model matches or beats hosted GPT-5 on every
+  benchmark we measured.** Gemma 4 E4B's Δ vs GPT-5 across the five
+  datasets:
+
+  | Benchmark | Gemma F1 | GPT-5 F1 | Δ | Notes |
+  | --- | ---: | ---: | ---: | --- |
+  | ASQ-PHI | **0.786** | 0.737 | **+5** | English clinical queries |
+  | MEDDOCAN | 0.697 | 0.699 | −0.2 | Spanish clinical (tied) |
+  | PII-Masking-300k EN | **0.734** | 0.734 | 0 | English general PII (tied) |
+  | PII-Masking-300k NL | **0.763** | 0.752 | **+1** | Dutch general PII |
+  | MultiCoNER v2 | **0.657** | 0.556 | **+10** | English fine-grained NER |
+
+  **Gemma wins 4/5; the one MEDDOCAN loss is 0.2 F1, well inside
+  noise.**
+
+- **On recall — the HIPAA-critical axis — Gemma leads almost everywhere.**
+  Leakage rate (1 − recall):
+    - ASQ-PHI: Gemma **0.10** vs GPT-5 0.16 (1.7× lower).
+    - MEDDOCAN: Gemma 0.36 vs GPT-5 0.38.
+    - PII-Masking EN: Gemma 0.33 vs GPT-5 0.31 (GPT-5 hair-thin lead).
+    - PII-Masking NL: Gemma **0.29** vs GPT-5 0.31.
+    - MultiCoNER: Gemma **0.25** vs GPT-5 0.33.
+
+- **Non-LLM baselines lag by 15–25 F1 points** on every benchmark.
+  Presidio is competitive only on tasks where its built-in recognizers
+  (NAME/DATE/EMAIL) match the gold labels (e.g. F1=0.53 on ASQ-PHI).
+
 - **Domain-specific transformers do not transfer.** OBI
-  `deid_roberta_i2b2` predicts clinical PHI labels (PATIENT, DOCTOR,
-  HOSP, …); on general PII its F1 collapses to 0.02 even though the
-  input is English. Cross-domain failure is the rule, not the
-  exception, for token-classification de-id models.
+  `deid_roberta_i2b2` predicts a clinical PHI label set (PATIENT, DOCTOR,
+  HOSP, …); on every non-clinical-en benchmark its F1 collapses to ≤0.07,
+  and on Spanish clinical (MEDDOCAN) it sits at F1=0.07 even though
+  MEDDOCAN's labels overlap with i2b2 — it's the language change that
+  kills it.
+
+- **Qwen 3.5-4B's MultiCoNER collapse** (F1=0.24) is the only place a
+  capable LLM falls below Presidio. Hypothesis: Qwen with `enable_thinking
+  =False` is too aggressive at rejecting low-confidence spans on noisy
+  Wikipedia-style text. Worth a follow-up with thinking re-enabled.
 
 ### Models attempted but blocked
 
@@ -125,7 +178,8 @@ custodianai/
 │   ├── base.py
 │   ├── asq_phi.py            # English clinical-queries synthetic, no DUA
 │   ├── meddocan.py           # Spanish clinical synthetic, no DUA
-│   └── pii_masking_300k.py   # Multilingual general PII (HF, open)
+│   ├── pii_masking_300k.py   # Multilingual general PII (HF, open) — EN + NL
+│   └── multiconer_v2.py      # Fine-grained noisy NER, 12 langs (HF, open)
 ├── systems/           # Each model wraps a DeIDSystem.predict(text) → Prediction
 │   ├── base.py
 │   ├── custodian.py

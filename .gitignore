@@ -19,6 +19,8 @@ data/mimic_iv_note/
 data/carmen_i/
 data/asq_phi/raw/
 data/meddocan/raw/
+data/multiconer_v2/raw/
+data/pii_masking_300k/
 
 # Results that may contain raw PHI excerpts
 results/raw/
