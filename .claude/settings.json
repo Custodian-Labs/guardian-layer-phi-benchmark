@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/bin/python -c ' *)",
+      "Bash(git rm *)",
+      "Bash(git commit -m ' *)",
+      "Bash(.venv/bin/python -m spacy download fr_core_news_lg)",
+      "Bash(.venv/bin/python -m spacy download de_core_news_lg)",
+      "Bash(.venv/bin/python -c \"import spacy; spacy.load\\('fr_core_news_lg'\\); spacy.load\\('de_core_news_lg'\\)\")",
+      "Bash(.venv/bin/python -c \"import spacy; print\\('fr:', 'OK' if spacy.util.is_package\\('fr_core_news_lg'\\) else 'missing'\\); print\\('de:', 'OK' if spacy.util.is_package\\('de_core_news_lg'\\) else 'missing'\\)\")",
+      "Bash(.venv/bin/python -c \"import spacy; print\\('fr:', spacy.util.is_package\\('fr_core_news_lg'\\)\\); print\\('de:', spacy.util.is_package\\('de_core_news_lg'\\)\\)\")",
+      "Bash(ps -p 850119 -o pid,ppid,etime,comm)",
+      "Read(//proc/850119/**)",
+      "Bash(nvidia-smi --query-gpu=index,memory.used,memory.free --format=csv,noheader,nounits)",
+      "Bash(pkill -u qbao775 -f \"auto_expand_v3.sh\")",
+      "Bash(pkill -u qbao775 -f \"qwen3_5_4b_thinking\")",
+      "Bash(kill -9 856822)",
+      "Bash(ps -p 919930 -o pid,ppid,etime,comm)",
+      "Read(//proc/919930/**)",
+      "Bash(nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader)",
+      "Bash(grep -v \"^$\")"
+    ]
+  }
+}

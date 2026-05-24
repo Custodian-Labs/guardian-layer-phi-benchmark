@@ -142,3 +142,13 @@ QWEN3_5_4B = LocalLLMConfig(
     model_id="Qwen/Qwen3.5-4B",
     chat_template_kwargs={"enable_thinking": False},
 )
+# Same Qwen weights but with the model's CoT mode left on. With thinking
+# enabled the model tends to "think for the budget" — even 30-token inputs
+# generate near-cap. 1200 leaves room for a short reasoning trace plus the
+# final spans JSON, ~40 s/doc on A100 bf16 vs ~5 s without thinking.
+QWEN3_5_4B_THINKING = LocalLLMConfig(
+    name="qwen3.5_4b_thinking",
+    model_id="Qwen/Qwen3.5-4B",
+    chat_template_kwargs={"enable_thinking": True},
+    max_new_tokens=1200,
+)

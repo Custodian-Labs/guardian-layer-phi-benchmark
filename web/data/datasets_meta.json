@@ -68,6 +68,40 @@
     "why_we_include_it": "Direct cross-language comparison: same task, same labels, different language. Reveals which systems generalise across languages versus which collapse on non-English text.",
     "example": "Het programma was duidelijk gericht op een bepaalde demografie, voornamelijk personen die geboren zijn na 14-06-1953..."
   },
+  "pii_masking_300k_french": {
+    "title": "PII-Masking-300k (French)",
+    "subtitle": "French general PII (synthetic) — same corpus, different language",
+    "language": "French (Français)",
+    "size": "~8.4k French docs in validation",
+    "license": "Open (HuggingFace ai4privacy)",
+    "dua_required": false,
+    "phi_density": "varies — usernames, emails, addresses, names, etc.",
+    "entity_types": [
+      "USERNAME", "EMAIL", "PHONE", "ADDRESS",
+      "FIRSTNAME", "LASTNAME", "DATE",
+      "...27 PII classes total"
+    ],
+    "url": "https://huggingface.co/datasets/ai4privacy/pii-masking-300k",
+    "why_we_include_it": "Romance-language cross-language stress test. Shows whether the systems generalise from English/Dutch to a different language family.",
+    "example": "Mon nom est Jean Dupont et je travaille à l'Hôpital Saint-Louis depuis le 14 mars 2018..."
+  },
+  "pii_masking_300k_german": {
+    "title": "PII-Masking-300k (German)",
+    "subtitle": "German general PII (synthetic) — same corpus, different language",
+    "language": "German (Deutsch)",
+    "size": "~6.2k German docs in validation",
+    "license": "Open (HuggingFace ai4privacy)",
+    "dua_required": false,
+    "phi_density": "varies — usernames, emails, addresses, names, etc.",
+    "entity_types": [
+      "USERNAME", "EMAIL", "PHONE", "ADDRESS",
+      "FIRSTNAME", "LASTNAME", "DATE",
+      "...27 PII classes total"
+    ],
+    "url": "https://huggingface.co/datasets/ai4privacy/pii-masking-300k",
+    "why_we_include_it": "Germanic-language cross-language stress test. Combined with Dutch, lets us see whether close languages produce similar leaderboards.",
+    "example": "Mein Name ist Hans Müller, ich wurde am 22.03.1985 in Hamburg geboren und arbeite bei Siemens..."
+  },
   "multiconer_v2": {
     "title": "MultiCoNER v2",
     "subtitle": "Fine-grained noisy NER, 33 entity types",

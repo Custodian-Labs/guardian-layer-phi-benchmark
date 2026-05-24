@@ -86,3 +86,15 @@ class PIIMasking300kDutch(PIIMasking300k):
     name = "pii_masking_300k_dutch"
     language = "nl"
     DEFAULT_LANGUAGE = "Dutch"
+
+
+class PIIMasking300kFrench(PIIMasking300k):
+    name = "pii_masking_300k_french"
+    language = "fr"
+    DEFAULT_LANGUAGE = "French"
+
+
+class PIIMasking300kGerman(PIIMasking300k):
+    name = "pii_masking_300k_german"
+    language = "de"
+    DEFAULT_LANGUAGE = "German"

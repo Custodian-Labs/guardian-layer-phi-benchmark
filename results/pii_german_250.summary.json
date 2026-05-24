@@ -1,0 +1,68 @@
+[
+  {
+    "system": "gemma_4_e4b",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.8335866261398176,
+    "recall": 0.7095730918499353,
+    "f1": 0.76659678546471,
+    "leakage_rate": 0.29042690815006467,
+    "char_leakage_rate": 0.2661940253287281
+  },
+  {
+    "system": "openai_gpt",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.7974006116207951,
+    "recall": 0.6746442432082794,
+    "f1": 0.7309039943938332,
+    "leakage_rate": 0.3253557567917206,
+    "char_leakage_rate": 0.3198812337150821
+  },
+  {
+    "system": "qwen3.5_4b",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.8123348017621146,
+    "recall": 0.5963777490297542,
+    "f1": 0.6878030585602387,
+    "leakage_rate": 0.40362225097024584,
+    "char_leakage_rate": 0.3649033509058959
+  },
+  {
+    "system": "deepseek_v2_lite",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.5866336633663366,
+    "recall": 0.30659767141009053,
+    "f1": 0.4027187765505522,
+    "leakage_rate": 0.6934023285899095,
+    "char_leakage_rate": 0.6863600557474399
+  },
+  {
+    "system": "presidio",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.4916142557651992,
+    "recall": 0.30336351875808537,
+    "f1": 0.3752,
+    "leakage_rate": 0.6966364812419146,
+    "char_leakage_rate": 0.6540628976549718
+  },
+  {
+    "system": "deid_roberta_i2b2",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.025804171085189113,
+    "recall": 0.04721862871927555,
+    "f1": 0.03337142857142857,
+    "leakage_rate": 0.9527813712807245,
+    "char_leakage_rate": 0.9695206932072956
+  }
+]

@@ -48,6 +48,13 @@
     "size": "rule-based + spaCy NER",
     "access": "local · pip install"
   },
+  "qwen3.5_4b_thinking": {
+    "display": "Qwen 3.5-4B (thinking)",
+    "model_id": "Qwen/Qwen3.5-4B (enable_thinking=True)",
+    "provider": "Alibaba",
+    "size": "4 B params (dense, chain-of-thought on)",
+    "access": "local · HF transformers, max_new_tokens=2000"
+  },
   "deid_roberta_i2b2": {
     "display": "OBI deid_roberta_i2b2",
     "model_id": "obi/deid_roberta_i2b2",

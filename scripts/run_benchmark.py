@@ -97,6 +97,9 @@ def _build_system(name: str, language: str):
     if name == "qwen3_5_4b":
         from systems.llm_local_hf import LocalHFLLM, QWEN3_5_4B
         return LocalHFLLM(QWEN3_5_4B)
+    if name == "qwen3_5_4b_thinking":
+        from systems.llm_local_hf import LocalHFLLM, QWEN3_5_4B_THINKING
+        return LocalHFLLM(QWEN3_5_4B_THINKING)
     raise ValueError(f"unknown system: {name}")
 
 
