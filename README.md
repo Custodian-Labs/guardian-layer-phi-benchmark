@@ -16,12 +16,25 @@ https://14h034160212.github.io/Custodianai/
 **Backup URL (works without Pages enabled, slower):**
 https://raw.githack.com/14H034160212/Custodianai/main/web/index.html
 
-## Current numbers (2026-05-23, full 250-doc runs)
+## Current numbers (2026-05-24, full 250-doc runs)
 
-**Five datasets, 250 documents each, six systems each — 7,500 system×doc
-inference cells in total.** All datasets are synthetic or public-license;
-no DUA was required for any of them. Matching mode is `type` (span-exact,
-label-agnostic) throughout.
+**Seven benchmarks, 250 documents each, six systems each (MultiCoNER adds a
+7th system as a diagnostic) — 10,550 system×doc inference cells in total.**
+All datasets are synthetic or public-license; no DUA was required for any
+of them. Matching mode is `type` (span-exact, label-agnostic) throughout.
+
+### Cross-language trend on PII-Masking-300k (Gemma vs GPT-5)
+
+The cleanest cross-language signal in the matrix: same corpus, same labels,
+four languages. **The further from English, the larger Gemma 4 E4B's lead
+over GPT-5.**
+
+| Language | Gemma F1 | GPT-5 F1 | **Δ** |
+| --- | ---: | ---: | ---: |
+| English | 0.734 | 0.734 | **0.0** |
+| Dutch | 0.763 | 0.752 | **+1.1** |
+| French | 0.754 | 0.730 | **+2.4** |
+| German | 0.767 | 0.731 | **+3.6** |
 
 ### MEDDOCAN test, **all 250 docs**, Spanish clinical synthetic
 
@@ -97,6 +110,35 @@ Gemma 4 E4B wins by 1 F1, with both higher precision and higher recall
 than GPT-5. Compared to the English version of the same dataset, every
 LLM-tier system gains +2-3 F1 on Dutch; non-LLM baselines stay flat.
 
+### PII-Masking-300k French (250 docs)
+
+| System | P | R | **F1** | Leakage |
+| --- | ---: | ---: | ---: | ---: |
+| **Gemma 4 E4B** (8B, local) | **0.84** | **0.69** | **0.754** | **0.31** |
+| **OpenAI GPT-5** | 0.81 | 0.66 | **0.730** | 0.34 |
+| **Qwen 3.5-4B** (local) | 0.82 | 0.62 | **0.70** | 0.38 |
+| **DeepSeek V2-Lite** (local) | 0.62 | 0.28 | **0.38** | 0.72 |
+| **Presidio** (fr `fr_core_news_lg`) | 0.38 | 0.31 | **0.34** | 0.69 |
+| **OBI `deid_roberta_i2b2`** | 0.02 | 0.04 | **0.03** | 0.96 |
+
+Gemma wins +2.4 F1 over GPT-5. DeepSeek hits a precision/recall split very
+similar to its profile on every other PII-Masking variant: respectable P,
+poor R.
+
+### PII-Masking-300k German (250 docs)
+
+| System | P | R | **F1** | Leakage |
+| --- | ---: | ---: | ---: | ---: |
+| **Gemma 4 E4B** (8B, local) | **0.83** | **0.71** | **0.767** | **0.29** |
+| **OpenAI GPT-5** | 0.80 | 0.68 | **0.731** | 0.33 |
+| **Qwen 3.5-4B** (local) | 0.81 | 0.60 | **0.69** | 0.40 |
+| **DeepSeek V2-Lite** (local) | 0.59 | 0.31 | **0.40** | 0.69 |
+| **Presidio** (de `de_core_news_lg`) | 0.49 | 0.30 | **0.38** | 0.70 |
+| **OBI `deid_roberta_i2b2`** | 0.03 | 0.05 | **0.03** | 0.95 |
+
+The widest Gemma > GPT-5 gap on the PII-Masking family (+3.6 F1). The
+fourth language data point in the cross-language trend.
+
 ### MultiCoNER v2, English fine-grained NER (250 docs)
 
 33 fine-grained entity classes on noisy Wikipedia-derived sentences —
@@ -117,6 +159,19 @@ the systems handle out-of-clinical-domain entities.
 its precision is normal but recall is 0.17, suggesting it is too
 conservative on noisy / typoed inputs.
 
+**Qwen-thinking diagnostic (50-doc subset, enable_thinking=True):**
+| Variant | P | R | F1 |
+| --- | ---: | ---: | ---: |
+| Qwen 3.5-4B (thinking OFF, 250 docs) | 0.41 | 0.17 | 0.24 |
+| Qwen 3.5-4B (thinking ON, 50 docs) | **1.00** | 0.11 | 0.20 |
+
+Turning chain-of-thought on flips Qwen's profile to **perfect precision /
+even-lower recall** — every span it returns is correct, but it now returns
+even fewer of them. The collapse is therefore *not* a reasoning gap; Qwen's
+RLHF objective drives it to abstain when uncertain, and CoT amplifies that
+exact tendency. For HIPAA-style high-recall use, this is the opposite of
+the wanted behaviour.
+
 ### Headlines (5 benchmarks, all 250-doc)
 
 - **A small *local* 8B model matches or beats hosted GPT-5 on every
@@ -129,10 +184,13 @@ conservative on noisy / typoed inputs.
   | MEDDOCAN | 0.697 | 0.699 | −0.2 | Spanish clinical (tied) |
   | PII-Masking-300k EN | **0.734** | 0.734 | 0 | English general PII (tied) |
   | PII-Masking-300k NL | **0.763** | 0.752 | **+1** | Dutch general PII |
+  | PII-Masking-300k FR | **0.754** | 0.730 | **+2** | French general PII |
+  | PII-Masking-300k DE | **0.767** | 0.731 | **+4** | German general PII |
   | MultiCoNER v2 | **0.657** | 0.556 | **+10** | English fine-grained NER |
 
-  **Gemma wins 4/5; the one MEDDOCAN loss is 0.2 F1, well inside
-  noise.**
+  **Gemma wins 6/7; the only MEDDOCAN loss is 0.2 F1, well inside noise.**
+  Across the four PII-Masking languages, the trend is monotone: the
+  further the language is from English, the larger Gemma's lead.
 
 - **On recall — the HIPAA-critical axis — Gemma leads almost everywhere.**
   Leakage rate (1 − recall):
