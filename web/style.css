@@ -56,3 +56,51 @@
 @media (max-width: 640px) {
   .doc-text { font-size: 12px; }
 }
+
+/* Ranking-proof span colouring:
+ *   .phi-tp     — system caught a gold span (true positive)   = green
+ *   .phi-fp     — system flagged a non-PHI segment            = yellow
+ *   .phi-missed — gold span the system did NOT flag (leakage) = red strikethrough */
+.phi-mark {
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.phi-mark.phi-tp {
+  background: rgba(16, 185, 129, 0.20);
+  border-bottom: 2px solid rgba(16, 185, 129, 0.75);
+}
+.phi-mark.phi-fp {
+  background: rgba(234, 179, 8, 0.22);
+  border-bottom: 2px solid rgba(234, 179, 8, 0.85);
+}
+.phi-mark.phi-missed {
+  background: rgba(244, 63, 94, 0.18);
+  border-bottom: 2px dashed rgba(244, 63, 94, 0.85);
+  text-decoration: line-through rgba(244, 63, 94, 0.7);
+}
+.dark .phi-mark.phi-tp {
+  background: rgba(16, 185, 129, 0.32);
+  border-bottom-color: rgba(52, 211, 153, 0.9);
+}
+.dark .phi-mark.phi-fp {
+  background: rgba(234, 179, 8, 0.32);
+  border-bottom-color: rgba(250, 204, 21, 0.9);
+}
+.dark .phi-mark.phi-missed {
+  background: rgba(244, 63, 94, 0.28);
+  border-bottom-color: rgba(251, 113, 133, 0.9);
+}
+
+/* Inline legend dots used in the section description */
+.phi-legend {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.phi-legend.gold { background: rgba(16, 185, 129, 0.20); color: rgb(4 120 87); }
+.phi-legend.fp { background: rgba(234, 179, 8, 0.22); color: rgb(133 77 14); }
+.phi-legend.missed { background: rgba(244, 63, 94, 0.18); color: rgb(159 18 57); }
+.dark .phi-legend.gold { background: rgba(16, 185, 129, 0.30); color: rgb(110 231 183); }
+.dark .phi-legend.fp { background: rgba(234, 179, 8, 0.30); color: rgb(253 224 71); }
+.dark .phi-legend.missed { background: rgba(244, 63, 94, 0.30); color: rgb(253 164 175); }

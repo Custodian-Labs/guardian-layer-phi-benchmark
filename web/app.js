@@ -54,8 +54,24 @@ async function init() {
     state.systems_meta = await fetchJSON("./data/systems_meta.json");
   } catch { state.systems_meta = {}; }
 
+  // Load summaries + samples for every run upfront so we can build the
+  // cross-benchmark overview and ranking-proof sections.
   try {
     state.manifest = await fetchJSON("./data/index.json");
+    state.allSummaries = {};
+    state.allSamples = {};
+    await Promise.all(state.manifest.runs.map(async (r) => {
+      try {
+        state.allSummaries[r.id] = await fetchJSON(`./data/${r.summary_path}`);
+      } catch {}
+      if (r.samples_path) {
+        try {
+          state.allSamples[r.id] = await fetchJSON(`./data/${r.samples_path}`);
+        } catch {}
+      }
+    }));
+    renderOverview();
+    setupRankingProof();
   } catch {
     document.body.insertAdjacentHTML("afterbegin",
       `<div class="bg-amber-100 text-amber-900 px-6 py-3 text-sm">
@@ -411,6 +427,243 @@ function escapeHtml(s) {
 function pct(x) {
   if (x === undefined || x === null || Number.isNaN(x)) return "—";
   return (x * 100).toFixed(1) + "%";
+}
+
+// ───────────────────────────────────────────────────────────────
+// NEW: cross-benchmark overview heatmap
+// ───────────────────────────────────────────────────────────────
+function renderOverview() {
+  const root = $("#overview-table");
+  if (!root || !state.manifest) return;
+
+  const runs = state.manifest.runs;
+  const metricSel = $("#overview-metric");
+  const metric = metricSel?.value || "f1";
+  const lowerBetter = metric.includes("leakage");
+
+  // Build matrix: system -> {benchId: value}
+  const systems = new Set();
+  runs.forEach((r) => (state.allSummaries[r.id] || []).forEach((s) => systems.add(s.system)));
+  const sysList = [...systems];
+
+  const valFor = (sys, runId) => {
+    const row = (state.allSummaries[runId] || []).find((s) => s.system === sys);
+    return row ? row[metric] : null;
+  };
+
+  // Per-system mean across the runs where they appear
+  const meanFor = (sys) => {
+    const vals = runs.map((r) => valFor(sys, r.id)).filter((v) => v != null);
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+  };
+
+  // Sort systems by mean (best first, or lowest if lower-better)
+  sysList.sort((a, b) => {
+    const ma = meanFor(a), mb = meanFor(b);
+    if (ma == null) return 1;
+    if (mb == null) return -1;
+    return lowerBetter ? ma - mb : mb - ma;
+  });
+
+  // Per-benchmark max/min for cell colour scaling
+  const benchExtrema = {};
+  runs.forEach((r) => {
+    const vs = sysList.map((s) => valFor(s, r.id)).filter((v) => v != null);
+    benchExtrema[r.id] = { min: Math.min(...vs), max: Math.max(...vs) };
+  });
+
+  const heatCss = (val, min, max) => {
+    if (val == null) return "background:transparent;color:#94a3b8;";
+    const span = (max - min) || 1;
+    let t = (val - min) / span;
+    if (lowerBetter) t = 1 - t;
+    // green (good) -> yellow -> red (bad)
+    const h = Math.round(t * 130);     // 0=red, 130=green
+    const s = 70, l = 86;
+    return `background:hsl(${h},${s}%,${l}%);color:#0f172a;`;
+  };
+  const heatCssDark = (val, min, max) => {
+    if (val == null) return "background:transparent;color:#64748b;";
+    const span = (max - min) || 1;
+    let t = (val - min) / span;
+    if (lowerBetter) t = 1 - t;
+    const h = Math.round(t * 130);
+    return `background:hsl(${h},45%,28%);color:#f1f5f9;`;
+  };
+
+  const isDarkMode = isDark();
+  const cellStyle = (val, runId) => {
+    const ext = benchExtrema[runId];
+    return isDarkMode ? heatCssDark(val, ext.min, ext.max) : heatCss(val, ext.min, ext.max);
+  };
+
+  // Build mean column extrema across systems
+  const meanVals = sysList.map(meanFor).filter((v) => v != null);
+  const meanExt = { min: Math.min(...meanVals), max: Math.max(...meanVals) };
+
+  const fmt = (x) => x == null ? "—" : (x * 100).toFixed(1);
+  const benchLabel = (r) => {
+    const meta = state.datasets_meta?.[r.benchmark];
+    return meta?.title || r.benchmark;
+  };
+
+  const head = `
+    <thead class="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 sticky top-0">
+      <tr>
+        <th class="px-3 py-2 text-left font-medium whitespace-nowrap sticky left-0 bg-slate-50 dark:bg-slate-800 z-10">System</th>
+        ${runs.map((r) => `<th class="px-2 py-2 text-center font-medium whitespace-nowrap" title="${escapeHtml(r.id)}">${escapeHtml(benchLabel(r))}<br><span class="text-[10px] text-slate-400">n=${r.n_docs}</span></th>`).join("")}
+        <th class="px-3 py-2 text-center font-semibold whitespace-nowrap border-l border-slate-300 dark:border-slate-700">Mean</th>
+      </tr>
+    </thead>
+  `;
+
+  const body = sysList.map((sys) => {
+    const meta = sysMeta(sys);
+    const cells = runs.map((r) => {
+      const v = valFor(sys, r.id);
+      return `<td class="px-2 py-2 text-center tabular-nums" style="${cellStyle(v, r.id)}" title="${escapeHtml(sys)} on ${escapeHtml(r.id)}">${fmt(v)}</td>`;
+    }).join("");
+    const m = meanFor(sys);
+    const meanStyle = isDarkMode ? heatCssDark(m, meanExt.min, meanExt.max) : heatCss(m, meanExt.min, meanExt.max);
+    return `
+      <tr class="border-t border-slate-100 dark:border-slate-800">
+        <td class="px-3 py-2 whitespace-nowrap sticky left-0 bg-white dark:bg-slate-900 z-10">
+          <div class="font-medium text-xs sm:text-sm">${escapeHtml(meta.display)}</div>
+          <div class="text-[10px] text-slate-500"><code>${escapeHtml(meta.model_id)}</code></div>
+        </td>
+        ${cells}
+        <td class="px-3 py-2 text-center tabular-nums font-semibold border-l border-slate-200 dark:border-slate-700" style="${meanStyle}">${fmt(m)}</td>
+      </tr>
+    `;
+  }).join("");
+
+  root.innerHTML = head + `<tbody>${body}</tbody>`;
+
+  // Hook metric switcher (idempotent — replaces listener every render).
+  if (metricSel && !metricSel.dataset.bound) {
+    metricSel.addEventListener("change", renderOverview);
+    metricSel.dataset.bound = "1";
+  }
+}
+
+// ───────────────────────────────────────────────────────────────
+// NEW: ranking-proof panel — same doc, 6 systems side by side
+// ───────────────────────────────────────────────────────────────
+function setupRankingProof() {
+  const sel = $("#ranking-bench");
+  const next = $("#ranking-next");
+  if (!sel || !next) return;
+
+  const runs = state.manifest.runs.filter((r) => state.allSamples[r.id]?.length);
+  if (!runs.length) return;
+
+  sel.innerHTML = runs.map((r) => {
+    const meta = state.datasets_meta?.[r.benchmark];
+    const label = meta?.title || r.benchmark;
+    return `<option value="${r.id}">${escapeHtml(label)} (${r.n_docs} docs)</option>`;
+  }).join("");
+
+  state.rankingState = { runId: sel.value, docIdx: 0 };
+
+  sel.addEventListener("change", () => {
+    state.rankingState.runId = sel.value;
+    state.rankingState.docIdx = 0;
+    renderRankingProof();
+  });
+  next.addEventListener("click", () => {
+    const samples = state.allSamples[state.rankingState.runId] || [];
+    state.rankingState.docIdx = (state.rankingState.docIdx + 1) % samples.length;
+    renderRankingProof();
+  });
+
+  renderRankingProof();
+}
+
+function renderRankingProof() {
+  const root = $("#ranking-proof-body");
+  const { runId, docIdx } = state.rankingState || {};
+  const samples = (state.allSamples[runId] || []).filter((s) => s.text);
+  if (!samples.length) {
+    root.innerHTML = `<p class="text-sm text-slate-500 dark:text-slate-400">No per-doc samples available for this benchmark.</p>`;
+    return;
+  }
+  const sample = samples[docIdx % samples.length];
+
+  const entries = Object.entries(sample.predictions || {});
+  // Sort by per-doc F1 (best to worst)
+  entries.sort((a, b) => (b[1].score?.f1 ?? 0) - (a[1].score?.f1 ?? 0));
+
+  const gold = sample.gold_spans || [];
+
+  const panels = entries.map(([sysName, p], i) => {
+    const meta = sysMeta(sysName);
+    const f1 = p.score?.f1 ?? 0;
+    const score = p.score || {};
+
+    // Categorise spans: tp (correct), fp (extra), and missed gold spans (fn)
+    // Using span-exact match (start+end) since dashboard mode is "type".
+    const predKeys = new Set((p.spans || []).map((s) => `${s.start}-${s.end}`));
+    const goldKeys = new Set(gold.map((s) => `${s.start}-${s.end}`));
+    const tpSpans = (p.spans || []).filter((s) => goldKeys.has(`${s.start}-${s.end}`));
+    const fpSpans = (p.spans || []).filter((s) => !goldKeys.has(`${s.start}-${s.end}`));
+    const missedSpans = gold.filter((s) => !predKeys.has(`${s.start}-${s.end}`));
+
+    const allMarks = [
+      ...tpSpans.map((s) => ({ ...s, kind: "tp" })),
+      ...fpSpans.map((s) => ({ ...s, kind: "fp" })),
+      ...missedSpans.map((s) => ({ ...s, kind: "missed" })),
+    ];
+
+    const rankBadge = `<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200 text-xs font-bold">${i + 1}</span>`;
+    const f1Badge = `<span class="metric-pill ${f1 >= 0.7 ? "good" : f1 >= 0.3 ? "" : "bad"}">F1 ${pct(f1)}</span>`;
+    const counts = `<span class="text-[11px] text-slate-500 dark:text-slate-400">tp ${tpSpans.length} · fp ${fpSpans.length} · missed ${missedSpans.length}</span>`;
+
+    return `
+      <div class="border border-slate-200 dark:border-slate-800 rounded-md p-3">
+        <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+          <div class="flex items-center gap-2 min-w-0">
+            ${rankBadge}
+            <div class="min-w-0">
+              <div class="text-sm font-semibold truncate">${escapeHtml(meta.display)}</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 truncate"><code>${escapeHtml(meta.model_id)}</code></div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            ${counts}
+            ${f1Badge}
+          </div>
+        </div>
+        <div class="doc-text bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded p-3 max-h-44 overflow-y-auto">${rankingHighlight(sample.text, allMarks)}</div>
+      </div>
+    `;
+  }).join("");
+
+  const goldHighlight = rankingHighlight(sample.text, gold.map((s) => ({ ...s, kind: "tp" })));
+
+  root.innerHTML = `
+    <div class="text-xs text-slate-500 dark:text-slate-400 mb-1">
+      doc <code>${escapeHtml(sample.doc_id)}</code> · ${gold.length} gold PHI spans · sample ${docIdx + 1} / ${samples.length}
+    </div>
+    <div class="border border-emerald-200 bg-emerald-50/40 dark:bg-emerald-900/15 dark:border-emerald-800 rounded-md p-3">
+      <div class="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300 mb-2">Gold (reference)</div>
+      <div class="doc-text">${goldHighlight}</div>
+    </div>
+    ${panels}
+  `;
+}
+
+function rankingHighlight(text, marks) {
+  if (!marks || !marks.length) return escapeHtml(text);
+  const sorted = [...marks].sort((a, b) => a.start - b.start);
+  let out = "", cursor = 0;
+  for (const m of sorted) {
+    if (m.start < cursor) continue;
+    out += escapeHtml(text.slice(cursor, m.start));
+    out += `<span class="phi-mark phi-${m.kind}" title="${escapeHtml(m.label || "")} (${m.kind})">${escapeHtml(text.slice(m.start, m.end))}</span>`;
+    cursor = m.end;
+  }
+  out += escapeHtml(text.slice(cursor));
+  return out;
 }
 
 init();

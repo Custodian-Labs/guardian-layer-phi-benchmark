@@ -18,7 +18,11 @@
       "Bash(ps -p 919930 -o pid,ppid,etime,comm)",
       "Read(//proc/919930/**)",
       "Bash(nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader)",
-      "Bash(grep -v \"^$\")"
+      "Bash(grep -v \"^$\")",
+      "Bash(git remote *)",
+      "Bash(git tag *)",
+      "Bash(git ls-remote *)",
+      "Bash(echo \"remote main: $\\(git ls-remote origin main)"
     ]
   }
 }
