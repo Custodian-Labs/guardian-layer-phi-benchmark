@@ -506,13 +506,26 @@ function renderOverview() {
     const meta = state.datasets_meta?.[r.benchmark];
     return meta?.title || r.benchmark;
   };
+  // Short header used in the overview heatmap so the table fits without
+  // horizontal scroll. Tooltip on the <th> shows the full name.
+  const benchShort = (r) => {
+    const b = r.benchmark;
+    if (b === "asq_phi") return "ASQ-PHI";
+    if (b === "meddocan") return "MEDDOCAN";
+    if (b === "multiconer_v2") return "MultiCoNER";
+    if (b === "pii_masking_300k") return "PII (en)";
+    if (b === "pii_masking_300k_dutch") return "PII (nl)";
+    if (b === "pii_masking_300k_french") return "PII (fr)";
+    if (b === "pii_masking_300k_german") return "PII (de)";
+    return b;
+  };
 
   const head = `
     <thead class="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 sticky top-0">
       <tr>
-        <th class="px-3 py-2 text-left font-medium whitespace-nowrap sticky left-0 bg-slate-50 dark:bg-slate-800 z-10">System</th>
-        ${runs.map((r) => `<th class="px-2 py-2 text-center font-medium whitespace-nowrap" title="${escapeHtml(r.id)}">${escapeHtml(benchLabel(r))}<br><span class="text-[10px] text-slate-400">n=${r.n_docs}</span></th>`).join("")}
-        <th class="px-3 py-2 text-center font-semibold whitespace-nowrap border-l border-slate-300 dark:border-slate-700">Mean</th>
+        <th class="px-3 py-2 text-left font-medium whitespace-nowrap sticky left-0 bg-slate-50 dark:bg-slate-800 z-20">System</th>
+        ${runs.map((r) => `<th class="px-2 py-2 text-center font-medium whitespace-nowrap" title="${escapeHtml(benchLabel(r))} · ${escapeHtml(r.id)}">${escapeHtml(benchShort(r))}<br><span class="text-[10px] text-slate-400">n=${r.n_docs}</span></th>`).join("")}
+        <th class="px-3 py-2 text-center font-semibold whitespace-nowrap border-l border-slate-300 dark:border-slate-700 sticky right-0 bg-slate-50 dark:bg-slate-800 z-20">Mean</th>
       </tr>
     </thead>
   `;
@@ -532,7 +545,7 @@ function renderOverview() {
           <div class="text-[10px] text-slate-500"><code>${escapeHtml(meta.model_id)}</code></div>
         </td>
         ${cells}
-        <td class="px-3 py-2 text-center tabular-nums font-semibold border-l border-slate-200 dark:border-slate-700" style="${meanStyle}">${fmt(m)}</td>
+        <td class="px-3 py-2 text-center tabular-nums font-semibold border-l border-slate-200 dark:border-slate-700 sticky right-0 z-10" style="${meanStyle}">${fmt(m)}</td>
       </tr>
     `;
   }).join("");
