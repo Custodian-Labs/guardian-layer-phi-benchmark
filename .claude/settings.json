@@ -22,7 +22,33 @@
       "Bash(git remote *)",
       "Bash(git tag *)",
       "Bash(git ls-remote *)",
-      "Bash(echo \"remote main: $\\(git ls-remote origin main)"
+      "Bash(echo \"remote main: $\\(git ls-remote origin main)",
+      "Bash(git check-ignore *)",
+      "Bash(xargs grep -lE 'sk-\\(proj|live|test\\)|AKIA[0-9A-Z]{16}|aws_secret_access_key|api_key.*=.*[\"\\\\047][a-zA-Z0-9_-]{20,}')",
+      "Bash(grep -E 'sk-\\(proj|live|test\\)|AKIA[0-9A-Z]{16}|aws_secret_access_key|api_key.*=.*[\"\\\\047][a-zA-Z0-9_-]{20,}' .claude/settings.json)",
+      "Bash(grep -E 'sk-\\(proj|live|test\\)|AKIA[0-9A-Z]{16}|aws_secret_access_key|api_key.*=.*[\"\\\\047][a-zA-Z0-9_-]{20,}' systems/johnsnow.py)",
+      "Bash(curl -sIL --max-time 8 \"https://qiming-bao.pages.dev/\")",
+      "Bash(curl -s --max-time 8 \"https://qiming-bao.pages.dev/\")",
+      "Bash(git commit -m 'Dashboard: widen container + short benchmark names + sticky Mean column *)",
+      "Bash(git commit -m 'README: point official dashboard at https://custodianai.pages.dev *)",
+      "Bash(curl -s \"https://cdn.tailwindcss.com/\" --max-time 8)",
+      "Bash(curl -sI \"https://cdn.tailwindcss.com/\" --max-time 5)",
+      "Bash(grep -oE 'version[^\"]{0,30}')",
+      "Bash(curl -s __TRACKED_VAR__/?cb=__CMDSUB_OUTPUT__ --max-time 8 -o /tmp/cf_index.html)",
+      "Bash(curl -s __TRACKED_VAR__/app.js?cb=__CMDSUB_OUTPUT__ --max-time 8)",
+      "Bash(git commit -m 'Fix dark mode toggle: move tailwind.config AFTER CDN load *)",
+      "Bash(pkill -u qbao775 -f \"^bash /tmp/auto_qwen_thinking_full\")",
+      "Bash(xargs -r kill -9)",
+      "Bash(.venv/bin/python scripts/publish_results.py)",
+      "Bash(rm -f results/asq_250_qwen_thinking.summary.json results/meddocan_250_qwen_thinking.summary.json results/multiconer_v2_250_qwen_thinking.summary.json results/pii_250_qwen_thinking.summary.json results/pii_dutch_250_qwen_thinking.summary.json results/pii_dutch_250_presidio.summary.json)",
+      "Bash(rm -f web/data/asq_250_qwen_thinking.summary.json web/data/asq_250_qwen_thinking.samples.json web/data/meddocan_250_qwen_thinking.summary.json web/data/meddocan_250_qwen_thinking.samples.json web/data/multiconer_v2_250_qwen_thinking.summary.json web/data/multiconer_v2_250_qwen_thinking.samples.json web/data/pii_250_qwen_thinking.summary.json web/data/pii_250_qwen_thinking.samples.json web/data/pii_dutch_250_qwen_thinking.summary.json web/data/pii_dutch_250_qwen_thinking.samples.json web/data/pii_dutch_250_presidio.summary.json web/data/pii_dutch_250_presidio.samples.json)",
+      "Bash(grep -E '^\\\\[|done$|merged|complete')",
+      "Bash(kill -9 2555367)",
+      "Bash(ps -u qbao775 -o pid,etime,cmd)",
+      "Bash(cd /data/qbao775/custodianai *)"
+    ],
+    "additionalDirectories": [
+      "/data/qbao775/custodianai/results"
     ]
   }
 }

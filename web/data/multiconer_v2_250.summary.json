@@ -58,12 +58,12 @@
     "system": "qwen3.5_4b_thinking",
     "benchmark": "multiconer_v2",
     "mode": "type",
-    "n_docs": 50,
-    "precision": 1.0,
-    "recall": 0.11267605633802817,
-    "f1": 0.20253164556962025,
-    "leakage_rate": 0.8873239436619719,
-    "char_leakage_rate": 0.9040074557315937
+    "n_docs": 250,
+    "precision": 0.8372093023255814,
+    "recall": 0.10285714285714286,
+    "f1": 0.183206106870229,
+    "leakage_rate": 0.8971428571428571,
+    "char_leakage_rate": 0.9108873266197985
   },
   {
     "system": "deid_roberta_i2b2",

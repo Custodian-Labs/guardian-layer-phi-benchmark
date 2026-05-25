@@ -64,5 +64,16 @@
     "f1": 0.07329927835887455,
     "leakage_rate": 0.9201554495672143,
     "char_leakage_rate": 0.9546082284916455
+  },
+  {
+    "system": "qwen3.5_4b_thinking",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "leakage_rate": 1.0,
+    "char_leakage_rate": 1.0
   }
 ]
