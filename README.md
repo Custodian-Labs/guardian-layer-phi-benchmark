@@ -10,11 +10,26 @@ Layer** transforms clinical text, compared against:
 
 ## Live dashboard
 
-**Public URL (auto-deployed from `web/` via GitHub Actions):**
-https://14h034160212.github.io/Custodianai/
+**Official URL** (Cloudflare Pages — auto-redeploys on every push to `main`,
+serves a private repo, Auckland POP for low NZ latency):
 
-**Backup URL (works without Pages enabled, slower):**
-https://raw.githack.com/14H034160212/Custodianai/main/web/index.html
+**https://custodianai.pages.dev**
+
+Three top-level views, no navigation needed:
+
+1. **Overall results matrix** — every system as a row, every benchmark
+   as a column, F1 in each cell, heat-mapped from red (low) to green
+   (high). The right-most "Mean" column is sticky so it stays visible
+   on any viewport. A metric switcher lets you flip to Recall /
+   Precision / Leakage without leaving the overview.
+2. **Ranking proof** — same document rendered by every system, panels
+   sorted by per-doc F1 (top = best, bottom = worst). Spans are
+   colour-coded: green = true positive, yellow = false positive, red
+   strikethrough = missed gold (leakage). Cycles through 12 sample
+   docs per benchmark.
+3. **Per-benchmark detail view** (collapsible) — the original
+   single-benchmark drilldown: dataset intro, worked example, per-doc
+   highlights.
 
 ## Current numbers (2026-05-24, full 250-doc runs)
 
