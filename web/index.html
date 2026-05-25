@@ -7,9 +7,6 @@
   <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
   <title>CustodianAI · PHI Benchmark Dashboard</title>
   <script>
-    // Configure Tailwind for class-based dark mode BEFORE the CDN loads.
-    window.tailwind = window.tailwind || {};
-    window.tailwind.config = { darkMode: 'class' };
     // Restore saved theme (or system preference) before paint to avoid flash.
     (function () {
       const saved = localStorage.getItem('theme');
@@ -20,6 +17,13 @@
     })();
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // MUST be after the CDN script — Tailwind Play CDN reads config from the
+    // global `tailwind` object only after it has been initialised. Setting
+    // this before the CDN load is silently ignored, leaving dark: variants
+    // tied to prefers-color-scheme instead of the .dark class.
+    tailwind.config = { darkMode: 'class' };
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="./style.css" />
 </head>
