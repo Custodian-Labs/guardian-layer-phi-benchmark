@@ -60,7 +60,8 @@
     "model_id": "obi/deid_roberta_i2b2",
     "provider": "OBI / RoBERTa-large fine-tuned",
     "size": "355 M params",
-    "access": "local · HF transformers"
+    "access": "local · HF transformers",
+    "note": "Out-of-domain baseline — trained on i2b2 2014 English clinical PHI; included here as a deliberate cross-domain stress test. Reaches F1≈0.96 on its training domain (i2b2 2014) per the OBI paper."
   },
   "custodian_proprietary_transform": {
     "display": "Custodian Guardian (PROPRIETARY/transform)",

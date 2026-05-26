@@ -322,7 +322,10 @@ function renderTable() {
     return `
       <tr class="${isRowBest ? "highlight-row" : ""}">
         <td class="px-3 sm:px-4 py-2 sm:py-2.5">
-          <div class="font-medium">${escapeHtml(meta.display || r.system)}</div>
+          <div class="font-medium flex items-center gap-1.5 flex-wrap">
+            ${escapeHtml(meta.display || r.system)}
+            ${meta.note ? `<span class="metric-pill bad" title="${escapeHtml(meta.note)}">out-of-domain</span>` : ""}
+          </div>
           <div class="text-xs text-slate-500 dark:text-slate-400 font-mono"><code>${escapeHtml(meta.model_id || "")}</code></div>
           <div class="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">${escapeHtml(meta.size || "")} · ${escapeHtml(meta.access || "")}</div>
         </td>
@@ -538,10 +541,11 @@ function renderOverview() {
     }).join("");
     const m = meanFor(sys);
     const meanStyle = isDarkMode ? heatCssDark(m, meanExt.min, meanExt.max) : heatCss(m, meanExt.min, meanExt.max);
+    const noteBadge = meta.note ? `<span class="metric-pill bad text-[9px]" title="${escapeHtml(meta.note)}">out-of-domain</span>` : "";
     return `
       <tr class="border-t border-slate-100 dark:border-slate-800">
         <td class="px-3 py-2 whitespace-nowrap sticky left-0 bg-white dark:bg-slate-900 z-10">
-          <div class="font-medium text-xs sm:text-sm">${escapeHtml(meta.display)}</div>
+          <div class="font-medium text-xs sm:text-sm flex items-center gap-1.5 flex-wrap">${escapeHtml(meta.display)}${noteBadge}</div>
           <div class="text-[10px] text-slate-500"><code>${escapeHtml(meta.model_id)}</code></div>
         </td>
         ${cells}
