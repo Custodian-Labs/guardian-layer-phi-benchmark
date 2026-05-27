@@ -22,6 +22,28 @@
     "char_leakage_rate": 0.3374410028379342
   },
   {
+    "system": "qwen3.5_9b",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.6141191170345689,
+    "recall": 0.5209326974032856,
+    "f1": 0.5637006594666922,
+    "leakage_rate": 0.4790673025967144,
+    "char_leakage_rate": 0.4829648065803651
+  },
+  {
+    "system": "llama3.1_8b",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.6968046477850399,
+    "recall": 0.3389860448683978,
+    "f1": 0.45609031491384433,
+    "leakage_rate": 0.6610139551316022,
+    "char_leakage_rate": 0.6620278330019881
+  },
+  {
     "system": "qwen3.5_4b",
     "benchmark": "meddocan",
     "mode": "type",

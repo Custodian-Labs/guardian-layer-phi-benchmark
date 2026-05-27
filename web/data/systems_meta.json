@@ -48,6 +48,41 @@
     "size": "rule-based + spaCy NER",
     "access": "local · pip install"
   },
+  "qwen3.5_9b": {
+    "display": "Qwen 3.5-9B",
+    "model_id": "Qwen/Qwen3.5-9B",
+    "provider": "Alibaba",
+    "size": "9 B params (dense)",
+    "access": "local · HF transformers"
+  },
+  "qwen3.5_35b_a3b": {
+    "display": "Qwen 3.5-35B-A3B",
+    "model_id": "Qwen/Qwen3.5-35B-A3B",
+    "provider": "Alibaba",
+    "size": "35 B MoE / 3 B active",
+    "access": "local · HF transformers"
+  },
+  "gemma_4_31b": {
+    "display": "Gemma 4 31B",
+    "model_id": "google/gemma-4-31B-it",
+    "provider": "Google DeepMind",
+    "size": "31 B params (dense)",
+    "access": "local · HF transformers"
+  },
+  "llama3.1_8b": {
+    "display": "Llama 3.1-8B",
+    "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+    "provider": "Meta",
+    "size": "8 B params (dense)",
+    "access": "local · HF transformers"
+  },
+  "llama3.3_70b": {
+    "display": "Llama 3.3-70B",
+    "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+    "provider": "Meta",
+    "size": "70 B params (dense)",
+    "access": "local · HF transformers"
+  },
   "qwen3.5_4b_thinking": {
     "display": "Qwen 3.5-4B (thinking)",
     "model_id": "Qwen/Qwen3.5-4B (enable_thinking=True)",

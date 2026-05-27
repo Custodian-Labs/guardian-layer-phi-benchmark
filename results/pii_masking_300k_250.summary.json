@@ -33,6 +33,28 @@
     "char_leakage_rate": 0.3186252630236562
   },
   {
+    "system": "qwen3.5_9b",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.7845868152274837,
+    "recall": 0.5637091394262842,
+    "f1": 0.6560559006211181,
+    "leakage_rate": 0.4362908605737158,
+    "char_leakage_rate": 0.3210482688261175
+  },
+  {
+    "system": "llama3.1_8b",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.5251141552511416,
+    "recall": 0.38358905937291526,
+    "f1": 0.44333076329992294,
+    "leakage_rate": 0.6164109406270848,
+    "char_leakage_rate": 0.5952305043677868
+  },
+  {
     "system": "deepseek_v2_lite",
     "benchmark": "pii_masking_300k",
     "mode": "type",

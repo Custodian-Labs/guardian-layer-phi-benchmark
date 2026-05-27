@@ -100,6 +100,21 @@ def _build_system(name: str, language: str):
     if name == "qwen3_5_4b_thinking":
         from systems.llm_local_hf import LocalHFLLM, QWEN3_5_4B_THINKING
         return LocalHFLLM(QWEN3_5_4B_THINKING)
+    if name == "qwen3_5_9b":
+        from systems.llm_local_hf import LocalHFLLM, QWEN3_5_9B
+        return LocalHFLLM(QWEN3_5_9B)
+    if name == "qwen3_5_35b":
+        from systems.llm_local_hf import LocalHFLLM, QWEN3_5_35B_A3B
+        return LocalHFLLM(QWEN3_5_35B_A3B)
+    if name == "gemma_4_31b":
+        from systems.llm_local_hf import LocalHFLLM, GEMMA_4_31B
+        return LocalHFLLM(GEMMA_4_31B)
+    if name == "llama3_1_8b":
+        from systems.llm_local_hf import LocalHFLLM, LLAMA_3_1_8B
+        return LocalHFLLM(LLAMA_3_1_8B)
+    if name == "llama3_3_70b":
+        from systems.llm_local_hf import LocalHFLLM, LLAMA_3_3_70B
+        return LocalHFLLM(LLAMA_3_3_70B)
     raise ValueError(f"unknown system: {name}")
 
 

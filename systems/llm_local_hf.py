@@ -58,6 +58,28 @@ class LocalLLMConfig:
     trust_remote_code: bool = False
     chat_template_kwargs: dict | None = None  # e.g. {"enable_thinking": False} for Qwen3
     system_prompt_override: str | None = None  # use this instead of SYSTEM_PROMPT
+    max_memory: dict | None = None  # explicit per-device cap passed to from_pretrained
+
+
+def _auto_max_memory(margin_gib: float = 3.0, frac: float = 0.92) -> dict:
+    """Build a `max_memory` map from each visible GPU's *actually free* memory.
+
+    On a shared cluster `device_map="auto"` is unsafe: it assumes it owns every
+    GPU's full capacity and ignores other users' allocations, so a 60-70GB model
+    OOMs even though no single GPU has that much free. Here we read live free
+    memory (which already accounts for other processes) and cap each device to a
+    conservative slice of it, letting a big model spread across the fragmented
+    free space of several GPUs. A small CPU bucket is the last-resort overflow.
+    """
+    import torch
+
+    mm: dict = {}
+    for i in range(torch.cuda.device_count()):
+        free, _total = torch.cuda.mem_get_info(i)  # bytes, net of other procs
+        usable_gib = max(0.0, (free / 1024**3 - margin_gib)) * frac
+        mm[i] = f"{int(usable_gib)}GiB"
+    mm["cpu"] = "96GiB"
+    return mm
 
 
 def _patch_dynamic_cache_compat() -> None:
@@ -93,10 +115,16 @@ class LocalHFLLM(DeIDSystem):
         self._tokenizer = AutoTokenizer.from_pretrained(
             cfg.model_id, trust_remote_code=cfg.trust_remote_code,
         )
+        import os
+        max_memory = cfg.max_memory
+        if max_memory is None and os.environ.get("CUSTODIAN_AUTO_MAX_MEM") == "1":
+            max_memory = _auto_max_memory()
+            print(f"[local-hf] auto max_memory = {max_memory}")
         self._model = AutoModelForCausalLM.from_pretrained(
             cfg.model_id,
             dtype=dtype,
             device_map=cfg.device_map,
+            max_memory=max_memory,
             trust_remote_code=cfg.trust_remote_code,
         )
         self._model.eval()
@@ -155,6 +183,20 @@ QWEN3_35B_A3B = LocalLLMConfig(
     name="qwen3.5_35b_a3b",
     model_id="Qwen/Qwen3.5-35B-A3B",
 )
+GEMMA_4_31B = LocalLLMConfig(
+    name="gemma_4_31b",
+    model_id="google/gemma-4-31B-it",
+)
+QWEN3_5_9B = LocalLLMConfig(
+    name="qwen3.5_9b",
+    model_id="Qwen/Qwen3.5-9B",
+    chat_template_kwargs={"enable_thinking": False},
+)
+QWEN3_5_35B_A3B = LocalLLMConfig(
+    name="qwen3.5_35b_a3b",
+    model_id="Qwen/Qwen3.5-35B-A3B",
+    chat_template_kwargs={"enable_thinking": False},
+)
 MOONLIGHT = LocalLLMConfig(
     name="moonlight_16b_a3b",
     model_id="moonshotai/Moonlight-16B-A3B-Instruct",
@@ -186,4 +228,14 @@ QWEN3_5_4B_THINKING = LocalLLMConfig(
     chat_template_kwargs={"enable_thinking": True},
     max_new_tokens=2500,
     system_prompt_override=THINKING_SYSTEM_PROMPT,
+)
+# Meta Llama (standard chat template, no thinking mode, no remote code).
+# 8B fits one GPU; 70B (~140GB bf16) needs the auto max_memory spread.
+LLAMA_3_1_8B = LocalLLMConfig(
+    name="llama3.1_8b",
+    model_id="meta-llama/Llama-3.1-8B-Instruct",
+)
+LLAMA_3_3_70B = LocalLLMConfig(
+    name="llama3.3_70b",
+    model_id="meta-llama/Llama-3.3-70B-Instruct",
 )
