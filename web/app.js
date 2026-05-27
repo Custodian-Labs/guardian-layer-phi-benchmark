@@ -454,15 +454,23 @@ function renderOverview() {
     return row ? row[metric] : null;
   };
 
-  // Per-system mean across the runs where they appear
+  const coverageFor = (sys) =>
+    runs.filter((r) => valFor(sys, r.id) != null).length;
+
+  // Mean is only meaningful when a system ran on every benchmark. Systems
+  // with partial coverage (e.g. qwen-thinking, kept only for ASQ-PHI) get a
+  // null mean so they don't rank against full-coverage systems on a single
+  // cherry-picked score.
   const meanFor = (sys) => {
+    if (coverageFor(sys) < runs.length) return null;
     const vals = runs.map((r) => valFor(sys, r.id)).filter((v) => v != null);
     return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
   };
 
-  // Sort systems by mean (best first, or lowest if lower-better)
+  // Sort: full-coverage systems first (by mean), partial-coverage last.
   sysList.sort((a, b) => {
     const ma = meanFor(a), mb = meanFor(b);
+    if (ma == null && mb == null) return coverageFor(b) - coverageFor(a);
     if (ma == null) return 1;
     if (mb == null) return -1;
     return lowerBetter ? ma - mb : mb - ma;
@@ -555,6 +563,29 @@ function renderOverview() {
   }).join("");
 
   root.innerHTML = head + `<tbody>${body}</tbody>`;
+
+  // Footnote: explain any partial-coverage row (e.g. qwen-thinking).
+  const fn = $("#overview-footnote");
+  if (fn) {
+    const partial = sysList.filter((s) => coverageFor(s) < runs.length);
+    if (partial.length) {
+      const names = partial.map((s) => sysMeta(s).display).join(", ");
+      fn.innerHTML = `
+        <strong>Note on ${escapeHtml(names)}:</strong>
+        shown for ASQ-PHI only. Qwen 3.5-4B with <code>enable_thinking=True</code>
+        is the same weights as Qwen 3.5-4B, differing only by a decoding flag,
+        so it is not an independent system — it is reported as an ablation.
+        Its chain-of-thought reliably terminates within the token budget only
+        on ASQ-PHI's short, sparse-PHI queries (F1 0.73, beating the
+        no-thinking variant); on the denser benchmarks the CoT exhausts the
+        2,500-token generation budget before emitting JSON on ~2/3 of
+        documents, so those cells are omitted (—) rather than reported as
+        misleading near-zero scores. Mean is computed only over
+        full-coverage systems.`;
+    } else {
+      fn.innerHTML = "";
+    }
+  }
 
   // Hook metric switcher (idempotent — replaces listener every render).
   if (metricSel && !metricSel.dataset.bound) {

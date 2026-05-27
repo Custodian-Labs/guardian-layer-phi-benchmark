@@ -55,17 +55,6 @@
     "char_leakage_rate": 0.4604819277108434
   },
   {
-    "system": "qwen3.5_4b_thinking",
-    "benchmark": "pii_masking_300k_dutch",
-    "mode": "type",
-    "n_docs": 250,
-    "precision": 0.8726415094339622,
-    "recall": 0.20975056689342403,
-    "f1": 0.3382084095063985,
-    "leakage_rate": 0.7902494331065759,
-    "char_leakage_rate": 0.7699397590361445
-  },
-  {
     "system": "deid_roberta_i2b2",
     "benchmark": "pii_masking_300k_dutch",
     "mode": "type",

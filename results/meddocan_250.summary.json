@@ -55,17 +55,6 @@
     "char_leakage_rate": 0.5985916561698511
   },
   {
-    "system": "qwen3.5_4b_thinking",
-    "benchmark": "meddocan",
-    "mode": "type",
-    "n_docs": 250,
-    "precision": 0.5846905537459284,
-    "recall": 0.0634163575340046,
-    "f1": 0.11442231075697212,
-    "leakage_rate": 0.9365836424659955,
-    "char_leakage_rate": 0.9317681696083043
-  },
-  {
     "system": "deid_roberta_i2b2",
     "benchmark": "meddocan",
     "mode": "type",
