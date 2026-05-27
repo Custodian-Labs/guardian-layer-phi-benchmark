@@ -17,6 +17,37 @@ from systems.base import DeIDSystem, Prediction
 from systems.llm_openai_compatible import SYSTEM_PROMPT, _parse_spans
 
 
+# Prompt tuned for reasoning-on models (Qwen-thinking). The default
+# SYSTEM_PROMPT asks for character offsets; thinking models then waste their
+# whole budget hand-counting indices and never reach the JSON. This variant:
+#   - tells them not to compute offsets (the runner recovers them)
+#   - explicitly caps the reasoning budget ("at most 3 short sentences")
+#   - shows 2 worked examples so the format is unambiguous
+#   - includes both a PHI+ and a hard-negative example
+THINKING_SYSTEM_PROMPT = """You are a clinical de-identification engine.
+Identify every span containing PHI per HIPAA Safe Harbor.
+
+RULES (strict):
+1. DO NOT compute character offsets. Use start=0 end=0 as placeholders;
+   the calling system recovers offsets from the `text` field.
+2. DO NOT enumerate characters or count indices.
+3. Keep reasoning to at most 3 short sentences. Then OUTPUT the JSON.
+4. End your response with the JSON. No extra prose after the JSON.
+
+Allowed labels: NAME, DATE, LOCATION, PHONE, EMAIL, ID, AGE, OTHER.
+Empty case: {"spans":[]}
+
+EXAMPLE 1 (PHI present):
+Input: "Treatment for Anna S. age 34, seen at Methodist Hospital on April 12, 2023."
+Reasoning: Name Anna S., age 34, location Methodist Hospital, date April 12, 2023.
+{"spans":[{"start":0,"end":0,"label":"NAME","text":"Anna S."},{"start":0,"end":0,"label":"AGE","text":"34"},{"start":0,"end":0,"label":"LOCATION","text":"Methodist Hospital"},{"start":0,"end":0,"label":"DATE","text":"April 12, 2023"}]}
+
+EXAMPLE 2 (no PHI):
+Input: "What are the guidelines for prescribing ACE inhibitors to a patient with hypertension?"
+Reasoning: No personal identifiers; only generic clinical content.
+{"spans":[]}"""
+
+
 @dataclass
 class LocalLLMConfig:
     name: str
@@ -26,6 +57,7 @@ class LocalLLMConfig:
     device_map: str = "auto"
     trust_remote_code: bool = False
     chat_template_kwargs: dict | None = None  # e.g. {"enable_thinking": False} for Qwen3
+    system_prompt_override: str | None = None  # use this instead of SYSTEM_PROMPT
 
 
 def _patch_dynamic_cache_compat() -> None:
@@ -74,8 +106,9 @@ class LocalHFLLM(DeIDSystem):
     def predict(self, text: str) -> Prediction:
         import torch
 
+        prompt_text = self._cfg.system_prompt_override or SYSTEM_PROMPT
         messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": prompt_text},
             {"role": "user", "content": text},
         ]
         prompt = self._tokenizer.apply_chat_template(
@@ -142,13 +175,15 @@ QWEN3_5_4B = LocalLLMConfig(
     model_id="Qwen/Qwen3.5-4B",
     chat_template_kwargs={"enable_thinking": False},
 )
-# Same Qwen weights but with the model's CoT mode left on. With thinking
-# enabled the model tends to "think for the budget" — even 30-token inputs
-# generate near-cap. 1200 leaves room for a short reasoning trace plus the
-# final spans JSON, ~40 s/doc on A100 bf16 vs ~5 s without thinking.
+# Same Qwen weights but with the model's CoT mode left on. The first run at
+# max_new_tokens=1200 hit the wall on 4/5 benchmarks; bumping to 4000 didn't
+# help (model burns budget on character-index counting). Plan B fix: pair
+# `enable_thinking=True` with a system prompt that explicitly forbids the
+# offset-counting busywork and forces JSON on the first line of the answer.
 QWEN3_5_4B_THINKING = LocalLLMConfig(
     name="qwen3.5_4b_thinking",
     model_id="Qwen/Qwen3.5-4B",
     chat_template_kwargs={"enable_thinking": True},
-    max_new_tokens=1200,
+    max_new_tokens=2500,
+    system_prompt_override=THINKING_SYSTEM_PROMPT,
 )

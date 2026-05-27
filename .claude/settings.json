@@ -45,7 +45,10 @@
       "Bash(grep -E '^\\\\[|done$|merged|complete')",
       "Bash(kill -9 2555367)",
       "Bash(ps -u qbao775 -o pid,etime,cmd)",
-      "Bash(cd /data/qbao775/custodianai *)"
+      "Bash(cd /data/qbao775/custodianai *)",
+      "Bash(git commit -m 'Dashboard: label OBI deid_roberta_i2b2 as '\\\\''out-of-domain'\\\\'' baseline *)",
+      "Bash(rm -f results/*_qwen_thinking.summary.json)",
+      "Bash(git commit -m 'Publish interim Qwen-thinking B1+ results \\(5 of 7 benchmarks\\) *)"
     ],
     "additionalDirectories": [
       "/data/qbao775/custodianai/results"

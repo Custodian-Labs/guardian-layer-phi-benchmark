@@ -22,6 +22,17 @@
     "char_leakage_rate": 0.1410932764620047
   },
   {
+    "system": "qwen3.5_4b_thinking",
+    "benchmark": "asq_phi",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.7120786516853933,
+    "recall": 0.739067055393586,
+    "f1": 0.7253218884120171,
+    "leakage_rate": 0.26093294460641403,
+    "char_leakage_rate": 0.2725333931978898
+  },
+  {
     "system": "qwen3.5_4b",
     "benchmark": "asq_phi",
     "mode": "type",
@@ -64,16 +75,5 @@
     "f1": 0.045099739809193407,
     "leakage_rate": 0.924198250728863,
     "char_leakage_rate": 0.9579077337523852
-  },
-  {
-    "system": "qwen3.5_4b_thinking",
-    "benchmark": "asq_phi",
-    "mode": "type",
-    "n_docs": 250,
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "leakage_rate": 1.0,
-    "char_leakage_rate": 1.0
   }
 ]

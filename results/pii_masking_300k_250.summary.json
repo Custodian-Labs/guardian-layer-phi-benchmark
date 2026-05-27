@@ -55,6 +55,17 @@
     "char_leakage_rate": 0.5429445896830963
   },
   {
+    "system": "qwen3.5_4b_thinking",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.8601190476190477,
+    "recall": 0.19279519679786525,
+    "f1": 0.3149863760217984,
+    "leakage_rate": 0.8072048032021347,
+    "char_leakage_rate": 0.7737040107122362
+  },
+  {
     "system": "deid_roberta_i2b2",
     "benchmark": "pii_masking_300k",
     "mode": "type",
@@ -64,16 +75,5 @@
     "f1": 0.05827874407047662,
     "leakage_rate": 0.913942628418946,
     "char_leakage_rate": 0.951029777466046
-  },
-  {
-    "system": "qwen3.5_4b_thinking",
-    "benchmark": "pii_masking_300k",
-    "mode": "type",
-    "n_docs": 250,
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1": 0.0,
-    "leakage_rate": 1.0,
-    "char_leakage_rate": 1.0
   }
 ]
