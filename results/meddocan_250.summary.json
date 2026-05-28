@@ -1,5 +1,16 @@
 [
   {
+    "system": "gemma_4_31b",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.8804807478299577,
+    "recall": 0.6988164635223458,
+    "f1": 0.7792003151467402,
+    "leakage_rate": 0.30118353647765417,
+    "char_leakage_rate": 0.22339246960982198
+  },
+  {
     "system": "openai_gpt",
     "benchmark": "meddocan",
     "mode": "type",
@@ -20,6 +31,17 @@
     "f1": 0.6969960397952284,
     "leakage_rate": 0.36265677442148025,
     "char_leakage_rate": 0.3374410028379342
+  },
+  {
+    "system": "qwen3.5_35b_a3b",
+    "benchmark": "meddocan",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.7330888345558272,
+    "recall": 0.635576753223812,
+    "f1": 0.6808591162834705,
+    "leakage_rate": 0.364423246776188,
+    "char_leakage_rate": 0.3478821726131759
   },
   {
     "system": "qwen3.5_9b",
