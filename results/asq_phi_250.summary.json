@@ -33,6 +33,17 @@
     "char_leakage_rate": 0.1185318217532832
   },
   {
+    "system": "llama3.3_70b",
+    "benchmark": "asq_phi",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.6670353982300885,
+    "recall": 0.8790087463556852,
+    "f1": 0.7584905660377358,
+    "leakage_rate": 0.12099125364431484,
+    "char_leakage_rate": 0.11258278145695365
+  },
+  {
     "system": "openai_gpt",
     "benchmark": "asq_phi",
     "mode": "type",
