@@ -1,5 +1,16 @@
 [
   {
+    "system": "llama3.3_70b",
+    "benchmark": "pii_masking_300k",
+    "mode": "type",
+    "n_docs": 144,
+    "precision": 0.7912813738441216,
+    "recall": 0.7269417475728155,
+    "f1": 0.7577482605945604,
+    "leakage_rate": 0.2730582524271845,
+    "char_leakage_rate": 0.19517265273126227
+  },
+  {
     "system": "gemma_4_31b",
     "benchmark": "pii_masking_300k",
     "mode": "type",
