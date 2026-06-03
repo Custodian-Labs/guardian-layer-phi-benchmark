@@ -3,12 +3,12 @@
     "system": "llama3.3_70b",
     "benchmark": "pii_masking_300k",
     "mode": "type",
-    "n_docs": 195,
-    "precision": 0.8331907613344739,
-    "recall": 0.7717908082408875,
-    "f1": 0.8013163307280954,
-    "leakage_rate": 0.22820919175911247,
-    "char_leakage_rate": 0.15860492552720837
+    "n_docs": 201,
+    "precision": 0.8287153652392947,
+    "recall": 0.7657098525989139,
+    "f1": 0.7959677419354839,
+    "leakage_rate": 0.2342901474010861,
+    "char_leakage_rate": 0.1635014189041694
   },
   {
     "system": "gemma_4_31b",
