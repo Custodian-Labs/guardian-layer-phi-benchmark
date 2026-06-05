@@ -14,12 +14,12 @@
     "system": "llama3.3_70b",
     "benchmark": "pii_masking_300k_french",
     "mode": "type",
-    "n_docs": 189,
-    "precision": 0.8251928020565553,
-    "recall": 0.75,
-    "f1": 0.7858017135862914,
-    "leakage_rate": 0.25,
-    "char_leakage_rate": 0.23936613844870724
+    "n_docs": 193,
+    "precision": 0.8244592346089851,
+    "recall": 0.7530395136778115,
+    "f1": 0.7871326449563146,
+    "leakage_rate": 0.24696048632218848,
+    "char_leakage_rate": 0.23810632970360449
   },
   {
     "system": "gemma_4_31b",
