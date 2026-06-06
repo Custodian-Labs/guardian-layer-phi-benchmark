@@ -33,17 +33,6 @@
     "char_leakage_rate": 0.2661940253287281
   },
   {
-    "system": "llama3.3_70b",
-    "benchmark": "pii_masking_300k_german",
-    "mode": "type",
-    "n_docs": 43,
-    "precision": 0.8086124401913876,
-    "recall": 0.6814516129032258,
-    "f1": 0.7396061269146608,
-    "leakage_rate": 0.31854838709677424,
-    "char_leakage_rate": 0.449486301369863
-  },
-  {
     "system": "openai_gpt",
     "benchmark": "pii_masking_300k_german",
     "mode": "type",
@@ -75,6 +64,17 @@
     "f1": 0.6878030585602387,
     "leakage_rate": 0.40362225097024584,
     "char_leakage_rate": 0.3649033509058959
+  },
+  {
+    "system": "llama3.3_70b",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 50,
+    "precision": 0.7166666666666667,
+    "recall": 0.6515151515151515,
+    "f1": 0.6825396825396826,
+    "leakage_rate": 0.3484848484848485,
+    "char_leakage_rate": 0.4618151632540122
   },
   {
     "system": "deepseek_v2_lite",
