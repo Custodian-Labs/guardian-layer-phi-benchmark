@@ -1,5 +1,16 @@
 [
   {
+    "system": "llama3.3_70b",
+    "benchmark": "pii_masking_300k_french",
+    "mode": "type",
+    "n_docs": 244,
+    "precision": 0.8335467349551856,
+    "recall": 0.7508650519031141,
+    "f1": 0.7900485436893204,
+    "leakage_rate": 0.24913494809688586,
+    "char_leakage_rate": 0.2235716885007278
+  },
+  {
     "system": "qwen3.5_35b_a3b",
     "benchmark": "pii_masking_300k_french",
     "mode": "type",
@@ -9,17 +20,6 @@
     "f1": 0.7897375405485109,
     "leakage_rate": 0.2439299830604178,
     "char_leakage_rate": 0.22545161867286712
-  },
-  {
-    "system": "llama3.3_70b",
-    "benchmark": "pii_masking_300k_french",
-    "mode": "type",
-    "n_docs": 238,
-    "precision": 0.8313878080415046,
-    "recall": 0.7488317757009346,
-    "f1": 0.7879532882606023,
-    "leakage_rate": 0.2511682242990654,
-    "char_leakage_rate": 0.22686277230470375
   },
   {
     "system": "gemma_4_31b",
