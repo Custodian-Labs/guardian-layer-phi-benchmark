@@ -44,6 +44,17 @@
     "char_leakage_rate": 0.3198812337150821
   },
   {
+    "system": "llama3.3_70b",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 57,
+    "precision": 0.7551020408163265,
+    "recall": 0.6686746987951807,
+    "f1": 0.7092651757188497,
+    "leakage_rate": 0.3313253012048193,
+    "char_leakage_rate": 0.4279565020389669
+  },
+  {
     "system": "qwen3.5_9b",
     "benchmark": "pii_masking_300k_german",
     "mode": "type",
@@ -64,17 +75,6 @@
     "f1": 0.6878030585602387,
     "leakage_rate": 0.40362225097024584,
     "char_leakage_rate": 0.3649033509058959
-  },
-  {
-    "system": "llama3.3_70b",
-    "benchmark": "pii_masking_300k_german",
-    "mode": "type",
-    "n_docs": 53,
-    "precision": 0.7303370786516854,
-    "recall": 0.6478405315614618,
-    "f1": 0.6866197183098592,
-    "leakage_rate": 0.3521594684385382,
-    "char_leakage_rate": 0.45494398441305406
   },
   {
     "system": "deepseek_v2_lite",
