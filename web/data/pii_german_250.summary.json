@@ -69,12 +69,12 @@
     "system": "llama3.3_70b",
     "benchmark": "pii_masking_300k_german",
     "mode": "type",
-    "n_docs": 50,
-    "precision": 0.7166666666666667,
-    "recall": 0.6515151515151515,
-    "f1": 0.6825396825396826,
-    "leakage_rate": 0.3484848484848485,
-    "char_leakage_rate": 0.4618151632540122
+    "n_docs": 53,
+    "precision": 0.7303370786516854,
+    "recall": 0.6478405315614618,
+    "f1": 0.6866197183098592,
+    "leakage_rate": 0.3521594684385382,
+    "char_leakage_rate": 0.45494398441305406
   },
   {
     "system": "deepseek_v2_lite",
