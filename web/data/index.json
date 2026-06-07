@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-07 05:27:01Z",
+  "generated_at": "2026-06-07 05:57:06Z",
   "runs": [
     {
       "id": "asq_phi_250",
       "benchmark": "asq_phi",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-07 05:27:00Z",
+      "timestamp": "2026-06-07 05:57:04Z",
       "summary_path": "asq_phi_250.summary.json",
       "samples_path": "asq_phi_250.samples.json"
     },
@@ -15,7 +15,7 @@
       "benchmark": "meddocan",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-07 05:27:00Z",
+      "timestamp": "2026-06-07 05:57:05Z",
       "summary_path": "meddocan_250.summary.json",
       "samples_path": "meddocan_250.samples.json"
     },
@@ -24,7 +24,7 @@
       "benchmark": "multiconer_v2",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-07 05:27:01Z",
+      "timestamp": "2026-06-07 05:57:05Z",
       "summary_path": "multiconer_v2_250.summary.json",
       "samples_path": "multiconer_v2_250.samples.json"
     },
@@ -33,7 +33,7 @@
       "benchmark": "pii_masking_300k_dutch",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-07 05:27:00Z",
+      "timestamp": "2026-06-07 05:57:05Z",
       "summary_path": "pii_dutch_250.summary.json",
       "samples_path": "pii_dutch_250.samples.json"
     },
@@ -42,7 +42,7 @@
       "benchmark": "pii_masking_300k_french",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-07 05:27:01Z",
+      "timestamp": "2026-06-07 05:57:05Z",
       "summary_path": "pii_french_250.summary.json",
       "samples_path": "pii_french_250.samples.json"
     },
@@ -51,7 +51,7 @@
       "benchmark": "pii_masking_300k_german",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-07 05:27:01Z",
+      "timestamp": "2026-06-07 05:57:05Z",
       "summary_path": "pii_german_250.summary.json",
       "samples_path": "pii_german_250.samples.json"
     },
@@ -60,7 +60,7 @@
       "benchmark": "pii_masking_300k",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-07 05:27:00Z",
+      "timestamp": "2026-06-07 05:57:05Z",
       "summary_path": "pii_masking_300k_250.summary.json",
       "samples_path": "pii_masking_300k_250.samples.json"
     }
