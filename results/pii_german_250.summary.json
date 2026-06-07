@@ -36,12 +36,12 @@
     "system": "llama3.3_70b",
     "benchmark": "pii_masking_300k_german",
     "mode": "type",
-    "n_docs": 159,
-    "precision": 0.7711267605633803,
-    "recall": 0.7291897891231964,
-    "f1": 0.7495721620079863,
-    "leakage_rate": 0.27081021087680357,
-    "char_leakage_rate": 0.3017371222010242
+    "n_docs": 164,
+    "precision": 0.7741203178206584,
+    "recall": 0.7294117647058823,
+    "f1": 0.7511013215859031,
+    "leakage_rate": 0.2705882352941177,
+    "char_leakage_rate": 0.29671398016721756
   },
   {
     "system": "openai_gpt",
