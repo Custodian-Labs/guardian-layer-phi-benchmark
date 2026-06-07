@@ -22,6 +22,17 @@
     "char_leakage_rate": 0.2254741562140217
   },
   {
+    "system": "llama3.3_70b",
+    "benchmark": "pii_masking_300k_german",
+    "mode": "type",
+    "n_docs": 199,
+    "precision": 0.7924528301886793,
+    "recall": 0.7453416149068323,
+    "f1": 0.7681755829903978,
+    "leakage_rate": 0.25465838509316774,
+    "char_leakage_rate": 0.272704938170502
+  },
+  {
     "system": "gemma_4_e4b",
     "benchmark": "pii_masking_300k_german",
     "mode": "type",
@@ -31,17 +42,6 @@
     "f1": 0.76659678546471,
     "leakage_rate": 0.29042690815006467,
     "char_leakage_rate": 0.2661940253287281
-  },
-  {
-    "system": "llama3.3_70b",
-    "benchmark": "pii_masking_300k_german",
-    "mode": "type",
-    "n_docs": 195,
-    "precision": 0.7882926829268293,
-    "recall": 0.7385740402193784,
-    "f1": 0.7626238791882963,
-    "leakage_rate": 0.26142595978062155,
-    "char_leakage_rate": 0.2792087542087542
   },
   {
     "system": "openai_gpt",
