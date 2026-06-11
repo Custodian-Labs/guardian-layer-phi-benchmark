@@ -58,6 +58,12 @@
           <p class="text-xs text-slate-500 dark:text-slate-400">F1 per benchmark plus mean F1. Rows sorted by overall mean. Greener = better.</p>
         </div>
         <div class="flex items-center gap-2 text-xs">
+          <label class="text-slate-500 dark:text-slate-400">Data:</label>
+          <select id="overview-track" class="rounded border-slate-300 bg-white px-2 py-1 dark:bg-slate-800 dark:border-slate-700">
+            <option value="original">Original</option>
+            <option value="transformed">Custodian-transformed</option>
+            <option value="delta">Δ (transformed − original)</option>
+          </select>
           <label class="text-slate-500 dark:text-slate-400">Metric:</label>
           <select id="overview-metric" class="rounded border-slate-300 bg-white px-2 py-1 dark:bg-slate-800 dark:border-slate-700">
             <option value="f1">F1</option>

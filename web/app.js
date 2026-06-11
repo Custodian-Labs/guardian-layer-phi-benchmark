@@ -439,19 +439,48 @@ function renderOverview() {
   const root = $("#overview-table");
   if (!root || !state.manifest) return;
 
-  const runs = state.manifest.runs;
+  const allRuns = state.manifest.runs;
   const metricSel = $("#overview-metric");
   const metric = metricSel?.value || "f1";
   const lowerBetter = metric.includes("leakage");
 
-  // Build matrix: system -> {benchId: value}
-  const systems = new Set();
-  runs.forEach((r) => (state.allSummaries[r.id] || []).forEach((s) => systems.add(s.system)));
-  const sysList = [...systems];
+  // Original vs Custodian-transformed tracks. A transformed run's benchmark
+  // is "<base>_transformed"; pair it with the original run of <base>.
+  const trackSel = $("#overview-track");
+  const track = trackSel?.value || "original";
+  const isTransformed = (r) => r.benchmark.endsWith("_transformed");
+  const baseOf = (r) => r.benchmark.replace(/_transformed$/, "");
+  const origRuns = allRuns.filter((r) => !isTransformed(r));
+  const transByBase = Object.fromEntries(
+    allRuns.filter(isTransformed).map((r) => [baseOf(r), r]),
+  );
+  // Column set is always the original benchmarks (stable layout); in
+  // transformed/delta modes cells read from the paired transformed run.
+  const runs = track === "transformed"
+    ? origRuns.filter((r) => transByBase[r.benchmark])
+    : origRuns;
 
-  const valFor = (sys, runId) => {
+  // Build matrix: system -> {benchId: value}
+  const rawVal = (sys, runId) => {
     const row = (state.allSummaries[runId] || []).find((s) => s.system === sys);
     return row ? row[metric] : null;
+  };
+  const systems = new Set();
+  const runsForSystems = track === "original" ? origRuns : allRuns.filter(isTransformed);
+  runsForSystems.forEach((r) => (state.allSummaries[r.id] || []).forEach((s) => systems.add(s.system)));
+  const sysList = [...systems];
+
+  const valFor = (sys, origRunId) => {
+    const origRun = runs.find((r) => r.id === origRunId);
+    if (!origRun) return null;
+    if (track === "original") return rawVal(sys, origRunId);
+    const tRun = transByBase[origRun.benchmark];
+    if (!tRun) return null;
+    const tv = rawVal(sys, tRun.id);
+    if (track === "transformed") return tv;
+    // delta
+    const ov = rawVal(sys, origRunId);
+    return tv == null || ov == null ? null : tv - ov;
   };
 
   const coverageFor = (sys) =>
@@ -483,11 +512,21 @@ function renderOverview() {
     benchExtrema[r.id] = { min: Math.min(...vs), max: Math.max(...vs) };
   });
 
-  const heatCss = (val, min, max) => {
-    if (val == null) return "background:transparent;color:#94a3b8;";
+  // In delta mode the scale is centred on 0: no change = neutral green-ish,
+  // degradation = red, improvement = deeper green. Otherwise scale min..max.
+  const tFor = (val, min, max) => {
+    if (track === "delta") {
+      const eff = lowerBetter ? -val : val;             // positive = better
+      const scale = Math.max(Math.abs(min), Math.abs(max), 0.02);
+      return Math.max(0, Math.min(1, 0.5 + eff / (2 * scale)));
+    }
     const span = (max - min) || 1;
     let t = (val - min) / span;
-    if (lowerBetter) t = 1 - t;
+    return lowerBetter ? 1 - t : t;
+  };
+  const heatCss = (val, min, max) => {
+    if (val == null) return "background:transparent;color:#94a3b8;";
+    const t = tFor(val, min, max);
     // green (good) -> yellow -> red (bad)
     const h = Math.round(t * 130);     // 0=red, 130=green
     const s = 70, l = 86;
@@ -495,9 +534,7 @@ function renderOverview() {
   };
   const heatCssDark = (val, min, max) => {
     if (val == null) return "background:transparent;color:#64748b;";
-    const span = (max - min) || 1;
-    let t = (val - min) / span;
-    if (lowerBetter) t = 1 - t;
+    const t = tFor(val, min, max);
     const h = Math.round(t * 130);
     return `background:hsl(${h},45%,28%);color:#f1f5f9;`;
   };
@@ -512,7 +549,14 @@ function renderOverview() {
   const meanVals = sysList.map(meanFor).filter((v) => v != null);
   const meanExt = { min: Math.min(...meanVals), max: Math.max(...meanVals) };
 
-  const fmt = (x) => x == null ? "—" : (x * 100).toFixed(1);
+  const fmt = (x) => {
+    if (x == null) return "—";
+    if (track === "delta") {
+      const v = (x * 100).toFixed(1);
+      return x > 0 ? `+${v}` : v;       // signed percentage points
+    }
+    return (x * 100).toFixed(1);
+  };
   const benchLabel = (r) => {
     const meta = state.datasets_meta?.[r.benchmark];
     return meta?.title || r.benchmark;
@@ -564,10 +608,24 @@ function renderOverview() {
 
   root.innerHTML = head + `<tbody>${body}</tbody>`;
 
-  // Footnote: explain any partial-coverage row (e.g. qwen-thinking).
+  // Footnote: explain track + any partial-coverage row (e.g. qwen-thinking).
   const fn = $("#overview-footnote");
+  const trackNote =
+    track === "delta"
+      ? `<strong>Δ view:</strong> each cell is (score on Custodian-transformed
+         docs) − (score on original docs), in percentage points, for the same
+         250 documents per benchmark. PHI was replaced by Guardian Layer
+         transform with plausible surrogates and gold spans were remapped to
+         the surrogate locations. Cells near 0 mean the transformation
+         preserves detector accuracy. `
+      : track === "transformed"
+        ? `<strong>Custodian-transformed:</strong> same 250 documents per
+           benchmark, with PHI substituted by Guardian Layer
+           <code>transform</code> (top-1 surrogate) and gold spans remapped. `
+        : "";
   if (fn) {
     const partial = sysList.filter((s) => coverageFor(s) < runs.length);
+    if (trackNote && !partial.length) fn.innerHTML = trackNote;
     if (partial.length) {
       const names = partial.map((s) => sysMeta(s).display).join(", ");
       fn.innerHTML = `
@@ -582,15 +640,20 @@ function renderOverview() {
         documents, so those cells are omitted (—) rather than reported as
         misleading near-zero scores. Mean is computed only over
         full-coverage systems.`;
-    } else {
+      if (trackNote) fn.innerHTML = trackNote + "<br><br>" + fn.innerHTML;
+    } else if (!trackNote) {
       fn.innerHTML = "";
     }
   }
 
-  // Hook metric switcher (idempotent — replaces listener every render).
+  // Hook metric + track switchers (idempotent — bound once).
   if (metricSel && !metricSel.dataset.bound) {
     metricSel.addEventListener("change", renderOverview);
     metricSel.dataset.bound = "1";
+  }
+  if (trackSel && !trackSel.dataset.bound) {
+    trackSel.addEventListener("change", renderOverview);
+    trackSel.dataset.bound = "1";
   }
 }
 

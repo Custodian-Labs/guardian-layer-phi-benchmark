@@ -34,6 +34,9 @@ WEB_DATA = ROOT / "web" / "data"
 
 # Benchmarks safe to publish per-doc samples of (synthetic / public license).
 SAMPLE_SAFE = {"asq_phi", "meddocan", "pii_masking_300k", "pii_masking_300k_dutch", "pii_masking_300k_french", "pii_masking_300k_german", "multiconer_v2"}
+# Custodian-transformed variants inherit their source's license; surrogate PHI
+# makes them strictly safer to display than the originals.
+SAMPLE_SAFE |= {f"{b}_transformed" for b in SAMPLE_SAFE}
 SAMPLE_LIMIT = 12  # docs per run in the drilldown panel
 
 

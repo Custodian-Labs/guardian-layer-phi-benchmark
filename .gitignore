@@ -36,3 +36,5 @@ models/
 .idea/
 .vscode/
 *.swp
+git_samples/
+.gh_tok
