@@ -72,6 +72,7 @@ async function init() {
     }));
     renderOverview();
     setupRankingProof();
+    renderDownloads();
   } catch {
     document.body.insertAdjacentHTML("afterbegin",
       `<div class="bg-amber-100 text-amber-900 px-6 py-3 text-sm">
@@ -655,6 +656,67 @@ function renderOverview() {
     trackSel.addEventListener("change", renderOverview);
     trackSel.dataset.bound = "1";
   }
+}
+
+// ───────────────────────────────────────────────────────────────
+// Datasets download table (reads data/downloads/downloads.json)
+// ───────────────────────────────────────────────────────────────
+async function renderDownloads() {
+  const root = $("#downloads-body");
+  if (!root) return;
+  let man;
+  try {
+    man = await fetchJSON("./data/downloads/downloads.json");
+  } catch {
+    root.innerHTML = `<p class="text-xs text-slate-500">No dataset exports yet
+      — run <code>python scripts/export_datasets.py</code>.</p>`;
+    return;
+  }
+  const kb = (b) => b > 1024 * 1024
+    ? `${(b / 1024 / 1024).toFixed(1)} MB` : `${Math.round(b / 1024)} KB`;
+  const link = (file, label, cls) =>
+    `<a href="./data/downloads/${file}" download
+        class="inline-block rounded px-2 py-0.5 text-[11px] font-medium ${cls}">${label}</a>`;
+
+  const rows = man.datasets.map((d) => {
+    const meta = state.datasets_meta?.[d.benchmark];
+    const o = d.original;
+    const t = d.transformed;
+    const oLink = link(o.file, `original · ${kb(o.bytes)}`,
+      "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-950 dark:text-indigo-300");
+    let tCell = `<span class="text-[11px] text-slate-400">pending</span>`;
+    if (t) {
+      const badge = t.complete ? "" :
+        ` <span class="text-[10px] text-amber-600 dark:text-amber-400">(partial ${t.n_docs}/${o.n_docs})</span>`;
+      tCell = link(t.file, `transformed · ${kb(t.bytes)}`,
+        "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-300") + badge;
+    }
+    return `
+      <tr class="border-t border-slate-100 dark:border-slate-800">
+        <td class="px-3 py-2 whitespace-nowrap">
+          <div class="font-medium text-xs sm:text-sm">${escapeHtml(meta?.title || d.benchmark)}</div>
+          <div class="text-[10px] text-slate-500">${escapeHtml(d.language)} · ${o.n_docs} docs · ${o.n_spans} gold spans</div>
+        </td>
+        <td class="px-3 py-2 whitespace-nowrap">${oLink}</td>
+        <td class="px-3 py-2 whitespace-nowrap">${tCell}</td>
+        <td class="px-3 py-2 text-[11px] text-slate-500 dark:text-slate-400">${escapeHtml(d.license)}</td>
+      </tr>`;
+  }).join("");
+
+  root.innerHTML = `
+    <table class="min-w-full text-xs sm:text-sm">
+      <thead class="text-slate-500 dark:text-slate-400 text-left">
+        <tr>
+          <th class="px-3 py-1.5 font-medium">Benchmark</th>
+          <th class="px-3 py-1.5 font-medium">Original subset</th>
+          <th class="px-3 py-1.5 font-medium">Custodian-transformed</th>
+          <th class="px-3 py-1.5 font-medium">License / source</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p class="text-[10px] text-slate-400 mt-2">Exported ${escapeHtml(man.generated_at)} ·
+      JSONL, one document per line · transformed files refresh as the Guardian Layer pass completes.</p>`;
 }
 
 // ───────────────────────────────────────────────────────────────

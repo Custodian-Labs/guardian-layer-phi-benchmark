@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-06-12 12:26:30Z",
+  "datasets": [
+    {
+      "benchmark": "asq_phi",
+      "language": "en",
+      "license": "MIT (Mendeley DOI 10.17632/csz5dzp7nx.1)",
+      "original": {
+        "file": "asq_phi_250.jsonl",
+        "n_docs": 250,
+        "n_spans": 686,
+        "bytes": 107786
+      },
+      "transformed": {
+        "file": "asq_phi_250_transformed.jsonl",
+        "n_docs": 250,
+        "n_spans": 686,
+        "bytes": 134980,
+        "complete": true
+      }
+    },
+    {
+      "benchmark": "meddocan",
+      "language": "es",
+      "license": "CC-BY 4.0 (MEDDOCAN / Plan TL shared task)",
+      "original": {
+        "file": "meddocan_250.jsonl",
+        "n_docs": 250,
+        "n_spans": 5661,
+        "bytes": 1211732
+      },
+      "transformed": {
+        "file": "meddocan_250_transformed.jsonl",
+        "n_docs": 80,
+        "n_spans": 1809,
+        "bytes": 393977,
+        "complete": false
+      }
+    },
+    {
+      "benchmark": "pii_masking_300k",
+      "language": "en",
+      "license": "ai4privacy pii-masking-300k (open, attribution)",
+      "original": {
+        "file": "pii_masking_300k_250.jsonl",
+        "n_docs": 250,
+        "n_spans": 1499,
+        "bytes": 235606
+      },
+      "transformed": null
+    },
+    {
+      "benchmark": "pii_masking_300k_dutch",
+      "language": "nl",
+      "license": "ai4privacy pii-masking-300k (open, attribution)",
+      "original": {
+        "file": "pii_masking_300k_dutch_250.jsonl",
+        "n_docs": 250,
+        "n_spans": 1764,
+        "bytes": 252901
+      },
+      "transformed": null
+    },
+    {
+      "benchmark": "pii_masking_300k_french",
+      "language": "fr",
+      "license": "ai4privacy pii-masking-300k (open, attribution)",
+      "original": {
+        "file": "pii_masking_300k_french_250.jsonl",
+        "n_docs": 250,
+        "n_spans": 1771,
+        "bytes": 258715
+      },
+      "transformed": null
+    },
+    {
+      "benchmark": "pii_masking_300k_german",
+      "language": "de",
+      "license": "ai4privacy pii-masking-300k (open, attribution)",
+      "original": {
+        "file": "pii_masking_300k_german_250.jsonl",
+        "n_docs": 250,
+        "n_spans": 1546,
+        "bytes": 243017
+      },
+      "transformed": {
+        "file": "pii_masking_300k_german_250_transformed.jsonl",
+        "n_docs": 3,
+        "n_spans": 20,
+        "bytes": 3347,
+        "complete": false
+      }
+    },
+    {
+      "benchmark": "multiconer_v2",
+      "language": "en",
+      "license": "CC-BY 4.0 (MultiCoNER v2 shared task)",
+      "original": {
+        "file": "multiconer_v2_250.jsonl",
+        "n_docs": 250,
+        "n_spans": 350,
+        "bytes": 72458
+      },
+      "transformed": null
+    }
+  ]
+}
