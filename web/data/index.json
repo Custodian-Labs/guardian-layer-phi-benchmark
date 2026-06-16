@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07 18:17:07Z",
+  "generated_at": "2026-06-16 13:07:32Z",
   "runs": [
     {
       "id": "asq_phi_250",
@@ -63,6 +63,69 @@
       "timestamp": "2026-06-07 18:17:06Z",
       "summary_path": "pii_masking_300k_250.summary.json",
       "samples_path": "pii_masking_300k_250.samples.json"
+    },
+    {
+      "id": "t_asq_phi_250_baselines",
+      "benchmark": "asq_phi_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 10:55:23Z",
+      "summary_path": "t_asq_phi_250_baselines.summary.json",
+      "samples_path": "t_asq_phi_250_baselines.samples.json"
+    },
+    {
+      "id": "t_asq_phi_250_meta_dsk",
+      "benchmark": "asq_phi_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 11:28:52Z",
+      "summary_path": "t_asq_phi_250_meta_dsk.summary.json",
+      "samples_path": "t_asq_phi_250_meta_dsk.samples.json"
+    },
+    {
+      "id": "t_asq_phi_250_openai",
+      "benchmark": "asq_phi_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 11:05:13Z",
+      "summary_path": "t_asq_phi_250_openai.summary.json",
+      "samples_path": "t_asq_phi_250_openai.samples.json"
+    },
+    {
+      "id": "t_meddocan_250",
+      "benchmark": "meddocan_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 13:07:31Z",
+      "summary_path": "t_meddocan_250.summary.json",
+      "samples_path": "t_meddocan_250.samples.json"
+    },
+    {
+      "id": "t_meddocan_250_baselines",
+      "benchmark": "meddocan_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 11:20:48Z",
+      "summary_path": "t_meddocan_250_baselines.summary.json",
+      "samples_path": "t_meddocan_250_baselines.samples.json"
+    },
+    {
+      "id": "t_meddocan_250_meta_dsk",
+      "benchmark": "meddocan_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 13:07:08Z",
+      "summary_path": "t_meddocan_250_meta_dsk.summary.json",
+      "samples_path": "t_meddocan_250_meta_dsk.samples.json"
+    },
+    {
+      "id": "t_meddocan_250_openai",
+      "benchmark": "meddocan_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 12:21:05Z",
+      "summary_path": "t_meddocan_250_openai.summary.json",
+      "samples_path": "t_meddocan_250_openai.samples.json"
     }
   ]
 }

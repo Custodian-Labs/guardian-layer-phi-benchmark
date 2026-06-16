@@ -91,8 +91,13 @@ def remap_spans(orig: str, new: str, spans: list[dict]) -> list[dict]:
     return out
 
 
-def transform_doc(guardian, text: str, max_retries: int = 4):
-    """Returns (transformed_text, n_sensitive, error_str|None)."""
+def transform_doc(guardian, text: str, max_retries: int = 8):
+    """Returns (transformed_text, n_sensitive, error_str|None).
+
+    429s here are *rate* limits (requests/min), not credit exhaustion, so we
+    back off generously: 429 waits grow 10s,20s,...; other errors use a short
+    backoff. Long total budget (~5min) lets a per-minute window reset.
+    """
     last_err = None
     for attempt in range(max_retries):
         try:
@@ -105,9 +110,10 @@ def transform_doc(guardian, text: str, max_retries: int = 4):
             top1 = outs[0].text
             n_sens = len((r.meta or {}).get("sensitive_words", []))
             return top1, n_sens, None
-        except Exception as e:  # rate limits / transient 5xx
+        except Exception as e:
             last_err = f"{type(e).__name__}: {e}"
-            time.sleep(2.0 * (attempt + 1))
+            is_rate = "429" in last_err or "request limit" in last_err.lower()
+            time.sleep((10.0 * (attempt + 1)) if is_rate else 2.0 * (attempt + 1))
     return text, 0, last_err
 
 
@@ -152,10 +158,15 @@ def main() -> int:
             for i, r in enumerate(todo):
                 text = r["text"]
                 new_text, n_sens, err = transform_doc(guardian, text)
+                if err:
+                    # Do NOT cache failures: leaving the doc_id absent lets a
+                    # later --resume retry it instead of skipping it forever.
+                    n_err += 1
+                    print(f"[{bench}] SKIP {r['doc_id']}: {err[:90]}", flush=True)
+                    continue
                 spans = remap_spans(text, new_text, r.get("gold_spans", []))
                 changed = new_text != text
                 n_changed += changed
-                n_err += bool(err)
                 out_f.write(json.dumps({
                     "doc_id": r["doc_id"],
                     "text": new_text,
@@ -163,10 +174,11 @@ def main() -> int:
                     "meta": {
                         "orig_len": len(text), "new_len": len(new_text),
                         "n_sensitive": n_sens, "changed": changed,
-                        "sdk_error": err,
+                        "sdk_error": None,
                     },
                 }, ensure_ascii=False) + "\n")
                 out_f.flush()
+                time.sleep(0.15)  # gentle pacing to stay under the per-min cap
                 if (i + 1) % 25 == 0:
                     rate = (i + 1) / (time.time() - t0)
                     print(f"[{bench}] {i+1}/{len(todo)} "

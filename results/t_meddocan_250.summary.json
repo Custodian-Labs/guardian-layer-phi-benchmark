@@ -1,0 +1,46 @@
+[
+  {
+    "system": "openai_gpt",
+    "benchmark": "meddocan_transformed",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.7322644410278937,
+    "recall": 0.5890459363957598,
+    "f1": 0.6528933711935768,
+    "leakage_rate": 0.41095406360424025,
+    "char_leakage_rate": 0.3663818173683504
+  },
+  {
+    "system": "llama3.1_8b",
+    "benchmark": "meddocan_transformed",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.6478915662650603,
+    "recall": 0.38003533568904596,
+    "f1": 0.479064587973274,
+    "leakage_rate": 0.619964664310954,
+    "char_leakage_rate": 0.6246402099831476
+  },
+  {
+    "system": "presidio",
+    "benchmark": "meddocan_transformed",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.34423874880306415,
+    "recall": 0.38109540636042405,
+    "f1": 0.36173067248029517,
+    "leakage_rate": 0.618904593639576,
+    "char_leakage_rate": 0.6253560616228954
+  },
+  {
+    "system": "deid_roberta_i2b2",
+    "benchmark": "meddocan_transformed",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.061227661227661226,
+    "recall": 0.0696113074204947,
+    "f1": 0.06515088879702358,
+    "leakage_rate": 0.9303886925795053,
+    "char_leakage_rate": 0.9584209505913233
+  }
+]
