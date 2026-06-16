@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16 13:07:32Z",
+  "generated_at": "2026-06-16 17:04:26Z",
   "runs": [
     {
       "id": "asq_phi_250",
@@ -65,6 +65,15 @@
       "samples_path": "pii_masking_300k_250.samples.json"
     },
     {
+      "id": "t_asq_phi_250",
+      "benchmark": "asq_phi_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 17:04:26Z",
+      "summary_path": "t_asq_phi_250.summary.json",
+      "samples_path": "t_asq_phi_250.samples.json"
+    },
+    {
       "id": "t_asq_phi_250_baselines",
       "benchmark": "asq_phi_transformed",
       "mode": "type",
@@ -72,6 +81,15 @@
       "timestamp": "2026-06-16 10:55:23Z",
       "summary_path": "t_asq_phi_250_baselines.summary.json",
       "samples_path": "t_asq_phi_250_baselines.samples.json"
+    },
+    {
+      "id": "t_asq_phi_250_gemma_4_31b",
+      "benchmark": "asq_phi_transformed",
+      "mode": "type",
+      "n_docs": 101,
+      "timestamp": "2026-06-16 17:04:22Z",
+      "summary_path": "t_asq_phi_250_gemma_4_31b.summary.json",
+      "samples_path": "t_asq_phi_250_gemma_4_31b.samples.json"
     },
     {
       "id": "t_asq_phi_250_meta_dsk",
@@ -126,6 +144,42 @@
       "timestamp": "2026-06-16 12:21:05Z",
       "summary_path": "t_meddocan_250_openai.summary.json",
       "samples_path": "t_meddocan_250_openai.samples.json"
+    },
+    {
+      "id": "t_pii_masking_300k_250_baselines",
+      "benchmark": "pii_masking_300k_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 13:07:56Z",
+      "summary_path": "t_pii_masking_300k_250_baselines.summary.json",
+      "samples_path": "t_pii_masking_300k_250_baselines.samples.json"
+    },
+    {
+      "id": "t_pii_masking_300k_250_meta_dsk",
+      "benchmark": "pii_masking_300k_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 14:25:20Z",
+      "summary_path": "t_pii_masking_300k_250_meta_dsk.summary.json",
+      "samples_path": "t_pii_masking_300k_250_meta_dsk.samples.json"
+    },
+    {
+      "id": "t_pii_masking_300k_250_openai",
+      "benchmark": "pii_masking_300k_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 13:21:44Z",
+      "summary_path": "t_pii_masking_300k_250_openai.summary.json",
+      "samples_path": "t_pii_masking_300k_250_openai.samples.json"
+    },
+    {
+      "id": "t_pii_masking_300k_250_qwen_sml",
+      "benchmark": "pii_masking_300k_transformed",
+      "mode": "type",
+      "n_docs": 250,
+      "timestamp": "2026-06-16 16:12:44Z",
+      "summary_path": "t_pii_masking_300k_250_qwen_sml.summary.json",
+      "samples_path": "t_pii_masking_300k_250_qwen_sml.samples.json"
     }
   ]
 }
