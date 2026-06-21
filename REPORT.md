@@ -45,6 +45,28 @@ The aggregate hides one pattern: almost all of the loss lands on ASQ-PHI; the ot
 | Llama 3.1-8B | −0.108 | +0.023 | −0.014 | +0.007 | −0.009 | +0.003 | −0.006 |
 | OBI deid_roberta | +0.001 | −0.008 | −0.004 | −0.001 | +0.003 | −0.002 | −0.001 |
 
+## What the transform actually does (worked examples)
+
+Each PHI value is replaced by a same-type surrogate; everything else — clinical shorthand, foreign-language syntax, JSON structure — is left untouched. On the English cases the detector still flags every surrogate.
+
+**ASQ-PHI · asq_00000 (clinical query)** — *Gemma 4 31B caught 3/3, leakage 0*
+- orig: …a **34**-year-old female … like **Anna S.**, … at Methodist Hospital on **April 12, 2023**?
+- xfrm: …a **35**-year-old female … like **Maria S.**, … at Methodist Hospital on **March 13, 2021**?
+
+**ASQ-PHI · asq_00003 (clinical shorthand)** — *Gemma 4 31B caught 3/3, leakage 0*
+- orig: Rec mgmt of **70yo** M w/ CHF, seen by Dr. **John L.** at **Mt. Sinai** on **Feb 21, 2023**. looking for alt tx options…
+- xfrm: Rec mgmt of **73 yo** M w/ CHF, seen by Dr. **James L.** at **Mt. Egypt** on **Nov 19, 2021**. looking for alt tx options…
+- Even dense abbreviations (`w/ CHF`, `alt tx`) survive — only the PHI moves.
+
+**PII-Masking-300k · German (name + date)**
+- orig: …ermächtigen hiermit **Monsignore**, … Mit Datum **23/07/2011**…
+- xfrm: …ermächtigen hiermit **Fulgenzio**, … Mit Datum **24/07/2011**…
+
+**PII-Masking-300k · French (structured JSON)**
+- orig: `{ "Date": "20/05/2022", "City": "Saint-Priest", "Username": "phprosdocimo" … }`
+- xfrm: `{ "Date": "21/05/2023", "City": "Saint-Priest", "Username": "phprosdocimo" … }`
+- Keys, quotes and indentation are byte-for-byte preserved — only the sensitive value is swapped, so downstream parsers never break.
+
 ## Conclusion
 
 The Guardian Layer transform preserves downstream PHI-detection performance: it changes the surface content while leaving the detectable structure — and the relative difficulty across models — intact.

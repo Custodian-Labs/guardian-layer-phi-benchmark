@@ -90,6 +90,21 @@
   .heat td{padding:6px 4px;text-align:center;border-bottom:1px solid var(--line-2)}
   .heat td:first-child{text-align:left;font-weight:600}
   .cell{display:block;padding:3px 0;border-radius:2px}
+  /* ---- worked examples ---- */
+  .ex{background:var(--paper);border:1px solid var(--line);margin:0 0 16px;padding:18px 20px}
+  .ex .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    flex-wrap:wrap;margin-bottom:12px}
+  .ex .src{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .ex .caught{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--accent);
+    border:1px solid var(--accent);border-radius:2px;padding:2px 8px;white-space:nowrap}
+  .ex .row{font-family:var(--mono);font-size:12.5px;line-height:1.95;
+    display:grid;grid-template-columns:46px 1fr;gap:10px;padding:3px 0}
+  .ex .row .rl{color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding-top:4px}
+  .ex .row.x{border-top:1px dashed var(--line);margin-top:4px;padding-top:8px}
+  .old{color:var(--accent-2);text-decoration:line-through;text-decoration-thickness:1px}
+  .new{color:var(--accent);background:rgba(15,110,92,.12);box-shadow:inset 0 -2px 0 var(--accent);
+    padding:0 4px;border-radius:2px;font-weight:600}
+  .keep{color:var(--text)}
   /* ---- interpretation ---- */
   .points{list-style:none;padding:0;margin:0;display:grid;gap:2px}
   .points li{font-family:var(--serif);font-size:16px;padding:14px 0 14px 0;
@@ -170,9 +185,46 @@
     <p class="note">Per-benchmark ΔF1. Deeper clay = larger drop; near-white = no change.</p>
   </section>
 
-  <!-- SECTION 3: INTERPRETATION -->
+  <!-- SECTION 3: WORKED EXAMPLES -->
   <section>
-    <h2 data-n="03">What it means</h2>
+    <h2 data-n="03">What the transform actually does</h2>
+    <p class="lede">Four real documents, original → transformed. Each PHI value is replaced by a
+      same-type surrogate (clay struck through → green); everything else — clinical shorthand,
+      foreign-language syntax, JSON structure — is left untouched. On the English cases the detector
+      still flags every surrogate.</p>
+
+    <div class="ex">
+      <div class="hd"><span class="src">ASQ-PHI · asq_00000 · clinical query (en)</span>
+        <span class="caught">Gemma 4 31B caught 3 / 3 · leakage 0</span></div>
+      <div class="row"><span class="rl">orig</span><span>What is the latest treatment protocol for a <span class="old">34</span>-year-old female diagnosed with MS like <span class="old">Anna&nbsp;S.</span>, previously treated at <span class="keep">Methodist&nbsp;Hospital</span> on <span class="old">April&nbsp;12,&nbsp;2023</span>?</span></div>
+      <div class="row x"><span class="rl">xfrm</span><span>What is the latest treatment protocol for a <span class="new">35</span>-year-old female diagnosed with MS like <span class="new">Maria&nbsp;S.</span>, previously treated at <span class="new">Methodist&nbsp;Hospital</span> on <span class="new">March&nbsp;13,&nbsp;2021</span>?</span></div>
+    </div>
+
+    <div class="ex">
+      <div class="hd"><span class="src">ASQ-PHI · asq_00003 · clinical shorthand (en)</span>
+        <span class="caught">Gemma 4 31B caught 3 / 3 · leakage 0</span></div>
+      <div class="row"><span class="rl">orig</span><span>Rec mgmt of <span class="old">70yo</span> M w/ CHF, seen by Dr. <span class="old">John&nbsp;L.</span> at <span class="old">Mt.&nbsp;Sinai</span> on <span class="old">Feb&nbsp;21,&nbsp;2023</span>. looking for alt tx options after beta-blocker intol.</span></div>
+      <div class="row x"><span class="rl">xfrm</span><span>Rec mgmt of <span class="new">73&nbsp;yo</span> M w/ CHF, seen by Dr. <span class="new">James&nbsp;L.</span> at <span class="new">Mt.&nbsp;Egypt</span> on <span class="new">Nov&nbsp;19,&nbsp;2021</span>. looking for alt tx options after beta-blocker intol.</span></div>
+      <p class="note" style="margin:8px 0 0">Even dense abbreviations (<span class="keep">w/ CHF</span>, <span class="keep">alt tx</span>) survive — only the PHI moves.</p>
+    </div>
+
+    <div class="ex">
+      <div class="hd"><span class="src">PII-Masking-300k · German — name + date</span></div>
+      <div class="row"><span class="rl">orig</span><span>…ermächtigen hiermit <span class="old">Monsignore</span>, das Kind in unserer Abwesenheit abzuholen. Mit Datum <span class="old">23/07/2011</span>…</span></div>
+      <div class="row x"><span class="rl">xfrm</span><span>…ermächtigen hiermit <span class="new">Fulgenzio</span>, das Kind in unserer Abwesenheit abzuholen. Mit Datum <span class="new">24/07/2011</span>…</span></div>
+    </div>
+
+    <div class="ex">
+      <div class="hd"><span class="src">PII-Masking-300k · French — structured JSON</span></div>
+      <div class="row"><span class="rl">orig</span><span>{ "Form_ID": "FORM_ID_987654321", "Date": <span class="old">"20/05/2022"</span>, "City": "Saint-Priest", "Username": "phprosdocimo" … }</span></div>
+      <div class="row x"><span class="rl">xfrm</span><span>{ "Form_ID": "FORM_ID_987654321", "Date": <span class="new">"21/05/2023"</span>, "City": "Saint-Priest", "Username": "phprosdocimo" … }</span></div>
+      <p class="note" style="margin:8px 0 0">Keys, quotes and indentation are byte-for-byte preserved — only the sensitive value is swapped, so downstream parsers never break.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 4: INTERPRETATION -->
+  <section>
+    <h2 data-n="04">What it means</h2>
     <ul class="points">
       <li><span class="k">A</span><span><b>Detectability survives.</b> Every detector that found PHI in the originals finds the surrogate spans too; the loss is noise-level on 6/7 sets.</span></li>
       <li><span class="k">B</span><span><b>Ranking is intact.</b> Gemma 4 31B leads and the out-of-domain OBI model trails in both conditions — transform doesn't distort cross-model comparison.</span></li>
@@ -183,7 +235,7 @@
 
   <!-- STATUS -->
   <section>
-    <h2 data-n="04">Coverage</h2>
+    <h2 data-n="05">Coverage</h2>
     <div class="status">
       <b>9 systems</b> fully scored on original + transformed across all 7 benchmarks
       &nbsp;<span class="on">●&nbsp;complete</span><br>
