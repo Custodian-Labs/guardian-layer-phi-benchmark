@@ -48,7 +48,12 @@
       "Bash(cd /data/qbao775/custodianai *)",
       "Bash(git commit -m 'Dashboard: label OBI deid_roberta_i2b2 as '\\\\''out-of-domain'\\\\'' baseline *)",
       "Bash(rm -f results/*_qwen_thinking.summary.json)",
-      "Bash(git commit -m 'Publish interim Qwen-thinking B1+ results \\(5 of 7 benchmarks\\) *)"
+      "Bash(git commit -m 'Publish interim Qwen-thinking B1+ results \\(5 of 7 benchmarks\\) *)",
+      "Bash(git commit -m 'Dashboard: publish structure-preservation report at /report.html *)",
+      "Bash(curl -s -o /dev/null -w \"  /report.html -> %{http_code} \\(final: %{url_effective}\\)\\\\n\" -L https://custodianai.pages.dev/report.html)",
+      "Bash(curl -s -o /dev/null -w \"  /report      -> %{http_code}\\\\n\" -L https://custodianai.pages.dev/report)",
+      "Bash(curl -sL https://custodianai.pages.dev/report.html)",
+      "Bash(curl -s -o /dev/null -w \"report: %{http_code}\\\\n\" -L https://custodianai.pages.dev/report)"
     ],
     "additionalDirectories": [
       "/data/qbao775/custodianai/results"
