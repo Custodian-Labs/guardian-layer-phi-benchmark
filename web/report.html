@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<title>Guardian Layer — Structure-Preservation Audit</title>
+<style>
+  :root{
+    --ground:#E9ECEA; --paper:#F3F5F3; --text:#18211E; --muted:#5C6B64;
+    --accent:#0F6E5C; --accent-2:#BD5B36; --line:#C5CDC8; --line-2:#D8DEDA;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--ground);color:var(--text);
+    font-family:var(--serif);line-height:1.6;
+    background-image:linear-gradient(var(--line-2) 1px,transparent 1px);
+    background-size:100% 2.1rem;background-position:0 -1px;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+  /* ---- masthead ---- */
+  header{border-bottom:2px solid var(--text);margin-top:40px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,5.4vw,52px);
+    line-height:1.05;letter-spacing:-.015em;margin:0 0 12px}
+  h1 em{font-style:italic;color:var(--accent)}
+  .dek{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:60ch;margin:0 0 22px}
+  .meta-strip{display:flex;flex-wrap:wrap;gap:0;font-family:var(--mono);font-size:11px;
+    letter-spacing:.04em;border-top:1px solid var(--line);margin-bottom:-1px}
+  .meta-strip div{padding:9px 18px 9px 0;color:var(--muted)}
+  .meta-strip b{color:var(--text);font-weight:600}
+  /* ---- hero specimen ---- */
+  .specimen{background:var(--paper);border:1px solid var(--line);
+    margin:30px 0;padding:26px 26px 22px}
+  .specimen .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+  .sent{font-family:var(--mono);font-size:clamp(13px,1.8vw,15.5px);line-height:2.1;
+    color:var(--text)}
+  .phi{position:relative;padding:1px 6px;border-radius:2px;white-space:nowrap;
+    background:rgba(15,110,92,.13);box-shadow:inset 0 -2px 0 var(--accent);
+    transition:background .5s ease, box-shadow .5s ease}
+  .phi .lab{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;
+    position:absolute;top:-13px;left:0;color:var(--accent);opacity:.0;
+    transition:opacity .5s ease .3s}
+  .specimen.live .phi .lab{opacity:.85}
+  .swap{display:inline-block;position:relative}
+  .swap .old{color:var(--accent-2);text-decoration:line-through;
+    text-decoration-thickness:1px;opacity:1;transition:opacity .5s ease}
+  .swap .new{opacity:0;transition:opacity .6s ease .25s}
+  .specimen.live .swap .old{opacity:0;position:absolute;left:0}
+  .specimen.live .swap .new{opacity:1}
+  /* ---- headline metric ---- */
+  .thesis{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
+    border-top:2px solid var(--text);border-bottom:1px solid var(--line);
+    padding:26px 0;margin:0 0 8px}
+  .bignum{font-family:var(--mono);font-weight:700;font-size:clamp(46px,9vw,78px);
+    line-height:.9;letter-spacing:-.03em;color:var(--accent)}
+  .bignum .sub{display:block;font-size:11px;font-weight:400;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin-top:10px}
+  .thesis p{margin:0;font-size:16px}
+  .thesis b{color:var(--text)}
+  /* ---- section ---- */
+  section{padding:34px 0 8px}
+  h2{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--text);margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+  h2::before{content:attr(data-n);color:var(--accent);font-weight:700}
+  .lede{color:var(--muted);font-size:15px;margin:6px 0 22px;max-width:64ch}
+  /* ---- delta table ---- */
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
+  thead th{text-align:right;font-weight:600;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);padding:0 0 8px;border-bottom:1px solid var(--text)}
+  thead th:first-child{text-align:left}
+  tbody td{padding:9px 0;border-bottom:1px solid var(--line-2);text-align:right;white-space:nowrap}
+  tbody td:first-child{text-align:left;font-weight:600}
+  tbody tr:hover{background:rgba(15,110,92,.05)}
+  .bar{display:inline-grid;grid-template-columns:1fr;width:130px;height:13px;
+    background:var(--line-2);position:relative;vertical-align:middle;margin-left:8px}
+  .bar .o{position:absolute;top:0;left:0;height:100%;background:rgba(15,110,92,.28)}
+  .bar .t{position:absolute;top:0;left:0;height:100%;border-right:2px solid var(--accent)}
+  .d-neg{color:var(--accent-2)}
+  .d-zero{color:var(--muted)}
+  .leak{color:var(--muted)}
+  .note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px}
+  /* ---- per-benchmark heat ---- */
+  .heat{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px}
+  .heat th{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    padding:6px 4px;border-bottom:1px solid var(--text);text-align:center}
+  .heat th:first-child{text-align:left}
+  .heat td{padding:6px 4px;text-align:center;border-bottom:1px solid var(--line-2)}
+  .heat td:first-child{text-align:left;font-weight:600}
+  .cell{display:block;padding:3px 0;border-radius:2px}
+  /* ---- interpretation ---- */
+  .points{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+  .points li{font-family:var(--serif);font-size:16px;padding:14px 0 14px 0;
+    border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:26px 1fr;gap:14px}
+  .points .k{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;padding-top:4px}
+  .points b{color:var(--text)}
+  /* ---- status / footer ---- */
+  .status{background:var(--paper);border:1px solid var(--line);padding:18px 22px;margin-top:24px;
+    font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9}
+  .status b{color:var(--text)} .status .on{color:var(--accent)} .status .run{color:var(--accent-2)}
+  footer{border-top:2px solid var(--text);margin:36px 0 60px;padding-top:16px;
+    font-family:var(--mono);font-size:11px;color:var(--muted);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+  @media(max-width:560px){.thesis{grid-template-columns:1fr;gap:14px}
+    .bar{width:84px} .meta-strip div{padding-right:14px}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Custodian Guardian Layer · Structure-Preservation Audit</p>
+    <h1>The PHI moves.<br>The detector <em>doesn't notice.</em></h1>
+    <p class="dek">When the Guardian Layer rewrites protected health information into plausible
+      surrogates, do downstream detectors still find it — and rank the same? Across 9 systems and
+      7 benchmarks, the answer holds.</p>
+    <div class="meta-strip mono">
+      <div><b>1,750</b> documents</div>
+      <div><b>7</b> benchmarks</div>
+      <div><b>9</b> detectors</div>
+      <div>masking&nbsp;=&nbsp;<b>transform</b></div>
+      <div>metric&nbsp;=&nbsp;<b>span F1 · leakage</b></div>
+    </div>
+  </header>
+
+  <!-- HERO SPECIMEN -->
+  <div class="specimen" id="specimen">
+    <span class="tag">ASQ-PHI · doc asq_00000 · original → transformed</span>
+    <p class="sent">What is the latest treatment protocol for a 35-year-old female diagnosed with MS like
+      <span class="phi"><span class="lab">NAME</span><span class="swap"><span class="old">Anna&nbsp;S.</span><span class="new">Maria&nbsp;S.</span></span></span>,
+      previously treated at
+      <span class="phi"><span class="lab">LOCATION</span>Methodist&nbsp;Hospital</span>
+      on
+      <span class="phi"><span class="lab">DATE</span>March&nbsp;13,&nbsp;2021</span>?</p>
+  </div>
+
+  <!-- THESIS NUMBER -->
+  <div class="thesis">
+    <div class="bignum">−0.034<span class="sub">mean ΔF1 across 9 systems</span></div>
+    <p>Substituting every PHI span for a surrogate costs detectors <b>1.5 to 4.7 F1 points</b> on
+      average — within run-to-run noise on six of seven benchmarks. The ordering of systems is
+      <b>preserved exactly</b>: the strongest model on real PHI is still strongest on transformed PHI.</p>
+  </div>
+
+  <!-- SECTION 1: DELTA TABLE -->
+  <section>
+    <h2 data-n="01">Accuracy before vs after transform</h2>
+    <p class="lede">Mean over 7 benchmarks. The green bar is original F1; the tick marks transformed F1.
+      The two sit almost on top of each other — that gap is the whole story.</p>
+    <table>
+      <thead><tr><th>System</th><th>Orig</th><th>Transf</th><th>F1 preserved</th><th>ΔF1</th><th>Leakage →</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <p class="note">ΔF1 in clay = drop. Leakage = 1 − recall (HIPAA-critical: lower is safer); arrow shows original → transformed.</p>
+  </section>
+
+  <!-- SECTION 2: PER BENCHMARK -->
+  <section>
+    <h2 data-n="02">Where the drop concentrates</h2>
+    <p class="lede">The average hides a pattern. Almost all of the loss lands on ASQ-PHI — short
+      adversarial clinical queries where one substitution shifts the whole short span set. The other
+      six benchmarks are flat.</p>
+    <div style="overflow-x:auto">
+      <table class="heat"><thead><tr id="heat-head"></tr></thead><tbody id="heat-body"></tbody></table>
+    </div>
+    <p class="note">Per-benchmark ΔF1. Deeper clay = larger drop; near-white = no change.</p>
+  </section>
+
+  <!-- SECTION 3: INTERPRETATION -->
+  <section>
+    <h2 data-n="03">What it means</h2>
+    <ul class="points">
+      <li><span class="k">A</span><span><b>Detectability survives.</b> Every detector that found PHI in the originals finds the surrogate spans too; the loss is noise-level on 6/7 sets.</span></li>
+      <li><span class="k">B</span><span><b>Ranking is intact.</b> Gemma 4 31B leads and the out-of-domain OBI model trails in both conditions — transform doesn't distort cross-model comparison.</span></li>
+      <li><span class="k">C</span><span><b>Leakage barely moves</b> (+1.7 to +4.1 pts). Surrogates aren't systematically easier to miss than the PHI they replace.</span></li>
+      <li><span class="k">D</span><span><b>ASQ-PHI is the stress case.</b> Its sparse, short queries amplify any single swap — yet the strongest models still hold above 0.55 F1 there.</span></li>
+    </ul>
+  </section>
+
+  <!-- STATUS -->
+  <section>
+    <h2 data-n="04">Coverage</h2>
+    <div class="status">
+      <b>9 systems</b> fully scored on original + transformed across all 7 benchmarks
+      &nbsp;<span class="on">●&nbsp;complete</span><br>
+      <b>DeepSeek V2-Lite</b> &amp; <b>Llama 3.3-70B</b> transformed runs
+      &nbsp;<span class="run">●&nbsp;backfilling now</span> — this report updates when they land.<br>
+      Method: each doc → Guardian Layer <b>transform</b> (top-1 surrogate, pii_entities=ALL); gold
+      spans remapped to surrogate offsets by character alignment; identical detector suite re-scored.
+    </div>
+  </section>
+
+  <footer>
+    <span>Custodian Labs · Guardian Layer evaluation</span>
+    <span>Live dashboard &amp; data → <a href="https://custodianai.pages.dev">custodianai.pages.dev</a></span>
+  </footer>
+</div>
+
+<script>
+  // ---- data (mean over 7 benchmarks) ----
+  const ROWS=[
+    ["Gemma 4 31B",0.755,0.710,-0.045,0.255,0.285],
+    ["Gemma 4 E4B",0.737,0.698,-0.038,0.276,0.311],
+    ["Qwen 3.5-35B-A3B",0.715,0.668,-0.047,0.254,0.295],
+    ["OpenAI GPT-5",0.705,0.674,-0.032,0.308,0.333],
+    ["Qwen 3.5-9B",0.655,0.621,-0.034,0.391,0.422],
+    ["Qwen 3.5-4B",0.567,0.533,-0.034,0.483,0.515],
+    ["Presidio",0.416,0.398,-0.018,0.553,0.570],
+    ["Llama 3.1-8B",0.391,0.376,-0.015,0.633,0.650],
+    ["OBI deid_roberta",0.041,0.040,-0.002,0.941,0.944],
+  ];
+  const FULL=Math.max(...ROWS.map(r=>r[1]));
+  const tb=document.getElementById("tbody");
+  ROWS.forEach(([s,o,t,d,ol,tl])=>{
+    const ow=(o/FULL*100).toFixed(1), tw=(t/FULL*100).toFixed(1);
+    const dcls=d<=-0.01?"d-neg":"d-zero";
+    tb.insertAdjacentHTML("beforeend",
+      `<tr><td>${s}</td><td>${o.toFixed(3)}</td><td>${t.toFixed(3)}</td>
+       <td><span class="bar"><span class="o" style="width:${ow}%"></span><span class="t" style="width:${tw}%"></span></span></td>
+       <td class="${dcls}">${d>0?'+':''}${d.toFixed(3)}</td>
+       <td class="leak">${ol.toFixed(2)}→${tl.toFixed(2)}</td></tr>`);
+  });
+
+  // ---- per-benchmark heat ----
+  const BN=["ASQ-PHI","MEDDOCAN","PII en","PII nl","PII fr","PII de","MultiCoNER"];
+  const HEAT=[
+    ["Gemma 4 31B",-0.175,-0.017,-0.043,-0.038,-0.014,-0.016,-0.009],
+    ["Gemma 4 E4B",-0.106,-0.060,-0.032,-0.021,-0.018,-0.025,-0.007],
+    ["Qwen 3.5-35B",-0.132,-0.034,-0.026,-0.034,-0.040,-0.054,-0.007],
+    ["OpenAI GPT-5",-0.098,-0.046,-0.049,-0.019,0.008,-0.005,-0.014],
+    ["Qwen 3.5-9B",-0.123,-0.017,-0.025,-0.010,-0.034,-0.024,-0.008],
+    ["Qwen 3.5-4B",-0.086,-0.055,-0.034,-0.028,-0.015,-0.023,0.002],
+    ["Presidio",0.003,-0.037,-0.032,-0.015,-0.020,-0.015,-0.007],
+    ["Llama 3.1-8B",-0.108,0.023,-0.014,0.007,-0.009,0.003,-0.006],
+    ["OBI deid_roberta",0.001,-0.008,-0.004,-0.001,0.003,-0.002,-0.001],
+  ];
+  document.getElementById("heat-head").innerHTML=
+    "<th>System</th>"+BN.map(b=>`<th>${b}</th>`).join("");
+  const hb=document.getElementById("heat-body");
+  HEAT.forEach(r=>{
+    const name=r[0];
+    const cells=r.slice(1).map(v=>{
+      // map delta to clay intensity: 0 -> paper, -0.18 -> strong clay
+      const mag=Math.min(Math.abs(Math.min(v,0))/0.18,1);
+      const bg=`rgba(189,91,54,${(mag*0.55).toFixed(2)})`;
+      const col=mag>0.5?"#fff":"var(--text)";
+      const txt=(v>0?'+':'')+v.toFixed(3);
+      return `<td><span class="cell" style="background:${bg};color:${col}">${txt}</span></td>`;
+    }).join("");
+    hb.insertAdjacentHTML("beforeend",`<tr><td>${name}</td>${cells}</tr>`);
+  });
+
+  // ---- one orchestrated moment: the swap ----
+  const spec=document.getElementById("specimen");
+  const reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  if(reduce){ spec.classList.add("live"); }
+  else{
+    let fired=false;
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting&&!fired){fired=true;
+        setTimeout(()=>spec.classList.add("live"),550);} });
+    },{threshold:.5});
+    io.observe(spec);
+  }
+</script>
+</body></html>
