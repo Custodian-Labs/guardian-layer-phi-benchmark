@@ -53,7 +53,27 @@
       "Bash(curl -s -o /dev/null -w \"  /report.html -> %{http_code} \\(final: %{url_effective}\\)\\\\n\" -L https://custodianai.pages.dev/report.html)",
       "Bash(curl -s -o /dev/null -w \"  /report      -> %{http_code}\\\\n\" -L https://custodianai.pages.dev/report)",
       "Bash(curl -sL https://custodianai.pages.dev/report.html)",
-      "Bash(curl -s -o /dev/null -w \"report: %{http_code}\\\\n\" -L https://custodianai.pages.dev/report)"
+      "Bash(curl -s -o /dev/null -w \"report: %{http_code}\\\\n\" -L https://custodianai.pages.dev/report)",
+      "Bash(git commit -m 'Report: add worked before/after examples section *)",
+      "Bash(curl -s -L https://custodianai.pages.dev/report)",
+      "Bash(echo \"verify: $\\(curl -s -L https://custodianai.pages.dev/report)",
+      "Bash(git commit -m 'Report: add '\\\\''Does the surrogate stay detectable?'\\\\'' — 97-100% overlap retention *)",
+      "Bash(.venv/bin/python -c \"import pptx;print\\('pptx',pptx.__version__\\)\")",
+      "Bash(.venv/bin/python scripts/build_deck.py)",
+      "Bash(git commit -m 'Add plain-language slide deck for Guardian Layer findings *)",
+      "Bash(.venv/bin/python scripts/build_deck_internal.py)",
+      "Bash(git commit -m 'Add internal complete deck \\(plain language, incl. coverage gap\\) *)",
+      "Read(//usr/bin/**)",
+      "Bash(fc-list :lang=zh)",
+      "Read(//usr/share/fonts/**)",
+      "Bash(pdftoppm -png -r 70 -f 1 -l 1 docs/guardian_layer_deck_zh.pdf /tmp/zh_p1)",
+      "Bash(pdftoppm -png -r 70 -f 3 -l 3 docs/guardian_layer_deck_zh.pdf /tmp/zh_p3)",
+      "Bash(sed -i 's|text\\(c,48,150,\"约 3/4\",70,GREEN,MONOB\\)|text\\(c,48,150,\"约 3/4\",64,GREEN,CJK\\)|' scripts/build_pdf.py)",
+      "Bash(sed -i 's|97–100%|97-100%|g' scripts/build_pdf.py)",
+      "Bash(.venv/bin/python scripts/build_pdf.py)",
+      "Bash(git commit -m 'Add Chinese PDF decks \\(examples in English\\) *)",
+      "Bash(grep -n 'case \"$r\" in' /tmp/finish_backfill_v2.sh)",
+      "Bash(bash -n /tmp/finish_backfill_v2.sh)"
     ],
     "additionalDirectories": [
       "/data/qbao775/custodianai/results"

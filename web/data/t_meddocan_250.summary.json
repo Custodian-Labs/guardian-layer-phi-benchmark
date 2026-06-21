@@ -66,6 +66,17 @@
     "char_leakage_rate": 0.6246402099831476
   },
   {
+    "system": "deepseek_v2_lite",
+    "benchmark": "meddocan_transformed",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.5885769603097774,
+    "recall": 0.32226148409893995,
+    "f1": 0.4164859002169198,
+    "leakage_rate": 0.67773851590106,
+    "char_leakage_rate": 0.7105424067528672
+  },
+  {
     "system": "qwen3.5_4b",
     "benchmark": "meddocan_transformed",
     "mode": "type",

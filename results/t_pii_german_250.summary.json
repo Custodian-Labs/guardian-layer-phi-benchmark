@@ -66,6 +66,17 @@
     "char_leakage_rate": 0.38025338043610674
   },
   {
+    "system": "deepseek_v2_lite",
+    "benchmark": "pii_masking_300k_german_transformed",
+    "mode": "type",
+    "n_docs": 249,
+    "precision": 0.5827067669172933,
+    "recall": 0.30097087378640774,
+    "f1": 0.3969270166453265,
+    "leakage_rate": 0.6990291262135923,
+    "char_leakage_rate": 0.6926873857404022
+  },
+  {
     "system": "llama3.1_8b",
     "benchmark": "pii_masking_300k_german_transformed",
     "mode": "type",

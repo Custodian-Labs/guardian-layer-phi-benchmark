@@ -77,6 +77,17 @@
     "char_leakage_rate": 0.5071225071225072
   },
   {
+    "system": "deepseek_v2_lite",
+    "benchmark": "multiconer_v2_transformed",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.2794871794871795,
+    "recall": 0.31142857142857144,
+    "f1": 0.2945945945945946,
+    "leakage_rate": 0.6885714285714286,
+    "char_leakage_rate": 0.7042735042735043
+  },
+  {
     "system": "qwen3.5_4b",
     "benchmark": "multiconer_v2_transformed",
     "mode": "type",
