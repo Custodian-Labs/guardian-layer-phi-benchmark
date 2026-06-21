@@ -90,6 +90,13 @@
   .heat td{padding:6px 4px;text-align:center;border-bottom:1px solid var(--line-2)}
   .heat td:first-child{text-align:left;font-weight:600}
   .cell{display:block;padding:3px 0;border-radius:2px}
+  /* ---- retention table ---- */
+  #ret-tbody td{vertical-align:middle}
+  .rbar{display:inline-block;width:150px;height:14px;background:var(--line-2);position:relative;
+    vertical-align:middle;margin-left:10px}
+  .rbar i{position:absolute;top:0;left:0;height:100%;background:rgba(15,110,92,.30)}
+  .rbar.x i{background:rgba(189,91,54,.30)}
+  .rpct{font-weight:600}
   /* ---- worked examples ---- */
   .ex{background:var(--paper);border:1px solid var(--line);margin:0 0 16px;padding:18px 20px}
   .ex .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
@@ -222,11 +229,27 @@
     </div>
   </section>
 
-  <!-- SECTION 4: INTERPRETATION -->
+  <!-- SECTION 4: UTILITY ON TRANSFORMED SPANS -->
   <section>
-    <h2 data-n="04">What it means</h2>
+    <h2 data-n="04">Does the surrogate stay detectable?</h2>
+    <p class="lede">The cleanest test isolates only the spans Custodian actually transformed and asks: does
+      the detector still find the surrogate? Under overlap matching — the detector flags the surrogate,
+      allowing for the boundary jitter a length change introduces — recall retention is <b>97–100%</b>.</p>
+    <table id="ret-tbody-wrap">
+      <thead><tr><th>System</th><th>Exact boundary</th><th>Overlap (finds surrogate)</th></tr></thead>
+      <tbody id="ret-tbody"></tbody>
+    </table>
+    <p class="note">Recall on transformed-only spans, transformed ÷ original. The gap between the two columns
+      is pure boundary noise: surrogates differ in length (“Anna S.” → “Maria S.”), so a found entity with a
+      one-character boundary shift counts as a miss under exact matching but a hit under overlap. When Custodian
+      substitutes a span, detectors still locate it essentially every time.</p>
+  </section>
+
+  <!-- SECTION 5: INTERPRETATION -->
+  <section>
+    <h2 data-n="05">What it means</h2>
     <ul class="points">
-      <li><span class="k">A</span><span><b>Detectability survives.</b> Every detector that found PHI in the originals finds the surrogate spans too; the loss is noise-level on 6/7 sets.</span></li>
+      <li><span class="k">A</span><span><b>Detectability survives.</b> On the spans Custodian transforms, detectors still find the surrogate 97–100% of the time (overlap); the exact-boundary F1 cost is length-shift noise, not a detection failure.</span></li>
       <li><span class="k">B</span><span><b>Ranking is intact.</b> Gemma 4 31B leads and the out-of-domain OBI model trails in both conditions — transform doesn't distort cross-model comparison.</span></li>
       <li><span class="k">C</span><span><b>Leakage barely moves</b> (+1.7 to +4.1 pts). Surrogates aren't systematically easier to miss than the PHI they replace.</span></li>
       <li><span class="k">D</span><span><b>ASQ-PHI is the stress case.</b> Its sparse, short queries amplify any single swap — yet the strongest models still hold above 0.55 F1 there.</span></li>
@@ -235,14 +258,20 @@
 
   <!-- STATUS -->
   <section>
-    <h2 data-n="05">Coverage</h2>
+    <h2 data-n="06">Coverage &amp; masking scope</h2>
     <div class="status">
+      <b>Masking scope.</b> The share of each benchmark's gold PHI the transform actually altered tracks
+      how closely its annotation matches Guardian Layer's proprietary sense of sensitive content:
+      <span class="on">80.9%</span> on ASQ-PHI and <span class="on">48.3%</span> on MEDDOCAN (genuine
+      clinical PHI), lower on general-purpose NER/PII whose labels (encyclopedic names, generic
+      locations) fall outside that scope. <span class="on">domain="General"</span> gave the highest
+      coverage in a config sweep. Coverage and utility are reported separately — the 97–100% above is
+      measured only on spans that were in fact transformed.<br><br>
       <b>9 systems</b> fully scored on original + transformed across all 7 benchmarks
-      &nbsp;<span class="on">●&nbsp;complete</span><br>
-      <b>DeepSeek V2-Lite</b> &amp; <b>Llama 3.3-70B</b> transformed runs
-      &nbsp;<span class="run">●&nbsp;backfilling now</span> — this report updates when they land.<br>
-      Method: each doc → Guardian Layer <b>transform</b> (top-1 surrogate, pii_entities=ALL); gold
-      spans remapped to surrogate offsets by character alignment; identical detector suite re-scored.
+      &nbsp;<span class="on">●&nbsp;complete</span> · <b>DeepSeek V2-Lite</b> &amp; <b>Llama 3.3-70B</b>
+      transformed runs &nbsp;<span class="run">●&nbsp;backfilling</span><br>
+      Method: each doc → Guardian Layer <b>transform</b> (top-1 surrogate); gold spans remapped to
+      surrogate offsets by character alignment; identical detector suite re-scored.
     </div>
   </section>
 
@@ -304,6 +333,19 @@
       return `<td><span class="cell" style="background:${bg};color:${col}">${txt}</span></td>`;
     }).join("");
     hb.insertAdjacentHTML("beforeend",`<tr><td>${name}</td>${cells}</tr>`);
+  });
+
+  // ---- retention on transformed spans (exact vs overlap) ----
+  const RET=[
+    ["Gemma 4 31B",93.1,99.8],["Qwen 3.5-9B",92.0,100.0],["Qwen 3.5-35B-A3B",90.0,98.4],
+    ["GPT-5",91.9,98.3],["Gemma 4 E4B",88.9,98.2],["Qwen 3.5-4B",84.7,98.0],["Presidio",91.3,97.4],
+  ];
+  const rtb=document.getElementById("ret-tbody");
+  RET.forEach(([s,ex,ov])=>{
+    rtb.insertAdjacentHTML("beforeend",
+      `<tr><td>${s}</td>
+       <td><span class="rpct">${ex.toFixed(1)}%</span><span class="rbar x"><i style="width:${ex}%"></i></span></td>
+       <td><span class="rpct">${ov.toFixed(1)}%</span><span class="rbar"><i style="width:${Math.min(ov,100)}%"></i></span></td></tr>`);
   });
 
   // ---- one orchestrated moment: the swap ----

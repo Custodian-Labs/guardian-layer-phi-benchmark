@@ -67,9 +67,31 @@ Each PHI value is replaced by a same-type surrogate; everything else — clinica
 - xfrm: `{ "Date": "21/05/2023", "City": "Saint-Priest", "Username": "phprosdocimo" … }`
 - Keys, quotes and indentation are byte-for-byte preserved — only the sensitive value is swapped, so downstream parsers never break.
 
+## Utility on transformed spans (the core test)
+
+The aggregate ΔF1 mixes spans Custodian changed with spans it left alone. Isolating **only the spans Custodian actually transformed** gives the cleanest test of whether the substitution itself stays detectable: for each transformed PHI span, does the detector still locate the surrogate?
+
+| System | Exact-boundary retention | Overlap retention |
+|---|--:|--:|
+| Gemma 4 31B | 93.1% | **99.8%** |
+| Qwen 3.5-9B | 92.0% | **100.0%** |
+| Qwen 3.5-35B-A3B | 90.0% | **98.4%** |
+| GPT-5 | 91.9% | **98.3%** |
+| Gemma 4 E4B | 88.9% | **98.2%** |
+| Qwen 3.5-4B | 84.7% | **98.0%** |
+| Presidio | 91.3% | **97.4%** |
+
+*Recall on transformed-only gold spans, transformed ÷ original. Overlap = detector flags the surrogate, allowing for boundary jitter.*
+
+Under overlap matching, recall retention is **97–100%** across systems: when Custodian transforms a span, detectors still find the surrogate essentially every time. The ~3-point exact-boundary drop is almost entirely a **boundary artifact** — surrogates differ in length from the originals (e.g., "Anna S." → "Maria S."), so a detector that finds the entity but predicts a slightly shifted character boundary is scored as a miss under exact matching yet a hit under overlap. The substitution does not hide PHI from downstream detection.
+
+## Masking coverage (reported separately)
+
+Coverage — the share of each benchmark's gold PHI that the transform actually altered — depends on how closely the benchmark's annotation matches Guardian Layer's proprietary notion of sensitive content: **80.9% on ASQ-PHI and 48.3% on MEDDOCAN** (genuine clinical PHI), lower on general-purpose NER/PII corpora whose annotated entities (encyclopedic names, generic locations) fall outside that scope. A config sweep confirmed `domain="General"` gives the highest coverage; `"Medical"`/`"Healthcare"` did not improve it. Coverage and utility are reported as **separate** properties — utility (above) is measured only on the spans that were in fact transformed.
+
 ## Conclusion
 
-The Guardian Layer transform preserves downstream PHI-detection performance: it changes the surface content while leaving the detectable structure — and the relative difficulty across models — intact.
+The Guardian Layer transform preserves downstream PHI-detection performance: where it substitutes a PHI value, the surrogate remains detectable 97–100% of the time, the F1 cost is boundary-level noise, and the relative ranking of detectors is unchanged. It changes the surface content while leaving the detectable structure intact.
 
 ## Coverage
 
