@@ -6,7 +6,7 @@
 
 ## Result
 
-Across all nine fully-evaluated systems, mean F1 falls by only **1.5 to 4.7 points** after transformation, and the system ranking is **preserved exactly** — the strongest detector on real PHI remains the strongest on transformed PHI.
+Across all ten fully-evaluated systems, mean F1 falls by only **1.5 to 4.7 points** after transformation, and the system ranking is **preserved exactly** — the strongest detector on real PHI remains the strongest on transformed PHI.
 
 | System | Original F1 | Transformed F1 | ΔF1 | Orig leak | Transf leak | Δleak |
 |---|--:|--:|--:|--:|--:|--:|
@@ -17,6 +17,7 @@ Across all nine fully-evaluated systems, mean F1 falls by only **1.5 to 4.7 poin
 | Qwen 3.5-9B | 0.655 | 0.621 | −0.034 | 0.391 | 0.422 | +0.031 |
 | Qwen 3.5-4B | 0.567 | 0.533 | −0.034 | 0.483 | 0.515 | +0.032 |
 | Presidio | 0.416 | 0.398 | −0.018 | 0.553 | 0.570 | +0.017 |
+| DeepSeek V2-Lite | 0.409 | 0.384 | −0.025 | 0.672 | 0.696 | +0.024 |
 | Llama 3.1-8B | 0.391 | 0.376 | −0.015 | 0.633 | 0.650 | +0.017 |
 | OBI deid_roberta | 0.041 | 0.040 | −0.002 | 0.941 | 0.944 | +0.003 |
 
@@ -80,10 +81,11 @@ The aggregate ΔF1 mixes spans Custodian changed with spans it left alone. Isola
 | Gemma 4 E4B | 88.9% | **98.2%** |
 | Qwen 3.5-4B | 84.7% | **98.0%** |
 | Presidio | 91.3% | **97.4%** |
+| DeepSeek V2-Lite | 87.7% | **92.8%** |
 
 *Recall on transformed-only gold spans, transformed ÷ original. Overlap = detector flags the surrogate, allowing for boundary jitter.*
 
-Under overlap matching, recall retention is **97–100%** across systems: when Custodian transforms a span, detectors still find the surrogate essentially every time. The ~3-point exact-boundary drop is almost entirely a **boundary artifact** — surrogates differ in length from the originals (e.g., "Anna S." → "Maria S."), so a detector that finds the entity but predicts a slightly shifted character boundary is scored as a miss under exact matching yet a hit under overlap. The substitution does not hide PHI from downstream detection.
+Under overlap matching, recall retention is **93–100%** across systems (97–100% for all but the weakest detector, DeepSeek V2-Lite at 92.8%): when Custodian transforms a span, detectors still find the surrogate nearly every time. The ~3-point exact-boundary drop is almost entirely a **boundary artifact** — surrogates differ in length from the originals (e.g., "Anna S." → "Maria S."), so a detector that finds the entity but predicts a slightly shifted character boundary is scored as a miss under exact matching yet a hit under overlap. The substitution does not hide PHI from downstream detection.
 
 ## Masking coverage (reported separately)
 
@@ -91,10 +93,10 @@ Coverage — the share of each benchmark's gold PHI that the transform actually 
 
 ## Conclusion
 
-The Guardian Layer transform preserves downstream PHI-detection performance: where it substitutes a PHI value, the surrogate remains detectable 97–100% of the time, the F1 cost is boundary-level noise, and the relative ranking of detectors is unchanged. It changes the surface content while leaving the detectable structure intact.
+The Guardian Layer transform preserves downstream PHI-detection performance: where it substitutes a PHI value, the surrogate remains detectable 93–100% of the time, the F1 cost is boundary-level noise, and the relative ranking of detectors is unchanged. It changes the surface content while leaving the detectable structure intact.
 
 ## Coverage
 
-Nine systems are fully scored (original + transformed) on all seven benchmarks. DeepSeek V2-Lite and Llama 3.3-70B transformed runs are completing now and will be added; this report updates when they land.
+Ten systems are fully scored (original + transformed) on all seven benchmarks (Presidio, OBI, GPT-5, Qwen 4B/9B/35B, Gemma E4B/31B, Llama 8B, DeepSeek V2-Lite). The Llama 3.3-70B transformed run is completing as GPU capacity frees up and will be added.
 
 **Live results & data:** https://custodianai.pages.dev — report at `/report`; switch *Data → Δ* for the per-cell view; datasets downloadable under *Datasets*.

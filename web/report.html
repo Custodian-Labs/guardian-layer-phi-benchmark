@@ -143,7 +143,7 @@
     <div class="meta-strip mono">
       <div><b>1,750</b> documents</div>
       <div><b>7</b> benchmarks</div>
-      <div><b>9</b> detectors</div>
+      <div><b>10</b> detectors</div>
       <div>masking&nbsp;=&nbsp;<b>transform</b></div>
       <div>metric&nbsp;=&nbsp;<b>span F1 · leakage</b></div>
     </div>
@@ -234,7 +234,7 @@
     <h2 data-n="04">Does the surrogate stay detectable?</h2>
     <p class="lede">The cleanest test isolates only the spans Custodian actually transformed and asks: does
       the detector still find the surrogate? Under overlap matching — the detector flags the surrogate,
-      allowing for the boundary jitter a length change introduces — recall retention is <b>97–100%</b>.</p>
+      allowing for the boundary jitter a length change introduces — recall retention is <b>93–100%</b> (97–100% for all but the weakest detector).</p>
     <table id="ret-tbody-wrap">
       <thead><tr><th>System</th><th>Exact boundary</th><th>Overlap (finds surrogate)</th></tr></thead>
       <tbody id="ret-tbody"></tbody>
@@ -249,7 +249,7 @@
   <section>
     <h2 data-n="05">What it means</h2>
     <ul class="points">
-      <li><span class="k">A</span><span><b>Detectability survives.</b> On the spans Custodian transforms, detectors still find the surrogate 97–100% of the time (overlap); the exact-boundary F1 cost is length-shift noise, not a detection failure.</span></li>
+      <li><span class="k">A</span><span><b>Detectability survives.</b> On the spans Custodian transforms, detectors still find the surrogate 93–100% of the time (overlap); the exact-boundary F1 cost is length-shift noise, not a detection failure.</span></li>
       <li><span class="k">B</span><span><b>Ranking is intact.</b> Gemma 4 31B leads and the out-of-domain OBI model trails in both conditions — transform doesn't distort cross-model comparison.</span></li>
       <li><span class="k">C</span><span><b>Leakage barely moves</b> (+1.7 to +4.1 pts). Surrogates aren't systematically easier to miss than the PHI they replace.</span></li>
       <li><span class="k">D</span><span><b>ASQ-PHI is the stress case.</b> Its sparse, short queries amplify any single swap — yet the strongest models still hold above 0.55 F1 there.</span></li>
@@ -267,9 +267,9 @@
       locations) fall outside that scope. <span class="on">domain="General"</span> gave the highest
       coverage in a config sweep. Coverage and utility are reported separately — the 97–100% above is
       measured only on spans that were in fact transformed.<br><br>
-      <b>9 systems</b> fully scored on original + transformed across all 7 benchmarks
-      &nbsp;<span class="on">●&nbsp;complete</span> · <b>DeepSeek V2-Lite</b> &amp; <b>Llama 3.3-70B</b>
-      transformed runs &nbsp;<span class="run">●&nbsp;backfilling</span><br>
+      <b>10 systems</b> fully scored on original + transformed across all 7 benchmarks
+      &nbsp;<span class="on">●&nbsp;complete</span> (incl. DeepSeek V2-Lite) · <b>Llama 3.3-70B</b>
+      transformed run &nbsp;<span class="run">●&nbsp;backfilling as GPUs free up</span><br>
       Method: each doc → Guardian Layer <b>transform</b> (top-1 surrogate); gold spans remapped to
       surrogate offsets by character alignment; identical detector suite re-scored.
     </div>
@@ -338,7 +338,7 @@
   // ---- retention on transformed spans (exact vs overlap) ----
   const RET=[
     ["Gemma 4 31B",93.1,99.8],["Qwen 3.5-9B",92.0,100.0],["Qwen 3.5-35B-A3B",90.0,98.4],
-    ["GPT-5",91.9,98.3],["Gemma 4 E4B",88.9,98.2],["Qwen 3.5-4B",84.7,98.0],["Presidio",91.3,97.4],
+    ["GPT-5",91.9,98.3],["Gemma 4 E4B",88.9,98.2],["Qwen 3.5-4B",84.7,98.0],["Presidio",91.3,97.4],["DeepSeek V2-Lite",87.7,92.8],
   ];
   const rtb=document.getElementById("ret-tbody");
   RET.forEach(([s,ex,ov])=>{
