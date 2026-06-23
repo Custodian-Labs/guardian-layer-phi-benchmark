@@ -73,7 +73,9 @@
       "Bash(.venv/bin/python scripts/build_pdf.py)",
       "Bash(git commit -m 'Add Chinese PDF decks \\(examples in English\\) *)",
       "Bash(grep -n 'case \"$r\" in' /tmp/finish_backfill_v2.sh)",
-      "Bash(bash -n /tmp/finish_backfill_v2.sh)"
+      "Bash(bash -n /tmp/finish_backfill_v2.sh)",
+      "Bash(git commit -m 'Report: include DeepSeek V2-Lite \\(10 systems\\) *)",
+      "Bash(python3 -c \"import json;print\\(' transformed asq:',len\\(json.load\\(open\\('results/t_asq_phi_250.summary.json'\\)\\)\\),'systems'\\)\")"
     ],
     "additionalDirectories": [
       "/data/qbao775/custodianai/results"
