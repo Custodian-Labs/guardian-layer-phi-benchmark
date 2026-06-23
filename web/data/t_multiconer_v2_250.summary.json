@@ -22,6 +22,17 @@
     "char_leakage_rate": 0.3194681861348528
   },
   {
+    "system": "llama3.3_70b",
+    "benchmark": "multiconer_v2_transformed",
+    "mode": "type",
+    "n_docs": 250,
+    "precision": 0.5019157088122606,
+    "recall": 0.7485714285714286,
+    "f1": 0.6009174311926606,
+    "leakage_rate": 0.25142857142857145,
+    "char_leakage_rate": 0.2818613485280152
+  },
+  {
     "system": "qwen3.5_35b_a3b",
     "benchmark": "multiconer_v2_transformed",
     "mode": "type",
