@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23 08:10:08Z",
+  "generated_at": "2026-06-23 09:51:58Z",
   "runs": [
     {
       "id": "asq_phi_250",
@@ -69,7 +69,7 @@
       "benchmark": "asq_phi_transformed",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-23 08:10:06Z",
+      "timestamp": "2026-06-23 09:51:56Z",
       "summary_path": "t_asq_phi_250.summary.json",
       "samples_path": "t_asq_phi_250.samples.json"
     },
@@ -78,7 +78,7 @@
       "benchmark": "meddocan_transformed",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-23 08:10:06Z",
+      "timestamp": "2026-06-23 09:51:57Z",
       "summary_path": "t_meddocan_250.summary.json",
       "samples_path": "t_meddocan_250.samples.json"
     },
@@ -87,7 +87,7 @@
       "benchmark": "multiconer_v2_transformed",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-23 08:10:07Z",
+      "timestamp": "2026-06-23 09:51:58Z",
       "summary_path": "t_multiconer_v2_250.summary.json",
       "samples_path": "t_multiconer_v2_250.samples.json"
     },
@@ -96,7 +96,7 @@
       "benchmark": "pii_masking_300k_dutch_transformed",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-23 08:10:06Z",
+      "timestamp": "2026-06-23 09:51:57Z",
       "summary_path": "t_pii_dutch_250.summary.json",
       "samples_path": "t_pii_dutch_250.samples.json"
     },
@@ -105,7 +105,7 @@
       "benchmark": "pii_masking_300k_french_transformed",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-23 08:10:07Z",
+      "timestamp": "2026-06-23 09:51:57Z",
       "summary_path": "t_pii_french_250.summary.json",
       "samples_path": "t_pii_french_250.samples.json"
     },
@@ -114,7 +114,7 @@
       "benchmark": "pii_masking_300k_german_transformed",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-23 08:10:07Z",
+      "timestamp": "2026-06-23 09:51:57Z",
       "summary_path": "t_pii_german_250.summary.json",
       "samples_path": "t_pii_german_250.samples.json"
     },
@@ -123,7 +123,7 @@
       "benchmark": "pii_masking_300k_transformed",
       "mode": "type",
       "n_docs": 250,
-      "timestamp": "2026-06-23 08:10:06Z",
+      "timestamp": "2026-06-23 09:51:57Z",
       "summary_path": "t_pii_masking_300k_250.summary.json",
       "samples_path": "t_pii_masking_300k_250.samples.json"
     }
