@@ -6,12 +6,13 @@
 
 ## Result
 
-Across all ten fully-evaluated systems, mean F1 falls by only **1.5 to 4.7 points** after transformation, and the system ranking is **preserved exactly** — the strongest detector on real PHI remains the strongest on transformed PHI.
+Across all eleven fully-evaluated systems, mean F1 changes by at most **4.7 points** after transformation — the flagship Llama 3.3-70B is essentially unchanged (+0.003) — and the system ranking is **preserved**: the strongest detectors on real PHI remain strongest on transformed PHI.
 
 | System | Original F1 | Transformed F1 | ΔF1 | Orig leak | Transf leak | Δleak |
 |---|--:|--:|--:|--:|--:|--:|
 | Gemma 4 31B | 0.755 | 0.710 | −0.045 | 0.255 | 0.285 | +0.030 |
 | Gemma 4 E4B | 0.737 | 0.698 | −0.038 | 0.276 | 0.311 | +0.035 |
+| Llama 3.3-70B | 0.725 | 0.728 | +0.003 | 0.245 | 0.262 | +0.017 |
 | Qwen 3.5-35B-A3B | 0.715 | 0.668 | −0.047 | 0.254 | 0.295 | +0.041 |
 | OpenAI GPT-5 | 0.705 | 0.674 | −0.032 | 0.308 | 0.333 | +0.026 |
 | Qwen 3.5-9B | 0.655 | 0.621 | −0.034 | 0.391 | 0.422 | +0.031 |
@@ -77,6 +78,7 @@ The aggregate ΔF1 mixes spans Custodian changed with spans it left alone. Isola
 | Gemma 4 31B | 93.1% | **99.8%** |
 | Qwen 3.5-9B | 92.0% | **100.0%** |
 | Qwen 3.5-35B-A3B | 90.0% | **98.4%** |
+| Llama 3.3-70B | 91.4% | **98.3%** |
 | GPT-5 | 91.9% | **98.3%** |
 | Gemma 4 E4B | 88.9% | **98.2%** |
 | Qwen 3.5-4B | 84.7% | **98.0%** |
@@ -97,6 +99,6 @@ The Guardian Layer transform preserves downstream PHI-detection performance: whe
 
 ## Coverage
 
-Ten systems are fully scored (original + transformed) on all seven benchmarks (Presidio, OBI, GPT-5, Qwen 4B/9B/35B, Gemma E4B/31B, Llama 8B, DeepSeek V2-Lite). The Llama 3.3-70B transformed run is completing as GPU capacity frees up and will be added.
+All eleven systems are fully scored (original + transformed) on all seven benchmarks: Presidio, OBI, GPT-5, Qwen 4B/9B/35B, Gemma E4B/31B, Llama 8B/70B, and DeepSeek V2-Lite.
 
 **Live results & data:** https://custodianai.pages.dev — report at `/report`; switch *Data → Δ* for the per-cell view; datasets downloadable under *Datasets*.

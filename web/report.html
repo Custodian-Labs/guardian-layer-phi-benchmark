@@ -143,7 +143,7 @@
     <div class="meta-strip mono">
       <div><b>1,750</b> documents</div>
       <div><b>7</b> benchmarks</div>
-      <div><b>10</b> detectors</div>
+      <div><b>11</b> detectors</div>
       <div>masking&nbsp;=&nbsp;<b>transform</b></div>
       <div>metric&nbsp;=&nbsp;<b>span F1 · leakage</b></div>
     </div>
@@ -267,9 +267,8 @@
       locations) fall outside that scope. <span class="on">domain="General"</span> gave the highest
       coverage in a config sweep. Coverage and utility are reported separately — the 97–100% above is
       measured only on spans that were in fact transformed.<br><br>
-      <b>10 systems</b> fully scored on original + transformed across all 7 benchmarks
-      &nbsp;<span class="on">●&nbsp;complete</span> (incl. DeepSeek V2-Lite) · <b>Llama 3.3-70B</b>
-      transformed run &nbsp;<span class="run">●&nbsp;backfilling as GPUs free up</span><br>
+      <b>All 11 systems</b> fully scored on original + transformed across all 7 benchmarks
+      &nbsp;<span class="on">●&nbsp;complete</span> (Presidio, OBI, GPT-5, Qwen 4B/9B/35B, Gemma E4B/31B, Llama 8B/70B, DeepSeek)<br>
       Method: each doc → Guardian Layer <b>transform</b> (top-1 surrogate); gold spans remapped to
       surrogate offsets by character alignment; identical detector suite re-scored.
     </div>
@@ -338,7 +337,7 @@
   // ---- retention on transformed spans (exact vs overlap) ----
   const RET=[
     ["Gemma 4 31B",93.1,99.8],["Qwen 3.5-9B",92.0,100.0],["Qwen 3.5-35B-A3B",90.0,98.4],
-    ["GPT-5",91.9,98.3],["Gemma 4 E4B",88.9,98.2],["Qwen 3.5-4B",84.7,98.0],["Presidio",91.3,97.4],["DeepSeek V2-Lite",87.7,92.8],
+    ["GPT-5",91.9,98.3],["Gemma 4 E4B",88.9,98.2],["Qwen 3.5-4B",84.7,98.0],["Presidio",91.3,97.4],["Llama 3.3-70B",91.4,98.3],["DeepSeek V2-Lite",87.7,92.8],
   ];
   const rtb=document.getElementById("ret-tbody");
   RET.forEach(([s,ex,ov])=>{
