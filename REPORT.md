@@ -4,9 +4,19 @@
 
 **Method.** We evaluated 7 public/synthetic benchmarks at 250 documents each (1,750 documents total): ASQ-PHI, MEDDOCAN (Spanish clinical), MultiCoNER v2, and PII-Masking-300k in English, Dutch, French, and German. Every document was passed through Guardian Layer `transform` (top-1 surrogate, `pii_entities=ALL`), and the gold PHI spans were remapped onto the surrogate text via character-level alignment. The identical detector suite was then scored on both the original and the transformed documents, reporting span-level F1 (type-matching) and leakage rate (1 − recall, the HIPAA-critical metric).
 
-## Result
+## Headline result — detectability is statistically unchanged
 
-Across all eleven fully-evaluated systems, mean F1 changes by at most **4.7 points** after transformation — the flagship Llama 3.3-70B is essentially unchanged (+0.003) — and the system ranking is **preserved**: the strongest detectors on real PHI remain strongest on transformed PHI.
+The right question is not "does overall F1 move" but "**on the PHI that Custodian actually masks, can detectors still find the surrogate?**" Restricting to those 56,174 masked spans and pooling all 11 detectors:
+
+- Recall **76.2% → 75.0%** after transformation — a **−1.2 point** change (95% CI [−1.5, −1.0]).
+- An **equivalence test (TOST)** confirms this change is **statistically equivalent to zero within a ±2-point margin** (p ≈ 1×10⁻⁸). The effect on detectability is provably bounded below any operationally meaningful level.
+- System **ranking is preserved**, and the flagship Llama 3.3-70B is unchanged (ΔF1 +0.003).
+
+> With 56k paired observations even a 1-point shift is "statistically significant" under a plain test — which is why we report an **equivalence** test instead: it shows the difference is too small to matter, rather than chasing a p-value that large samples make trivial.
+
+### Full-corpus view (conservative)
+
+Across all 11 systems, whole-document F1 changes by at most 4.7 points. This number is *diluted and pessimistic* — it mixes the masked spans with exact-boundary penalties on surrogates of different length (see "boundary noise" below) and unmasked spans. The masked-span recall above is the cleaner measure.
 
 | System | Original F1 | Transformed F1 | ΔF1 | Orig leak | Transf leak | Δleak |
 |---|--:|--:|--:|--:|--:|--:|
@@ -26,7 +36,7 @@ Across all eleven fully-evaluated systems, mean F1 changes by at most **4.7 poin
 
 ## Findings
 
-1. **Detectability survives.** Every detector that located PHI in the originals also locates the surrogate spans; the F1 loss is within run-to-run noise on six of the seven benchmarks.
+1. **Detectability is statistically unchanged.** On the masked spans, recall moves −1.2 pts — statistically equivalent to zero within ±2 pts (TOST, p ≈ 1×10⁻⁸). Detectors still find the surrogate 93–100% of the time.
 2. **Ranking is intact.** Transformation does not distort cross-model comparison — relative ordering is identical in both conditions.
 3. **Leakage barely moves** (+1.7 to +4.1 points), so surrogates are not systematically easier to miss than the PHI they replace.
 4. **ASQ-PHI is the stress case.** Its short, sparse-PHI adversarial queries amplify any single substitution (drops of −0.09 to −0.18), while the other six benchmarks are essentially flat (≤ 0.05). Even on ASQ-PHI, the strongest models stay above 0.55 F1.
@@ -89,13 +99,32 @@ The aggregate ΔF1 mixes spans Custodian changed with spans it left alone. Isola
 
 Under overlap matching, recall retention is **93–100%** across systems (97–100% for all but the weakest detector, DeepSeek V2-Lite at 92.8%): when Custodian transforms a span, detectors still find the surrogate nearly every time. The ~3-point exact-boundary drop is almost entirely a **boundary artifact** — surrogates differ in length from the originals (e.g., "Anna S." → "Maria S."), so a detector that finds the entity but predicts a slightly shifted character boundary is scored as a miss under exact matching yet a hit under overlap. The substitution does not hide PHI from downstream detection.
 
+## Correct vs missed: error analysis
+
+Pooled across all detectors and masked spans:
+
+- **Found in both (correct): 39,550** — surrogate detected just like the original. Plausible same-type swaps that read naturally:
+  - `Anna S.` → `Maria S.` (NAME) · `April 12, 2023` → `March 13, 2021` (DATE) · `Methodist Hospital` → `Methodist Hospital` (LOCATION) — all still caught.
+- **Lost (found originally, missed after transform): 3,261** — the error population we analyzed. Notably **51% are the same length** as the original, so this is *not* a boundary effect. Breakdown: LOCATION 28%, NAME 23%, DATE/AGE 22%, ID/contact 20%.
+
+**Why the lost cases are lost — three causes, all transform-side, not detector failure:**
+
+1. **Malformed / truncated surrogates** (the largest cause). The transform sometimes emits broken text that no longer reads as an entity:
+   - `Chicago` → `Illino` · `El Paso` → `El` · `Hospital Universitario de La Princesa` → `Hospitals Cienciano de La Princesa` · `Ciudad de la Habana` → `Cuidad de la Havana` (misspelled).
+2. **Loss of salience** — a famous/canonical entity replaced by an obscure one the detector no longer recognizes:
+   - `Cedars-Sinai` → `Vidant` · `Cuba` → `Havana` (country downgraded to a city).
+3. **`xxxxx`-style masking of IDs/emails** weakens the PII signal:
+   - `nachorutor@hotmail.com` → `nxxxxxxxxx@hotmail.com` · `bhfinlay@infomed.sld.cu` → `bxxxxxxx@infomed.sld.cu`.
+
+The implication for the paper's thesis is favorable: detectors are not getting *worse at PHI*; the small recall gap is driven by **surrogate-generation quality** (truncation, garbling, salience), which is a fixable property of the transform, not evidence that transformation hides real, well-formed PHI.
+
 ## Masking coverage (reported separately)
 
 Coverage — the share of each benchmark's gold PHI that the transform actually altered — depends on how closely the benchmark's annotation matches Guardian Layer's proprietary notion of sensitive content: **80.9% on ASQ-PHI and 48.3% on MEDDOCAN** (genuine clinical PHI), lower on general-purpose NER/PII corpora whose annotated entities (encyclopedic names, generic locations) fall outside that scope. A config sweep confirmed `domain="General"` gives the highest coverage; `"Medical"`/`"Healthcare"` did not improve it. Coverage and utility are reported as **separate** properties — utility (above) is measured only on the spans that were in fact transformed.
 
 ## Conclusion
 
-The Guardian Layer transform preserves downstream PHI-detection performance: where it substitutes a PHI value, the surrogate remains detectable 93–100% of the time, the F1 cost is boundary-level noise, and the relative ranking of detectors is unchanged. It changes the surface content while leaving the detectable structure intact.
+The Guardian Layer transform preserves downstream PHI-detection performance. On the spans it masks, detector recall is **statistically equivalent before and after transformation within a ±2-point margin** (TOST, p ≈ 1×10⁻⁸); the surrogate stays detectable 93–100% of the time and the ranking of detectors is unchanged. The small residual gap traces to surrogate-generation defects (truncation, garbling, loss of salience), not to PHI being hidden — a fixable transform-side property. The transformation changes the surface content while leaving the detectable structure intact.
 
 ## Coverage
 

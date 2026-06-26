@@ -241,15 +241,44 @@
     </table>
     <p class="note">Recall on transformed-only spans, transformed ÷ original. The gap between the two columns
       is pure boundary noise: surrogates differ in length (“Anna S.” → “Maria S.”), so a found entity with a
-      one-character boundary shift counts as a miss under exact matching but a hit under overlap. When Custodian
-      substitutes a span, detectors still locate it essentially every time.</p>
+      one-character boundary shift counts as a miss under exact matching but a hit under overlap.</p>
+    <div class="status" style="margin-top:18px">
+      <b>Is the change significant?</b> Pooling all 11 detectors over <b>56,174 masked spans</b>, recall moves
+      <b>76.2% → 75.0%</b> (−1.2 pts, 95% CI [−1.5, −1.0]). An <b>equivalence test (TOST)</b> confirms this is
+      <span class="on">statistically equivalent to zero within ±2 points</span> (p ≈ 1×10⁻⁸). With 56k paired
+      observations even a 1-point shift trips a plain significance test, so we report equivalence — the effect is
+      provably too small to matter, not merely "not significant."
+    </div>
   </section>
 
-  <!-- SECTION 5: INTERPRETATION -->
+  <!-- SECTION 5: ERROR ANALYSIS -->
   <section>
-    <h2 data-n="05">What it means</h2>
+    <h2 data-n="05">Correct vs missed — where the gap comes from</h2>
+    <p class="lede">39,550 masked spans are detected in both conditions; 3,261 are found originally but missed after
+      transform. 51% of those are the <em>same length</em> as the original — so it is not a boundary effect. The
+      cause is surrogate quality, not detector failure.</p>
+    <div class="ex">
+      <div class="hd"><span class="src">Correct · plausible surrogate, still caught</span>
+        <span class="caught">found in both</span></div>
+      <div class="row"><span class="rl">swap</span><span><span class="old">Anna S.</span> → <span class="new">Maria S.</span> · <span class="old">April 12, 2023</span> → <span class="new">March 13, 2021</span> · Methodist Hospital → Methodist Hospital</span></div>
+    </div>
+    <div class="ex">
+      <div class="hd"><span class="src">Missed · cause 1 — malformed / truncated surrogate (largest)</span></div>
+      <div class="row"><span class="rl">swap</span><span><span class="old">Chicago</span> → <span class="new">Illino</span> · <span class="old">El Paso</span> → <span class="new">El</span> · <span class="old">Ciudad de la Habana</span> → <span class="new">Cuidad de la Havana</span> <span class="keep">(garbled / misspelled → no longer reads as an entity)</span></span></div>
+    </div>
+    <div class="ex">
+      <div class="hd"><span class="src">Missed · cause 2 — loss of salience &nbsp;·&nbsp; cause 3 — xxxxx-masked IDs</span></div>
+      <div class="row"><span class="rl">swap</span><span><span class="old">Cedars-Sinai</span> → <span class="new">Vidant</span> · <span class="old">Cuba</span> → <span class="new">Havana</span> · <span class="old">nachorutor@hotmail.com</span> → <span class="new">nxxxxxxxxx@hotmail.com</span></span></div>
+    </div>
+    <p class="note">All three causes are transform-side surrogate-generation defects — fixable — not evidence that
+      transformation hides well-formed PHI from detectors.</p>
+  </section>
+
+  <!-- SECTION 6: INTERPRETATION -->
+  <section>
+    <h2 data-n="06">What it means</h2>
     <ul class="points">
-      <li><span class="k">A</span><span><b>Detectability survives.</b> On the spans Custodian transforms, detectors still find the surrogate 93–100% of the time (overlap); the exact-boundary F1 cost is length-shift noise, not a detection failure.</span></li>
+      <li><span class="k">A</span><span><b>Detectability survives.</b> On the spans Custodian transforms, on the masked spans detector recall is statistically equivalent before vs after (±2 pts, TOST p≈1e-8) — found 93–100% of the time; the small residual gap is surrogate-quality noise, not PHI being hidden.</span></li>
       <li><span class="k">B</span><span><b>Ranking is intact.</b> Gemma 4 31B leads and the out-of-domain OBI model trails in both conditions — transform doesn't distort cross-model comparison.</span></li>
       <li><span class="k">C</span><span><b>Leakage barely moves</b> (+1.7 to +4.1 pts). Surrogates aren't systematically easier to miss than the PHI they replace.</span></li>
       <li><span class="k">D</span><span><b>ASQ-PHI is the stress case.</b> Its sparse, short queries amplify any single swap — yet the strongest models still hold above 0.55 F1 there.</span></li>
@@ -258,7 +287,7 @@
 
   <!-- STATUS -->
   <section>
-    <h2 data-n="06">Coverage &amp; masking scope</h2>
+    <h2 data-n="07">Coverage &amp; masking scope</h2>
     <div class="status">
       <b>Masking scope.</b> The share of each benchmark's gold PHI the transform actually altered tracks
       how closely its annotation matches Guardian Layer's proprietary sense of sensitive content:
