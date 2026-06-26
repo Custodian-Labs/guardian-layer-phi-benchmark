@@ -197,6 +197,11 @@ QWEN3_5_35B_A3B = LocalLLMConfig(
     model_id="Qwen/Qwen3.5-35B-A3B",
     chat_template_kwargs={"enable_thinking": False},
 )
+QWEN3_6_35B_A3B = LocalLLMConfig(
+    name="qwen3.6_35b_a3b",
+    model_id="Qwen/Qwen3.6-35B-A3B",
+    chat_template_kwargs={"enable_thinking": False},
+)
 MOONLIGHT = LocalLLMConfig(
     name="moonlight_16b_a3b",
     model_id="moonshotai/Moonlight-16B-A3B-Instruct",

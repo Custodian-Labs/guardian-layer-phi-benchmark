@@ -62,6 +62,13 @@
     "size": "35 B MoE / 3 B active",
     "access": "local · HF transformers"
   },
+  "qwen3.6_35b_a3b": {
+    "display": "Qwen 3.6-35B-A3B",
+    "model_id": "Qwen/Qwen3.6-35B-A3B",
+    "provider": "Alibaba",
+    "size": "35 B MoE / 3 B active (256 experts)",
+    "access": "local · HF transformers"
+  },
   "gemma_4_31b": {
     "display": "Gemma 4 31B",
     "model_id": "google/gemma-4-31B-it",

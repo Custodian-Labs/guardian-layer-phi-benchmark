@@ -106,6 +106,9 @@ def _build_system(name: str, language: str):
     if name == "qwen3_5_35b":
         from systems.llm_local_hf import LocalHFLLM, QWEN3_5_35B_A3B
         return LocalHFLLM(QWEN3_5_35B_A3B)
+    if name == "qwen3_6_35b":
+        from systems.llm_local_hf import LocalHFLLM, QWEN3_6_35B_A3B
+        return LocalHFLLM(QWEN3_6_35B_A3B)
     if name == "gemma_4_31b":
         from systems.llm_local_hf import LocalHFLLM, GEMMA_4_31B
         return LocalHFLLM(GEMMA_4_31B)
