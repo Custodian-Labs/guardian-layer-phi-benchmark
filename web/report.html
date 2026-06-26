@@ -3,395 +3,108 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
 <title>Guardian Layer — Structure-Preservation Audit</title>
+<meta name="description" content="Custodian Guardian Layer keeps PHI detectable after de-identification — a structure-preservation audit across 11 detectors and 7 benchmarks.">
 <style>
-  :root{
-    --ground:#E9ECEA; --paper:#F3F5F3; --text:#18211E; --muted:#5C6B64;
-    --accent:#0F6E5C; --accent-2:#BD5B36; --line:#C5CDC8; --line-2:#D8DEDA;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
-    --serif:Georgia,"Times New Roman",serif;
-  }
+  :root{--ground:#E9ECEA;--paper:#F3F5F3;--text:#18211E;--muted:#5C6B64;
+    --accent:#0F6E5C;--accent-2:#BD5B36;--line:#C5CDC8;--line-2:#D8DEDA;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--serif:Georgia,"Times New Roman",serif;}
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--ground);color:var(--text);
-    font-family:var(--serif);line-height:1.6;
-    background-image:linear-gradient(var(--line-2) 1px,transparent 1px);
-    background-size:100% 2.1rem;background-position:0 -1px;}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  body{margin:0;background:var(--ground);color:var(--text);font-family:var(--serif);line-height:1.6;
+    background-image:linear-gradient(var(--line-2) 1px,transparent 1px);background-size:100% 2.1rem;background-position:0 -1px;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
   .mono{font-family:var(--mono)}
-  /* ---- masthead ---- */
-  header{border-bottom:2px solid var(--text);margin-top:40px}
-  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--accent);margin:0 0 14px}
-  h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,5.4vw,52px);
-    line-height:1.05;letter-spacing:-.015em;margin:0 0 12px}
+  header{border-bottom:2px solid var(--text);margin-top:40px;padding-bottom:8px}
+  .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  .lang{font-family:var(--mono);font-size:11px}
+  .lang a{color:var(--muted);text-decoration:none} .lang a.on{color:var(--accent);font-weight:700}
+  h1{font-family:var(--serif);font-weight:700;font-size:clamp(28px,5vw,46px);line-height:1.06;letter-spacing:-.015em;margin:0 0 12px}
   h1 em{font-style:italic;color:var(--accent)}
-  .dek{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:60ch;margin:0 0 22px}
-  .meta-strip{display:flex;flex-wrap:wrap;gap:0;font-family:var(--mono);font-size:11px;
-    letter-spacing:.04em;border-top:1px solid var(--line);margin-bottom:-1px}
-  .meta-strip div{padding:9px 18px 9px 0;color:var(--muted)}
-  .meta-strip b{color:var(--text);font-weight:600}
-  /* ---- hero specimen ---- */
-  .specimen{background:var(--paper);border:1px solid var(--line);
-    margin:30px 0;padding:26px 26px 22px}
-  .specimen .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
-  .sent{font-family:var(--mono);font-size:clamp(13px,1.8vw,15.5px);line-height:2.1;
-    color:var(--text)}
-  .phi{position:relative;padding:1px 6px;border-radius:2px;white-space:nowrap;
-    background:rgba(15,110,92,.13);box-shadow:inset 0 -2px 0 var(--accent);
-    transition:background .5s ease, box-shadow .5s ease}
-  .phi .lab{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;
-    position:absolute;top:-13px;left:0;color:var(--accent);opacity:.0;
-    transition:opacity .5s ease .3s}
-  .specimen.live .phi .lab{opacity:.85}
-  .swap{display:inline-block;position:relative}
-  .swap .old{color:var(--accent-2);text-decoration:line-through;
-    text-decoration-thickness:1px;opacity:1;transition:opacity .5s ease}
-  .swap .new{opacity:0;transition:opacity .6s ease .25s}
-  .specimen.live .swap .old{opacity:0;position:absolute;left:0}
-  .specimen.live .swap .new{opacity:1}
-  /* ---- headline metric ---- */
-  .thesis{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
-    border-top:2px solid var(--text);border-bottom:1px solid var(--line);
-    padding:26px 0;margin:0 0 8px}
-  .bignum{font-family:var(--mono);font-weight:700;font-size:clamp(46px,9vw,78px);
-    line-height:.9;letter-spacing:-.03em;color:var(--accent)}
-  .bignum .sub{display:block;font-size:11px;font-weight:400;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--muted);margin-top:10px}
-  .thesis p{margin:0;font-size:16px}
-  .thesis b{color:var(--text)}
-  /* ---- section ---- */
-  section{padding:34px 0 8px}
-  h2{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--text);margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+  .dek{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:58ch;margin:0 0 18px}
+  .meta{display:flex;flex-wrap:wrap;gap:0 22px;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px}
+  .meta b{color:var(--text)}
+  section{padding:30px 0 4px}
+  h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;display:flex;gap:10px}
   h2::before{content:attr(data-n);color:var(--accent);font-weight:700}
-  .lede{color:var(--muted);font-size:15px;margin:6px 0 22px;max-width:64ch}
-  /* ---- delta table ---- */
-  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
-  thead th{text-align:right;font-weight:600;font-size:10px;letter-spacing:.1em;
-    text-transform:uppercase;color:var(--muted);padding:0 0 8px;border-bottom:1px solid var(--text)}
-  thead th:first-child{text-align:left}
-  tbody td{padding:9px 0;border-bottom:1px solid var(--line-2);text-align:right;white-space:nowrap}
-  tbody td:first-child{text-align:left;font-weight:600}
-  tbody tr:hover{background:rgba(15,110,92,.05)}
-  .bar{display:inline-grid;grid-template-columns:1fr;width:130px;height:13px;
-    background:var(--line-2);position:relative;vertical-align:middle;margin-left:8px}
-  .bar .o{position:absolute;top:0;left:0;height:100%;background:rgba(15,110,92,.28)}
-  .bar .t{position:absolute;top:0;left:0;height:100%;border-right:2px solid var(--accent)}
-  .d-neg{color:var(--accent-2)}
-  .d-zero{color:var(--muted)}
-  .leak{color:var(--muted)}
+  .big{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;
+    border-top:2px solid var(--text);border-bottom:1px solid var(--line);padding:22px 0;margin-bottom:4px}
+  .bignum{font-family:var(--mono);font-weight:700;font-size:clamp(40px,8vw,66px);line-height:.9;color:var(--accent)}
+  .bignum .s{display:block;font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .big p{margin:0;font-size:16px}.big b{color:var(--text)}
+  .card{background:var(--paper);border:1px solid var(--line);padding:16px 18px;margin:0 0 12px;font-family:var(--mono);font-size:13px;line-height:1.9}
+  .card .t{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .old{color:var(--accent-2);text-decoration:line-through} .new{color:var(--accent);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+  th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 0 8px;border-bottom:1px solid var(--text)}
+  th:first-child{text-align:left} td{padding:7px 0;border-bottom:1px solid var(--line-2);text-align:right}
+  td:first-child{text-align:left;font-weight:600} .rbar{display:inline-block;width:120px;height:12px;background:var(--line-2);position:relative;vertical-align:middle;margin-left:10px}
+  .rbar i{position:absolute;left:0;top:0;height:100%;background:rgba(15,110,92,.4)}
   .note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px}
-  /* ---- per-benchmark heat ---- */
-  .heat{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px}
-  .heat th{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
-    padding:6px 4px;border-bottom:1px solid var(--text);text-align:center}
-  .heat th:first-child{text-align:left}
-  .heat td{padding:6px 4px;text-align:center;border-bottom:1px solid var(--line-2)}
-  .heat td:first-child{text-align:left;font-weight:600}
-  .cell{display:block;padding:3px 0;border-radius:2px}
-  /* ---- retention table ---- */
-  #ret-tbody td{vertical-align:middle}
-  .rbar{display:inline-block;width:150px;height:14px;background:var(--line-2);position:relative;
-    vertical-align:middle;margin-left:10px}
-  .rbar i{position:absolute;top:0;left:0;height:100%;background:rgba(15,110,92,.30)}
-  .rbar.x i{background:rgba(189,91,54,.30)}
-  .rpct{font-weight:600}
-  /* ---- worked examples ---- */
-  .ex{background:var(--paper);border:1px solid var(--line);margin:0 0 16px;padding:18px 20px}
-  .ex .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-    flex-wrap:wrap;margin-bottom:12px}
-  .ex .src{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .ex .caught{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--accent);
-    border:1px solid var(--accent);border-radius:2px;padding:2px 8px;white-space:nowrap}
-  .ex .row{font-family:var(--mono);font-size:12.5px;line-height:1.95;
-    display:grid;grid-template-columns:46px 1fr;gap:10px;padding:3px 0}
-  .ex .row .rl{color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding-top:4px}
-  .ex .row.x{border-top:1px dashed var(--line);margin-top:4px;padding-top:8px}
-  .old{color:var(--accent-2);text-decoration:line-through;text-decoration-thickness:1px}
-  .new{color:var(--accent);background:rgba(15,110,92,.12);box-shadow:inset 0 -2px 0 var(--accent);
-    padding:0 4px;border-radius:2px;font-weight:600}
-  .keep{color:var(--text)}
-  /* ---- interpretation ---- */
-  .points{list-style:none;padding:0;margin:0;display:grid;gap:2px}
-  .points li{font-family:var(--serif);font-size:16px;padding:14px 0 14px 0;
-    border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:26px 1fr;gap:14px}
-  .points .k{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;padding-top:4px}
-  .points b{color:var(--text)}
-  /* ---- status / footer ---- */
-  .status{background:var(--paper);border:1px solid var(--line);padding:18px 22px;margin-top:24px;
-    font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9}
-  .status b{color:var(--text)} .status .on{color:var(--accent)} .status .run{color:var(--accent-2)}
-  footer{border-top:2px solid var(--text);margin:36px 0 60px;padding-top:16px;
-    font-family:var(--mono);font-size:11px;color:var(--muted);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .bl{font-size:18px;margin:6px 0} .bl b{color:var(--accent)}
+  footer{border-top:2px solid var(--text);margin:32px 0 60px;padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
-  @media(max-width:560px){.thesis{grid-template-columns:1fr;gap:14px}
-    .bar{width:84px} .meta-strip div{padding-right:14px}}
-  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  @media(max-width:560px){.big{grid-template-columns:1fr;gap:10px}}
 </style>
 </head>
 <body>
-
 <div class="wrap">
   <header>
-    <p class="eyebrow">Custodian Guardian Layer · Structure-Preservation Audit</p>
-    <h1>The PHI moves.<br>The detector <em>doesn't notice.</em></h1>
-    <p class="dek">When the Guardian Layer rewrites protected health information into plausible
-      surrogates, do downstream detectors still find it — and rank the same? Across 9 systems and
-      7 benchmarks, the answer holds.</p>
-    <div class="meta-strip mono">
-      <div><b>1,750</b> documents</div>
-      <div><b>7</b> benchmarks</div>
-      <div><b>11</b> detectors</div>
-      <div>masking&nbsp;=&nbsp;<b>transform</b></div>
-      <div>metric&nbsp;=&nbsp;<b>span F1 · leakage</b></div>
+    <div class="top">
+      <p class="eyebrow">Custodian Guardian Layer · Structure-Preservation Audit</p>
+      <span class="lang"><a class="on">EN</a> · <a href="./report-zh">中文</a></span>
     </div>
+    <h1>The PHI moves.<br><em>The detector doesn’t notice.</em></h1>
+    <p class="dek">Does replacing PHI with realistic surrogates stop downstream tools from finding it? Across 11 detectors and 7 benchmarks — no.</p>
+    <div class="meta"><span><b>1,750</b> docs</span><span><b>11</b> detectors</span><span><b>7</b> benchmarks · 7 languages</span><span>masking = <b>transform</b></span></div>
   </header>
 
-  <!-- HERO SPECIMEN -->
-  <div class="specimen" id="specimen">
-    <span class="tag">ASQ-PHI · doc asq_00000 · original → transformed</span>
-    <p class="sent">What is the latest treatment protocol for a 35-year-old female diagnosed with MS like
-      <span class="phi"><span class="lab">NAME</span><span class="swap"><span class="old">Anna&nbsp;S.</span><span class="new">Maria&nbsp;S.</span></span></span>,
-      previously treated at
-      <span class="phi"><span class="lab">LOCATION</span>Methodist&nbsp;Hospital</span>
-      on
-      <span class="phi"><span class="lab">DATE</span>March&nbsp;13,&nbsp;2021</span>?</p>
+  <div class="big">
+    <div class="bignum">±2 pts<span class="s">proven-equivalent margin</span></div>
+    <p>On the <b>56,174 spans Custodian masks</b>, detector recall is <b>76.2% → 75.0%</b> (−1.2 pts). An equivalence test (TOST, p≈1×10⁻⁸) confirms this is <b>statistically equivalent to zero within ±2 points</b> — too small to matter. Ranking is preserved; the flagship Llama 3.3-70B is unchanged.</p>
   </div>
 
-  <!-- THESIS NUMBER -->
-  <div class="thesis">
-    <div class="bignum">−0.034<span class="sub">mean ΔF1 across 9 systems</span></div>
-    <p>Substituting every PHI span for a surrogate costs detectors <b>1.5 to 4.7 F1 points</b> on
-      average — within run-to-run noise on six of seven benchmarks. The ordering of systems is
-      <b>preserved exactly</b>: the strongest model on real PHI is still strongest on transformed PHI.</p>
-  </div>
-
-  <!-- SECTION 1: DELTA TABLE -->
   <section>
-    <h2 data-n="01">Accuracy before vs after transform</h2>
-    <p class="lede">Mean over 7 benchmarks. The green bar is original F1; the tick marks transformed F1.
-      The two sit almost on top of each other — that gap is the whole story.</p>
-    <table>
-      <thead><tr><th>System</th><th>Orig</th><th>Transf</th><th>F1 preserved</th><th>ΔF1</th><th>Leakage →</th></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <p class="note">ΔF1 in clay = drop. Leakage = 1 − recall (HIPAA-critical: lower is safer); arrow shows original → transformed.</p>
+    <h2 data-n="01">What the transform does</h2>
+    <div class="card">
+      <div class="t">ASQ-PHI · one document</div>
+      <span class="old">Anna S.</span> · <span class="old">April 12 2023</span> · Methodist Hospital<br>
+      <span class="new">Maria S.</span> · <span class="new">March 13 2021</span> · Methodist Hospital
+    </div>
+    <p class="note">Real values → realistic same-type surrogates. The sentence still reads normally, so anything that processed the original works on the result.</p>
   </section>
 
-  <!-- SECTION 2: PER BENCHMARK -->
   <section>
-    <h2 data-n="02">Where the drop concentrates</h2>
-    <p class="lede">The average hides a pattern. Almost all of the loss lands on ASQ-PHI — short
-      adversarial clinical queries where one substitution shifts the whole short span set. The other
-      six benchmarks are flat.</p>
-    <div style="overflow-x:auto">
-      <table class="heat"><thead><tr id="heat-head"></tr></thead><tbody id="heat-body"></tbody></table>
-    </div>
-    <p class="note">Per-benchmark ΔF1. Deeper clay = larger drop; near-white = no change.</p>
+    <h2 data-n="02">Surrogate still detectable</h2>
+    <p class="note" style="margin:0 0 12px">Recall on masked spans, transformed ÷ original (overlap match — does the detector find the surrogate?).</p>
+    <table><thead><tr><th>System</th><th>Retention</th></tr></thead><tbody id="ret"></tbody></table>
   </section>
 
-  <!-- SECTION 3: WORKED EXAMPLES -->
   <section>
-    <h2 data-n="03">What the transform actually does</h2>
-    <p class="lede">Four real documents, original → transformed. Each PHI value is replaced by a
-      same-type surrogate (clay struck through → green); everything else — clinical shorthand,
-      foreign-language syntax, JSON structure — is left untouched. On the English cases the detector
-      still flags every surrogate.</p>
-
-    <div class="ex">
-      <div class="hd"><span class="src">ASQ-PHI · asq_00000 · clinical query (en)</span>
-        <span class="caught">Gemma 4 31B caught 3 / 3 · leakage 0</span></div>
-      <div class="row"><span class="rl">orig</span><span>What is the latest treatment protocol for a <span class="old">34</span>-year-old female diagnosed with MS like <span class="old">Anna&nbsp;S.</span>, previously treated at <span class="keep">Methodist&nbsp;Hospital</span> on <span class="old">April&nbsp;12,&nbsp;2023</span>?</span></div>
-      <div class="row x"><span class="rl">xfrm</span><span>What is the latest treatment protocol for a <span class="new">35</span>-year-old female diagnosed with MS like <span class="new">Maria&nbsp;S.</span>, previously treated at <span class="new">Methodist&nbsp;Hospital</span> on <span class="new">March&nbsp;13,&nbsp;2021</span>?</span></div>
+    <h2 data-n="03">Where the small gap comes from</h2>
+    <p class="note" style="margin:0 0 12px">39,550 spans found in both; 3,261 lost (51% same length — not a boundary effect). The cause is surrogate quality, not detector failure:</p>
+    <div class="card">
+      <span class="old">Chicago</span> → <span class="new">Illino</span> &nbsp; <span class="old">El Paso</span> → <span class="new">El</span> &nbsp;<span style="color:var(--muted)">truncated / garbled</span><br>
+      <span class="old">Cedars-Sinai</span> → <span class="new">Vidant</span> &nbsp;<span style="color:var(--muted)">famous → obscure</span><br>
+      <span class="old">nachorutor@…</span> → <span class="new">nxxxxxxxxx@…</span> &nbsp;<span style="color:var(--muted)">x-masked ID</span>
     </div>
-
-    <div class="ex">
-      <div class="hd"><span class="src">ASQ-PHI · asq_00003 · clinical shorthand (en)</span>
-        <span class="caught">Gemma 4 31B caught 3 / 3 · leakage 0</span></div>
-      <div class="row"><span class="rl">orig</span><span>Rec mgmt of <span class="old">70yo</span> M w/ CHF, seen by Dr. <span class="old">John&nbsp;L.</span> at <span class="old">Mt.&nbsp;Sinai</span> on <span class="old">Feb&nbsp;21,&nbsp;2023</span>. looking for alt tx options after beta-blocker intol.</span></div>
-      <div class="row x"><span class="rl">xfrm</span><span>Rec mgmt of <span class="new">73&nbsp;yo</span> M w/ CHF, seen by Dr. <span class="new">James&nbsp;L.</span> at <span class="new">Mt.&nbsp;Egypt</span> on <span class="new">Nov&nbsp;19,&nbsp;2021</span>. looking for alt tx options after beta-blocker intol.</span></div>
-      <p class="note" style="margin:8px 0 0">Even dense abbreviations (<span class="keep">w/ CHF</span>, <span class="keep">alt tx</span>) survive — only the PHI moves.</p>
-    </div>
-
-    <div class="ex">
-      <div class="hd"><span class="src">PII-Masking-300k · German — name + date</span></div>
-      <div class="row"><span class="rl">orig</span><span>…ermächtigen hiermit <span class="old">Monsignore</span>, das Kind in unserer Abwesenheit abzuholen. Mit Datum <span class="old">23/07/2011</span>…</span></div>
-      <div class="row x"><span class="rl">xfrm</span><span>…ermächtigen hiermit <span class="new">Fulgenzio</span>, das Kind in unserer Abwesenheit abzuholen. Mit Datum <span class="new">24/07/2011</span>…</span></div>
-    </div>
-
-    <div class="ex">
-      <div class="hd"><span class="src">PII-Masking-300k · French — structured JSON</span></div>
-      <div class="row"><span class="rl">orig</span><span>{ "Form_ID": "FORM_ID_987654321", "Date": <span class="old">"20/05/2022"</span>, "City": "Saint-Priest", "Username": "phprosdocimo" … }</span></div>
-      <div class="row x"><span class="rl">xfrm</span><span>{ "Form_ID": "FORM_ID_987654321", "Date": <span class="new">"21/05/2023"</span>, "City": "Saint-Priest", "Username": "phprosdocimo" … }</span></div>
-      <p class="note" style="margin:8px 0 0">Keys, quotes and indentation are byte-for-byte preserved — only the sensitive value is swapped, so downstream parsers never break.</p>
-    </div>
+    <p class="note">All three are fixable surrogate-generation defects — not evidence that transformation hides well-formed PHI.</p>
   </section>
 
-  <!-- SECTION 4: UTILITY ON TRANSFORMED SPANS -->
   <section>
-    <h2 data-n="04">Does the surrogate stay detectable?</h2>
-    <p class="lede">The cleanest test isolates only the spans Custodian actually transformed and asks: does
-      the detector still find the surrogate? Under overlap matching — the detector flags the surrogate,
-      allowing for the boundary jitter a length change introduces — recall retention is <b>93–100%</b> (97–100% for all but the weakest detector).</p>
-    <table id="ret-tbody-wrap">
-      <thead><tr><th>System</th><th>Exact boundary</th><th>Overlap (finds surrogate)</th></tr></thead>
-      <tbody id="ret-tbody"></tbody>
-    </table>
-    <p class="note">Recall on transformed-only spans, transformed ÷ original. The gap between the two columns
-      is pure boundary noise: surrogates differ in length (“Anna S.” → “Maria S.”), so a found entity with a
-      one-character boundary shift counts as a miss under exact matching but a hit under overlap.</p>
-    <div class="status" style="margin-top:18px">
-      <b>Is the change significant?</b> Pooling all 11 detectors over <b>56,174 masked spans</b>, recall moves
-      <b>76.2% → 75.0%</b> (−1.2 pts, 95% CI [−1.5, −1.0]). An <b>equivalence test (TOST)</b> confirms this is
-      <span class="on">statistically equivalent to zero within ±2 points</span> (p ≈ 1×10⁻⁸). With 56k paired
-      observations even a 1-point shift trips a plain significance test, so we report equivalence — the effect is
-      provably too small to matter, not merely "not significant."
-    </div>
-  </section>
-
-  <!-- SECTION 5: ERROR ANALYSIS -->
-  <section>
-    <h2 data-n="05">Correct vs missed — where the gap comes from</h2>
-    <p class="lede">39,550 masked spans are detected in both conditions; 3,261 are found originally but missed after
-      transform. 51% of those are the <em>same length</em> as the original — so it is not a boundary effect. The
-      cause is surrogate quality, not detector failure.</p>
-    <div class="ex">
-      <div class="hd"><span class="src">Correct · plausible surrogate, still caught</span>
-        <span class="caught">found in both</span></div>
-      <div class="row"><span class="rl">swap</span><span><span class="old">Anna S.</span> → <span class="new">Maria S.</span> · <span class="old">April 12, 2023</span> → <span class="new">March 13, 2021</span> · Methodist Hospital → Methodist Hospital</span></div>
-    </div>
-    <div class="ex">
-      <div class="hd"><span class="src">Missed · cause 1 — malformed / truncated surrogate (largest)</span></div>
-      <div class="row"><span class="rl">swap</span><span><span class="old">Chicago</span> → <span class="new">Illino</span> · <span class="old">El Paso</span> → <span class="new">El</span> · <span class="old">Ciudad de la Habana</span> → <span class="new">Cuidad de la Havana</span> <span class="keep">(garbled / misspelled → no longer reads as an entity)</span></span></div>
-    </div>
-    <div class="ex">
-      <div class="hd"><span class="src">Missed · cause 2 — loss of salience &nbsp;·&nbsp; cause 3 — xxxxx-masked IDs</span></div>
-      <div class="row"><span class="rl">swap</span><span><span class="old">Cedars-Sinai</span> → <span class="new">Vidant</span> · <span class="old">Cuba</span> → <span class="new">Havana</span> · <span class="old">nachorutor@hotmail.com</span> → <span class="new">nxxxxxxxxx@hotmail.com</span></span></div>
-    </div>
-    <ul class="points" style="margin-top:6px">
-      <li><span class="k">1</span><span><b>Why malformed surrogates miss:</b> the surrogate is built piece-by-piece, so on multi-token or non-English entities it drops trailing tokens (<span class="mono">El&nbsp;Paso→El</span>) or emits a near-word (<span class="mono">Ciudad→Cuidad</span>). A fragment no longer matches the lexical pattern detectors learned for real names — which is why loss peaks on <b>MEDDOCAN (Spanish clinical, 6.9%)</b> and is lowest on clean English <b>ASQ-PHI (2.6%)</b>.</span></li>
-      <li><span class="k">2</span><span><b>Why salience loss misses:</b> detectors recognise entities partly by pre-training familiarity. Swapping a famous hospital/country for a rare one removes that prior — inherent to changing a value, and it mainly costs the weaker detectors.</span></li>
-      <li><span class="k">3</span><span><b>Why x-masked IDs miss:</b> a run of <span class="mono">x</span>s keeps the format but breaks the realistic-token pattern a detector expects. This case is actually privacy-positive — the value is destroyed — yet still counts against recall.</span></li>
-    </ul>
-    <p class="note">All three are transform-side surrogate-generation defects — fixable — not evidence that
-      transformation hides well-formed PHI from detectors.</p>
-  </section>
-
-  <!-- SECTION 6: INTERPRETATION -->
-  <section>
-    <h2 data-n="06">What it means</h2>
-    <ul class="points">
-      <li><span class="k">A</span><span><b>Detectability survives.</b> On the spans Custodian transforms, on the masked spans detector recall is statistically equivalent before vs after (±2 pts, TOST p≈1e-8) — found 93–100% of the time; the small residual gap is surrogate-quality noise, not PHI being hidden.</span></li>
-      <li><span class="k">B</span><span><b>Ranking is intact.</b> Gemma 4 31B leads and the out-of-domain OBI model trails in both conditions — transform doesn't distort cross-model comparison.</span></li>
-      <li><span class="k">C</span><span><b>Leakage barely moves</b> (+1.7 to +4.1 pts). Surrogates aren't systematically easier to miss than the PHI they replace.</span></li>
-      <li><span class="k">D</span><span><b>ASQ-PHI is the stress case.</b> Its sparse, short queries amplify any single swap — yet the strongest models still hold above 0.55 F1 there.</span></li>
-    </ul>
-  </section>
-
-  <!-- STATUS -->
-  <section>
-    <h2 data-n="07">Coverage &amp; masking scope</h2>
-    <div class="status">
-      <b>Masking scope.</b> The share of each benchmark's gold PHI the transform actually altered tracks
-      how closely its annotation matches Guardian Layer's proprietary sense of sensitive content:
-      <span class="on">80.9%</span> on ASQ-PHI and <span class="on">48.3%</span> on MEDDOCAN (genuine
-      clinical PHI), lower on general-purpose NER/PII whose labels (encyclopedic names, generic
-      locations) fall outside that scope. <span class="on">domain="General"</span> gave the highest
-      coverage in a config sweep. Coverage and utility are reported separately — the 97–100% above is
-      measured only on spans that were in fact transformed.<br><br>
-      <b>All 11 systems</b> fully scored on original + transformed across all 7 benchmarks
-      &nbsp;<span class="on">●&nbsp;complete</span> (Presidio, OBI, GPT-5, Qwen 4B/9B/35B, Gemma E4B/31B, Llama 8B/70B, DeepSeek)<br>
-      Method: each doc → Guardian Layer <b>transform</b> (top-1 surrogate); gold spans remapped to
-      surrogate offsets by character alignment; identical detector suite re-scored.
-    </div>
+    <h2 data-n="04">Bottom line</h2>
+    <p class="bl"><b>Detectability is preserved.</b> Surrogates stay findable 93–100% of the time; ranking unchanged.</p>
+    <p class="bl"><b>Coverage, reported separately.</b> The transform masks ~80% of genuine clinical PHI (lower on general text); the utility result above is measured only on spans it actually masks.</p>
   </section>
 
   <footer>
     <span>Custodian Labs · Guardian Layer evaluation</span>
-    <span>Live dashboard &amp; data → <a href="https://custodianai.pages.dev">custodianai.pages.dev</a></span>
+    <span>Dashboard &amp; data → <a href="https://custodianai.pages.dev">custodianai.pages.dev</a></span>
   </footer>
 </div>
-
 <script>
-  // ---- data (mean over 7 benchmarks) ----
-  const ROWS=[
-    ["Gemma 4 31B",0.755,0.710,-0.045,0.255,0.285],
-    ["Gemma 4 E4B",0.737,0.698,-0.038,0.276,0.311],
-    ["Qwen 3.5-35B-A3B",0.715,0.668,-0.047,0.254,0.295],
-    ["OpenAI GPT-5",0.705,0.674,-0.032,0.308,0.333],
-    ["Qwen 3.5-9B",0.655,0.621,-0.034,0.391,0.422],
-    ["Qwen 3.5-4B",0.567,0.533,-0.034,0.483,0.515],
-    ["Presidio",0.416,0.398,-0.018,0.553,0.570],
-    ["Llama 3.1-8B",0.391,0.376,-0.015,0.633,0.650],
-    ["OBI deid_roberta",0.041,0.040,-0.002,0.941,0.944],
-  ];
-  const FULL=Math.max(...ROWS.map(r=>r[1]));
-  const tb=document.getElementById("tbody");
-  ROWS.forEach(([s,o,t,d,ol,tl])=>{
-    const ow=(o/FULL*100).toFixed(1), tw=(t/FULL*100).toFixed(1);
-    const dcls=d<=-0.01?"d-neg":"d-zero";
-    tb.insertAdjacentHTML("beforeend",
-      `<tr><td>${s}</td><td>${o.toFixed(3)}</td><td>${t.toFixed(3)}</td>
-       <td><span class="bar"><span class="o" style="width:${ow}%"></span><span class="t" style="width:${tw}%"></span></span></td>
-       <td class="${dcls}">${d>0?'+':''}${d.toFixed(3)}</td>
-       <td class="leak">${ol.toFixed(2)}→${tl.toFixed(2)}</td></tr>`);
-  });
-
-  // ---- per-benchmark heat ----
-  const BN=["ASQ-PHI","MEDDOCAN","PII en","PII nl","PII fr","PII de","MultiCoNER"];
-  const HEAT=[
-    ["Gemma 4 31B",-0.175,-0.017,-0.043,-0.038,-0.014,-0.016,-0.009],
-    ["Gemma 4 E4B",-0.106,-0.060,-0.032,-0.021,-0.018,-0.025,-0.007],
-    ["Qwen 3.5-35B",-0.132,-0.034,-0.026,-0.034,-0.040,-0.054,-0.007],
-    ["OpenAI GPT-5",-0.098,-0.046,-0.049,-0.019,0.008,-0.005,-0.014],
-    ["Qwen 3.5-9B",-0.123,-0.017,-0.025,-0.010,-0.034,-0.024,-0.008],
-    ["Qwen 3.5-4B",-0.086,-0.055,-0.034,-0.028,-0.015,-0.023,0.002],
-    ["Presidio",0.003,-0.037,-0.032,-0.015,-0.020,-0.015,-0.007],
-    ["Llama 3.1-8B",-0.108,0.023,-0.014,0.007,-0.009,0.003,-0.006],
-    ["OBI deid_roberta",0.001,-0.008,-0.004,-0.001,0.003,-0.002,-0.001],
-  ];
-  document.getElementById("heat-head").innerHTML=
-    "<th>System</th>"+BN.map(b=>`<th>${b}</th>`).join("");
-  const hb=document.getElementById("heat-body");
-  HEAT.forEach(r=>{
-    const name=r[0];
-    const cells=r.slice(1).map(v=>{
-      // map delta to clay intensity: 0 -> paper, -0.18 -> strong clay
-      const mag=Math.min(Math.abs(Math.min(v,0))/0.18,1);
-      const bg=`rgba(189,91,54,${(mag*0.55).toFixed(2)})`;
-      const col=mag>0.5?"#fff":"var(--text)";
-      const txt=(v>0?'+':'')+v.toFixed(3);
-      return `<td><span class="cell" style="background:${bg};color:${col}">${txt}</span></td>`;
-    }).join("");
-    hb.insertAdjacentHTML("beforeend",`<tr><td>${name}</td>${cells}</tr>`);
-  });
-
-  // ---- retention on transformed spans (exact vs overlap) ----
-  const RET=[
-    ["Gemma 4 31B",93.1,99.8],["Qwen 3.5-9B",92.0,100.0],["Qwen 3.5-35B-A3B",90.0,98.4],
-    ["GPT-5",91.9,98.3],["Gemma 4 E4B",88.9,98.2],["Qwen 3.5-4B",84.7,98.0],["Presidio",91.3,97.4],["Llama 3.3-70B",91.4,98.3],["DeepSeek V2-Lite",87.7,92.8],
-  ];
-  const rtb=document.getElementById("ret-tbody");
-  RET.forEach(([s,ex,ov])=>{
-    rtb.insertAdjacentHTML("beforeend",
-      `<tr><td>${s}</td>
-       <td><span class="rpct">${ex.toFixed(1)}%</span><span class="rbar x"><i style="width:${ex}%"></i></span></td>
-       <td><span class="rpct">${ov.toFixed(1)}%</span><span class="rbar"><i style="width:${Math.min(ov,100)}%"></i></span></td></tr>`);
-  });
-
-  // ---- one orchestrated moment: the swap ----
-  const spec=document.getElementById("specimen");
-  const reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-  if(reduce){ spec.classList.add("live"); }
-  else{
-    let fired=false;
-    const io=new IntersectionObserver(es=>{
-      es.forEach(e=>{ if(e.isIntersecting&&!fired){fired=true;
-        setTimeout(()=>spec.classList.add("live"),550);} });
-    },{threshold:.5});
-    io.observe(spec);
-  }
+  const RET=[["Gemma 4 31B",99.8],["Qwen 3.5-9B",100],["Qwen 3.5-35B-A3B",98.4],["Llama 3.3-70B",98.3],
+    ["GPT-5",98.3],["Gemma 4 E4B",98.2],["Qwen 3.5-4B",98.0],["Presidio",97.4],["DeepSeek V2-Lite",92.8]];
+  document.getElementById("ret").innerHTML=RET.map(([s,v])=>
+    `<tr><td>${s}</td><td>${v.toFixed(1)}%<span class="rbar"><i style="width:${Math.min(v,100)}%"></i></span></td></tr>`).join("");
 </script>
 </body></html>

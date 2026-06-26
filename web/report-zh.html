@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<title>Guardian Layer — 结构保持性审计</title>
+<meta name="description" content="Custodian Guardian Layer 脱敏后 PHI 仍可被检测 —— 11 个检测器 × 7 个 benchmark 的结构保持性审计。">
+<style>
+  :root{--ground:#E9ECEA;--paper:#F3F5F3;--text:#18211E;--muted:#5C6B64;
+    --accent:#0F6E5C;--accent-2:#BD5B36;--line:#C5CDC8;--line-2:#D8DEDA;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --serif:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-image:linear-gradient(var(--line-2) 1px,transparent 1px);background-size:100% 2.1rem;background-position:0 -1px;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+  header{border-bottom:2px solid var(--text);margin-top:40px;padding-bottom:8px}
+  .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  .lang{font-family:var(--mono);font-size:11px}
+  .lang a{color:var(--muted);text-decoration:none} .lang a.on{color:var(--accent);font-weight:700}
+  h1{font-weight:700;font-size:clamp(26px,5vw,42px);line-height:1.12;margin:0 0 12px}
+  h1 em{font-style:normal;color:var(--accent)}
+  .dek{font-size:clamp(15px,2vw,17px);color:var(--muted);max-width:40ch;margin:0 0 18px}
+  .meta{display:flex;flex-wrap:wrap;gap:0 22px;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px}
+  .meta b{color:var(--text)}
+  section{padding:30px 0 4px}
+  h2{font-family:var(--mono);font-size:12px;letter-spacing:.12em;margin:0 0 14px;display:flex;gap:10px}
+  h2::before{content:attr(data-n);color:var(--accent);font-weight:700}
+  .big{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;
+    border-top:2px solid var(--text);border-bottom:1px solid var(--line);padding:22px 0;margin-bottom:4px}
+  .bignum{font-family:var(--mono);font-weight:700;font-size:clamp(40px,8vw,64px);line-height:.9;color:var(--accent)}
+  .bignum .s{display:block;font-size:11px;font-weight:400;letter-spacing:.06em;color:var(--muted);margin-top:8px}
+  .big p{margin:0;font-size:16px}.big b{color:var(--text)}
+  .card{background:var(--paper);border:1px solid var(--line);padding:16px 18px;margin:0 0 12px;font-family:var(--mono);font-size:13px;line-height:1.95}
+  .card .t{font-size:10px;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+  .old{color:var(--accent-2);text-decoration:line-through} .new{color:var(--accent);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+  th{text-align:right;font-size:10px;letter-spacing:.06em;color:var(--muted);padding:0 0 8px;border-bottom:1px solid var(--text)}
+  th:first-child{text-align:left} td{padding:7px 0;border-bottom:1px solid var(--line-2);text-align:right}
+  td:first-child{text-align:left;font-weight:600} .rbar{display:inline-block;width:120px;height:12px;background:var(--line-2);position:relative;vertical-align:middle;margin-left:10px}
+  .rbar i{position:absolute;left:0;top:0;height:100%;background:rgba(15,110,92,.4)}
+  .note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:12px;line-height:1.8}
+  .bl{font-size:17px;margin:8px 0} .bl b{color:var(--accent)}
+  footer{border-top:2px solid var(--text);margin:32px 0 60px;padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+  @media(max-width:560px){.big{grid-template-columns:1fr;gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="top">
+      <p class="eyebrow">Custodian Guardian Layer · 结构保持性审计</p>
+      <span class="lang"><a href="./report">EN</a> · <a class="on">中文</a></span>
+    </div>
+    <h1>个人信息变了,<br><em>检测器却照样找得到。</em></h1>
+    <p class="dek">把 PHI 换成逼真的替身,会让下游工具找不到它吗?在 11 个检测器、7 个 benchmark 上 —— 不会。</p>
+    <div class="meta"><span><b>1,750</b> 文档</span><span><b>11</b> 检测器</span><span><b>7</b> benchmark · 7 语言</span><span>脱敏方式 = <b>transform</b></span></div>
+  </header>
+
+  <div class="big">
+    <div class="bignum">±2 pts<span class="s">已证明的等价区间</span></div>
+    <p>在 Custodian <b>实际脱敏的 56,174 个 span</b> 上,检测器召回率 <b>76.2% → 75.0%</b>(−1.2 个百分点)。等价检验(TOST,p≈1×10⁻⁸)证明:这一变化 <b>在 ±2 个百分点内与零统计等价</b> —— 小到不具实际意义。排名不变,旗舰 Llama 3.3-70B 几乎零变化。</p>
+  </div>
+
+  <section>
+    <h2 data-n="01">transform 做了什么</h2>
+    <div class="card">
+      <div class="t">ASQ-PHI · 一个文档</div>
+      <span class="old">Anna S.</span> · <span class="old">April 12 2023</span> · Methodist Hospital<br>
+      <span class="new">Maria S.</span> · <span class="new">March 13 2021</span> · Methodist Hospital
+    </div>
+    <p class="note">真实值 → 同类型的逼真替身。句子读起来仍然正常,原来能处理它的系统照样能用。</p>
+  </section>
+
+  <section>
+    <h2 data-n="02">替身仍可被检测</h2>
+    <p class="note" style="margin:0 0 12px">脱敏 span 上的召回保留率(transformed ÷ original,重叠匹配 —— 检测器是否找到替身)。</p>
+    <table><thead><tr><th>系统</th><th>保留率</th></tr></thead><tbody id="ret"></tbody></table>
+  </section>
+
+  <section>
+    <h2 data-n="03">那一点小差距来自哪里</h2>
+    <p class="note" style="margin:0 0 12px">39,550 个两边都找到;3,261 个丢失(51% 长度不变 —— 不是边界问题)。原因是替身质量,不是检测器变差:</p>
+    <div class="card">
+      <span class="old">Chicago</span> → <span class="new">Illino</span> &nbsp; <span class="old">El Paso</span> → <span class="new">El</span> &nbsp;<span style="color:var(--muted)">残缺/乱码</span><br>
+      <span class="old">Cedars-Sinai</span> → <span class="new">Vidant</span> &nbsp;<span style="color:var(--muted)">著名→冷门</span><br>
+      <span class="old">nachorutor@…</span> → <span class="new">nxxxxxxxxx@…</span> &nbsp;<span style="color:var(--muted)">ID 被 x 化</span>
+    </div>
+    <p class="note">三类都是可修复的替身生成缺陷 —— 不是 transform 把完整的 PHI 藏起来了。</p>
+  </section>
+
+  <section>
+    <h2 data-n="04">结论</h2>
+    <p class="bl"><b>可检测性得到保持。</b>替身 93–100% 仍能被找到,排名不变。</p>
+    <p class="bl"><b>覆盖率单独报告。</b>transform 脱敏了约 80% 的真实临床 PHI(通用文本更低);上面的效用结果只在它确实脱敏的 span 上测量。</p>
+  </section>
+
+  <footer>
+    <span>Custodian Labs · Guardian Layer 评测</span>
+    <span>Dashboard 与数据 → <a href="https://custodianai.pages.dev">custodianai.pages.dev</a></span>
+  </footer>
+</div>
+<script>
+  const RET=[["Gemma 4 31B",99.8],["Qwen 3.5-9B",100],["Qwen 3.5-35B-A3B",98.4],["Llama 3.3-70B",98.3],
+    ["GPT-5",98.3],["Gemma 4 E4B",98.2],["Qwen 3.5-4B",98.0],["Presidio",97.4],["DeepSeek V2-Lite",92.8]];
+  document.getElementById("ret").innerHTML=RET.map(([s,v])=>
+    `<tr><td>${s}</td><td>${v.toFixed(1)}%<span class="rbar"><i style="width:${Math.min(v,100)}%"></i></span></td></tr>`).join("");
+</script>
+</body></html>
