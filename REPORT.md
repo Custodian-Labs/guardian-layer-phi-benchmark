@@ -109,14 +109,14 @@ Pooled across all detectors and masked spans:
 
 **Why the lost cases are lost — three causes, all transform-side, not detector failure:**
 
-1. **Malformed / truncated surrogates** (the largest cause). The transform sometimes emits broken text that no longer reads as an entity:
-   - `Chicago` → `Illino` · `El Paso` → `El` · `Hospital Universitario de La Princesa` → `Hospitals Cienciano de La Princesa` · `Ciudad de la Habana` → `Cuidad de la Havana` (misspelled).
-2. **Loss of salience** — a famous/canonical entity replaced by an obscure one the detector no longer recognizes:
-   - `Cedars-Sinai` → `Vidant` · `Cuba` → `Havana` (country downgraded to a city).
-3. **`xxxxx`-style masking of IDs/emails** weakens the PII signal:
-   - `nachorutor@hotmail.com` → `nxxxxxxxxx@hotmail.com` · `bhfinlay@infomed.sld.cu` → `bxxxxxxx@infomed.sld.cu`.
+1. **Malformed / truncated surrogates** (the largest cause). Examples: `Chicago` → `Illino` · `El Paso` → `El` · `Hospital Universitario de La Princesa` → `Hospitals Cienciano de La Princesa` · `Ciudad de la Habana` → `Cuidad de la Havana` (misspelled).
+   *Why:* the surrogate is generated piece-by-piece, and on multi-token or non-English entities it can drop trailing tokens (`El Paso`→`El`) or emit a near-word (`Illinois`→`Illino`, `Ciudad`→`Cuidad`). A fragment or non-word no longer matches the lexical pattern NER models and LLMs learned for real place/organisation names, so they don't flag it. This is exactly why the loss rate is highest on **MEDDOCAN (Spanish clinical, 6.9%)** — long, dense, identifier-heavy, non-English — and lowest on clean English **ASQ-PHI (2.6%)**: surrogate-generation quality degrades on harder text, and detection follows it down.
+2. **Loss of salience** — a canonical entity replaced by an obscure one: `Cedars-Sinai` → `Vidant` · `Cuba` → `Havana` (country downgraded to a city).
+   *Why:* detectors recognise entities partly by familiarity acquired in pre-training. Swapping a famous hospital or country for a rare name removes the strong prior the model was relying on. This is inherent to any value substitution — you cannot change the value while keeping its fame — and it mainly costs the weaker detectors that lean on memorised names.
+3. **`xxxxx`-style masking of IDs / emails** — `nachorutor@hotmail.com` → `nxxxxxxxxx@hotmail.com` · `bhfinlay@infomed.sld.cu` → `bxxxxxxx@infomed.sld.cu`.
+   *Why:* for some structured types the transform overwrites characters with `x` rather than synthesising a realistic fake. The run of `x`s keeps the format but breaks the realistic-token pattern a detector's regex/NER expects, so the signal weakens. Note this case is *privacy-positive* — the original value is destroyed — even though it counts against recall: the detector "misses" something that is in fact already de-identified.
 
-The implication for the paper's thesis is favorable: detectors are not getting *worse at PHI*; the small recall gap is driven by **surrogate-generation quality** (truncation, garbling, salience), which is a fixable property of the transform, not evidence that transformation hides real, well-formed PHI.
+The implication for the paper's thesis is favorable: detectors are not getting *worse at PHI*; the small recall gap is driven by **surrogate-generation quality** (truncation, garbling, salience, `x`-masking), which is a fixable property of the transform, not evidence that transformation hides real, well-formed PHI.
 
 ## Masking coverage (reported separately)
 

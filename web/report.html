@@ -270,7 +270,12 @@
       <div class="hd"><span class="src">Missed · cause 2 — loss of salience &nbsp;·&nbsp; cause 3 — xxxxx-masked IDs</span></div>
       <div class="row"><span class="rl">swap</span><span><span class="old">Cedars-Sinai</span> → <span class="new">Vidant</span> · <span class="old">Cuba</span> → <span class="new">Havana</span> · <span class="old">nachorutor@hotmail.com</span> → <span class="new">nxxxxxxxxx@hotmail.com</span></span></div>
     </div>
-    <p class="note">All three causes are transform-side surrogate-generation defects — fixable — not evidence that
+    <ul class="points" style="margin-top:6px">
+      <li><span class="k">1</span><span><b>Why malformed surrogates miss:</b> the surrogate is built piece-by-piece, so on multi-token or non-English entities it drops trailing tokens (<span class="mono">El&nbsp;Paso→El</span>) or emits a near-word (<span class="mono">Ciudad→Cuidad</span>). A fragment no longer matches the lexical pattern detectors learned for real names — which is why loss peaks on <b>MEDDOCAN (Spanish clinical, 6.9%)</b> and is lowest on clean English <b>ASQ-PHI (2.6%)</b>.</span></li>
+      <li><span class="k">2</span><span><b>Why salience loss misses:</b> detectors recognise entities partly by pre-training familiarity. Swapping a famous hospital/country for a rare one removes that prior — inherent to changing a value, and it mainly costs the weaker detectors.</span></li>
+      <li><span class="k">3</span><span><b>Why x-masked IDs miss:</b> a run of <span class="mono">x</span>s keeps the format but breaks the realistic-token pattern a detector expects. This case is actually privacy-positive — the value is destroyed — yet still counts against recall.</span></li>
+    </ul>
+    <p class="note">All three are transform-side surrogate-generation defects — fixable — not evidence that
       transformation hides well-formed PHI from detectors.</p>
   </section>
 
