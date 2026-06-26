@@ -59,7 +59,7 @@ para(tf,"The swap keeps data usable.",24,INK,SERIF,b=True,first=True,sa=14)
 para(tf,"After swapping, other tools still spot the sensitive details almost every time, "
         "and the format (medical notes, forms, data files) stays exactly the same. "
         "Nothing downstream breaks.",18,INK,SERIF,sa=10)
-para(tf,"This is the client-facing win — solid across 9 tools and 7 datasets.",15,MUTED,SERIF)
+para(tf,"This is the client-facing win — solid across all 11 tools and 7 datasets.",15,MUTED,SERIF)
 
 # 3 · THE GAP (coverage, simple)
 s=slide(); eyebrow(s,"02 · The honest gap — how much does it hide?"); rule(s,Inches(0.7),Inches(1.0),Inches(11.9))
