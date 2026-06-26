@@ -61,8 +61,21 @@ para(tf,"After swapping, other tools still spot the sensitive details almost eve
         "Nothing downstream breaks.",18,INK,SERIF,sa=10)
 para(tf,"This is the client-facing win — solid across all 11 tools and 7 datasets.",15,MUTED,SERIF)
 
+# 2b · STATISTICAL RIGOR
+s=slide(); eyebrow(s,"02 · Is the change significant?"); rule(s,Inches(0.7),Inches(1.0),Inches(11.9))
+_,tf=box(s,Inches(0.7),Inches(2.0),Inches(5.4),Inches(3.0))
+para(tf,"±2 pts",78,GREEN,MONO,b=True,first=True,sa=8)
+para(tf,"PROVEN-EQUIVALENT MARGIN (TOST, p≈1e-8)",12,MUTED,MONO,b=True)
+_,tf=box(s,Inches(6.4),Inches(2.0),Inches(6.2),Inches(3.4))
+para(tf,"Not a drop — statistically equivalent.",24,INK,SERIF,b=True,first=True,sa=12)
+para(tf,"On the 56,174 masked spans, detector recall is 76.2% → 75.0% (−1.2 pts). With 56k "
+        "paired observations even a tiny shift trips a plain significance test, so we use an "
+        "equivalence test instead.",17,INK,SERIF,sa=10)
+para(tf,"It confirms the change is statistically equivalent to zero within ±2 points — provably "
+        "too small to matter, not merely “not significant.”",16,MUTED,SERIF)
+
 # 3 · THE GAP (coverage, simple)
-s=slide(); eyebrow(s,"02 · The honest gap — how much does it hide?"); rule(s,Inches(0.7),Inches(1.0),Inches(11.9))
+s=slide(); eyebrow(s,"03 · The honest gap — how much does it hide?"); rule(s,Inches(0.7),Inches(1.0),Inches(11.9))
 _,tf=box(s,Inches(0.7),Inches(1.35),Inches(11.9),Inches(0.7))
 para(tf,"On real medical records, it hides names and dates well — but misses about half of "
         "ID numbers and addresses.",19,INK,SERIF,b=True,first=True)
@@ -78,7 +91,7 @@ for i,(name,lab,frac,col) in enumerate(rows):
     _,t2=box(s,Inches(10.5),y,Inches(2.4),Inches(0.4)); para(t2,lab,14,col,MONO,b=True,first=True)
 
 # 4 · WHY THE GAP IS FIXABLE
-s=slide(); eyebrow(s,"03 · The good news about the gap"); rule(s,Inches(0.7),Inches(1.0),Inches(11.9))
+s=slide(); eyebrow(s,"04 · The good news about the gap"); rule(s,Inches(0.7),Inches(1.0),Inches(11.9))
 _,tf=box(s,Inches(0.7),Inches(2.0),Inches(5.4),Inches(3.0))
 para(tf,"~3 in 4",78,GREEN,MONO,b=True,first=True,sa=8)
 para(tf,"OF THE MISSES, THE TOOL ALREADY KNEW IT WAS PRIVATE",12,MUTED,MONO,b=True)

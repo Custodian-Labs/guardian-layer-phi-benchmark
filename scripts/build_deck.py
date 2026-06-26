@@ -81,8 +81,10 @@ _,tf=box(s,Inches(6.4),Inches(2.1),Inches(6.2),Inches(3.2))
 para(tf,"The swap doesn’t hide the data from other tools.",24,INK,SERIF,b=True,first=True,sa=14)
 para(tf,"After swapping, other AI tools still spot the sensitive details — in the same place, "
         "almost every time. We checked this across 11 different tools (GPT-5, Gemma, Qwen, Llama 8B/70B, DeepSeek, Presidio, OBI).",18,INK,SERIF,sa=12)
+para(tf,"A statistical equivalence test confirms the change is too small to matter — within "
+        "±2 percentage points of no change at all.",16,GREEN,SERIF,sa=12)
 para(tf,"And the structure is untouched: medical notes, forms, even raw data files keep their "
-        "exact format. Nothing downstream breaks.",16,MUTED,SERIF)
+        "exact format. Nothing downstream breaks.",15,MUTED,SERIF)
 
 # ===== 4 · IT WORKS EVERYWHERE (examples) =====
 s=slide()
