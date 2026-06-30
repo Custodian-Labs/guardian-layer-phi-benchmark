@@ -14,37 +14,48 @@
   body.zh{font-family:var(--cjk)}
   .deck{height:100vh;width:100vw;position:relative}
   .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
-    padding:7vh 9vw;background:var(--ground);
+    padding:6vh 9vw;background:var(--ground);
     background-image:linear-gradient(var(--line2) 1px,transparent 1px);background-size:100% 2.1rem;}
   .slide.on{display:flex}
   .slide.dark{background:var(--ink);background-image:none;color:#fff}
   .eyebrow{font-family:var(--mono);font-size:clamp(11px,1.4vw,14px);letter-spacing:.2em;
-    text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:3vh}
-  .rule{height:2.5px;background:var(--ink);width:100%;margin-bottom:5vh}
-  h1{font-size:clamp(30px,6vw,64px);line-height:1.08;font-weight:700;letter-spacing:-.01em}
+    text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2.4vh}
+  .rule{height:2.5px;background:var(--ink);width:100%;margin-bottom:4vh}
+  h1{font-size:clamp(30px,6vw,62px);line-height:1.08;font-weight:700;letter-spacing:-.01em}
   h1 em{font-style:italic;color:var(--accent)} body.zh h1 em{font-style:normal}
-  h2{font-size:clamp(22px,3.4vw,38px);font-weight:700;line-height:1.2;margin-bottom:3vh}
-  .dek{font-size:clamp(15px,2vw,22px);color:var(--muted);margin-top:3vh;max-width:30ch}
-  .big{font-family:var(--mono);font-weight:700;font-size:clamp(56px,15vw,150px);line-height:.9;color:var(--accent)}
+  h2{font-size:clamp(20px,3.2vw,34px);font-weight:700;line-height:1.2;margin-bottom:2.4vh}
+  .dek{font-size:clamp(15px,2vw,22px);color:var(--muted);margin-top:3vh;max-width:34ch}
+  .big{font-family:var(--mono);font-weight:700;font-size:clamp(50px,13vw,128px);line-height:.9;color:var(--accent)}
   .sub{font-family:var(--mono);font-size:clamp(11px,1.5vw,15px);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2.5vh}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center}
   @media(max-width:760px){.row2{grid-template-columns:1fr;gap:3vh}}
   .side{font-size:clamp(15px,2vw,21px);line-height:1.5} .side b{color:var(--accent)}
-  .card{background:var(--paper);border:1px solid var(--line);padding:3vh 3vw;font-family:var(--mono);
-    font-size:clamp(13px,1.7vw,18px);line-height:2.1;margin-top:1vh}
+  .card{background:var(--paper);border:1px solid var(--line);padding:2.6vh 3vw;font-family:var(--mono);
+    font-size:clamp(13px,1.7vw,18px);line-height:2.05;margin-top:1vh}
   .old{color:var(--clay);text-decoration:line-through}.new{color:var(--accent);font-weight:700}
+  .dim{color:var(--muted)}
   .lines{font-family:var(--mono);font-size:clamp(11px,1.5vw,16px);line-height:1.7}
-  .lines .pair{margin-bottom:2.2vh}
-  .cap{font-family:var(--mono);font-size:clamp(11px,1.4vw,14px);color:var(--muted);margin-top:4vh}
+  .lines .pair{margin-bottom:2vh}
+  .cap{font-family:var(--mono);font-size:clamp(11px,1.4vw,14px);color:var(--muted);margin-top:3vh;max-width:64ch}
   .bl{font-size:clamp(20px,3vw,34px);font-weight:700;line-height:1.3}
   .bl em{color:var(--accent);font-style:italic} body.zh .bl em{font-style:normal}
+  /* data table */
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:clamp(12px,1.6vw,17px)}
+  th{text-align:right;font-size:clamp(9px,1.1vw,12px);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 0 8px;border-bottom:1px solid var(--ink)}
+  th:first-child{text-align:left} td{padding:6px 0;border-bottom:1px solid var(--line2);text-align:right}
+  td:first-child{text-align:left;font-weight:600}
+  .rbar{display:inline-block;width:140px;height:12px;background:var(--line2);position:relative;vertical-align:middle;margin-left:10px}
+  .rbar i{position:absolute;left:0;top:0;height:100%}
+  /* coverage bars */
+  .cov{display:grid;gap:2.2vh;margin-top:1vh;max-width:760px}
+  .cov .r{display:grid;grid-template-columns:9ch 1fr 9ch;align-items:center;gap:14px;font-family:var(--mono);font-size:clamp(12px,1.6vw,17px)}
+  .cov .track{height:16px;background:var(--line2);position:relative}
+  .cov .track i{position:absolute;left:0;top:0;height:100%}
   /* chrome */
-  .hud{position:fixed;bottom:18px;left:0;right:0;display:flex;justify-content:center;align-items:center;
-    gap:18px;font-family:var(--mono);font-size:12px;color:var(--muted);z-index:5}
-  .hud button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:#fff;
-    color:var(--ink);padding:4px 10px;border-radius:3px;cursor:pointer}
-  .hud .count{min-width:46px;text-align:center}
-  .lang{position:fixed;top:16px;right:20px;font-family:var(--mono);font-size:12px;z-index:5}
+  .hud{position:fixed;bottom:16px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font-family:var(--mono);font-size:12px;color:var(--muted);z-index:5}
+  .hud button{font-family:var(--mono);font-size:13px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:3px 11px;border-radius:3px;cursor:pointer}
+  .hud .count{min-width:42px;text-align:center}
+  .lang{position:fixed;top:14px;right:20px;font-family:var(--mono);font-size:12px;z-index:5}
   .lang button{border:none;background:none;color:var(--muted);cursor:pointer;font-family:var(--mono)}
   .lang button.on{color:var(--accent);font-weight:700}
   [data-zh]{display:none} body.zh [data-en]{display:none} body.zh [data-zh]{display:revert}
@@ -62,22 +73,22 @@
     <div class="rule"></div>
     <h1><span data-en>Does the privacy swap<br><em>keep data usable?</em></span>
         <span data-zh>这个隐私替换,<br><em>会不会让数据没法用?</em></span></h1>
-    <p class="dek"><span data-en>1,750 documents · 11 detectors · 7 benchmarks</span>
-       <span data-zh>1,750 文档 · 11 个检测器 · 7 个 benchmark</span></p>
+    <p class="dek"><span data-en>A structure-preservation audit — 1,750 documents · 11 detectors · 7 benchmarks · 7 languages.</span>
+       <span data-zh>结构保持性审计 —— 1,750 文档 · 11 个检测器 · 7 个 benchmark · 7 种语言。</span></p>
   </section>
 
   <!-- 2 WHAT IT DOES -->
   <section class="slide">
     <div class="eyebrow">01 · <span data-en>What it does</span><span data-zh>它做什么</span></div>
     <div class="rule"></div>
-    <h2><span data-en>It swaps real info for a realistic fake.</span>
-        <span data-zh>把真实信息换成逼真的假数据。</span></h2>
+    <h2><span data-en>It swaps real info for a realistic fake — not a black box.</span>
+        <span data-zh>把真实信息换成逼真的假数据 —— 不是涂黑。</span></h2>
     <div class="card">
       <span class="old">Anna S.</span> · <span class="old">April 12 2023</span> · Methodist Hospital<br>
       <span class="new">Maria S.</span> · <span class="new">March 13 2021</span> · Methodist Hospital
     </div>
-    <p class="cap"><span data-en>The sentence still reads normally — downstream tools keep working.</span>
-       <span data-zh>句子读起来仍然正常 —— 下游工具照常工作。</span></p>
+    <p class="cap"><span data-en>Name → name, date → date. The sentence still reads normally, so anything that processed the original keeps working on the result.</span>
+       <span data-zh>名字换名字、日期换日期。句子读起来仍然正常,原来能处理它的系统照样能用。</span></p>
   </section>
 
   <!-- 3 RESULT -->
@@ -85,31 +96,77 @@
     <div class="eyebrow">02 · <span data-en>The result</span><span data-zh>结果</span></div>
     <div class="rule"></div>
     <div class="row2">
-      <div><div class="big">97–100%</div>
-        <div class="sub"><span data-en>swapped info still found</span><span data-zh>替换后的信息仍能被找到</span></div></div>
-      <div class="side"><span data-en>The change is <b>statistically negligible</b> — within ±2 points of no change at all (equivalence test, p≈1e-8).</span>
-        <span data-zh>这个变化<b>在统计上可忽略</b> —— 与零相差不超过 ±2 个百分点(等价检验,p≈1e-8)。</span></div>
+      <div><div class="big">±2 pts</div>
+        <div class="sub"><span data-en>statistically equivalent to zero</span><span data-zh>与零统计等价</span></div></div>
+      <div class="side"><span data-en>On the <b>56,174 masked spans</b>, detector recall is 76.2% → 75.0% (−1.2 pts). An equivalence test (TOST, p≈1e-8) proves the change is within ±2 points of no change at all — too small to matter.</span>
+        <span data-zh>在 <b>56,174 个脱敏 span</b> 上,检测器召回率 76.2% → 75.0%(−1.2 个百分点)。等价检验(TOST,p≈1e-8)证明:变化在 ±2 个百分点内与零等价 —— 小到不具实际意义。</span></div>
     </div>
   </section>
 
-  <!-- 4 EVERYWHERE -->
+  <!-- 4 PER-SYSTEM TABLE -->
   <section class="slide">
-    <div class="eyebrow">03 · <span data-en>Holds across formats &amp; languages</span><span data-zh>跨格式、跨语言都成立</span></div>
+    <div class="eyebrow">03 · <span data-en>Every detector agrees</span><span data-zh>每个检测器都一致</span></div>
+    <div class="rule"></div>
+    <table><thead><tr>
+      <th><span data-en>Detector</span><span data-zh>检测器</span></th>
+      <th><span data-en>Surrogate still found</span><span data-zh>替身仍被找到</span></th>
+    </tr></thead><tbody id="ret"></tbody></table>
+    <p class="cap"><span data-en>Recall on masked spans, transformed ÷ original. 93–100% across all 11 systems; ranking unchanged.</span>
+       <span data-zh>脱敏 span 上的召回保留率(transformed ÷ original)。11 个系统全部 93–100%,排名不变。</span></p>
+  </section>
+
+  <!-- 5 EVERYWHERE -->
+  <section class="slide">
+    <div class="eyebrow">04 · <span data-en>Holds across formats &amp; languages</span><span data-zh>跨格式、跨语言都成立</span></div>
     <div class="rule"></div>
     <div class="lines">
-      <div class="pair"><span class="old">70yo M, Dr. John L., Mt. Sinai, Feb 21 2023</span><br><span class="new">73yo M, Dr. James L., Mt. Egypt, Nov 19 2021</span></div>
-      <div class="pair"><span class="old">DE: … Monsignore … 23/07/2011</span><br><span class="new">&nbsp;&nbsp;&nbsp;&nbsp;… Fulgenzio … 24/07/2011</span></div>
-      <div class="pair"><span class="old">JSON: {"Date":"20/05/2022","City":"Saint-Priest"}</span><br><span class="new">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"Date":"21/05/2023","City":"Saint-Priest"}</span></div>
+      <div class="pair"><span class="old">70yo M, Dr. John L., Mt. Sinai, Feb 21 2023</span><br><span class="new">73yo M, Dr. James L., Mt. Egypt, Nov 19 2021</span> &nbsp;<span class="dim" data-en>clinical shorthand</span><span class="dim" data-zh>临床速记</span></div>
+      <div class="pair"><span class="old">DE: … Monsignore … 23/07/2011</span><br><span class="new">&nbsp;&nbsp;&nbsp;&nbsp;… Fulgenzio … 24/07/2011</span> &nbsp;<span class="dim" data-en>German</span><span class="dim" data-zh>德语</span></div>
+      <div class="pair"><span class="old">JSON: {"Date":"20/05/2022","City":"Saint-Priest"}</span><br><span class="new">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"Date":"21/05/2023","City":"Saint-Priest"}</span> &nbsp;<span class="dim" data-en>structured data</span><span class="dim" data-zh>结构化数据</span></div>
     </div>
-    <p class="cap"><span data-en>Only the private value changes — the format stays exact.</span>
-       <span data-zh>只有敏感值变了 —— 格式完全保留。</span></p>
+    <p class="cap"><span data-en>Only the private value changes — the format is preserved byte-for-byte.</span>
+       <span data-zh>只有敏感值变了 —— 格式逐字节保留。</span></p>
   </section>
 
-  <!-- 5 BOTTOM LINE -->
+  <!-- 6 ERROR CAUSES -->
+  <section class="slide">
+    <div class="eyebrow">05 · <span data-en>Where the small gap comes from</span><span data-zh>那一点小差距来自哪里</span></div>
+    <div class="rule"></div>
+    <h2><span data-en>It’s surrogate quality — not detector failure.</span>
+        <span data-zh>是替身质量问题 —— 不是检测器变差。</span></h2>
+    <div class="card">
+      <span class="old">Chicago</span> → <span class="new">Illino</span> &nbsp; <span class="old">El Paso</span> → <span class="new">El</span> &nbsp;<span class="dim" data-en>truncated / garbled</span><span class="dim" data-zh>残缺 / 乱码</span><br>
+      <span class="old">Cedars-Sinai</span> → <span class="new">Vidant</span> &nbsp;<span class="dim" data-en>famous → obscure</span><span class="dim" data-zh>著名 → 冷门</span><br>
+      <span class="old">nachorutor@…</span> → <span class="new">nxxxxxxxxx@…</span> &nbsp;<span class="dim" data-en>x-masked ID</span><span class="dim" data-zh>ID 被 x 化</span>
+    </div>
+    <p class="cap"><span data-en>3,261 of 56k spans lost (51% same length — not a boundary effect). All three causes are fixable transform-side defects.</span>
+       <span data-zh>5.6 万个里丢失 3,261 个(51% 长度不变 —— 不是边界问题)。三类都是可修复的替身生成缺陷。</span></p>
+  </section>
+
+  <!-- 7 COVERAGE -->
+  <section class="slide">
+    <div class="eyebrow">06 · <span data-en>How much it masks (honest)</span><span data-zh>它脱敏了多少(诚实)</span></div>
+    <div class="rule"></div>
+    <h2><span data-en>Strong on names &amp; dates; ~half on IDs &amp; addresses.</span>
+        <span data-zh>名字、日期藏得好;ID 和地址约一半。</span></h2>
+    <div class="cov">
+      <div class="r"><span data-en>Names</span><span data-zh>名字</span><span class="track"><i style="width:75%;background:var(--accent)"></i></span><span style="color:var(--accent)">75%</span></div>
+      <div class="r"><span data-en>Dates</span><span data-zh>日期</span><span class="track"><i style="width:73%;background:var(--accent)"></i></span><span style="color:var(--accent)">73%</span></div>
+      <div class="r"><span data-en>ID numbers</span><span data-zh>ID 号码</span><span class="track"><i style="width:51%;background:var(--clay)"></i></span><span style="color:var(--clay)">51%</span></div>
+      <div class="r"><span data-en>Addresses</span><span data-zh>地址</span><span class="track"><i style="width:44%;background:var(--clay)"></i></span><span style="color:var(--clay)">44%</span></div>
+    </div>
+    <p class="cap"><span data-en>Coverage on clinical PHI. Reported separately from utility — the ±2 pts above is measured only on spans it actually masks.</span>
+       <span data-zh>临床 PHI 上的覆盖率。与效用分开报告 —— 上面的 ±2 pts 只在它确实脱敏的 span 上测量。</span></p>
+  </section>
+
+  <!-- 8 BOTTOM LINE -->
   <section class="slide dark">
-    <div class="eyebrow">04 · <span data-en>Bottom line</span><span data-zh>结论</span></div>
+    <div class="eyebrow">07 · <span data-en>Bottom line</span><span data-zh>结论</span></div>
     <p class="bl"><span data-en>Protects privacy. <em>Doesn’t break the data.</em></span>
        <span data-zh>保护了隐私,<em>又没破坏数据。</em></span></p>
+    <p class="cap" style="color:#aebbb5;font-size:clamp(13px,1.7vw,18px);line-height:1.9">
+      <span data-en>✓ Detectability statistically equivalent (±2 pts) &nbsp; ✓ Ranking unchanged &nbsp; ✓ Format preserved<br>Next: lift masking coverage on IDs &amp; addresses.</span>
+      <span data-zh>✓ 可检测性统计等价(±2 pts) &nbsp; ✓ 排名不变 &nbsp; ✓ 格式保留<br>下一步:提升 ID 和地址的脱敏覆盖率。</span></p>
     <p class="cap" style="color:#aebbb5"><span data-en>Full data, report &amp; per-system results → custodianai.pages.dev</span>
        <span data-zh>完整数据、报告与逐系统结果 → custodianai.pages.dev</span></p>
   </section>
@@ -118,7 +175,7 @@
 
 <div class="hud">
   <button id="prev">‹</button>
-  <span class="count"><span id="cur">1</span>/<span id="tot">5</span></span>
+  <span class="count"><span id="cur">1</span>/<span id="tot">8</span></span>
   <button id="next">›</button>
   <a href="./report" style="color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)">report</a>
 </div>
@@ -136,22 +193,23 @@
     show(i+(e.clientX>innerWidth/2?1:-1)); };
   addEventListener("keydown",e=>{ if(e.key==="ArrowRight"||e.key===" ")show(i+1);
     else if(e.key==="ArrowLeft")show(i-1); else if(e.key==="Home")show(0); else if(e.key==="End")show(slides.length-1); });
-  // swipe
   let x0=null; addEventListener("touchstart",e=>x0=e.touches[0].clientX,{passive:true});
   addEventListener("touchend",e=>{ if(x0===null)return; const dx=e.changedTouches[0].clientX-x0;
     if(Math.abs(dx)>40)show(i+(dx<0?1:-1)); x0=null; });
-  // language — initial choice from ?lang= / #zh / saved / browser, then remember
+  // per-system retention table
+  const RET=[["Gemma 4 31B",99.8],["Qwen 3.5-9B",100],["Qwen 3.5-35B-A3B",98.4],["Llama 3.3-70B",98.3],
+    ["GPT-5",98.3],["Gemma 4 E4B",98.2],["Qwen 3.5-4B",98.0],["Presidio",97.4],["DeepSeek V2-Lite",92.8]];
+  document.getElementById("ret").innerHTML=RET.map(([s,v])=>{
+    const col=v>=97?"rgba(15,110,92,.55)":"rgba(189,91,54,.55)";
+    return `<tr><td>${s}</td><td>${v.toFixed(1)}%<span class="rbar"><i style="width:${Math.min(v,100)}%;background:${col}"></i></span></td></tr>`;}).join("");
+  // language
   const be=document.getElementById("b-en"), bz=document.getElementById("b-zh");
   function lang(zh,save){ document.body.classList.toggle("zh",zh); be.classList.toggle("on",!zh); bz.classList.toggle("on",zh);
     document.documentElement.lang=zh?"zh":"en"; if(save){try{localStorage.setItem("slides_lang",zh?"zh":"en")}catch(e){}} }
   be.onclick=()=>lang(false,true); bz.onclick=()=>lang(true,true);
-  (function(){
-    const p=new URLSearchParams(location.search).get("lang");
-    const h=location.hash.replace("#","");
+  (function(){ const p=new URLSearchParams(location.search).get("lang"); const h=location.hash.replace("#","");
     let saved=null; try{saved=localStorage.getItem("slides_lang")}catch(e){}
-    const pick = p||h||saved||(navigator.language||"").toLowerCase().slice(0,2);
-    lang(pick==="zh", false);
-  })();
+    const pick=p||h||saved||(navigator.language||"").toLowerCase().slice(0,2); lang(pick==="zh",false); })();
   prog.style.width=(1/slides.length*100)+"%";
 </script>
 </body></html>
