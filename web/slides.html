@@ -140,11 +140,18 @@
   let x0=null; addEventListener("touchstart",e=>x0=e.touches[0].clientX,{passive:true});
   addEventListener("touchend",e=>{ if(x0===null)return; const dx=e.changedTouches[0].clientX-x0;
     if(Math.abs(dx)>40)show(i+(dx<0?1:-1)); x0=null; });
-  // language
+  // language — initial choice from ?lang= / #zh / saved / browser, then remember
   const be=document.getElementById("b-en"), bz=document.getElementById("b-zh");
-  function lang(zh){ document.body.classList.toggle("zh",zh); be.classList.toggle("on",!zh); bz.classList.toggle("on",zh);
-    document.documentElement.lang=zh?"zh":"en"; }
-  be.onclick=()=>lang(false); bz.onclick=()=>lang(true);
+  function lang(zh,save){ document.body.classList.toggle("zh",zh); be.classList.toggle("on",!zh); bz.classList.toggle("on",zh);
+    document.documentElement.lang=zh?"zh":"en"; if(save){try{localStorage.setItem("slides_lang",zh?"zh":"en")}catch(e){}} }
+  be.onclick=()=>lang(false,true); bz.onclick=()=>lang(true,true);
+  (function(){
+    const p=new URLSearchParams(location.search).get("lang");
+    const h=location.hash.replace("#","");
+    let saved=null; try{saved=localStorage.getItem("slides_lang")}catch(e){}
+    const pick = p||h||saved||(navigator.language||"").toLowerCase().slice(0,2);
+    lang(pick==="zh", false);
+  })();
   prog.style.width=(1/slides.length*100)+"%";
 </script>
 </body></html>
