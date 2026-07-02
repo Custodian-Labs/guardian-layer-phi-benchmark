@@ -117,6 +117,14 @@
         <div><b><span data-en>Flow</span><span data-zh>流程</span>:</b> <span data-en>benchmark loader → system predict → span match (type mode) → JSONL + summary.</span><span data-zh>benchmark loader → 系统预测 → span 匹配(type 模式) → JSONL + summary。</span></div>
       </div>
     </div>
+    <div class="card" style="margin-top:2.2vh;line-height:1.7;font-size:clamp(11px,1.35vw,14px)">
+      <div style="margin-bottom:.6vh"><b><span data-en>Example input</span><span data-zh>输入示例</span></b></div>
+      {"doc_id":"asq_001","text":"Patient John Smith visited on 2024-03-09.","gold_spans":[{"start":8,"end":18,"label":"NAME","text":"John Smith"},{"start":30,"end":40,"label":"DATE","text":"2024-03-09"}]}
+      <div style="margin:.85vh 0 .6vh 0"><b><span data-en>Example output (per doc)</span><span data-zh>输出示例(单条)</span></b></div>
+      {"predictions":{"openai_gpt":{"spans":[{"start":8,"end":18,"label":"NAME"},{"start":30,"end":40,"label":"DATE"}],"score":{"tp":2,"fp":0,"fn":0}}}}
+      <div style="margin:.85vh 0 .6vh 0"><b><span data-en>Example summary (aggregate)</span><span data-zh>输出示例(汇总)</span></b></div>
+      [{"system":"openai_gpt","benchmark":"asq_phi","mode":"type","n_docs":250,"precision":0.66,"recall":0.84,"f1":0.74,"leakage_rate":0.16,"char_leakage_rate":0.14}]
+    </div>
     <p class="cap"><span data-en>Current public dashboard reports full 250-doc runs per benchmark for side-by-side model comparison.</span>
        <span data-zh>当前公开看板展示的是每个 benchmark 的 250 条完整评测,用于模型横向比较。</span></p>
   </section>
