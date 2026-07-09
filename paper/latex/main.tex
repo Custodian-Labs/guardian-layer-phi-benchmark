@@ -29,8 +29,9 @@
 \definecolor{cpaper}{HTML}{F3F5F3}   % card background
 \definecolor{cline}{HTML}{C5CDC8}    % card border
 \definecolor{cmuted}{HTML}{5C6B64}
-% old value: clay, struck through; new value: green bold
-\newcommand{\oldv}[1]{\textcolor{cclay}{#1}\llap{\textcolor{cclay}{\rule[0.42ex]{\widthof{#1}}{0.4pt}}}}
+% old value: clay (line-break safe, no rule -> never overshoots the column);
+% new value: green bold. Colour + weight distinguish them, in grayscale too.
+\newcommand{\oldv}[1]{\textcolor{cclay}{#1}}
 \newcommand{\newv}[1]{\textcolor{caccent}{\textbf{#1}}}
 % light "card" callout matching the website cards
 \newcommand{\card}[1]{\begin{center}\fcolorbox{cline}{cpaper}{\parbox{0.94\linewidth}{\small #1}}\end{center}}
