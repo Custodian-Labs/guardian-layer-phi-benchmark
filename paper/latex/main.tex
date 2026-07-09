@@ -75,14 +75,14 @@
 \begin{@twocolumnfalse}
 \begin{abstract}
 \noindent
-Structure-preserving de-identification replaces protected health information (PHI) with realistic same-type \emph{surrogates}---``Anna~S.'' becomes ``Maria~S.'', not \tp{[NAME]}---so that clinical text stays fluent and downstream tools keep working. But this only helps if the substitution does not itself corrupt the signal those tools rely on. We ask a narrow, testable question: \emph{on the spans a de-identifier actually masks, can downstream PHI detectors still find the surrogate?} We introduce a paired, multi-detector evaluation protocol that (i)~scores utility \emph{only on masked spans}, decoupling \emph{coverage} from \emph{utility}; (ii)~uses \emph{equivalence testing} (TOST) rather than null-hypothesis significance testing, which is uninformative at our sample size (57k paired spans); and (iii)~builds a surrogate-failure typology separating fixable generator defects from intrinsic detector limits. Across 11 detectors, 7 benchmarks, and 7 languages (1{,}750 documents), recall on masked spans moves from 76.1\% to 74.9\%---a change our equivalence test shows is \emph{statistically indistinguishable from zero within a $\pm2$-point margin} ($p\approx3\times10^{-9}$), with detector ranking preserved. The residual loss is not detectors getting worse at PHI: it concentrates in \emph{malformed and out-of-distribution} surrogates (truncation \tp{Chicago}\arr\tp{Illino}, salience loss \tp{Cedars-Sinai}\arr\tp{Vidant}). A redaction floor and an open-source surrogate baseline confirm the effect is a property of well-formed substitution generally, not one tool. We release the evaluation subsets and scoring code so the protocol can audit any structure-preserving transform.
+Structure-preserving de-identification replaces protected health information (PHI) with realistic same-type \emph{surrogates}---``Anna~S.'' becomes ``Maria~S.'', not \tp{[NAME]}---so that clinical text stays fluent and downstream tools keep working. But this only helps if the substitution does not itself corrupt the signal those tools rely on. We ask a narrow, testable question: \emph{on the spans a de-identifier actually masks, can downstream PHI detectors still find the surrogate?} We introduce a paired, multi-detector evaluation protocol that (i)~scores utility \emph{only on masked spans}, decoupling \emph{coverage} from \emph{utility}; (ii)~uses \emph{equivalence testing} (TOST) rather than null-hypothesis significance testing, which is uninformative at our sample size (57k paired spans); and (iii)~builds a surrogate-failure typology separating fixable generator defects from intrinsic detector limits. Across 11 detectors, 7 benchmarks, and 7 languages (1{,}750 documents), recall on masked spans moves from 76.1\% to 74.9\%---a change our equivalence test shows is \emph{statistically equivalent to zero within a $\pm2$-point margin} ($p\approx3\times10^{-9}$), with detector ranking preserved. The residual loss does not reflect detectors getting worse at PHI: it concentrates in \emph{malformed and out-of-distribution} surrogates (truncation \tp{Chicago}\arr\tp{Illino}, salience loss \tp{Cedars-Sinai}\arr\tp{Vidant}). A redaction floor and an open-source surrogate baseline indicate the effect is a property of well-formed substitution, not of one tool. We release the evaluation subsets and scoring code so the protocol can audit any structure-preserving transform.
 \vspace{1em}
 \end{abstract}
 \end{@twocolumnfalse}
 ]
 
 \section{Introduction}
-De-identification of clinical text has two families of output. \textbf{Redaction} deletes or tags PHI (\oldv{\tp{John Smith}}~$\rightarrow$~\tp{[NAME]}), which is safe but destroys the fluency, layout, and distributional properties that downstream models and human readers depend on. \textbf{Structure-preserving} de-identification instead substitutes each PHI value with a plausible, same-type \emph{surrogate} (\oldv{\tp{John Smith}}\arr\newv{\tp{Maria Lopez}}), keeping the document readable and machine-parseable~\citep{carrell2013hiding}. The second family is increasingly attractive: it lets de-identified data flow into analytics, model training, and even second-pass detection without breaking pipelines built for real text.
+De-identification of clinical text takes two forms---and only one keeps the text usable downstream. \textbf{Redaction} deletes or tags PHI (\oldv{\tp{John Smith}}~$\rightarrow$~\tp{[NAME]}), which is safe but destroys the fluency, layout, and distributional properties that downstream models and human readers depend on. \textbf{Structure-preserving} de-identification instead substitutes each PHI value with a plausible, same-type \emph{surrogate} (\oldv{\tp{John Smith}}\arr\newv{\tp{Maria Lopez}}), keeping the document readable and machine-parseable~\citep{carrell2013hiding}. The second family is increasingly attractive: it lets de-identified data flow into analytics, model training, and even second-pass detection without breaking pipelines built for real text.
 
 The promise of structure preservation rests on an unstated assumption: \emph{the surrogate carries the same downstream signal as the value it replaced.} If substitution silently degrades the very features a PHI detector, an NER model, or a clinical parser relies on, then ``structure-preserving'' is a misnomer---the transform would be quietly laundering PHI into forms tools can no longer see or handle, which is both a utility problem and, for a second-pass safety net, a privacy problem.
 
@@ -96,7 +96,7 @@ This assumption is rarely tested directly, and testing it well is harder than it
 We address all three. Our contributions:
 \begin{itemize}\itemsep2pt
 \item A \textbf{paired multi-detector protocol} scoring utility on masked spans only, decoupling coverage from utility, across 11 detectors $\times$ 7 benchmarks $\times$ 7 languages (\S\ref{sec:protocol}--\S\ref{sec:design}).
-\item An \textbf{equivalence-testing analysis} (TOST) replacing the uninformative significance test with a bounded-effect claim: the change in detectability is provably within $\pm2$ points of zero (\S\ref{sec:results}).
+\item An \textbf{equivalence-testing analysis} (TOST) replacing the uninformative significance test with a bounded-effect claim: the change in detectability is bounded within $\pm2$ points of zero (\S\ref{sec:results}).
 \item A \textbf{surrogate-failure typology} attributing the small residual to surrogate-generation quality rather than detectors getting worse at PHI (\S\ref{sec:error}).
 \item A set of \textbf{comparison experiments}---a redaction upper-bound and an open-source surrogate baseline---that make the result reproducible and isolate what is generic to \emph{any} substitution versus specific to one tool (\S\ref{sec:design},~\S\ref{sec:results}).
 \end{itemize}
@@ -112,7 +112,7 @@ Clinical de-identification is a long-studied sequence-labeling problem~\citep{uz
 Whether privacy transformations preserve downstream utility is central to privacy-preserving NLP. Prior evaluations typically run a single downstream model on original vs.\ transformed data and compare end-task scores. Two weaknesses recur: (a)~a single downstream model cannot separate ``the transform is fine'' from ``this model is robust,'' and (b)~whole-corpus metrics mix masked and unmasked content. We address (a)~with an 11-detector panel spanning rule-based, fine-tuned, and LLM detectors, and (b)~by restricting utility measurement to masked spans.
 
 \subsection{The large-$N$ trap and equivalence testing}
-When samples are large, null-hypothesis significance testing rejects the null for negligible effects; the $p$-value measures precision, not importance---a hazard increasingly flagged in NLP evaluation~\citep{dror2018hitchhiker,card2020power}. The standard remedy is \emph{equivalence testing}---the two one-sided tests (TOST) procedure~\citep{schuirmann1987tost,berger1996bioequivalence}---which specifies an equivalence margin $\Delta$ and tests whether the effect is provably inside $[-\Delta,+\Delta]$; see \citet{lakens2017tost,lakens2018equivalence} for practical tutorials. TOST is standard in biostatistics but under-used in NLP evaluation, where large paired corpora make the trap acute. We adopt it as the primary inferential tool and report McNemar's paired test~\citep{mcnemar1947} only to demonstrate the trap.
+When samples are large, null-hypothesis significance testing rejects the null for negligible effects; the $p$-value measures precision, not importance---a hazard increasingly flagged in NLP evaluation~\citep{dror2018hitchhiker,card2020power}. The standard remedy is \emph{equivalence testing}---the two one-sided tests (TOST) procedure~\citep{schuirmann1987tost,berger1996bioequivalence}---which specifies an equivalence margin $\Delta$ and tests whether the effect lies inside $[-\Delta,+\Delta]$; see \citet{lakens2017tost,lakens2018equivalence} for practical tutorials. TOST is standard in biostatistics but under-used in NLP evaluation, where large paired corpora make the trap acute. We adopt it as the primary inferential tool and report McNemar's paired test~\citep{mcnemar1947} only to demonstrate the trap.
 
 \section{Problem Formulation}
 \textbf{Structure-preserving de-identification.} A transform $T$ maps a document $d$ to $d'$ by replacing each detected PHI value $v$ (of type $\tau$) with a surrogate $s$ of the same type, leaving all other characters unchanged. Gold PHI spans on $d$ are re-projected onto $d'$ by character-level alignment, giving paired spans $(v,s)$.
@@ -187,14 +187,14 @@ Figure~\ref{fig:protocol} summarizes the protocol. \textbf{Paired multi-detector
 The core paired study, the equivalence analysis (pooled and per-benchmark), the redaction floor, the open-surrogate baseline, and the error typology are complete; C1/C2 are currently demonstrated with the CPU detector (Presidio), with a full-panel extension noted as the next strengthening step.
 
 \section{Results}\label{sec:results}
-\textbf{Detectability is statistically unchanged.} Restricting to the 57{,}112 masked spans and pooling all 11 detectors (via the released \tp{analyze\_equivalence.py}), recall moves $76.1\%\rightarrow74.9\%$ ($-1.2$ pts; 95\% CI $[-1.5,-1.0]$). The TOST equivalence test ($\Delta=2$) rejects non-equivalence at $p\approx3\times10^{-9}$: the change is provably bounded within $\pm2$ points of zero. Ranking is preserved; the flagship Llama~3.3-70B is essentially unchanged ($\Delta$F1~$+0.003$). The same contingency is ``significant'' under McNemar's test---a direct demonstration of the large-$N$ trap.
+\textbf{Detectability is statistically equivalent.} Restricting to the 57{,}112 masked spans and pooling all 11 detectors (via the released \tp{analyze\_equivalence.py}), recall moves $76.1\%\rightarrow74.9\%$ ($-1.2$ pts; 95\% CI $[-1.5,-1.0]$). The TOST equivalence test ($\Delta=2$) rejects non-equivalence at $p\approx3\times10^{-9}$: the change is statistically bounded within $\pm2$ points of zero. Ranking is preserved; Llama~3.3-70B is essentially unchanged ($\Delta$F1~$+0.003$). The same contingency is ``significant'' under McNemar's test---a direct demonstration of the large-$N$ trap.
 
-\textbf{Whole-document view (conservative).} Before restricting to masked spans, Table~\ref{tab:fullf1} reports span-level F1 and leakage on \emph{all} gold spans, per detector. Whole-document $\Delta$F1 ranges from $+0.003$ (Llama~3.3-70B) to $-0.047$ (Qwen~3.5-35B-A3B), and leakage rises by only $+0.3$ to $+4.1$ points. This view is deliberately pessimistic---it mixes masked spans with exact-boundary penalties on length-changed surrogates and with spans the transform never touched---yet it already bounds the worst case (no detector's mean F1 moves by more than 4.7 points) and preserves ranking across a 100$\times$ span of detector quality (F1 $0.76\!\rightarrow\!0.04$). The masked-span analysis below isolates the substitution effect from this dilution.
+\textbf{Whole-document view (conservative).} Before restricting to masked spans, Table~\ref{tab:fullf1} reports span-level F1 and leakage on \emph{all} gold spans, per detector. Whole-document $\Delta$F1 ranges from $+0.003$ (Llama~3.3-70B) to $-0.047$ (Qwen~3.5-35B-A3B), and leakage rises by only $+0.3$ to $+4.1$ points. This view is conservative by design---it mixes masked spans with exact-boundary penalties on length-changed surrogates and with spans the transform never touched---yet it already bounds the worst case (no detector's mean F1 moves by more than 4.7 points) and preserves ranking across a 100$\times$ span of detector quality (F1 $0.76\!\rightarrow\!0.04$). The masked-span analysis below isolates the substitution effect from this dilution.
 
 \begin{table}[t]\centering\small
 \begin{tabular}{lrrrrr}
 \toprule
-System & \multicolumn{2}{c}{F1} & $\Delta$ & \multicolumn{2}{c}{Leak}\\
+Detector & \multicolumn{2}{c}{F1} & $\Delta$ & \multicolumn{2}{c}{Leak}\\
 \cmidrule(lr){2-3}\cmidrule(lr){5-6}
  & orig & transf & F1 & orig & transf\\
 \midrule
@@ -219,7 +219,7 @@ OBI \tp{deid\_roberta} & .041 & .040 & $-.002$ & .941 & .944\\
 \begin{table}[t]\centering\small
 \begin{tabular}{lrr}
 \toprule
-System & Exact & Overlap\\
+Detector & Exact & Overlap\\
 \midrule
 Gemma 4 31B & 93.1 & \textbf{99.8}\\
 Qwen 3.5-9B & 92.0 & \textbf{100.0}\\
@@ -301,7 +301,7 @@ PII de & 415 & 56.1 & 58.3 & \textbf{0.0}\\
 \caption{C1 redaction floor: Presidio masked-span recall (\%).}\label{tab:c1}
 \end{table}
 
-\textbf{Open-surrogate baseline (C2).} Replacing the commercial generator with Faker on the same masked spans (Table~\ref{tab:c2}) yields two findings. \emph{Generality}: an open substitutor preserves masked-span recall at least as well as the original---detectability preservation is a property of well-formed same-type substitution, not one vendor, and reproduces without proprietary access. \emph{The residual is generator quality}: Faker, emitting clean canonical values, \emph{exceeds} the commercial transform by 18--20 points on the hard non-English benchmarks, precisely where the commercial surrogates truncate or garble (\S\ref{sec:error}).
+\textbf{Open-surrogate baseline (C2).} Replacing the commercial generator with Faker on the same masked spans (Table~\ref{tab:c2}) yields two findings. \emph{Generality}: an open substitutor preserves masked-span recall at least as well as the original---detectability preservation appears to be a property of well-formed same-type substitution, not of one vendor, and reproduces without proprietary access. \emph{The residual is generator quality}: Faker, emitting clean canonical values, \emph{exceeds} the commercial transform by 18--20 points on the hard non-English benchmarks, precisely where the commercial surrogates truncate or garble (\S\ref{sec:error}).
 
 \begin{table}[t]\centering\small
 \begin{tabular}{lrrrr}
@@ -341,14 +341,14 @@ PII de & 415 & 56.1 & 58.3 & \textbf{78.1}\\
 \label{fig:bars}
 \end{figure}
 
-\textbf{Leakage} barely moves ($+1.7$ to $+4.1$ pts across systems), so surrogates are not systematically easier to miss than the PHI they replace.
+\textbf{Leakage} barely moves ($+0.3$ to $+4.1$ pts across detectors; Table~\ref{tab:fullf1}), so surrogates are not systematically easier to miss than the PHI they replace.
 
 \textbf{Where the loss lands (per benchmark).} Table~\ref{tab:perbench} breaks whole-document $\Delta$F1 out by benchmark and detector. The pattern is sharp: almost all of the loss concentrates on \textbf{ASQ-PHI}---short, sparse-PHI adversarial queries where a single substitution dominates the document score ($-0.09$ to $-0.18$)---while the other six benchmarks are essentially flat ($|\Delta\text{F1}|\le0.06$, most $\le0.03$). Even the fine-tuned OBI tagger and the rule-based Presidio move by at most a few thousandths on most benchmarks. This is the first sign that the effect tracks \emph{surrogate-generation difficulty} (short adversarial text, dense non-English identifiers) rather than detector family---made precise in the error analysis (\S\ref{sec:error}).
 
 \begin{table*}[t]\centering\small
 \begin{tabular}{lrrrrrrr}
 \toprule
-System & ASQ-PHI & MEDDOCAN & PII en & PII nl & PII fr & PII de & MultiCoNER\\
+Detector & ASQ-PHI & MEDDOCAN & PII en & PII nl & PII fr & PII de & MultiCoNER\\
 \midrule
 Gemma 4 31B & $-.175$ & $-.017$ & $-.043$ & $-.038$ & $-.014$ & $-.016$ & $-.009$\\
 Gemma 4 E4B & $-.106$ & $-.060$ & $-.032$ & $-.021$ & $-.018$ & $-.025$ & $-.007$\\
@@ -364,7 +364,7 @@ OBI \tp{deid\_roberta} & $+.001$ & $-.008$ & $-.004$ & $-.001$ & $+.003$ & $-.00
 \caption{Per-benchmark whole-document $\Delta$F1 (transformed $-$ original; negative = drop). Almost all loss lands on ASQ-PHI; the other six benchmarks are flat. Llama~3.3-70B and DeepSeek~V2-Lite omitted for space (both flat; see Table~\ref{tab:fullf1} for their pooled $\Delta$F1).}\label{tab:perbench}
 \end{table*}
 
-\textbf{What the transform does (examples).} Table~\ref{tab:examples} shows the substitution qualitatively across languages and formats: each PHI value becomes a same-type surrogate while clinical shorthand, foreign-language syntax, and JSON structure are left byte-for-byte intact. On the well-formed English cases every surrogate is still detected.
+\textbf{What the transform does (examples).} Table~\ref{tab:examples} shows the substitution qualitatively across languages and formats: each PHI value becomes a same-type surrogate while clinical shorthand, foreign-language syntax, and JSON structure are left byte-for-byte intact. On the well-formed English cases every surrogate is still detected across most of the panel.
 
 \begin{table*}[t]\centering\small
 \begin{tabular}{p{2.3cm}p{6.0cm}p{6.0cm}}
@@ -388,7 +388,7 @@ PII (French, JSON) & \tp{\{"Date":"\oldv{20/05/2022}", "City":"Saint-Priest", "U
 \textbf{Matching modes.} Unless noted, retention uses \emph{overlap} matching (detector flags any part of the surrogate span). Exact matching (Table~\ref{tab:ret}, left) additionally requires identical character boundaries and is therefore sensitive to surrogate length changes (``Anna~S.''$\rightarrow$``Maria~S.'' shifts the end offset); the $\sim$3-point exact$-$overlap gap is this boundary jitter, not missed PHI. Type matching (boundary~+~type) sits between the two and tracks overlap closely.
 
 \section{Error Analysis}\label{sec:error}
-\textbf{The lost population.} Pooled across detectors and masked spans: 40{,}165 (span$\times$detector) pairs found in both conditions; 3{,}300 lost. Critically, 50\% of lost spans are the \emph{same length} as the original---not a boundary effect. By type: LOCATION 27\%, NAME 23\%, DATE/AGE 22\%, ID/contact 19\%.
+\textbf{The lost population.} Pooled across detectors and masked spans: 40{,}165 (span$\times$detector) pairs found in both conditions; 3{,}300 lost. Half (50\%) of lost spans are the \emph{same length} as the original---so this is not a boundary effect. By type: LOCATION 27\%, NAME 23\%, DATE/AGE 22\%, ID/contact 19\%.
 
 \textbf{Three failure modes---all generator-side.}
 (1)~\emph{Malformed/truncated surrogates} (largest cause): \oldv{\tp{Chicago}}\arr\newv{\tp{Illino}}, \oldv{\tp{El~Paso}}\arr\newv{\tp{El}}, \oldv{\tp{Ciudad de la Habana}}\arr\newv{\tp{Cuidad de la Havana}}. The fragment no longer matches the lexical pattern detectors learned for real names/places; this is why span-level loss is highest on MEDDOCAN (6.9\%; Spanish, dense, identifier-heavy) and lowest on clean English ASQ-PHI (2.5\%).
@@ -398,7 +398,7 @@ PII (French, JSON) & \tp{\{"Date":"\oldv{20/05/2022}", "City":"Saint-Priest", "U
 \textbf{Implication.} Detectors are not getting worse at PHI; the small recall gap is driven by surrogate-generation quality (truncation, garbling, salience, \tp{x}-masking). C2 confirms this directly: an open generator emitting clean canonical values \emph{exceeds} the commercial transform by 18--20 points on exactly the hard non-English benchmarks where its surrogates truncate---so the residual tracks generator quality, not the act of substitution.
 
 \section{Discussion}
-\textbf{What the evidence supports.} Structure-preserving substitution does not hide well-formed PHI from downstream detection. Because the effect is equivalence-bounded within $\pm2$ points and ranking-preserving across a heterogeneous 11-detector panel, a transform of this quality can be safely inserted ahead of detection/analytics pipelines built for real clinical text. \textbf{Generality (C2).} Faker preserves masked-span recall at least as well as the original across all six benchmarks, so $\pm2$ points is a property of well-formed substitution, not one vendor; where the commercial generator trails, a cleaner generator closes the gap, locating the residual squarely in generation quality. \textbf{A reusable protocol.} The paired masked-span design and the TOST margin are not specific to one vendor or language---a template for auditing any structure-preserving privacy transform.
+\textbf{What the evidence supports.} Structure-preserving substitution does not hide well-formed PHI from downstream detection. Because the effect is equivalence-bounded within $\pm2$ points and ranking-preserving across a heterogeneous 11-detector panel, a transform of this quality can be inserted ahead of detection/analytics pipelines built for real clinical text without materially degrading downstream detection. \textbf{Generality (C2).} Faker preserves masked-span recall at least as well as the original across all six benchmarks, so $\pm2$ points appears to be a property of well-formed substitution rather than of one vendor; where the commercial generator trails, a cleaner generator closes the gap, locating the residual squarely in generation quality. \textbf{A reusable protocol.} The paired masked-span design and the TOST margin are not specific to one vendor or language---a template for auditing any structure-preserving privacy transform.
 
 \section{Ethics and Data Statement}
 All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for a shared task; PII-Masking-300k synthetic; MultiCoNER~v2 public). \textbf{No real patient data is used.} We release the 250-document subsets and scoring code with license notes. \textbf{Dual-use.} A utility-preserving de-identifier could in principle launder identifiable data into a fluent form; our masked-span/leakage reporting and the privacy-positive framing of \tp{x}-masking keep the privacy accounting explicit. \textbf{Conflict of interest.} The commercial transform (Custodian Guardian Layer) is developed by Custodian AI, with which the authors are affiliated; this work was conducted with Custodian AI's support. To limit bias we (i)~frame the contribution as a reusable protocol, (ii)~include open-source baselines so results are reproducible without proprietary access, and (iii)~report leakage and coverage alongside utility.
