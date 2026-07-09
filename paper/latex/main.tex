@@ -160,7 +160,32 @@ The core paired study, the equivalence analysis (pooled and per-benchmark), the 
 \section{Results}\label{sec:results}
 \textbf{Detectability is statistically unchanged.} Restricting to the 56{,}174 masked spans and pooling all 11 detectors, recall moves $76.2\%\rightarrow75.0\%$ ($-1.2$ pts; 95\% CI $[-1.5,-1.0]$). The TOST equivalence test ($\Delta=2$) rejects non-equivalence at $p\approx1\times10^{-8}$: the change is provably bounded within $\pm2$ points of zero. Ranking is preserved; the flagship Llama~3.3-70B is essentially unchanged ($\Delta$F1~$+0.003$). The same contingency is ``significant'' under McNemar's test---a direct demonstration of the large-$N$ trap.
 
-\textbf{Recall retention on masked spans (overlap).} When the transform masks a span, detectors still find the surrogate 93--100\% of the time (Table~\ref{tab:ret}); the $\sim$3-point exact-boundary drop is a length-jitter artifact that vanishes under overlap matching.
+\textbf{Whole-document view (conservative).} Before restricting to masked spans, Table~\ref{tab:fullf1} reports span-level F1 and leakage on \emph{all} gold spans, per detector. Whole-document $\Delta$F1 ranges from $+0.003$ (Llama~3.3-70B) to $-0.047$ (Qwen~3.5-35B-A3B), and leakage rises by only $+0.3$ to $+4.1$ points. This view is deliberately pessimistic---it mixes masked spans with exact-boundary penalties on length-changed surrogates and with spans the transform never touched---yet it already bounds the worst case and preserves ranking across a 100$\times$ span of detector quality (F1 $0.76\!\rightarrow\!0.04$). The masked-span analysis below isolates the substitution effect from this dilution.
+
+\begin{table}[t]\centering\small
+\begin{tabular}{lrrrrr}
+\toprule
+System & \multicolumn{2}{c}{F1} & $\Delta$ & \multicolumn{2}{c}{Leak}\\
+\cmidrule(lr){2-3}\cmidrule(lr){5-6}
+ & orig & transf & F1 & orig & transf\\
+\midrule
+Gemma 4 31B & .755 & .710 & $-.045$ & .255 & .285\\
+Gemma 4 E4B & .737 & .698 & $-.038$ & .276 & .311\\
+Llama 3.3-70B & .725 & .728 & $+.003$ & .245 & .262\\
+Qwen 3.5-35B-A3B & .715 & .668 & $-.047$ & .254 & .295\\
+OpenAI GPT-5 & .705 & .674 & $-.032$ & .308 & .333\\
+Qwen 3.5-9B & .655 & .621 & $-.034$ & .391 & .422\\
+Qwen 3.5-4B & .567 & .533 & $-.034$ & .483 & .515\\
+Presidio & .416 & .398 & $-.018$ & .553 & .570\\
+DeepSeek V2-Lite & .409 & .384 & $-.025$ & .672 & .696\\
+Llama 3.1-8B & .391 & .376 & $-.015$ & .633 & .650\\
+OBI \tp{deid\_roberta} & .041 & .040 & $-.002$ & .941 & .944\\
+\bottomrule
+\end{tabular}
+\caption{Whole-document view (all 11 detectors), mean over 7 benchmarks. Span-level F1 (type match) and leakage ($1-$recall). Conservative: it includes untouched spans and boundary penalties. Ranking is preserved and $\Delta$F1 is bounded.}\label{tab:fullf1}
+\end{table}
+
+\textbf{Recall retention on masked spans (overlap).} Restricting to masked spans removes that dilution. When the transform masks a span, detectors still find the surrogate 93--100\% of the time (Table~\ref{tab:ret}); the $\sim$3-point exact-boundary drop is a length-jitter artifact that vanishes under overlap matching. (The two floor detectors, Llama~3.1-8B and OBI \tp{deid\_roberta}, are omitted from Table~\ref{tab:ret}: their original recall is so low that the retention ratio is dominated by noise.)
 
 \begin{table}[t]\centering\small
 \begin{tabular}{lrr}
@@ -240,6 +265,50 @@ PII de & 415 & 56.1 & 58.3 & \textbf{78.1}\\
 
 \textbf{Leakage} barely moves ($+1.7$ to $+4.1$ pts across systems), so surrogates are not systematically easier to miss than the PHI they replace.
 
+\textbf{Where the loss lands (per benchmark).} Table~\ref{tab:perbench} breaks whole-document $\Delta$F1 out by benchmark and detector. The pattern is sharp: almost all of the loss concentrates on \textbf{ASQ-PHI}---short, sparse-PHI adversarial queries where a single substitution dominates the document score ($-0.09$ to $-0.18$)---while the other six benchmarks are essentially flat ($|\Delta\text{F1}|\le0.06$, most $\le0.03$). Even the fine-tuned OBI tagger and the rule-based Presidio move by at most a few thousandths on most benchmarks. This is the first sign that the effect tracks \emph{surrogate-generation difficulty} (short adversarial text, dense non-English identifiers) rather than detector family---made precise in the error analysis (\S\ref{sec:error}).
+
+\begin{table*}[t]\centering\small
+\begin{tabular}{lrrrrrrr}
+\toprule
+System & ASQ-PHI & MEDDOCAN & PII en & PII nl & PII fr & PII de & MultiCoNER\\
+\midrule
+Gemma 4 31B & $-.175$ & $-.017$ & $-.043$ & $-.038$ & $-.014$ & $-.016$ & $-.009$\\
+Gemma 4 E4B & $-.106$ & $-.060$ & $-.032$ & $-.021$ & $-.018$ & $-.025$ & $-.007$\\
+Qwen 3.5-35B-A3B & $-.132$ & $-.034$ & $-.026$ & $-.034$ & $-.040$ & $-.054$ & $-.007$\\
+OpenAI GPT-5 & $-.098$ & $-.046$ & $-.049$ & $-.019$ & $+.008$ & $-.005$ & $-.014$\\
+Qwen 3.5-9B & $-.123$ & $-.017$ & $-.025$ & $-.010$ & $-.034$ & $-.024$ & $-.008$\\
+Qwen 3.5-4B & $-.086$ & $-.055$ & $-.034$ & $-.028$ & $-.015$ & $-.023$ & $+.002$\\
+Presidio & $+.003$ & $-.037$ & $-.032$ & $-.015$ & $-.020$ & $-.015$ & $-.007$\\
+Llama 3.1-8B & $-.108$ & $+.023$ & $-.014$ & $+.007$ & $-.009$ & $+.003$ & $-.006$\\
+OBI \tp{deid\_roberta} & $+.001$ & $-.008$ & $-.004$ & $-.001$ & $+.003$ & $-.002$ & $-.001$\\
+\bottomrule
+\end{tabular}
+\caption{Per-benchmark whole-document $\Delta$F1 (transformed $-$ original; negative = drop). Almost all loss lands on ASQ-PHI; the other six benchmarks are flat. Llama~3.3-70B and DeepSeek~V2-Lite omitted for space (both flat; see Table~\ref{tab:fullf1} for their pooled $\Delta$F1).}\label{tab:perbench}
+\end{table*}
+
+\textbf{What the transform does (examples).} Table~\ref{tab:examples} shows the substitution qualitatively across languages and formats: each PHI value becomes a same-type surrogate while clinical shorthand, foreign-language syntax, and JSON structure are left byte-for-byte intact. On the well-formed English cases every surrogate is still detected.
+
+\begin{table*}[t]\centering\small
+\begin{tabular}{p{2.3cm}p{6.0cm}p{6.0cm}}
+\toprule
+Case & Original & Transformed\\
+\midrule
+ASQ-PHI (clinical query) & \dots a \textbf{34}-year-old female \dots like \textbf{Anna~S.}, \dots at Methodist Hospital on \textbf{April~12,~2023}? & \dots a \textbf{35}-year-old female \dots like \textbf{Maria~S.}, \dots at Methodist Hospital on \textbf{March~13,~2021}?\\
+\addlinespace
+ASQ-PHI (shorthand) & Rec mgmt of \textbf{70yo} M w/ CHF, seen by Dr.~\textbf{John~L.} at \textbf{Mt.~Sinai} on \textbf{Feb~21,~2023}. alt tx options\dots & Rec mgmt of \textbf{73yo} M w/ CHF, seen by Dr.~\textbf{James~L.} at \textbf{Mt.~Egypt} on \textbf{Nov~19,~2021}. alt tx options\dots\\
+\addlinespace
+PII (German) & \dots erm\"achtigen hiermit \textbf{Monsignore}, \dots Mit Datum \textbf{23/07/2011}\dots & \dots erm\"achtigen hiermit \textbf{Fulgenzio}, \dots Mit Datum \textbf{24/07/2011}\dots\\
+\addlinespace
+PII (French, JSON) & \tp{\{"Date":"20/05/2022", "City":"Saint-Priest", "Username":"phprosdocimo"\}} & \tp{\{"Date":"21/05/2023", "City":"Saint-Priest", "Username":"phprosdocimo"\}}\\
+\bottomrule
+\end{tabular}
+\caption{Worked transform examples. Only the sensitive value moves; abbreviations (\tp{w/ CHF}, \tp{alt tx}), non-English syntax, and JSON keys/quotes/indentation are preserved, so downstream parsers and detectors keep working. In the JSON case the transform changes only the date value and leaves the (also-sensitive-looking) username untouched---a coverage decision, not a utility one (see below).}\label{tab:examples}
+\end{table*}
+
+\textbf{Coverage, reported separately.} All results above are measured \emph{on the spans the transform masks}. Coverage---how much true PHI it detects and replaces---is a distinct, detector-side axis: on clinical text the transform masks $\approx$80\% of gold PHI, less on general-domain text. Decoupling matters because the two failure modes have different owners and fixes: an under-masked span is a \emph{detection} miss (add a detector/recall pass), whereas a masked-but-missed surrogate is a \emph{generation} defect (§\ref{sec:error}). Conflating them on whole-document F1 (Table~\ref{tab:fullf1}) would let a high-coverage/low-quality transform and a low-coverage/high-quality one look identical. We therefore report coverage as context and reserve the utility claim for masked spans.
+
+\textbf{Matching modes.} Unless noted, retention uses \emph{overlap} matching (detector flags any part of the surrogate span). Exact matching (Table~\ref{tab:ret}, left) additionally requires identical character boundaries and is therefore sensitive to surrogate length changes (``Anna~S.''$\rightarrow$``Maria~S.'' shifts the end offset); the $\sim$3-point exact$-$overlap gap is this boundary jitter, not missed PHI. Type matching (boundary~+~type) sits between the two and tracks overlap closely.
+
 \section{Error Analysis}\label{sec:error}
 \textbf{The lost population.} Pooled across detectors and masked spans: 39{,}550 spans found in both conditions; 3{,}261 lost. Critically, 51\% of lost spans are the \emph{same length} as the original---not a boundary effect. By type: LOCATION 28\%, NAME 23\%, DATE/AGE 22\%, ID/contact 20\%.
 
@@ -257,7 +326,7 @@ PII de & 415 & 56.1 & 58.3 & \textbf{78.1}\\
 All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for a shared task; PII-Masking-300k synthetic; MultiCoNER~v2 public). \textbf{No real patient data is used.} We release the 250-document subsets and scoring code with license notes. \textbf{Dual-use.} A utility-preserving de-identifier could in principle launder identifiable data into a fluent form; our masked-span/leakage reporting and the privacy-positive framing of \tp{x}-masking keep the privacy accounting explicit. \textbf{Conflict of interest.} The commercial transform (Custodian Guardian Layer) is developed by Custodian AI, with which the authors are affiliated; this work was conducted with Custodian AI's support. To limit bias we (i)~frame the contribution as a reusable protocol, (ii)~include open-source baselines so results are reproducible without proprietary access, and (iii)~report leakage and coverage alongside utility.
 
 \section{Limitations}
-Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 are currently demonstrated with a CPU detector (Presidio); a full 11-detector extension is future work. LLM detectors are prompt-sensitive; we fix one prompt per model (appendix).
+Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 are currently demonstrated with a CPU detector (Presidio); a full 11-detector extension is future work. LLM detectors are prompt-sensitive; we fix one prompt per model and release it with the code and data at the project's reproducibility page.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
