@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<title>Guardian Layer — Reproducibility Package</title>
+<meta name="description" content="Open reproducibility package for the structure-preservation audit: evaluation scripts, 250-doc benchmark subsets (original + transformed), and the workshop paper.">
+<style>
+  :root{--ground:#E9ECEA;--paper:#F3F5F3;--text:#18211E;--muted:#5C6B64;
+    --accent:#0F6E5C;--accent-2:#BD5B36;--line:#C5CDC8;--line-2:#D8DEDA;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--serif:Georgia,"Times New Roman",serif;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--text);font-family:var(--serif);line-height:1.6;
+    background-image:linear-gradient(var(--line-2) 1px,transparent 1px);background-size:100% 2.1rem;background-position:0 -1px;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+  header{border-bottom:2px solid var(--text);margin-top:40px;padding-bottom:8px}
+  .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  .lang{font-family:var(--mono);font-size:11px}
+  .lang a{color:var(--muted);text-decoration:none;cursor:pointer} .lang a.on{color:var(--accent);font-weight:700}
+  h1{font-weight:700;font-size:clamp(26px,5vw,42px);line-height:1.08;letter-spacing:-.015em;margin:0 0 12px}
+  h1 em{font-style:italic;color:var(--accent)}
+  .dek{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:60ch;margin:0 0 18px}
+  .meta{display:flex;flex-wrap:wrap;gap:0 22px;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px}
+  .meta b{color:var(--text)}
+  section{padding:28px 0 4px}
+  h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;display:flex;gap:10px}
+  h2::before{content:attr(data-n);color:var(--accent);font-weight:700}
+  .card{background:var(--paper);border:1px solid var(--line);padding:14px 16px;margin:0 0 12px}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:13px;padding:8px 0;border-bottom:1px solid var(--line-2)}
+  .row:last-child{border-bottom:0}
+  .row .d{color:var(--muted);font-size:11px;font-family:var(--serif);max-width:52ch}
+  a.f{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);white-space:nowrap}
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
+  th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 8px 8px 0;border-bottom:1px solid var(--text)}
+  td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line-2)}
+  td a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+  pre{background:#18211E;color:#E9ECEA;font-family:var(--mono);font-size:12px;line-height:1.7;
+    padding:14px 16px;overflow-x:auto;border-radius:2px;margin:0 0 12px}
+  .note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:10px;line-height:1.8}
+  .bl{font-size:17px;margin:6px 0}.bl b{color:var(--accent)}
+  footer{border-top:2px solid var(--text);margin:32px 0 60px;padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+  [data-zh]{display:none} .zh [data-zh]{display:revert} .zh [data-en]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="top">
+      <p class="eyebrow" data-en>Custodian Guardian Layer · Reproducibility Package</p>
+      <p class="eyebrow" data-zh>Custodian Guardian Layer · 复现包</p>
+      <span class="lang"><a id="l-en" class="on">EN</a> · <a id="l-zh">中文</a></span>
+    </div>
+    <h1><span data-en>Reproduce the audit.</span><span data-zh>复现这次评测。</span><br>
+      <em><span data-en>Scripts, data, paper.</span><span data-zh>脚本、数据、论文。</span></em></h1>
+    <p class="dek">
+      <span data-en>Everything needed to re-run the structure-preservation study: the scoring scripts, the 250-document benchmark subsets (original + transformed), and the workshop paper. Public and self-contained — no proprietary access required.</span>
+      <span data-zh>复现这次结构保持性评测所需的一切：评分脚本、250 文档 benchmark 子集（原始 + 脱敏后）、以及 workshop 论文。公开、自包含 —— 无需任何私有权限。</span></p>
+    <div class="meta"><span><b>3</b> <span data-en>analysis scripts</span><span data-zh>分析脚本</span></span><span><b>7</b> <span data-en>benchmarks · 7 languages</span><span data-zh>benchmark · 7 语言</span></span><span><b>1,750</b> <span data-en>docs</span><span data-zh>文档</span></span></div>
+  </header>
+
+  <section>
+    <h2 data-n="01"><span data-en>Paper</span><span data-zh>论文</span></h2>
+    <p class="bl"><a href="./paper.pdf" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">📝 <span data-en>Workshop paper (PDF)</span><span data-zh>Workshop 论文（PDF）</span></a></p>
+    <p class="note"><span data-en>The paired multi-detector protocol, TOST equivalence testing, and the C1/C2/C3 comparison experiments. Every table below is produced by the scripts in §02.</span><span data-zh>配对多检测器协议、TOST 等价检验、C1/C2/C3 对比实验。论文里的每张表都由 §02 的脚本产出。</span></p>
+  </section>
+
+  <section>
+    <h2 data-n="02"><span data-en>Scripts</span><span data-zh>脚本</span></h2>
+    <div class="card">
+      <div class="row"><a class="f" href="./data/code/analyze_equivalence.py" download>analyze_equivalence.py</a>
+        <span class="d"><span data-en>Masked-span recall + TOST equivalence (pooled & per-benchmark, Δ sweep) + McNemar. Produces the paper's headline and Table 2.</span><span data-zh>被遮蔽 span 召回 + TOST 等价检验（合并与逐 benchmark、Δ 扫描）+ McNemar。产出论文标题结论与表 2。</span></span></div>
+      <div class="row"><a class="f" href="./data/code/run_redact_baseline.py" download>run_redact_baseline.py</a>
+        <span class="d"><span data-en>C1 — redaction floor: replace masked values with <code>*****</code> and re-detect. Produces Table 3.</span><span data-zh>C1 — 遮蔽地板值：把被遮蔽值换成 <code>*****</code> 再检测。产出表 3。</span></span></div>
+      <div class="row"><a class="f" href="./data/code/run_faker_baseline.py" download>run_faker_baseline.py</a>
+        <span class="d"><span data-en>C2 — open-surrogate baseline: substitute the same spans with Faker, re-detect. Produces Table 4.</span><span data-zh>C2 — 开源替身基线：用 Faker 替换同一批 span 再检测。产出表 4。</span></span></div>
+      <div class="row"><a class="f" href="./data/code/metrics.py" download>metrics.py</a>
+        <span class="d"><span data-en>Span-level P/R/F1 (strict / type / overlap) and leakage rate — the shared scorer.</span><span data-zh>span 级 P/R/F1（strict / type / overlap）与泄漏率 —— 共用评分器。</span></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-n="03"><span data-en>Data — 250-doc subsets</span><span data-zh>数据 — 250 文档子集</span></h2>
+    <p class="note" style="margin:0 0 12px"><span data-en>Each benchmark: the original subset and the Guardian-Layer-transformed subset, aligned by <code>doc_id</code> with gold PHI spans.</span><span data-zh>每个 benchmark：原始子集与 Guardian Layer 脱敏后子集，按 <code>doc_id</code> 对齐、带 gold PHI span。</span></p>
+    <table><thead><tr><th><span data-en>Benchmark</span><span data-zh>基准</span></th><th>Original</th><th>Transformed</th></tr></thead><tbody>
+      <tr><td>ASQ-PHI (en, clinical)</td><td><a href="./data/downloads/asq_phi_250.jsonl" download>.jsonl</a></td><td><a href="./data/downloads/asq_phi_250_transformed.jsonl" download>.jsonl</a></td></tr>
+      <tr><td>MEDDOCAN (es, clinical)</td><td><a href="./data/downloads/meddocan_250.jsonl" download>.jsonl</a></td><td><a href="./data/downloads/meddocan_250_transformed.jsonl" download>.jsonl</a></td></tr>
+      <tr><td>MultiCoNER v2 (multi)</td><td><a href="./data/downloads/multiconer_v2_250.jsonl" download>.jsonl</a></td><td><a href="./data/downloads/multiconer_v2_250_transformed.jsonl" download>.jsonl</a></td></tr>
+      <tr><td>PII-300k (en)</td><td><a href="./data/downloads/pii_masking_300k_250.jsonl" download>.jsonl</a></td><td><a href="./data/downloads/pii_masking_300k_250_transformed.jsonl" download>.jsonl</a></td></tr>
+      <tr><td>PII-300k (nl)</td><td><a href="./data/downloads/pii_masking_300k_dutch_250.jsonl" download>.jsonl</a></td><td><a href="./data/downloads/pii_masking_300k_dutch_250_transformed.jsonl" download>.jsonl</a></td></tr>
+      <tr><td>PII-300k (fr)</td><td><a href="./data/downloads/pii_masking_300k_french_250.jsonl" download>.jsonl</a></td><td><a href="./data/downloads/pii_masking_300k_french_250_transformed.jsonl" download>.jsonl</a></td></tr>
+      <tr><td>PII-300k (de)</td><td><a href="./data/downloads/pii_masking_300k_german_250.jsonl" download>.jsonl</a></td><td><a href="./data/downloads/pii_masking_300k_german_250_transformed.jsonl" download>.jsonl</a></td></tr>
+    </tbody></table>
+  </section>
+
+  <section>
+    <h2 data-n="04"><span data-en>Reproduce</span><span data-zh>如何复现</span></h2>
+    <pre># deps: numpy scipy scikit-learn presidio-analyzer faker + spaCy models
+pip install presidio-analyzer presidio-anonymizer faker
+
+# C3 — equivalence (pooled + per-benchmark, McNemar, TOST Δ∈{1,2,3})
+python scripts/analyze_equivalence.py
+
+# C1 — redaction floor (Presidio, CPU)
+PYTHONPATH=. python scripts/run_redact_baseline.py
+
+# C2 — open-surrogate baseline (Faker + Presidio, CPU)
+PYTHONPATH=. python scripts/run_faker_baseline.py</pre>
+    <p class="note"><span data-en>Scripts read the paired result files under <code>results/</code>. C1/C2 run on CPU; the equivalence analysis is pure re-analysis (no model inference).</span><span data-zh><code>results/</code> 下的配对结果文件为输入。C1/C2 纯 CPU；等价分析是纯再分析（不做模型推理）。</span></p>
+  </section>
+
+  <section>
+    <h2 data-n="05"><span data-en>License & data statement</span><span data-zh>许可与数据声明</span></h2>
+    <p class="note"><span data-en>All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN shared-task; PII-Masking-300k synthetic; MultiCoNER v2 public). No real patient data. Respect each source dataset's original license.</span><span data-zh>所有 benchmark 均为公开或合成数据（ASQ-PHI 合成；MEDDOCAN 评测任务；PII-Masking-300k 合成；MultiCoNER v2 公开）。不含真实病患数据。请遵守各源数据集的原始许可。</span></p>
+  </section>
+
+  <footer>
+    <span>Custodian Labs · Guardian Layer evaluation</span>
+    <span><a href="./report">Report</a> · <a href="./slides">Slides</a> · <a href="https://custodianai.pages.dev">Dashboard</a></span>
+  </footer>
+</div>
+<script>
+  const root=document.body, en=document.getElementById('l-en'), zh=document.getElementById('l-zh');
+  function set(l){root.classList.toggle('zh',l==='zh');en.classList.toggle('on',l!=='zh');zh.classList.toggle('on',l==='zh');
+    try{localStorage.setItem('lang',l)}catch(e){}}
+  en.onclick=()=>set('en');zh.onclick=()=>set('zh');
+  let l='en';try{l=localStorage.getItem('lang')||((navigator.language||'').toLowerCase().startsWith('zh')?'zh':'en')}catch(e){}
+  const u=new URLSearchParams(location.search).get('lang');if(u==='zh'||u==='en')l=u;set(l);
+</script>
+</body></html>

@@ -38,3 +38,18 @@ models/
 *.swp
 git_samples/
 .gh_tok
+
+# Third-party papers (copyright; not for redistribution)
+electronics-13-03781-v2.pdf
+Feng et al_2024_A geometric approach to textual augmented data filtering.pdf
+*.pdf.crdownload
+
+# LaTeX build artifacts
+paper/latex/*.aux
+paper/latex/*.log
+paper/latex/*.bbl
+paper/latex/*.blg
+paper/latex/*.out
+paper/latex/b*.log
+paper/latex/build.log
+paper/latex/tl.log
