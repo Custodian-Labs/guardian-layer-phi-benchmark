@@ -16,6 +16,9 @@
 \usepackage{booktabs}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\definecolor{cblue}{HTML}{3A6EA5}
 \usepackage{multicol}
 \usepackage{authblk}
 \usepackage[hidelinks]{hyperref}
@@ -60,7 +63,7 @@
 \newcommand{\pending}[1]{\textcolor{red}{#1}}
 % ============================================================================
 
-\title{\bfseries Surrogate Substitution Preserves PHI Detectability:\\ A Multi-Detector Equivalence Study}
+\title{\bfseries Surrogate Substitution Preserves PHI Detectability:\\ A Multi-Detector Equivalence Study\thanks{Code, data, and an interactive dashboard: \url{https://custodianai.pages.dev}. (Author-identifying; to be omitted in any anonymous-review version.)}}
 
 \author[ ]{Qiming Bao \quad Sherry J.~H. Feng}
 \affil[ ]{\normalfont\small Custodian AI}
@@ -72,7 +75,7 @@
 \begin{@twocolumnfalse}
 \begin{abstract}
 \noindent
-Structure-preserving de-identification replaces protected health information (PHI) with realistic same-type \emph{surrogates}---``Anna~S.'' becomes ``Maria~S.'', not \tp{[NAME]}---so that clinical text stays fluent and downstream tools keep working. But this only helps if the substitution does not itself corrupt the signal those tools rely on. We ask a narrow, testable question: \emph{on the spans a de-identifier actually masks, can downstream PHI detectors still find the surrogate?} We introduce a paired, multi-detector evaluation protocol that (i)~scores utility \emph{only on masked spans}, decoupling \emph{coverage} from \emph{utility}; (ii)~uses \emph{equivalence testing} (TOST) rather than null-hypothesis significance testing, which is uninformative at our sample size (57k paired spans); and (iii)~builds a surrogate-failure typology separating fixable generator defects from intrinsic detector limits. Across 11 detectors, 7 benchmarks, and 7 languages (1{,}750 documents; 57k paired masked spans), recall on masked spans moves from 76.1\% to 74.9\%---a change our equivalence test shows is \emph{statistically indistinguishable from zero within a $\pm2$-point margin} ($p\approx3\times10^{-9}$), with detector ranking preserved. The residual loss is not detectors getting worse at PHI: it concentrates in \emph{malformed and out-of-distribution} surrogates (truncation \tp{Chicago}\arr\tp{Illino}, salience loss \tp{Cedars-Sinai}\arr\tp{Vidant}). A redaction floor and an open-source surrogate baseline confirm the effect is a property of well-formed substitution generally, not one tool. We release the evaluation subsets and scoring code so the protocol can audit any structure-preserving transform.
+Structure-preserving de-identification replaces protected health information (PHI) with realistic same-type \emph{surrogates}---``Anna~S.'' becomes ``Maria~S.'', not \tp{[NAME]}---so that clinical text stays fluent and downstream tools keep working. But this only helps if the substitution does not itself corrupt the signal those tools rely on. We ask a narrow, testable question: \emph{on the spans a de-identifier actually masks, can downstream PHI detectors still find the surrogate?} We introduce a paired, multi-detector evaluation protocol that (i)~scores utility \emph{only on masked spans}, decoupling \emph{coverage} from \emph{utility}; (ii)~uses \emph{equivalence testing} (TOST) rather than null-hypothesis significance testing, which is uninformative at our sample size (57k paired spans); and (iii)~builds a surrogate-failure typology separating fixable generator defects from intrinsic detector limits. Across 11 detectors, 7 benchmarks, and 7 languages (1{,}750 documents), recall on masked spans moves from 76.1\% to 74.9\%---a change our equivalence test shows is \emph{statistically indistinguishable from zero within a $\pm2$-point margin} ($p\approx3\times10^{-9}$), with detector ranking preserved. The residual loss is not detectors getting worse at PHI: it concentrates in \emph{malformed and out-of-distribution} surrogates (truncation \tp{Chicago}\arr\tp{Illino}, salience loss \tp{Cedars-Sinai}\arr\tp{Vidant}). A redaction floor and an open-source surrogate baseline confirm the effect is a property of well-formed substitution generally, not one tool. We release the evaluation subsets and scoring code so the protocol can audit any structure-preserving transform.
 \vspace{1em}
 \end{abstract}
 \end{@twocolumnfalse}
@@ -118,41 +121,46 @@ When samples are large, null-hypothesis significance testing rejects the null fo
 
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[
-  >={Stealth[length=2mm]}, font=\footnotesize,
-  box/.style={draw=cline,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=cpaper},
-  op/.style={draw=caccent,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=caccent!8},
-  res/.style={draw=cclay,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=cclay!8},
-  ar/.style={->,thick}
+\begin{tikzpicture}[font=\scriptsize,>={Stealth[length=2.2mm]},
+  card/.style={draw=cline,fill=white,rounded corners=2pt,inner sep=4pt,align=left,text width=3.55cm},
+  op/.style={draw=caccent,fill=caccent!12,rounded corners=2pt,inner sep=3pt,align=center,minimum height=6mm,font=\scriptsize\bfseries},
+  det/.style={draw=caccent,fill=caccent!12,rounded corners=3pt,inner sep=4pt,align=center,text width=2.05cm,minimum height=17mm},
+  meas/.style={draw=cline,fill=white,rounded corners=2pt,inner sep=5pt,align=center,text width=2.5cm},
+  verdict/.style={draw=caccent,line width=0.8pt,fill=caccent!14,rounded corners=3pt,inner sep=5pt,align=center,text width=2.75cm},
+  flow/.style={->,thick,caccent!85},
+  panel/.style={rounded corners=3pt,fill=black!3,draw=cline!70,inner sep=8pt},
+  badge/.style={circle,fill=caccent,text=white,font=\scriptsize\bfseries,inner sep=0.6pt,minimum size=3.8mm}
 ]
-% top row: original -> transform -> transformed
-\node[box] (d) {Document $d$\\(real value $v$)};
-\node[op,right=14mm of d] (T) {Transform $T$\\{\scriptsize surrogate $s{=}g(v,\tau)$}};
-\node[box,right=14mm of T] (dp) {Document $d'$\\(surrogate $s$)};
-\draw[ar] (d) -- (T); \draw[ar] (T) -- (dp);
-% detector suite spanning
-\node[op,below=9mm of $(d)!0.5!(dp)$,minimum width=12.6cm] (det)
-  {\textbf{Identical detector suite $D$} (11: Presidio, OBI, Gemma, Qwen, Llama, GPT-5, DeepSeek)};
-\draw[ar] (d.south) -- ([xshift=-5cm]det.north);
-\draw[ar] (dp.south) -- ([xshift=5cm]det.north);
-% recalls
-\node[box,below=9mm of det.south west,anchor=north,xshift=2.2cm] (ro) {recall$(d)$};
-\node[box,below=9mm of det.south east,anchor=north,xshift=-2.2cm] (rt) {recall$(d')$};
-\draw[ar] ([xshift=-3cm]det.south) -- (ro.north);
-\draw[ar] ([xshift=3cm]det.south) -- (rt.north);
-% restrict to masked spans
-\node[res,below=9mm of $(ro)!0.5!(rt)$,minimum width=6.5cm] (mask)
-  {Restrict to \textbf{masked spans} $\{(v,s)\}$ \; (overlap match)};
-\draw[ar] (ro.south) |- (mask.west);
-\draw[ar] (rt.south) |- (mask.east);
-% tost
-\node[res,below=8mm of mask,minimum width=9.2cm] (tost)
-  {\textbf{TOST equivalence} ($\pm2$ pt) \;+\; McNemar {\scriptsize(large-$N$ trap)}};
-\draw[ar] (mask) -- (tost);
-% side annotations
-\node[align=left,font=\scriptsize\itshape,right=1mm of dp,text width=2.5cm] {gold spans re-aligned by char offset};
+% ---- Stage 1: substitute (with a concrete worked example) ----
+\node[card] (co) at (0,1.25) {\dots a \oldv{34}-year-old female like \oldv{Anna S.}, seen at Methodist Hospital on \oldv{April 12, 2023}?};
+\node[op]   (T)  at (0,0)    {Transform $T$};
+\node[card] (ct) at (0,-1.25){\dots a \newv{35}-year-old female like \newv{Maria S.}, seen at Methodist Hospital on \newv{March 13, 2021}?};
+\draw[flow] (co.south) -- (T.north);
+\draw[flow] (T.south) -- (ct.north);
+\node[font=\scriptsize\itshape,text=cmuted,right=1pt of T,text width=1.5cm] {same-type surrogate};
+% ---- Stage 2: detect (paired) ----
+\node[det] (det) at (5.15,0) {Identical\\ detector\\ suite $D$\\ ($\times\,11$)};
+\draw[flow] (co.east) to[out=0,in=145] (det.north west);
+\draw[flow] (ct.east) to[out=0,in=215] (det.south west);
+% ---- Stage 3: measure ----
+\node[meas] (m) at (8.5,0) {recall on masked spans\\[2pt]\textbf{76.1\%}\,$\rightarrow$\,\textbf{74.9\%}\\{\scriptsize($-1.2$ pt, $n{=}57{,}112$)}};
+\draw[flow] (det.east) -- (m.west);
+% ---- Stage 4: equivalence test ----
+\node[verdict] (v) at (11.85,0) {\textbf{TOST}, margin $\pm2$\\ $p\approx3\times10^{-9}$\\[3pt]{\color{caccent}\textbf{\checkmark\ EQUIVALENT}}\\{\scriptsize detectability preserved}};
+\draw[flow] (m.east) -- (v.west);
+% ---- background stage panels + numbered titles ----
+\begin{scope}[on background layer]
+  \node[panel,fit=(co)(ct)(T)] (p1) {};
+  \node[panel,fit=(det)] (p2) {};
+  \node[panel,fit=(m)] (p3) {};
+  \node[panel,fit=(v)] (p4) {};
+\end{scope}
+\foreach \p/\n/\ttl in {p1/1/Substitute,p2/2/Detect (paired),p3/3/Measure,p4/4/Equivalence test}{
+  \node[badge] (b\p) at ([xshift=5pt,yshift=6pt]\p.north west) {\n};
+  \node[anchor=west,font=\scriptsize\bfseries,text=black] at (b\p.east) {\,\ttl};
+}
 \end{tikzpicture}
-\caption{The paired evaluation protocol. Each document is scored in \emph{both} conditions ($d$, $d'$) by the identical 11-detector suite, so any per-span change is attributable to the substitution. Utility is measured \emph{only on masked spans}, and the paired recall difference is assessed with an equivalence test (TOST) rather than a significance test (\S\ref{sec:protocol}).}
+\caption{\textbf{The paired evaluation protocol, with a worked example.} \textbf{(1)}~The transform replaces each PHI value with a same-type surrogate (\oldv{original}~$\rightarrow$~\newv{surrogate}), leaving everything else byte-identical. \textbf{(2)}~The \emph{identical} 11-detector suite scores \emph{both} the original $d$ and the transformed $d'$, so any per-span change is attributable to the substitution alone. \textbf{(3)}~Utility is measured \emph{only on the spans the transform masks} (overlap match), decoupling it from coverage. \textbf{(4)}~The paired recall difference is assessed with an equivalence test (TOST, margin $\pm2$ pts) rather than a significance test---which the large sample would make trivially ``significant'' (\S\ref{sec:protocol}). Result: the change is statistically equivalent to zero.}
 \label{fig:protocol}
 \end{figure*}
 
@@ -227,7 +235,34 @@ DeepSeek V2-Lite & 87.7 & \textbf{92.8}\\
 \caption{Recall retention on masked spans (\%), transformed$\div$original.}\label{tab:ret}
 \end{table}
 
-\textbf{Per-benchmark equivalence (C3).} Table~\ref{tab:c3} (57{,}112 masked spans, via \tp{scripts/analyze\_equivalence.py}) shows the pooled equivalence is \emph{not uniform}: four benchmarks are equivalent within $\pm2$ points; MEDDOCAN and PII-nl require $\pm3$ (both dense, identifier-heavy, non-English---where surrogate generation is hardest, \S\ref{sec:error}); MultiCoNER has too few masked spans (220) to test. The honest claim: \emph{detectability is equivalent within $\pm2$ points on average and on clean text, and within $\pm3$ on the hardest identifier-dense text}---the residual is concentrated and attributable, not diffuse degradation.
+\textbf{Per-benchmark equivalence (C3).} Table~\ref{tab:c3} (57{,}112 masked spans, via \tp{scripts/analyze\_equivalence.py}) shows the pooled equivalence is \emph{not uniform}: four benchmarks are equivalent within $\pm2$ points; MEDDOCAN and PII-nl require $\pm3$ (both dense, identifier-heavy, non-English---where surrogate generation is hardest, \S\ref{sec:error}); MultiCoNER has too few masked spans (220) to test. The honest claim: \emph{detectability is equivalent within $\pm2$ points on average and on clean text, and within $\pm3$ on the hardest identifier-dense text}---the residual is concentrated and attributable, not diffuse degradation (Figure~\ref{fig:forest}).
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=\linewidth, height=5.2cm,
+  xmin=-4.4, xmax=5.4, xlabel={recall change: original $-$ transformed (pts)},
+  xlabel style={font=\scriptsize}, tick label style={font=\scriptsize},
+  ytick={1,2,3,4,5,6,7,8},
+  yticklabels={Pooled,PII-de,PII-fr,ASQ-PHI,MultiCoNER,PII-en,PII-nl,MEDDOCAN},
+  ymin=0.4, ymax=8.9, axis y line=left, axis x line=bottom, clip=false,
+]
+\fill[caccent!12] (axis cs:-2,0.4) rectangle (axis cs:2,8.6);
+\draw[caccent!65,dashed] (axis cs:-2,0.4)--(axis cs:-2,8.6);
+\draw[caccent!65,dashed] (axis cs:2,0.4)--(axis cs:2,8.6);
+\draw[black!45] (axis cs:0,0.4)--(axis cs:0,8.6);
+\addplot[only marks,mark=*,mark size=1.5pt,color=cclay,
+  error bars/.cd,x dir=both,x explicit] coordinates {
+  (1.22,1) +- (0.26,0.26) (-0.28,2) +- (0.86,0.86) (-0.77,3) +- (0.79,0.79)
+  (0.81,4) +- (0.55,0.55) (0.45,5) +- (4.45,4.45) (0.87,6) +- (0.84,0.84)
+  (1.92,7) +- (1.02,1.02) (1.86,8) +- (0.38,0.38)};
+\node[font=\scriptsize,text=caccent,anchor=south] at (axis cs:0,8.6) {equivalence margin $\pm2$};
+\end{axis}
+\end{tikzpicture}
+\caption{Per-benchmark equivalence (C3). Masked-span recall change (original~$-$~transformed) with 95\% CIs; the shaded band is the $\pm2$-pt equivalence margin. The pooled estimate and five of seven benchmarks sit fully inside; only MEDDOCAN and PII-nl reach past $+2$ (hence a $\pm3$ margin). MultiCoNER's wide interval reflects its 220 masked spans.}
+\label{fig:forest}
+\end{figure}
 
 \begin{table}[t]\centering\small
 \begin{tabular}{lrrrl}
@@ -283,6 +318,28 @@ PII de & 415 & 56.1 & 58.3 & \textbf{78.1}\\
 \end{tabular}
 \caption{C2 open-surrogate baseline: Presidio masked-span recall (\%). Detector-independent argument; Presidio-only demonstration.}\label{tab:c2}
 \end{table}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=\linewidth, height=5.2cm, ybar, bar width=2.5pt,
+  symbolic x coords={ASQ,MEDD,en,nl,fr,de}, xtick=data,
+  ymin=0, ymax=108, ylabel={masked-span recall (\%)},
+  ylabel style={font=\scriptsize}, tick label style={font=\scriptsize},
+  legend style={font=\scriptsize,at={(0.5,1.02)},anchor=south,legend columns=4,draw=none,/tikz/every even column/.append style={column sep=4pt}},
+  enlarge x limits=0.14,
+]
+\addplot[fill=black!28,draw=none] coordinates {(ASQ,94.5)(MEDD,75.4)(en,75.6)(nl,83.6)(fr,61.4)(de,56.1)};
+\addplot[fill=caccent,draw=none] coordinates {(ASQ,95.7)(MEDD,72.9)(en,73.5)(nl,77.7)(fr,59.9)(de,58.3)};
+\addplot[fill=cblue,draw=none] coordinates {(ASQ,97.7)(MEDD,79.7)(en,89.2)(nl,93.0)(fr,78.5)(de,78.1)};
+\addplot[fill=cclay,draw=none] coordinates {(ASQ,0)(MEDD,0)(en,1.9)(nl,3.8)(fr,2.2)(de,0)};
+\legend{Original,Transform,Faker,Redact}
+\end{axis}
+\end{tikzpicture}
+\caption{What structure preservation buys (C1/C2; Presidio masked-span recall). Transform tracks the original, the open Faker baseline is at least as high, and redaction collapses to $\approx$0. The gap between the Transform/Faker bars and the Redact bar is the detectability that structure preservation retains.}
+\label{fig:bars}
+\end{figure}
 
 \textbf{Leakage} barely moves ($+1.7$ to $+4.1$ pts across systems), so surrogates are not systematically easier to miss than the PHI they replace.
 
