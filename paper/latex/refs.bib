@@ -1,8 +1,20 @@
+% ============================ Statistics / methodology ======================
+@article{schuirmann1987tost,
+  title={A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability},
+  author={Schuirmann, Donald J},
+  journal={Journal of Pharmacokinetics and Biopharmaceutics}, volume={15}, number={6}, pages={657--680}, year={1987}
+}
+
 @article{lakens2017tost,
   title={Equivalence tests: A practical primer for t tests, correlations, and meta-analyses},
   author={Lakens, Dani{\"e}l},
-  journal={Social Psychological and Personality Science},
-  volume={8}, number={4}, pages={355--362}, year={2017}, publisher={SAGE}
+  journal={Social Psychological and Personality Science}, volume={8}, number={4}, pages={355--362}, year={2017}
+}
+
+@article{lakens2018equivalence,
+  title={Equivalence testing for psychological research: A tutorial},
+  author={Lakens, Dani{\"e}l and Scheel, Anne M and Isager, Peder M},
+  journal={Advances in Methods and Practices in Psychological Science}, volume={1}, number={2}, pages={259--269}, year={2018}
 }
 
 @article{mcnemar1947,
@@ -11,11 +23,29 @@
   journal={Psychometrika}, volume={12}, number={2}, pages={153--157}, year={1947}
 }
 
-@inproceedings{marimon2019meddocan,
-  title={Automatic de-identification of medical texts in {S}panish: the {MEDDOCAN} track, corpus, guidelines, methods and evaluation of results},
-  author={Marimon, Montserrat and Gonzalez-Agirre, Aitor and Intxaurrondo, Ander and Rodriguez, Heidy and Lopez Martin, Jose Antonio and Villegas, Marta and Krallinger, Martin},
-  booktitle={Proceedings of the Iberian Languages Evaluation Forum (IberLEF)},
-  year={2019}
+@inproceedings{dror2018hitchhiker,
+  title={The hitchhiker's guide to testing statistical significance in natural language processing},
+  author={Dror, Rotem and Baumer, Gili and Shlomov, Segev and Reichart, Roi},
+  booktitle={Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (ACL)}, pages={1383--1392}, year={2018}
+}
+
+@inproceedings{card2020power,
+  title={With little power comes great responsibility},
+  author={Card, Dallas and Henderson, Peter and Khandelwal, Urvashi and Jia, Robin and Mahowald, Kyle and Jurafsky, Dan},
+  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, pages={9263--9274}, year={2020}
+}
+
+@article{berger1996bioequivalence,
+  title={Bioequivalence trials, intersection-union tests and equivalence confidence sets},
+  author={Berger, Roger L and Hsu, Jason C},
+  journal={Statistical Science}, volume={11}, number={4}, pages={283--319}, year={1996}
+}
+
+% ============================ De-identification =============================
+@article{uzuner2007evaluating,
+  title={Evaluating the state-of-the-art in automatic de-identification},
+  author={Uzuner, {\"O}zlem and Luo, Yuan and Szolovits, Peter},
+  journal={Journal of the American Medical Informatics Association}, volume={14}, number={5}, pages={550--563}, year={2007}
 }
 
 @article{stubbs2015i2b2,
@@ -24,17 +54,65 @@
   journal={Journal of Biomedical Informatics}, volume={58}, pages={S20--S29}, year={2015}
 }
 
+@inproceedings{marimon2019meddocan,
+  title={Automatic de-identification of medical texts in {S}panish: the {MEDDOCAN} track, corpus, guidelines, methods and evaluation of results},
+  author={Marimon, Montserrat and Gonzalez-Agirre, Aitor and Intxaurrondo, Ander and Rodriguez, Heidy and Lopez Martin, Jose Antonio and Villegas, Marta and Krallinger, Martin},
+  booktitle={Proceedings of the Iberian Languages Evaluation Forum (IberLEF)}, year={2019}
+}
+
+@article{dernoncourt2017deid,
+  title={De-identification of patient notes with recurrent neural networks},
+  author={Dernoncourt, Franck and Lee, Ji Young and Uzuner, {\"O}zlem and Szolovits, Peter},
+  journal={Journal of the American Medical Informatics Association}, volume={24}, number={3}, pages={596--606}, year={2017}
+}
+
+@article{liu2017deid,
+  title={De-identification of clinical notes via recurrent neural network and conditional random field},
+  author={Liu, Zengjian and Tang, Buzhou and Wang, Xiaolong and Chen, Qingcai},
+  journal={Journal of Biomedical Informatics}, volume={75}, pages={S34--S42}, year={2017}
+}
+
+@inproceedings{johnson2020deid,
+  title={Deidentification of free-text medical records using pre-trained bidirectional transformers},
+  author={Johnson, Alistair E W and Bulgarelli, Lucas and Pollard, Tom J},
+  booktitle={Proceedings of the ACM Conference on Health, Inference, and Learning (CHIL)}, pages={214--221}, year={2020}
+}
+
 @article{carrell2013hiding,
   title={Hiding in plain sight: use of realistic surrogates to reduce exposure of protected health information in clinical text},
   author={Carrell, David and Malin, Bradley and Aberdeen, John and Bayer, Samuel and Clark, Cheryl and Wellner, Ben and Hirschman, Lynette},
   journal={Journal of the American Medical Informatics Association}, volume={20}, number={2}, pages={342--348}, year={2013}
 }
 
+@article{carrell2020parrot,
+  title={The machine giveth and the machine taketh away: a parrot attack on clinical text deidentified with hiding in plain sight},
+  author={Carrell, David S and Cronkite, David J and Li, Muqun Rachel and Nyemba, Steve and Malin, Bradley A and Aberdeen, John S and Hirschman, Lynette},
+  journal={Journal of the American Medical Informatics Association}, volume={27}, number={12}, pages={1937--1942}, year={2020}
+}
+
+@article{liu2023deidgpt,
+  title={{DeID-GPT}: Zero-shot medical text de-identification by {GPT-4}},
+  author={Liu, Zhengliang and Yu, Xiaowei and Zhang, Lu and Wu, Zihao and Cao, Chao and Dai, Haixing and others},
+  journal={arXiv preprint arXiv:2303.11032}, year={2023}
+}
+
+@misc{hhs2012safeharbor,
+  title={Guidance regarding methods for de-identification of protected health information in accordance with the {HIPAA} {P}rivacy {R}ule},
+  author={{U.S. Department of Health and Human Services}}, year={2012},
+  howpublished={\url{https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/}}
+}
+
+% ============================ Datasets / tools =============================
+@inproceedings{malmasi2022multiconer,
+  title={{MultiCoNER}: A large-scale multilingual dataset for complex named entity recognition},
+  author={Malmasi, Shervin and Fang, Anjie and Fetahu, Besnik and Kar, Sudipta and Rokhlenko, Oleg},
+  booktitle={Proceedings of the 29th International Conference on Computational Linguistics (COLING)}, pages={3798--3809}, year={2022}
+}
+
 @inproceedings{fetahu2023multiconer,
   title={{MultiCoNER} v2: a large multilingual dataset for fine-grained and noisy named entity recognition},
   author={Fetahu, Besnik and Kar, Sudipta and Chen, Zhiyu and Rokhlenko, Oleg and Malmasi, Shervin},
-  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023},
-  year={2023}
+  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023}, year={2023}
 }
 
 @misc{presidio,
@@ -47,18 +125,64 @@
   author={Faraglia, Daniele and {Other Contributors}}, howpublished={\url{https://github.com/joke2k/faker}}, year={2012}
 }
 
+@misc{spacy,
+  title={{spaCy}: Industrial-strength natural language processing in {P}ython},
+  author={Honnibal, Matthew and Montani, Ines and Van Landeghem, Sofie and Boyd, Adriane}, year={2020},
+  howpublished={\url{https://spacy.io}}
+}
+
 @misc{ai4privacy2023,
   title={{PII}-masking-300k: a dataset for training privacy-preserving models},
   author={{ai4Privacy}}, howpublished={\url{https://huggingface.co/datasets/ai4privacy/pii-masking-300k}}, year={2023}
 }
 
-@article{johnson2020deid,
-  title={Deidentification of free-text medical records using pre-trained bidirectional transformers},
-  author={Johnson, Alistair E W and Bulgarelli, Lucas and Pollard, Tom J},
-  journal={Proceedings of the ACM Conference on Health, Inference, and Learning}, year={2020}
+% ============================ Models / backbones ===========================
+@inproceedings{vaswani2017attention,
+  title={Attention is all you need},
+  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)}, year={2017}
 }
 
-@article{custodian_patent,
+@inproceedings{devlin2019bert,
+  title={{BERT}: Pre-training of deep bidirectional transformers for language understanding},
+  author={Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  booktitle={Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL-HLT)}, pages={4171--4186}, year={2019}
+}
+
+@article{liu2019roberta,
+  title={{RoBERTa}: A robustly optimized {BERT} pretraining approach},
+  author={Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},
+  journal={arXiv preprint arXiv:1907.11692}, year={2019}
+}
+
+@article{llama3herd,
+  title={The {L}lama 3 herd of models},
+  author={{Grattafiori, Aaron and Dubey, Abhimanyu and others (Llama Team, AI @ Meta)}},
+  journal={arXiv preprint arXiv:2407.21783}, year={2024}
+}
+
+@article{qwen25report,
+  title={{Qwen2.5} technical report},
+  author={{Qwen Team}}, journal={arXiv preprint arXiv:2412.15115}, year={2024}
+}
+
+@article{gemma2report,
+  title={{Gemma 2}: Improving open language models at a practical size},
+  author={{Gemma Team, Google DeepMind}}, journal={arXiv preprint arXiv:2408.00118}, year={2024}
+}
+
+@article{deepseekv2,
+  title={{DeepSeek-V2}: A strong, economical, and efficient mixture-of-experts language model},
+  author={{DeepSeek-AI}}, journal={arXiv preprint arXiv:2405.04434}, year={2024}
+}
+
+@article{openai2023gpt4,
+  title={{GPT-4} technical report},
+  author={{OpenAI}}, journal={arXiv preprint arXiv:2303.08774}, year={2023}
+}
+
+% ============================ Case-study transform =========================
+@misc{custodian_patent,
   title={Structure-preserving de-identification of sensitive text (patent pending)},
   author={Feng, Sherry J. H. and others},
   note={Custodian Labs; citation to be finalized once the patent issues}, year={2025}
