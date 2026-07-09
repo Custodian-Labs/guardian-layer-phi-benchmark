@@ -39,10 +39,10 @@
 \newcommand{\pending}[1]{\textcolor{red}{#1}}
 % ============================================================================
 
-\title{\bfseries Does Structure-Preserving De-identification Preserve\\ Detectability? A Paired, Multi-Detector Equivalence Study of\\ Surrogate Substitution for Clinical PHI}
+\title{\bfseries Surrogate Substitution Preserves PHI Detectability:\\ A Multi-Detector Equivalence Study}
 
-\author[ ]{Qiming Bao \quad Sherry J.~H. Feng \quad Custodian AI}
-\affil[ ]{\normalfont\small Custodian Labs}
+\author[ ]{Qiming Bao \quad Sherry J.~H. Feng}
+\affil[ ]{\normalfont\small Custodian AI}
 \date{}
 
 \begin{document}
@@ -254,7 +254,7 @@ PII de & 415 & 56.1 & 58.3 & \textbf{78.1}\\
 \textbf{What the evidence supports.} Structure-preserving substitution does not hide well-formed PHI from downstream detection. Because the effect is equivalence-bounded within $\pm2$ points and ranking-preserving across a heterogeneous 11-detector panel, a transform of this quality can be safely inserted ahead of detection/analytics pipelines built for real clinical text. \textbf{Generality (C2).} Faker preserves masked-span recall at least as well as the original across all six benchmarks, so $\pm2$ points is a property of well-formed substitution, not one vendor; where the commercial generator trails, a cleaner generator closes the gap, locating the residual squarely in generation quality. \textbf{A reusable protocol.} The paired masked-span design and the TOST margin are not specific to one vendor or language---a template for auditing any structure-preserving privacy transform.
 
 \section{Ethics and Data Statement}
-All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for a shared task; PII-Masking-300k synthetic; MultiCoNER~v2 public). \textbf{No real patient data is used.} We release the 250-document subsets and scoring code with license notes. \textbf{Dual-use.} A utility-preserving de-identifier could in principle launder identifiable data into a fluent form; our masked-span/leakage reporting and the privacy-positive framing of \tp{x}-masking keep the privacy accounting explicit. \textbf{Conflict of interest.} The commercial transform (Custodian Guardian Layer) is developed by Custodian Labs, with which one or more authors are affiliated; this work was conducted with Custodian Labs' support. To limit bias we (i)~frame the contribution as a reusable protocol, (ii)~include open-source baselines so results are reproducible without proprietary access, and (iii)~report leakage and coverage alongside utility.
+All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for a shared task; PII-Masking-300k synthetic; MultiCoNER~v2 public). \textbf{No real patient data is used.} We release the 250-document subsets and scoring code with license notes. \textbf{Dual-use.} A utility-preserving de-identifier could in principle launder identifiable data into a fluent form; our masked-span/leakage reporting and the privacy-positive framing of \tp{x}-masking keep the privacy accounting explicit. \textbf{Conflict of interest.} The commercial transform (Custodian Guardian Layer) is developed by Custodian AI, with which the authors are affiliated; this work was conducted with Custodian AI's support. To limit bias we (i)~frame the contribution as a reusable protocol, (ii)~include open-source baselines so results are reproducible without proprietary access, and (iii)~report leakage and coverage alongside utility.
 
 \section{Limitations}
 Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 are currently demonstrated with a CPU detector (Presidio); a full 11-detector extension is future work. LLM detectors are prompt-sensitive; we fix one prompt per model (appendix).
