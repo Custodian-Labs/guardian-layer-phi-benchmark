@@ -14,6 +14,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
 \usepackage{multicol}
 \usepackage{authblk}
 \usepackage[hidelinks]{hyperref}
@@ -39,8 +41,8 @@
 
 \title{\bfseries Does Structure-Preserving De-identification Preserve\\ Detectability? A Paired, Multi-Detector Equivalence Study of\\ Surrogate Substitution for Clinical PHI}
 
-\author[ ]{Anonymous / author list to confirm}
-\affil[ ]{\normalfont\small Custodian Labs \quad(affiliations and order pending -- see \tp{paper/PREP.md}~\S5)}
+\author[ ]{Qiming Bao \quad Sherry J.~H. Feng \quad Custodian AI}
+\affil[ ]{\normalfont\small Custodian Labs}
 \date{}
 
 \begin{document}
@@ -93,8 +95,48 @@ When samples are large, null-hypothesis significance testing rejects the null fo
 
 \textbf{Coverage vs.\ utility.} Two quantities must not be conflated. \emph{Coverage} is the fraction of true PHI that $T$ detects and replaces (a property of $T$'s detector). \emph{Utility} is, given that a span was replaced, whether a downstream detector still finds the surrogate $s$ as well as it found $v$ (a property of $T$'s generator and of the surrogate's realism). We report coverage separately and measure utility \emph{only on the masked-span population} $\{(v,s)\}$. This prevents a low-coverage transform from looking good---or a high-coverage one from looking bad---on a metric that is really about substitution quality.
 
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  >={Stealth[length=2mm]}, font=\footnotesize,
+  box/.style={draw,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=black!3},
+  op/.style={draw,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=green!8},
+  res/.style={draw,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=orange!10},
+  ar/.style={->,thick}
+]
+% top row: original -> transform -> transformed
+\node[box] (d) {Document $d$\\(real value $v$)};
+\node[op,right=14mm of d] (T) {Transform $T$\\{\scriptsize surrogate $s{=}g(v,\tau)$}};
+\node[box,right=14mm of T] (dp) {Document $d'$\\(surrogate $s$)};
+\draw[ar] (d) -- (T); \draw[ar] (T) -- (dp);
+% detector suite spanning
+\node[op,below=9mm of $(d)!0.5!(dp)$,minimum width=12.6cm] (det)
+  {\textbf{Identical detector suite $D$} (11: Presidio, OBI, Gemma, Qwen, Llama, GPT-5, DeepSeek)};
+\draw[ar] (d.south) -- ([xshift=-5cm]det.north);
+\draw[ar] (dp.south) -- ([xshift=5cm]det.north);
+% recalls
+\node[box,below=9mm of det.south west,anchor=north,xshift=2.2cm] (ro) {recall$(d)$};
+\node[box,below=9mm of det.south east,anchor=north,xshift=-2.2cm] (rt) {recall$(d')$};
+\draw[ar] ([xshift=-3cm]det.south) -- (ro.north);
+\draw[ar] ([xshift=3cm]det.south) -- (rt.north);
+% restrict to masked spans
+\node[res,below=9mm of $(ro)!0.5!(rt)$,minimum width=6.5cm] (mask)
+  {Restrict to \textbf{masked spans} $\{(v,s)\}$ \; (overlap match)};
+\draw[ar] (ro.south) |- (mask.west);
+\draw[ar] (rt.south) |- (mask.east);
+% tost
+\node[res,below=8mm of mask,minimum width=9.2cm] (tost)
+  {\textbf{TOST equivalence} ($\pm2$ pt) \;+\; McNemar {\scriptsize(large-$N$ trap)}};
+\draw[ar] (mask) -- (tost);
+% side annotations
+\node[align=left,font=\scriptsize\itshape,right=1mm of dp,text width=2.5cm] {gold spans re-aligned by char offset};
+\end{tikzpicture}
+\caption{The paired evaluation protocol. Each document is scored in \emph{both} conditions ($d$, $d'$) by the identical 11-detector suite, so any per-span change is attributable to the substitution. Utility is measured \emph{only on masked spans}, and the paired recall difference is assessed with an equivalence test (TOST) rather than a significance test (\S\ref{sec:protocol}).}
+\label{fig:protocol}
+\end{figure*}
+
 \section{Evaluation Protocol}\label{sec:protocol}
-\textbf{Paired multi-detector design.} Each document is scored in two conditions---original $d$ and transformed $d'$---by the \emph{identical} detector suite $D$ ($|D|=11$). Because the only change between conditions is the substitution, any per-span change in detection is attributable to the substitution, not to the detector or the document.
+Figure~\ref{fig:protocol} summarizes the protocol. \textbf{Paired multi-detector design.} Each document is scored in two conditions---original $d$ and transformed $d'$---by the \emph{identical} detector suite $D$ ($|D|=11$). Because the only change between conditions is the substitution, any per-span change in detection is attributable to the substitution, not to the detector or the document.
 
 \textbf{Metrics.} We report span-level P/R/F1 under three matching modes---\emph{exact} (start+end+type), \emph{type} (type+boundary), \emph{overlap} (any character overlap+type)---and \emph{leakage}~$=1-\text{recall}$, the HIPAA-critical quantity. The headline utility metric is \emph{recall retention on masked spans}~$=\text{recall}(d')/\text{recall}(d)$ restricted to $\{(v,s)\}$, under overlap matching (so pure boundary jitter from length changes, ``Anna~S.''$\rightarrow$``Maria~S.'', is not charged as a miss).
 
