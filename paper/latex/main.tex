@@ -33,6 +33,14 @@
 % new value: green bold. Colour + weight distinguish them, in grayscale too.
 \newcommand{\oldv}[1]{\textcolor{cclay}{#1}}
 \newcommand{\newv}[1]{\textcolor{caccent}{\textbf{#1}}}
+% prediction-overlay highlights (matches the dashboard "ranking proof" widget)
+\definecolor{hgreen}{HTML}{CDEBD9}   % correctly caught (TP)
+\definecolor{hyellow}{HTML}{F6E7A6}  % false positive
+\definecolor{hred}{HTML}{F3C9C4}     % missed (leakage)
+\setlength{\fboxsep}{1pt}
+\newcommand{\hg}[1]{\colorbox{hgreen}{#1}}
+\newcommand{\hy}[1]{\colorbox{hyellow}{#1}}
+\newcommand{\hr}[1]{\colorbox{hred}{#1}}
 % light "card" callout matching the website cards
 \newcommand{\card}[1]{\begin{center}\fcolorbox{cline}{cpaper}{\parbox{0.94\linewidth}{\small #1}}\end{center}}
 \setlength{\columnsep}{0.8cm}
@@ -364,6 +372,22 @@ LOCATION / address & 43.7\%\\
 \textbf{Detection vs.\ replacement.} On a sample of 8 MEDDOCAN documents (62 missed ID/location spans), $48/62$ ($\approx$77\%) of the \emph{un}masked identifiers were nonetheless flagged as sensitive by the transform's own detector---they were detected but not substituted; only $14/62$ (23\%) were undetected. The coverage gap is therefore mostly a \emph{replacement-step} issue (act on everything the detector surfaces), which is more tractable than raising detection recall. (Small sample; ``detected'' judged by loose token overlap, so 77\% is directional.) Concrete unmasked HIPAA identifiers included patient IDs (\tp{80926}, \tp{7845693}), care-contact IDs (\tp{4387684}), and facilities/geography (\tp{Hospital de Cruces}, \tp{Espa\~na}, postal codes \tp{41005}, \tp{28047}).
 
 \section{Representative Per-Detector Examples}\label{app:examples}
+
+\begin{figure*}[t]
+\centering
+\footnotesize
+\setlength{\fboxsep}{4pt}%
+\newcommand{\panel}[3]{\fcolorbox{cline}{white}{\parbox{0.96\textwidth}{%
+\textbf{#1}\hfill{\scriptsize\color{cmuted}#2}\\[2pt]\ttfamily\scriptsize #3}}\\[4pt]}
+\setlength{\fboxsep}{1pt}%
+\panel{Gold (reference)}{4 PHI spans}{Evaluation of long-term outcomes for bypass surgery in patients over 60, referencing Mr.\ \hg{John T.}, operated at \hg{Saint. Vxxxxxxxx} on \hg{April 25th, 2018} (ID: \hg{987654321})?}
+\panel{Microsoft Presidio}{tp 3 $\cdot$ fp 1 $\cdot$ missed 1}{Evaluation of long-term outcomes for bypass surgery in patients over \hy{60}, referencing Mr.\ \hg{John T.}, operated at \hr{Saint. Vxxxxxxxx} on \hg{April 25th, 2018} (ID: \hg{987654321})?}
+\panel{OBI \texttt{deid\_roberta}}{tp 4 (fragmented) $\cdot$ fp 1 $\cdot$ missed 0}{Evaluation of long-term outcomes for bypass surgery in patients over \hy{60}, referencing Mr.\ \hg{John}\,\hg{T}., operated at \hg{Saint}.\,\hg{Vxxxxxxxx} on \hg{April 25th,}\,\hg{2018} (ID: \hg{9876543}\,\hg{21})?}
+\panel{OpenAI GPT-5}{tp 4 $\cdot$ fp 0 $\cdot$ missed 0}{Evaluation of long-term outcomes for bypass surgery in patients over 60, referencing \hg{Mr.\ John T.}, operated at \hg{Saint. Vxxxxxxxx} on \hg{April 25th, 2018} (\hg{ID: 987654321})?}
+\caption{Ranking proof: one transformed document (\texttt{asq\_00001}), several detectors overlaid. \hg{green}~=~correctly caught PHI, \hy{yellow}~=~false positive, \hr{red}~=~missed PHI (leakage). The strong LLM (GPT-5) tags all four surrogates cleanly; Presidio misses the \emph{x}-masked location surrogate \tp{Saint. Vxxxxxxxx} (§\ref{sec:error} mode~3) and false-fires on the age \tp{60}; the fine-tuned tagger finds the entities but over-fragments their boundaries. The gold surrogate values themselves (e.g.\ \tp{John T.}) are the transform's output, not the original PHI.}
+\label{fig:rankproof}
+\end{figure*}
+
 \textbf{Agreement on well-formed surrogates.} On clean English (ASQ-PHI), a plausible same-type surrogate is caught by nearly the whole panel (Table~\ref{tab:agree}): the substitution is invisible to detection. Divergence is confined to the two floor detectors (Llama~3.1-8B, DeepSeek~V2-Lite).
 
 \begin{table}[h]\centering\small
