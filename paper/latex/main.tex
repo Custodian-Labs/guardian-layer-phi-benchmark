@@ -383,6 +383,16 @@ LOCATION / address & 43.7\%\\
 \par}
 \vspace{4pt}
 
+\textbf{A harder case: a dense Spanish clinical header.} Figure-style overlay on a 260-character window of a MEDDOCAN document (\tp{S0210-\dots008-1}), where the same eleven detectors diverge far more---F1 from 96 down to 0. On dense, identifier-heavy non-English text the \emph{per-document} ranking reshuffles (here DeepSeek and Qwen-4B lead, while Llama~3.1-8B finds nothing in this window), even though the \emph{aggregate} ranking over 250 documents is stable (Table~\ref{tab:fullf1}). The garbled surrogate \tp{Cuidad Real} (from \tp{Ciudad Real}) is still caught by most detectors; the misses cluster on the professional-licence ID \tp{03 14 16485}, the sex fields, and the repeated age---the identifier types with the weakest coverage and the hardest surrogates (Appendix~\ref{app:coverage}).
+
+{\footnotesize
+\setlength{\fboxsep}{1pt}%
+\newcommand{\panel}[3]{\par\vspace{2.5pt}\noindent\fcolorbox{cline}{white}{\parbox{0.965\linewidth}{%
+\textbf{#1}\hfill{\scriptsize\color{cmuted}#2}\\[2pt]\ttfamily\scriptsize #3}}}
+\input{panels_med}
+\par}
+\vspace{4pt}
+
 \textbf{Agreement on well-formed surrogates.} On clean English (ASQ-PHI), a plausible same-type surrogate is caught by nearly the whole panel (Table~\ref{tab:agree}): the substitution is invisible to detection. Divergence is confined to the two floor detectors (Llama~3.1-8B, DeepSeek~V2-Lite).
 
 \begin{table}[h]\centering\small
