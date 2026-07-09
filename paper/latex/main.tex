@@ -22,6 +22,18 @@
 \usepackage{url}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{xcolor}
+\usepackage{calc}
+% ---- website palette (custodianai.pages.dev) ----
+\definecolor{caccent}{HTML}{0F6E5C}  % green  (new / surrogate)
+\definecolor{cclay}{HTML}{BD5B36}    % clay   (old / original)
+\definecolor{cpaper}{HTML}{F3F5F3}   % card background
+\definecolor{cline}{HTML}{C5CDC8}    % card border
+\definecolor{cmuted}{HTML}{5C6B64}
+% old value: clay, struck through; new value: green bold
+\newcommand{\oldv}[1]{\textcolor{cclay}{#1}\llap{\textcolor{cclay}{\rule[0.42ex]{\widthof{#1}}{0.4pt}}}}
+\newcommand{\newv}[1]{\textcolor{caccent}{\textbf{#1}}}
+% light "card" callout matching the website cards
+\newcommand{\card}[1]{\begin{center}\fcolorbox{cline}{cpaper}{\parbox{0.94\linewidth}{\small #1}}\end{center}}
 \setlength{\columnsep}{0.8cm}
 \setlength{\tabcolsep}{4pt}
 \sloppy
@@ -58,7 +70,7 @@ Structure-preserving de-identification replaces protected health information (PH
 ]
 
 \section{Introduction}
-De-identification of clinical text has two families of output. \textbf{Redaction} deletes or tags PHI (\tp{John Smith}~$\rightarrow$~\tp{[NAME]}), which is safe but destroys the fluency, layout, and distributional properties that downstream models and human readers depend on. \textbf{Structure-preserving} de-identification instead substitutes each PHI value with a plausible, same-type \emph{surrogate} (\tp{John Smith}~$\rightarrow$~\tp{Maria Lopez}), keeping the document readable and machine-parseable~\citep{carrell2013hiding}. The second family is increasingly attractive: it lets de-identified data flow into analytics, model training, and even second-pass detection without breaking pipelines built for real text.
+De-identification of clinical text has two families of output. \textbf{Redaction} deletes or tags PHI (\oldv{\tp{John Smith}}~$\rightarrow$~\tp{[NAME]}), which is safe but destroys the fluency, layout, and distributional properties that downstream models and human readers depend on. \textbf{Structure-preserving} de-identification instead substitutes each PHI value with a plausible, same-type \emph{surrogate} (\oldv{\tp{John Smith}}\arr\newv{\tp{Maria Lopez}}), keeping the document readable and machine-parseable~\citep{carrell2013hiding}. The second family is increasingly attractive: it lets de-identified data flow into analytics, model training, and even second-pass detection without breaking pipelines built for real text.
 
 The promise of structure preservation rests on an unstated assumption: \emph{the surrogate carries the same downstream signal as the value it replaced.} If substitution silently degrades the very features a PHI detector, an NER model, or a clinical parser relies on, then ``structure-preserving'' is a misnomer---the transform would be quietly laundering PHI into forms tools can no longer see or handle, which is both a utility problem and, for a second-pass safety net, a privacy problem.
 
@@ -99,9 +111,9 @@ When samples are large, null-hypothesis significance testing rejects the null fo
 \centering
 \begin{tikzpicture}[
   >={Stealth[length=2mm]}, font=\footnotesize,
-  box/.style={draw,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=black!3},
-  op/.style={draw,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=green!8},
-  res/.style={draw,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=orange!10},
+  box/.style={draw=cline,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=cpaper},
+  op/.style={draw=caccent,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=caccent!8},
+  res/.style={draw=cclay,rounded corners=2pt,align=center,inner sep=4pt,minimum height=8mm,fill=cclay!8},
   ar/.style={->,thick}
 ]
 % top row: original -> transform -> transformed
@@ -293,13 +305,13 @@ OBI \tp{deid\_roberta} & $+.001$ & $-.008$ & $-.004$ & $-.001$ & $+.003$ & $-.00
 \toprule
 Case & Original & Transformed\\
 \midrule
-ASQ-PHI (clinical query) & \dots a \textbf{34}-year-old female \dots like \textbf{Anna~S.}, \dots at Methodist Hospital on \textbf{April~12,~2023}? & \dots a \textbf{35}-year-old female \dots like \textbf{Maria~S.}, \dots at Methodist Hospital on \textbf{March~13,~2021}?\\
+ASQ-PHI (clinical query) & \dots a \oldv{34}-year-old female \dots like \oldv{Anna~S.}, \dots at Methodist Hospital on \oldv{April~12,~2023}? & \dots a \newv{35}-year-old female \dots like \newv{Maria~S.}, \dots at Methodist Hospital on \newv{March~13,~2021}?\\
 \addlinespace
-ASQ-PHI (shorthand) & Rec mgmt of \textbf{70yo} M w/ CHF, seen by Dr.~\textbf{John~L.} at \textbf{Mt.~Sinai} on \textbf{Feb~21,~2023}. alt tx options\dots & Rec mgmt of \textbf{73yo} M w/ CHF, seen by Dr.~\textbf{James~L.} at \textbf{Mt.~Egypt} on \textbf{Nov~19,~2021}. alt tx options\dots\\
+ASQ-PHI (shorthand) & Rec mgmt of \oldv{70yo} M w/ CHF, seen by Dr.~\oldv{John~L.} at \oldv{Mt.~Sinai} on \oldv{Feb~21,~2023}. alt tx options\dots & Rec mgmt of \newv{73yo} M w/ CHF, seen by Dr.~\newv{James~L.} at \newv{Mt.~Egypt} on \newv{Nov~19,~2021}. alt tx options\dots\\
 \addlinespace
-PII (German) & \dots erm\"achtigen hiermit \textbf{Monsignore}, \dots Mit Datum \textbf{23/07/2011}\dots & \dots erm\"achtigen hiermit \textbf{Fulgenzio}, \dots Mit Datum \textbf{24/07/2011}\dots\\
+PII (German) & \dots erm\"achtigen hiermit \oldv{Monsignore}, \dots Mit Datum \oldv{23/07/2011}\dots & \dots erm\"achtigen hiermit \newv{Fulgenzio}, \dots Mit Datum \newv{24/07/2011}\dots\\
 \addlinespace
-PII (French, JSON) & \tp{\{"Date":"20/05/2022", "City":"Saint-Priest", "Username":"phprosdocimo"\}} & \tp{\{"Date":"21/05/2023", "City":"Saint-Priest", "Username":"phprosdocimo"\}}\\
+PII (French, JSON) & \tp{\{"Date":"\oldv{20/05/2022}", "City":"Saint-Priest", "Username":"phprosdocimo"\}} & \tp{\{"Date":"\newv{21/05/2023}", "City":"Saint-Priest", "Username":"phprosdocimo"\}}\\
 \bottomrule
 \end{tabular}
 \caption{Worked transform examples. Only the sensitive value moves; abbreviations (\tp{w/ CHF}, \tp{alt tx}), non-English syntax, and JSON keys/quotes/indentation are preserved, so downstream parsers and detectors keep working. In the JSON case the transform changes only the date value and leaves the (also-sensitive-looking) username untouched---a coverage decision, not a utility one (see below).}\label{tab:examples}
@@ -313,9 +325,9 @@ PII (French, JSON) & \tp{\{"Date":"20/05/2022", "City":"Saint-Priest", "Username
 \textbf{The lost population.} Pooled across detectors and masked spans: 39{,}550 spans found in both conditions; 3{,}261 lost. Critically, 51\% of lost spans are the \emph{same length} as the original---not a boundary effect. By type: LOCATION 28\%, NAME 23\%, DATE/AGE 22\%, ID/contact 20\%.
 
 \textbf{Three failure modes---all generator-side.}
-(1)~\emph{Malformed/truncated surrogates} (largest cause): \tp{Chicago}\arr\tp{Illino}, \tp{El~Paso}\arr\tp{El}, \tp{Ciudad de la Habana}\arr\tp{Cuidad de la Havana}. The fragment no longer matches the lexical pattern detectors learned for real names/places; this is why span-level loss is highest on MEDDOCAN (6.9\%; Spanish, dense, identifier-heavy) and lowest on clean English ASQ-PHI (2.6\%).
-(2)~\emph{Loss of salience}: a canonical entity replaced by an obscure one (\tp{Cedars-Sinai}\arr\tp{Vidant}); detectors partly rely on pre-training familiarity, so swapping a famous value for a rare one removes the prior. Inherent to any value substitution; mainly costs weaker detectors.
-(3)~\emph{\tp{x}-masking of IDs/emails}: \tp{nachorutor@\dots}\arr\tp{nxxxxxxxxx@\dots}. The \tp{x} run preserves format but breaks the realistic-token pattern. This case is \emph{privacy-positive}---the original value is destroyed---even though it counts against recall.
+(1)~\emph{Malformed/truncated surrogates} (largest cause): \oldv{\tp{Chicago}}\arr\newv{\tp{Illino}}, \oldv{\tp{El~Paso}}\arr\newv{\tp{El}}, \oldv{\tp{Ciudad de la Habana}}\arr\newv{\tp{Cuidad de la Havana}}. The fragment no longer matches the lexical pattern detectors learned for real names/places; this is why span-level loss is highest on MEDDOCAN (6.9\%; Spanish, dense, identifier-heavy) and lowest on clean English ASQ-PHI (2.6\%).
+(2)~\emph{Loss of salience}: a canonical entity replaced by an obscure one (\oldv{\tp{Cedars-Sinai}}\arr\newv{\tp{Vidant}}); detectors partly rely on pre-training familiarity, so swapping a famous value for a rare one removes the prior. Inherent to any value substitution; mainly costs weaker detectors.
+(3)~\emph{\tp{x}-masking of IDs/emails}: \oldv{\tp{nachorutor@\dots}}\arr\newv{\tp{nxxxxxxxxx@\dots}}. The \tp{x} run preserves format but breaks the realistic-token pattern. This case is \emph{privacy-positive}---the original value is destroyed---even though it counts against recall.
 
 \textbf{Implication.} Detectors are not getting worse at PHI; the small recall gap is driven by surrogate-generation quality (truncation, garbling, salience, \tp{x}-masking). C2 confirms this directly: an open generator emitting clean canonical values \emph{exceeds} the commercial transform by 18--20 points on exactly the hard non-English benchmarks where its surrogates truncate---so the residual tracks generator quality, not the act of substitution.
 
@@ -376,13 +388,13 @@ asq\_00003 & Nov 19, 2021 (DATE) & 11/11\\
 \toprule
 Original $\rightarrow$ surrogate & O\,$\rightarrow$\,T & Type\\
 \midrule
-\tp{Cuba}\arr\tp{Havana} & 9\,$\rightarrow$\,2 & salience\\
-\tp{San Fernando}\arr\tp{Francsico Luis} & 8\,$\rightarrow$\,3 & garbled\\
-\tp{C\'adiz}\arr\tp{Cadiz} & 8\,$\rightarrow$\,4 & accent stripped\\
-\tp{Cecilio Pujaz\'on n\textordmasculine26}\arr\tp{ Pujaz\'on n\textordmasculine26} & 8\,$\rightarrow$\,4 & truncation\\
-\tp{ignaciotorne@\dots}\arr\tp{ixxxxxxxxxxx@\dots} & 9\,$\rightarrow$\,2 & \tp{x}-mask\\
-\tp{23/07/1948}\arr\tp{2xxxxxxxx} & 11\,$\rightarrow$\,4 & \tp{x}-mask\\
-\tp{40}\arr\tp{35} (age) & 9\,$\rightarrow$\,2 & bare number\\
+\oldv{\tp{Cuba}}\arr\newv{\tp{Havana}} & 9\,$\rightarrow$\,2 & salience\\
+\oldv{\tp{San Fernando}}\arr\newv{\tp{Francsico Luis}} & 8\,$\rightarrow$\,3 & garbled\\
+\oldv{\tp{C\'adiz}}\arr\newv{\tp{Cadiz}} & 8\,$\rightarrow$\,4 & accent stripped\\
+\oldv{\tp{Cecilio Pujaz\'on}}\arr\newv{\tp{ Pujaz\'on}} & 8\,$\rightarrow$\,4 & truncation\\
+\oldv{\tp{ignaciotorne@\dots}}\arr\newv{\tp{ixxxxxxxxxxx@\dots}} & 9\,$\rightarrow$\,2 & \tp{x}-mask\\
+\oldv{\tp{23/07/1948}}\arr\newv{\tp{2xxxxxxxx}} & 11\,$\rightarrow$\,4 & \tp{x}-mask\\
+\oldv{\tp{40}}\arr\newv{\tp{35}} (age) & 9\,$\rightarrow$\,2 & bare number\\
 \bottomrule
 \end{tabular}
 \caption{Representative lost spans on MEDDOCAN. O\,$\rightarrow$\,T = detectors finding the original vs.\ the surrogate (panel of 11--12; original includes one extra decoding variant). Losses are shared across detectors and align with the \S\ref{sec:error} typology.}\label{tab:lost}
