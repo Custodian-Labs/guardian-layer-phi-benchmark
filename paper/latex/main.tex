@@ -145,7 +145,7 @@ Figure~\ref{fig:protocol} summarizes the protocol. \textbf{Paired multi-detector
 \textbf{Error attribution.} For the lost population (found on $d$, missed on $d'$) we hand-code each span into a small failure typology (\S\ref{sec:error}) and check length-preservation to separate boundary artifacts from genuine misses.
 
 \section{Experimental Design}\label{sec:design}
-\textbf{Detector panel~$D$.} Eleven detectors, three families: \emph{rule/statistical}---Microsoft Presidio~\citep{presidio} (built on spaCy~\citep{spacy}), OBI \tp{deid\_roberta}~\citep{johnson2020deid}, a RoBERTa tagger~\citep{liu2019roberta,devlin2019bert}; \emph{open LLMs (local)}---Gemma~4~31B / E4B~\citep{gemma2report}, Qwen~3.5-\{4B,\,9B,\,35B-A3B\}~\citep{qwen25report}, Llama~3.1-8B / 3.3-70B~\citep{llama3herd}, DeepSeek~V2-Lite~\citep{deepseekv2}; \emph{frontier API}---OpenAI GPT-5~\citep{openai2023gpt4}. All are Transformer-based~\citep{vaswani2017attention}. The panel is deliberately heterogeneous: if the equivalence result held only for one architecture it would be a model artifact, not a property of the transform. (Model-version citations point to the closest published technical report for each family.)
+\textbf{Detector panel~$D$.} Eleven detectors, three families: \emph{rule/statistical}---Microsoft Presidio~\citep{presidio} (built on spaCy~\citep{spacy}), OBI \tp{deid\_roberta}~\citep{johnson2020deid}, a RoBERTa tagger~\citep{liu2019roberta,devlin2019bert}; \emph{open LLMs (local)}---Gemma~4~31B / E4B~\citep{gemma2report}, Qwen~3.5-\{4B,\,9B,\,35B-A3B\}~\citep{qwen25report}, Llama~3.1-8B / 3.3-70B~\citep{llama3herd}, DeepSeek~V2-Lite~\citep{deepseekv2}; \emph{frontier API}---OpenAI GPT-5~\citep{openai2023gpt4}. All are Transformer-based~\citep{vaswani2017attention}. The panel is deliberately heterogeneous: if the equivalence result held only for one architecture it would be a model artifact, not a property of the transform. (Model-version citations point to the closest published technical report for each family. One further model, Moonshot Kimi-VL-A3B, was attempted but excluded because it required non-standard model-loading code.) LLM detectors emit free-text or JSON identifier lists; we recover character spans by exact-then-fuzzy string search over the source document, so all detectors are scored on the same span basis.
 
 \textbf{Benchmarks} (7; 250 docs each, 1{,}750 total). ASQ-PHI (English clinical queries), MEDDOCAN (Spanish clinical)~\citep{marimon2019meddocan}, MultiCoNER~v2 (multilingual NER)~\citep{malmasi2022multiconer,fetahu2023multiconer}, and PII-Masking-300k~\citep{ai4privacy2023} in English, Dutch, French, German. Together: 7 languages, clinical and general-PII text, free-form and structured (JSON) formats. The transform under test is Custodian Guardian Layer \tp{transform} mode (top-1 surrogate, \tp{pii\_entities=ALL}).
 
@@ -160,7 +160,7 @@ The core paired study, the equivalence analysis (pooled and per-benchmark), the 
 \section{Results}\label{sec:results}
 \textbf{Detectability is statistically unchanged.} Restricting to the 56{,}174 masked spans and pooling all 11 detectors, recall moves $76.2\%\rightarrow75.0\%$ ($-1.2$ pts; 95\% CI $[-1.5,-1.0]$). The TOST equivalence test ($\Delta=2$) rejects non-equivalence at $p\approx1\times10^{-8}$: the change is provably bounded within $\pm2$ points of zero. Ranking is preserved; the flagship Llama~3.3-70B is essentially unchanged ($\Delta$F1~$+0.003$). The same contingency is ``significant'' under McNemar's test---a direct demonstration of the large-$N$ trap.
 
-\textbf{Whole-document view (conservative).} Before restricting to masked spans, Table~\ref{tab:fullf1} reports span-level F1 and leakage on \emph{all} gold spans, per detector. Whole-document $\Delta$F1 ranges from $+0.003$ (Llama~3.3-70B) to $-0.047$ (Qwen~3.5-35B-A3B), and leakage rises by only $+0.3$ to $+4.1$ points. This view is deliberately pessimistic---it mixes masked spans with exact-boundary penalties on length-changed surrogates and with spans the transform never touched---yet it already bounds the worst case and preserves ranking across a 100$\times$ span of detector quality (F1 $0.76\!\rightarrow\!0.04$). The masked-span analysis below isolates the substitution effect from this dilution.
+\textbf{Whole-document view (conservative).} Before restricting to masked spans, Table~\ref{tab:fullf1} reports span-level F1 and leakage on \emph{all} gold spans, per detector. Whole-document $\Delta$F1 ranges from $+0.003$ (Llama~3.3-70B) to $-0.047$ (Qwen~3.5-35B-A3B), and leakage rises by only $+0.3$ to $+4.1$ points. This view is deliberately pessimistic---it mixes masked spans with exact-boundary penalties on length-changed surrogates and with spans the transform never touched---yet it already bounds the worst case (no detector's mean F1 moves by more than 4.7 points) and preserves ranking across a 100$\times$ span of detector quality (F1 $0.76\!\rightarrow\!0.04$). The masked-span analysis below isolates the substitution effect from this dilution.
 
 \begin{table}[t]\centering\small
 \begin{tabular}{lrrrrr}
@@ -305,7 +305,7 @@ PII (French, JSON) & \tp{\{"Date":"20/05/2022", "City":"Saint-Priest", "Username
 \caption{Worked transform examples. Only the sensitive value moves; abbreviations (\tp{w/ CHF}, \tp{alt tx}), non-English syntax, and JSON keys/quotes/indentation are preserved, so downstream parsers and detectors keep working. In the JSON case the transform changes only the date value and leaves the (also-sensitive-looking) username untouched---a coverage decision, not a utility one (see below).}\label{tab:examples}
 \end{table*}
 
-\textbf{Coverage, reported separately.} All results above are measured \emph{on the spans the transform masks}. Coverage---how much true PHI it detects and replaces---is a distinct, detector-side axis: on clinical text the transform masks $\approx$80\% of gold PHI, less on general-domain text. Decoupling matters because the two failure modes have different owners and fixes: an under-masked span is a \emph{detection} miss (add a detector/recall pass), whereas a masked-but-missed surrogate is a \emph{generation} defect (§\ref{sec:error}). Conflating them on whole-document F1 (Table~\ref{tab:fullf1}) would let a high-coverage/low-quality transform and a low-coverage/high-quality one look identical. We therefore report coverage as context and reserve the utility claim for masked spans.
+\textbf{Coverage, reported separately.} All results above are measured \emph{on the spans the transform masks}. Coverage---how much true PHI it detects and replaces---is a distinct, detector-side axis. It tracks how closely a benchmark's annotation matches the transform's notion of sensitive content: it masks \textbf{80.9\%} of gold PHI on ASQ-PHI and \textbf{48.3\%} on MEDDOCAN, and less ($\approx$26\%) on general-domain NER/PII corpora whose annotated entities (encyclopedic names, generic places) fall outside that scope; a configuration sweep confirmed \tp{domain=General} maximizes coverage. A per-entity-type breakdown and a detection-vs-replacement diagnosis (the coverage gap is mostly a \emph{replacement}-step issue---$\approx$77\% of missed clinical identifiers were flagged by the transform's own detector but not substituted) are in Appendix~\ref{app:coverage}. Decoupling matters because the two failure modes have different owners and fixes: an under-masked span is a \emph{detection/replacement} miss, whereas a masked-but-missed surrogate is a \emph{generation} defect (§\ref{sec:error}). Conflating them on whole-document F1 (Table~\ref{tab:fullf1}) would let a high-coverage/low-quality transform and a low-coverage/high-quality one look identical. We therefore report coverage as context and reserve the utility claim for masked spans.
 
 \textbf{Matching modes.} Unless noted, retention uses \emph{overlap} matching (detector flags any part of the surrogate span). Exact matching (Table~\ref{tab:ret}, left) additionally requires identical character boundaries and is therefore sensitive to surrogate length changes (``Anna~S.''$\rightarrow$``Maria~S.'' shifts the end offset); the $\sim$3-point exact$-$overlap gap is this boundary jitter, not missed PHI. Type matching (boundary~+~type) sits between the two and tracks overlap closely.
 
@@ -313,7 +313,7 @@ PII (French, JSON) & \tp{\{"Date":"20/05/2022", "City":"Saint-Priest", "Username
 \textbf{The lost population.} Pooled across detectors and masked spans: 39{,}550 spans found in both conditions; 3{,}261 lost. Critically, 51\% of lost spans are the \emph{same length} as the original---not a boundary effect. By type: LOCATION 28\%, NAME 23\%, DATE/AGE 22\%, ID/contact 20\%.
 
 \textbf{Three failure modes---all generator-side.}
-(1)~\emph{Malformed/truncated surrogates} (largest cause): \tp{Chicago}\arr\tp{Illino}, \tp{El~Paso}\arr\tp{El}, \tp{Ciudad de la Habana}\arr\tp{Cuidad de la Havana}. The fragment no longer matches the lexical pattern detectors learned for real names/places; this is why loss is highest on MEDDOCAN and lowest on clean English ASQ-PHI.
+(1)~\emph{Malformed/truncated surrogates} (largest cause): \tp{Chicago}\arr\tp{Illino}, \tp{El~Paso}\arr\tp{El}, \tp{Ciudad de la Habana}\arr\tp{Cuidad de la Havana}. The fragment no longer matches the lexical pattern detectors learned for real names/places; this is why span-level loss is highest on MEDDOCAN (6.9\%; Spanish, dense, identifier-heavy) and lowest on clean English ASQ-PHI (2.6\%).
 (2)~\emph{Loss of salience}: a canonical entity replaced by an obscure one (\tp{Cedars-Sinai}\arr\tp{Vidant}); detectors partly rely on pre-training familiarity, so swapping a famous value for a rare one removes the prior. Inherent to any value substitution; mainly costs weaker detectors.
 (3)~\emph{\tp{x}-masking of IDs/emails}: \tp{nachorutor@\dots}\arr\tp{nxxxxxxxxx@\dots}. The \tp{x} run preserves format but breaks the realistic-token pattern. This case is \emph{privacy-positive}---the original value is destroyed---even though it counts against recall.
 
@@ -326,7 +326,67 @@ PII (French, JSON) & \tp{\{"Date":"20/05/2022", "City":"Saint-Priest", "Username
 All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for a shared task; PII-Masking-300k synthetic; MultiCoNER~v2 public). \textbf{No real patient data is used.} We release the 250-document subsets and scoring code with license notes. \textbf{Dual-use.} A utility-preserving de-identifier could in principle launder identifiable data into a fluent form; our masked-span/leakage reporting and the privacy-positive framing of \tp{x}-masking keep the privacy accounting explicit. \textbf{Conflict of interest.} The commercial transform (Custodian Guardian Layer) is developed by Custodian AI, with which the authors are affiliated; this work was conducted with Custodian AI's support. To limit bias we (i)~frame the contribution as a reusable protocol, (ii)~include open-source baselines so results are reproducible without proprietary access, and (iii)~report leakage and coverage alongside utility.
 
 \section{Limitations}
-Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 are currently demonstrated with a CPU detector (Presidio); a full 11-detector extension is future work. LLM detectors are prompt-sensitive; we fix one prompt per model and release it with the code and data at the project's reproducibility page.
+Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 are currently demonstrated with a CPU detector (Presidio); a full 11-detector extension is future work. LLM detectors are prompt-sensitive; we fix one prompt per model and release it with the code and data at the project's reproducibility page. Finally, all seven benchmarks are public or synthetic; validating the protocol on real-EHR corpora (n2c2, MIMIC-IV-Note, CARMEN-I) is future work pending the relevant data-use agreements.
+
+\appendix
+
+\section{Coverage Details}\label{app:coverage}
+Coverage (\S\ref{sec:results}) is the fraction of a benchmark's gold PHI whose characters the transform actually changed (difflib alignment). Table~\ref{tab:covtype} breaks it down by entity type on the clinical sets (ASQ-PHI~+~MEDDOCAN). High-frequency free-text types (names, dates) are masked well; the weak spots are high-sensitivity structured identifiers and geography---exactly the HIPAA Safe Harbor items that most need masking.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lr}
+\toprule
+Entity type (clinical) & Coverage\\
+\midrule
+NAME / person & 75.0\%\\
+DATE / age & 73.4\%\\
+ID / contact (MRN, patient ID, phone, email) & 50.7\%\\
+ORG / facility & 46.6\%\\
+LOCATION / address & 43.7\%\\
+\bottomrule
+\end{tabular}
+\caption{Coverage by entity type on clinical benchmarks. Overall the transform altered 39\% of annotated PII (54\% on clinical sets); general-domain corpora sit near 26\%.}\label{tab:covtype}
+\end{table}
+
+\textbf{Detection vs.\ replacement.} On a sample of 8 MEDDOCAN documents (62 missed ID/location spans), $48/62$ ($\approx$77\%) of the \emph{un}masked identifiers were nonetheless flagged as sensitive by the transform's own detector---they were detected but not substituted; only $14/62$ (23\%) were undetected. The coverage gap is therefore mostly a \emph{replacement-step} issue (act on everything the detector surfaces), which is more tractable than raising detection recall. (Small sample; ``detected'' judged by loose token overlap, so 77\% is directional.) Concrete unmasked HIPAA identifiers included patient IDs (\tp{80926}, \tp{7845693}), care-contact IDs (\tp{4387684}), and facilities/geography (\tp{Hospital de Cruces}, \tp{Espa\~na}, postal codes \tp{41005}, \tp{28047}).
+
+\section{Representative Per-Detector Examples}\label{app:examples}
+\textbf{Agreement on well-formed surrogates.} On clean English (ASQ-PHI), a plausible same-type surrogate is caught by nearly the whole panel (Table~\ref{tab:agree}): the substitution is invisible to detection. Divergence is confined to the two floor detectors (Llama~3.1-8B, DeepSeek~V2-Lite).
+
+\begin{table}[h]\centering\small
+\begin{tabular}{llr}
+\toprule
+Document & Surrogate span (type) & Caught\\
+\midrule
+asq\_00000 & Maria S.\ (NAME) & 10/11\\
+asq\_00000 & Methodist Hospital (LOC) & 9/11\\
+asq\_00000 & March 13, 2021 (DATE) & 9/11\\
+asq\_00003 & James L.\ (NAME) & 11/11\\
+asq\_00003 & Mt.\ Egypt (LOC) & 11/11\\
+asq\_00003 & Nov 19, 2021 (DATE) & 11/11\\
+\bottomrule
+\end{tabular}
+\caption{Number of detectors (of 11) that find each well-formed surrogate. Same-type swaps stay broadly detectable.}\label{tab:agree}
+\end{table}
+
+\textbf{Representative losses, by failure type.} Table~\ref{tab:lost} shows genuine ``lost'' cases (MEDDOCAN): the original value was found by most detectors, but a defective surrogate is found by few. Each maps to one of the three failure types in \S\ref{sec:error}, and the drop is shared across the panel---i.e.\ it is a property of the surrogate, not of any one detector.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{p{3.5cm}rl}
+\toprule
+Original $\rightarrow$ surrogate & O\,$\rightarrow$\,T & Type\\
+\midrule
+\tp{Cuba}\arr\tp{Havana} & 9\,$\rightarrow$\,2 & salience\\
+\tp{San Fernando}\arr\tp{Francsico Luis} & 8\,$\rightarrow$\,3 & garbled\\
+\tp{C\'adiz}\arr\tp{Cadiz} & 8\,$\rightarrow$\,4 & accent stripped\\
+\tp{Cecilio Pujaz\'on n\textordmasculine26}\arr\tp{ Pujaz\'on n\textordmasculine26} & 8\,$\rightarrow$\,4 & truncation\\
+\tp{ignaciotorne@\dots}\arr\tp{ixxxxxxxxxxx@\dots} & 9\,$\rightarrow$\,2 & \tp{x}-mask\\
+\tp{23/07/1948}\arr\tp{2xxxxxxxx} & 11\,$\rightarrow$\,4 & \tp{x}-mask\\
+\tp{40}\arr\tp{35} (age) & 9\,$\rightarrow$\,2 & bare number\\
+\bottomrule
+\end{tabular}
+\caption{Representative lost spans on MEDDOCAN. O\,$\rightarrow$\,T = detectors finding the original vs.\ the surrogate (panel of 11--12; original includes one extra decoding variant). Losses are shared across detectors and align with the \S\ref{sec:error} typology.}\label{tab:lost}
+\end{table}
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
