@@ -1,12 +1,50 @@
-# CustodianAI · PHI/PII Benchmark Harness
+# Custodian Guardian Layer · PHI/PII Benchmark Harness
 
-End-to-end evaluation harness for measuring how well **Custodian Labs' Guardian
-Layer** transforms clinical text, compared against:
+End-to-end evaluation harness measuring whether **Custodian Labs' Guardian
+Layer** `transform` (structure-preserving de-identification: replace each PHI
+value with a realistic same-type *surrogate*) keeps clinical text **detectable**
+by downstream PHI/PII systems. Companion code for the paper *"Surrogate
+Substitution Preserves PHI Detectability: A Multi-Detector Equivalence Study."*
 
-- **Specialized de-id systems**: Microsoft Presidio, Philter (UCSF),
-  John Snow Labs Spark NLP for Healthcare, OBI `deid_roberta_i2b2`.
-- **Frontier LLMs** prompted as PHI detectors: OpenAI GPT-5, DeepSeek V4,
-  Moonshot Kimi K2.6, Alibaba Qwen 3.7, Google Gemma 4.
+**Detector panel (11):** Microsoft Presidio, OBI `deid_roberta_i2b2`;
+open LLMs Gemma 4 (31B, E4B), Qwen 3.5 (4B, 9B, 35B-A3B), Llama 3.1-8B,
+Llama 3.3-70B, DeepSeek V2-Lite; and OpenAI GPT-5 — across **7 benchmarks /
+7 languages / 1,750 documents**.
+
+### Links
+| | |
+|---|---|
+| 📊 Interactive dashboard | **https://custodianai.pages.dev** |
+| 📝 Paper (PDF) | https://custodianai.pages.dev/paper.pdf |
+| 💾 Reproducibility package (scripts + data subsets) | https://custodianai.pages.dev/code |
+| ▶️ Runnable Colab demo | [`notebooks/custodian_guardian_layer_demo.ipynb`](notebooks/custodian_guardian_layer_demo.ipynb) |
+
+### Headline result
+On the **57,112 spans the transform masks** (pooled over all 11 detectors),
+recall moves **76.1% → 74.9%** (−1.2 pts). A **TOST equivalence test**
+(margin ±2 pts) gives **p ≈ 3×10⁻⁹** — the change is statistically equivalent
+to zero, and detector ranking is preserved. The small residual traces to
+surrogate-generation quality (truncation, salience loss, `x`-masking), not to
+detectors getting worse at PHI.
+
+### Latest model comparison (whole-document span-F1, mean over 7 benchmarks)
+| Detector | Orig F1 | Transf F1 | ΔF1 | Overlap retention |
+|---|--:|--:|--:|--:|
+| Gemma 4 31B | .755 | .710 | −.045 | 99.8% |
+| Gemma 4 E4B | .737 | .698 | −.038 | 98.2% |
+| Llama 3.3-70B | .725 | .728 | +.003 | 98.3% |
+| Qwen 3.5-35B-A3B | .715 | .668 | −.047 | 98.4% |
+| OpenAI GPT-5 | .705 | .674 | −.032 | 98.3% |
+| Qwen 3.5-9B | .655 | .621 | −.034 | 100.0% |
+| Qwen 3.5-4B | .567 | .533 | −.034 | 98.0% |
+| Presidio | .416 | .398 | −.018 | 97.4% |
+| DeepSeek V2-Lite | .409 | .384 | −.025 | 92.8% |
+| Llama 3.1-8B | .391 | .376 | −.015 | — |
+| OBI `deid_roberta` | .041 | .040 | −.002 | — |
+
+*Whole-document F1 is a conservative (diluted) view; "overlap retention" is
+transformed÷original recall on masked spans — the cleaner utility measure.
+Ranking is preserved across a 100× span of detector quality.*
 
 ## Live dashboard
 
