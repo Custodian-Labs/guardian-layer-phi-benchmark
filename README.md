@@ -17,7 +17,8 @@ Llama 3.3-70B, DeepSeek V2-Lite; and OpenAI GPT-5 — across **7 benchmarks /
 | 📊 Interactive dashboard | **https://custodianai.pages.dev** |
 | 📝 Paper (PDF) | https://custodianai.pages.dev/paper.pdf |
 | 💾 Reproducibility package (scripts + data subsets) | https://custodianai.pages.dev/code |
-| ▶️ Runnable Colab demo | [`notebooks/custodian_guardian_layer_demo.ipynb`](notebooks/custodian_guardian_layer_demo.ipynb) |
+| ▶️ Run the demo in Google Colab (one click) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/gist/14H034160212/4dbe8edfbddd45851d034ecd69a12de6/custodian_guardian_layer_demo.ipynb) |
+| 📓 Notebook source | [`notebooks/custodian_guardian_layer_demo.ipynb`](notebooks/custodian_guardian_layer_demo.ipynb) |
 
 ### Headline result
 On the **57,112 spans the transform masks** (pooled over all 11 detectors),
