@@ -53,3 +53,8 @@ paper/latex/*.out
 paper/latex/b*.log
 paper/latex/build.log
 paper/latex/tl.log
+
+# Internal materials — kept locally, excluded from the remote
+COVERAGE_MEMO.md
+docs/guardian_layer_internal.pptx
+docs/guardian_layer_internal_zh.pdf
