@@ -80,8 +80,9 @@ def build_redact(orig, flags):
         if m:
             for i in range(g["start"], min(g["end"], len(chars))):
                 chars[i] = "*"
+    gold=[{**g, "masked": bool(m)} for g, m in zip(orig["gold_spans"], flags)]
     return {"doc_id": orig["doc_id"], "text": "".join(chars),
-            "gold_spans": orig["gold_spans"],  # same positions (same length)
+            "gold_spans": gold,  # same positions (same length)
             "meta": {"mode": "redact", "n_masked": sum(flags)}}
 
 
@@ -95,12 +96,12 @@ def build_faker(orig, flags, fk):
             surro = fake_value(fk, category(g.get("label", "")))
             ns = g["start"] + shift
             out.append(surro)
-            new_gold.append({"start": ns, "end": ns + len(surro), "label": g.get("label", ""), "text": surro})
+            new_gold.append({"start": ns, "end": ns + len(surro), "label": g.get("label", ""), "text": surro, "masked": True})
             shift += len(surro) - (g["end"] - g["start"])
         else:
             seg = text[g["start"]:g["end"]]; out.append(seg)
             ns = g["start"] + shift
-            new_gold.append({"start": ns, "end": ns + len(seg), "label": g.get("label", ""), "text": seg})
+            new_gold.append({"start": ns, "end": ns + len(seg), "label": g.get("label", ""), "text": seg, "masked": False})
         cursor = g["end"]
     out.append(text[cursor:])
     new_gold.sort(key=lambda x: x["start"])
