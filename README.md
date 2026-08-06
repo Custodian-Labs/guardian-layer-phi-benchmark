@@ -13,6 +13,13 @@ open LLMs Gemma 4 (31B, E4B), Qwen 3.5 (4B, 9B, 35B-A3B), Llama 3.1-8B,
 Llama 3.3-70B, DeepSeek V2-Lite; and OpenAI GPT-5 — across **7 benchmarks /
 7 languages / 1,750 documents**.
 
+> **Benchmark data / citation.** ASQ-PHI is from Weatherhead, Golovko & McCaffrey,
+> *ASQ-PHI: An adversarial synthetic data benchmark for clinical de-identification
+> and search utility*, **Data in Brief 65:112586, 2026**
+> ([doi:10.1016/j.dib.2026.112586](https://doi.org/10.1016/j.dib.2026.112586)) —
+> please cite it if you use ASQ-PHI. Other benchmarks: MEDDOCAN, MultiCoNER v2,
+> PII-Masking-300k (see the paper for full citations).
+
 ### Links
 | | |
 |---|---|
