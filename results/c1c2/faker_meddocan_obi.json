@@ -1,0 +1,8 @@
+{
+  "system": "obi",
+  "corpus": "faker",
+  "benchmark": "meddocan",
+  "masked": 1419,
+  "found": 908,
+  "recall_pct": 64.0
+}

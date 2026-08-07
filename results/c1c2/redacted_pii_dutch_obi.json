@@ -1,0 +1,8 @@
+{
+  "system": "obi",
+  "corpus": "redacted",
+  "benchmark": "pii_dutch",
+  "masked": 195,
+  "found": 2,
+  "recall_pct": 1.0
+}

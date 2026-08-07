@@ -1,0 +1,8 @@
+{
+  "system": "qwen3_5_9b",
+  "corpus": "faker",
+  "benchmark": "multiconer_v2",
+  "masked": 8,
+  "found": 7,
+  "recall_pct": 87.5
+}

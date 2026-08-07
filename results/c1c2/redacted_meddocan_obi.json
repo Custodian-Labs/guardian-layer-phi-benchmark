@@ -1,0 +1,8 @@
+{
+  "system": "obi",
+  "corpus": "redacted",
+  "benchmark": "meddocan",
+  "masked": 1419,
+  "found": 1,
+  "recall_pct": 0.1
+}

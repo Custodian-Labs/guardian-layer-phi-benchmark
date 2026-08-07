@@ -1,0 +1,8 @@
+{
+  "system": "gemma_4_31b",
+  "corpus": "redacted",
+  "benchmark": "asq_phi",
+  "masked": 267,
+  "found": 213,
+  "recall_pct": 79.8
+}

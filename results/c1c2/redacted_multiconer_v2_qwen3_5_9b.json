@@ -1,0 +1,8 @@
+{
+  "system": "qwen3_5_9b",
+  "corpus": "redacted",
+  "benchmark": "multiconer_v2",
+  "masked": 8,
+  "found": 2,
+  "recall_pct": 25.0
+}

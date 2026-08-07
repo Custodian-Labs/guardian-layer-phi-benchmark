@@ -1,0 +1,8 @@
+{
+  "system": "obi",
+  "corpus": "faker",
+  "benchmark": "pii_german",
+  "masked": 204,
+  "found": 173,
+  "recall_pct": 84.8
+}

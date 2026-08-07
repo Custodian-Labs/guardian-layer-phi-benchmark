@@ -1,0 +1,8 @@
+{
+  "system": "qwen3_5_9b",
+  "corpus": "faker",
+  "benchmark": "pii_german",
+  "masked": 204,
+  "found": 159,
+  "recall_pct": 77.9
+}

@@ -1,0 +1,8 @@
+{
+  "system": "obi",
+  "corpus": "redacted",
+  "benchmark": "asq_phi",
+  "masked": 267,
+  "found": 2,
+  "recall_pct": 0.7
+}

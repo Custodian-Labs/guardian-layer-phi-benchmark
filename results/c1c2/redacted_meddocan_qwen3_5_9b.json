@@ -1,0 +1,8 @@
+{
+  "system": "qwen3_5_9b",
+  "corpus": "redacted",
+  "benchmark": "meddocan",
+  "masked": 1419,
+  "found": 325,
+  "recall_pct": 22.9
+}

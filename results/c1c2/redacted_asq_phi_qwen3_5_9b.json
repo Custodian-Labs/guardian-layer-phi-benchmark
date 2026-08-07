@@ -1,0 +1,8 @@
+{
+  "system": "qwen3_5_9b",
+  "corpus": "redacted",
+  "benchmark": "asq_phi",
+  "masked": 267,
+  "found": 155,
+  "recall_pct": 58.1
+}

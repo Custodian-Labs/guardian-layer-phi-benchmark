@@ -44,6 +44,8 @@ def main():
     ap.add_argument("--benchmark", choices=list(ORIG))
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--all", action="store_true", help="score both corpora x all benchmarks, loading the model once")
+    ap.add_argument("--exclude", default="", help="comma-separated benchmarks to skip in --all")
+    ap.add_argument("--force", action="store_true", help="recompute even if a result json exists")
     args = ap.parse_args()
 
     LOCAL = {"qwen3_5_9b": "QWEN3_5_9B", "gemma_4_31b": "GEMMA_4_31B",
@@ -61,6 +63,9 @@ def main():
         sys_obj = _build_system(args.system, _lang)
 
     def score_one(corpus, bench):
+        _out = os.path.join(ROOT, "results", "c1c2", f"{corpus}_{bench}_{args.system}.json")
+        if os.path.exists(_out) and not args.force:
+            print(f"SKIP {args.system} {corpus} {bench} (already exists -> skip)", flush=True); return
         C = load(os.path.join(ROOT, "data", corpus, f"{bench}.jsonl"))
         n = found = 0
         docs = list(C.items())
@@ -87,7 +92,8 @@ def main():
         print(f"RESULT {args.system} {corpus} {bench}: recall {rec:.1f}% ({found}/{n}) -> {out}", flush=True)
 
     if args.all:
-        targets = [(c, b) for c in ("redacted", "faker") for b in ORIG]
+        _skip = set(x for x in args.exclude.split(",") if x)
+        targets = [(c, b) for c in ("redacted", "faker") for b in ORIG if b not in _skip]
     else:
         targets = [(args.corpus, args.benchmark)]
     for corpus, bench in targets:
