@@ -75,7 +75,8 @@ families** (not Presidio-only). Masked-span recall (%), mean over 7 benchmarks:
 - **C2 holds across families** (means 84–95%): detectability preservation is a
   property of well-formed, same-type substitution — not one vendor or one detector.
 
-*Presidio uses the full corpus; OBI/Qwen/Gemma use a 120-doc/benchmark subsample.
+*Presidio uses the full corpus (means over its 6 baseline benchmarks — MultiCoNER
+not scored); OBI/Qwen/Gemma use a 120-doc/benchmark subsample (means over all 7).
 Reproduce with `scripts/build_c1c2_corpora.py` → `scripts/score_corpus.py --all` →
 `scripts/aggregate_c1c2.py`.*
 
