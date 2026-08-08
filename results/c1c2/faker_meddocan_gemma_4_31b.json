@@ -1,0 +1,8 @@
+{
+  "system": "gemma_4_31b",
+  "corpus": "faker",
+  "benchmark": "meddocan",
+  "masked": 1419,
+  "found": 1370,
+  "recall_pct": 96.5
+}

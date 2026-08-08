@@ -1,0 +1,8 @@
+{
+  "system": "gemma_4_31b",
+  "corpus": "faker",
+  "benchmark": "multiconer_v2",
+  "masked": 8,
+  "found": 8,
+  "recall_pct": 100.0
+}

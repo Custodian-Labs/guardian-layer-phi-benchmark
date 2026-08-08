@@ -78,7 +78,7 @@
 \begin{@twocolumnfalse}
 \begin{abstract}
 \noindent
-Structure-preserving de-identification replaces protected health information (PHI) with realistic same-type \emph{surrogates}---``Anna~S.'' becomes ``Maria~S.'', not \tp{[NAME]}---so that clinical text stays fluent and downstream tools keep working. But this only helps if the substitution does not itself corrupt the signal those tools rely on. We ask a narrow, testable question: \emph{on the spans a de-identifier actually masks, can downstream PHI detectors still find the surrogate?} We introduce a paired, multi-detector evaluation protocol that (i)~scores utility \emph{only on masked spans}, decoupling \emph{coverage} from \emph{utility}; (ii)~uses \emph{equivalence testing} (TOST) rather than null-hypothesis significance testing, which is uninformative at our sample size (57k paired spans); and (iii)~builds a surrogate-failure typology separating fixable generator defects from intrinsic detector limits. Across 11 detectors, 7 benchmarks, and 7 languages (1{,}750 documents), recall on masked spans moves from 76.1\% to 74.9\%---a change our equivalence test shows is \emph{statistically equivalent to zero within a $\pm2$-point margin} ($p\approx3\times10^{-9}$), with detector ranking preserved. The residual loss does not reflect detectors getting worse at PHI: it concentrates in \emph{malformed and out-of-distribution} surrogates (truncation \tp{Chicago}\arr\tp{Illino}, salience loss \tp{Cedars-Sinai}\arr\tp{Vidant}). A redaction floor and an open-source surrogate baseline indicate the effect is a property of well-formed substitution, not of one tool. We release the evaluation subsets, scoring code, and an interactive dashboard at \url{https://custodianai.pages.dev} so the protocol can audit any structure-preserving transform.\footnotemark
+Structure-preserving de-identification replaces protected health information (PHI) with realistic same-type \emph{surrogates}---``Anna~S.'' becomes ``Maria~S.'', not \tp{[NAME]}---so that clinical text stays fluent and downstream tools keep working. But this only helps if the substitution does not itself corrupt the signal those tools rely on. We ask a narrow, testable question: \emph{on the spans a de-identifier actually masks, can downstream PHI detectors still find the surrogate?} We introduce a paired, multi-detector evaluation protocol that (i)~scores utility \emph{only on masked spans}, decoupling \emph{coverage} from \emph{utility}; (ii)~uses \emph{equivalence testing} (TOST) rather than null-hypothesis significance testing, which is uninformative at our sample size (57k paired spans); and (iii)~builds a surrogate-failure typology separating fixable generator defects from intrinsic detector limits. Across 11 detectors, 7 benchmarks, and 7 languages (1{,}750 documents), recall on masked spans moves from 76.1\% to 74.9\%---a change our equivalence test shows is \emph{statistically equivalent to zero within a $\pm2$-point margin} ($p\approx3\times10^{-9}$), with detector ranking preserved. The residual loss does not reflect detectors getting worse at PHI: it concentrates in \emph{malformed and out-of-distribution} surrogates (truncation \tp{Chicago}\arr\tp{Illino}, salience loss \tp{Cedars-Sinai}\arr\tp{Vidant}). A redaction floor and an open-source surrogate baseline, run across detector families, indicate the effect is a property of well-formed substitution---not of one tool or one detector. We release the evaluation subsets, scoring code, and an interactive dashboard at \url{https://custodianai.pages.dev} so the protocol can audit any structure-preserving transform.\footnotemark
 \vspace{1em}
 \end{abstract}
 \end{@twocolumnfalse}
@@ -188,7 +188,7 @@ Figure~\ref{fig:protocol} summarizes the protocol. \textbf{Paired multi-detector
 \item \textbf{C2---Open-source surrogate baseline.} Replace the commercial generator with an open one (Faker~\citep{faker}) on the \emph{same} masked spans; tests whether the result is generic to substitution or tool-specific, and makes the pipeline reproducible.
 \item \textbf{C3---Per-benchmark equivalence.} Run TOST within each benchmark, sweeping $\Delta$, to check the pooled claim is not an averaging artifact.
 \end{itemize}
-The core paired study, the equivalence analysis (pooled and per-benchmark), the redaction floor, the open-surrogate baseline, and the error typology are complete; C1/C2 are currently demonstrated with the CPU detector (Presidio), with a full-panel extension noted as the next strengthening step.
+The core paired study, the equivalence analysis (pooled and per-benchmark), the redaction floor, the open-surrogate baseline, and the error typology are complete; C1 and C2 span four detectors across all three families (Presidio, OBI, Qwen-9B, Gemma-31B), so the comparison-experiment conclusions do not rest on a single detector.
 
 \section{Results}\label{sec:results}
 \textbf{Detectability is statistically equivalent.} Restricting to the 57{,}112 masked spans and pooling all 11 detectors (via the released \tp{analyze\_equivalence.py}), recall moves $76.1\%\rightarrow74.9\%$ ($-1.2$ pts; 95\% CI $[-1.5,-1.0]$). The TOST equivalence test ($\Delta=2$) rejects non-equivalence at $p\approx3\times10^{-9}$: the change is statistically bounded within $\pm2$ points of zero. Ranking is preserved; Llama~3.3-70B is essentially unchanged ($\Delta$F1~$+0.003$). The same contingency is ``significant'' under McNemar's test---a direct demonstration of the large-$N$ trap.
@@ -287,40 +287,50 @@ PII de & 4{,}565 & 76.3$\rightarrow$76.5 & 0.4 & $\pm2$\,\checkmark\\
 \caption{Per-benchmark equivalence. O$\rightarrow$T = masked-span recall, original$\rightarrow$transform (\%). Pooled TOST $\Delta{=}2$: $p{=}3{\times}10^{-9}$.}\label{tab:c3}
 \end{table}
 
-\textbf{Redaction floor (C1).} Replacing masked values with \tp{*****} and re-detecting with Presidio (Table~\ref{tab:c1}): transform recall tracks the \emph{original} within a few points, while redaction collapses to $\approx$0--4\% (the residual is spurious overlap on the \tp{*} run). Structure-preserving substitution preserves essentially the entire detectability that redaction destroys.
+\textbf{Redaction floor (C1).} We replace each masked value with \tp{*****}---destroying the surrogate signal---and re-detect with four detectors spanning all three families (Table~\ref{tab:c1}). The floor is sharply \emph{family-dependent}. Rule-based Presidio and the fine-tuned OBI tagger collapse to $\approx$0--4\% everywhere: they key on real surface tokens, so with the signal gone they recover almost nothing (the residual is spurious overlap on the \tp{*} run). Open LLMs behave differently---they partly \emph{recover} the masked span (Qwen-9B 6--58\%, Gemma-31B 13--80\%)---because a \tp{*****} run is itself a legible redaction cue that a strong reader flags as ``something was here.'' This recovery is \emph{context-dependent}: highest on ASQ-PHI (short adversarial queries where one masked run dominates the prompt) and on the larger model, lowest on the dense multilingual PII sets. Crucially, even Gemma's floor stays far below its surrogate recall (Table~\ref{tab:c2}), so the conclusion holds across families---redaction destroys detectability that structure-preserving substitution keeps, and where a detector recovers anything from \tp{*****} it is reading the mask, not the (absent) PHI.
 
 \begin{table}[t]\centering\small
 \begin{tabular}{lrrrr}
 \toprule
-Benchmark & Masked & Orig. & Transf. & Redact\\
+ & \multicolumn{2}{c}{rule / fine-tuned} & \multicolumn{2}{c}{open LLM}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Benchmark & Presidio & OBI & Qwen-9B & Gemma-31B\\
 \midrule
-ASQ-PHI & 531 & 94.5 & 95.7 & \textbf{0.0}\\
-MEDDOCAN & 2{,}925 & 75.4 & 72.9 & \textbf{0.0}\\
-PII en & 471 & 75.6 & 73.5 & \textbf{1.9}\\
-PII nl & 373 & 83.6 & 77.7 & \textbf{3.8}\\
-PII fr & 544 & 61.4 & 59.9 & \textbf{2.2}\\
-PII de & 415 & 56.1 & 58.3 & \textbf{0.0}\\
+ASQ-PHI & 0.0 & 0.7 & 58.1 & 79.8\\
+MEDDOCAN & 0.0 & 0.1 & 22.9 & 52.6\\
+MultiCoNER & -- & 0.0 & 25.0 & 12.5\\
+PII en & 1.9 & 1.0 & 10.0 & 37.6\\
+PII nl & 3.8 & 1.0 & 20.5 & 39.5\\
+PII fr & 2.2 & 0.5 & 5.9 & 38.2\\
+PII de & 0.0 & 1.0 & 11.8 & 41.7\\
+\midrule
+Mean & \textbf{1.3} & \textbf{0.6} & 22.0 & 43.1\\
 \bottomrule
 \end{tabular}
-\caption{C1 redaction floor: Presidio masked-span recall (\%).}\label{tab:c1}
+\caption{C1 redaction floor: masked-span recall (\%) after replacing each masked value with \tp{*****}, across detector families. Rule/fine-tuned detectors collapse to $\approx$0; open LLMs partly recover the redaction cue (context-dependent). All floors sit well below the surrogate recall in Table~\ref{tab:c2}. LLM and OBI cells use a 120-document subsample per benchmark; Presidio is the full corpus.}\label{tab:c1}
 \end{table}
 
-\textbf{Open-surrogate baseline (C2).} Replacing the commercial generator with Faker on the same masked spans (Table~\ref{tab:c2}) yields two findings. \emph{Generality}: an open substitutor preserves masked-span recall at least as well as the original---detectability preservation appears to be a property of well-formed same-type substitution, not of one vendor, and reproduces without proprietary access. \emph{The residual is generator quality}: Faker, emitting clean canonical values, \emph{exceeds} the commercial transform by 18--20 points on the hard non-English benchmarks, precisely where the commercial surrogates truncate or garble (\S\ref{sec:error}).
+\textbf{Open-surrogate baseline (C2).} We replace the commercial generator with Faker on the same masked spans and re-score all four detectors (Table~\ref{tab:c2}); two findings hold \emph{across families}. \emph{Generality}: every detector retains high masked-span recall on the open surrogates---Presidio 78--98\%, OBI 64--100\%, Qwen-9B 77--100\%, Gemma-31B 83--100\% (family means 84--95\%)---so detectability preservation is a property of well-formed, same-type substitution, not of one vendor or one detector, and it reproduces without proprietary access. \emph{The residual is generator quality}: Faker, emitting clean canonical values, matches or exceeds the commercial transform precisely on the hard non-English benchmarks where the commercial surrogates truncate or garble (\S\ref{sec:error}); the stronger the detector, the smaller the residual (Gemma-31B mean 94.5\%).
 
 \begin{table}[t]\centering\small
 \begin{tabular}{lrrrr}
 \toprule
-Benchmark & Masked & Orig. & Custodian & Faker\\
+ & \multicolumn{2}{c}{rule / fine-tuned} & \multicolumn{2}{c}{open LLM}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Benchmark & Presidio & OBI & Qwen-9B & Gemma-31B\\
 \midrule
-ASQ-PHI & 531 & 94.5 & 95.7 & \textbf{97.7}\\
-MEDDOCAN & 2{,}925 & 75.4 & 72.9 & \textbf{79.7}\\
-PII en & 471 & 75.6 & 73.5 & \textbf{89.2}\\
-PII nl & 373 & 83.6 & 77.7 & \textbf{93.0}\\
-PII fr & 544 & 61.4 & 59.9 & \textbf{78.5}\\
-PII de & 415 & 56.1 & 58.3 & \textbf{78.1}\\
+ASQ-PHI & 97.7 & 100.0 & 100.0 & 100.0\\
+MEDDOCAN & 79.7 & 64.0 & 79.6 & 96.5\\
+MultiCoNER & -- & 100.0 & 87.5 & 100.0\\
+PII en & 89.2 & 89.5 & 76.7 & 90.0\\
+PII nl & 93.0 & 71.8 & 84.1 & 96.9\\
+PII fr & 78.5 & 79.5 & 81.4 & 83.2\\
+PII de & 78.1 & 84.8 & 77.9 & 95.1\\
+\midrule
+Mean & 86.0 & 84.2 & 83.9 & \textbf{94.5}\\
 \bottomrule
 \end{tabular}
-\caption{C2 open-surrogate baseline: Presidio masked-span recall (\%). Detector-independent argument; Presidio-only demonstration.}\label{tab:c2}
+\caption{C2 open-surrogate (Faker) retention: masked-span recall (\%) on the same masked spans, across detector families. Every family stays high (means 84--95\%), so detectability preservation is generic to well-formed substitution rather than tool- or detector-specific. Subsampling as in Table~\ref{tab:c1}.}\label{tab:c2}
 \end{table}
 
 \begin{figure}[t]
@@ -341,7 +351,7 @@ PII de & 415 & 56.1 & 58.3 & \textbf{78.1}\\
 \legend{Original,Transform,Faker,Redact}
 \end{axis}
 \end{tikzpicture}
-\caption{What structure preservation buys (C1/C2; Presidio masked-span recall). Transform tracks the original, the open Faker baseline is at least as high, and redaction collapses to $\approx$0. The gap between the Transform/Faker bars and the Redact bar is the detectability that structure preservation retains.}
+\caption{What structure preservation buys, shown for Presidio (which has full original/transform/Faker/redact columns). Transform tracks the original, the open Faker baseline is at least as high, and redaction collapses to $\approx$0. The gap between the Transform/Faker bars and the Redact bar is the detectability structure preservation retains; the family-dependent floor and open-surrogate retention across four detectors are in Tables~\ref{tab:c1}--\ref{tab:c2}.}
 \label{fig:bars}
 \end{figure}
 
@@ -408,7 +418,7 @@ PII (French, JSON) & \tp{\{"Date":"\oldv{20/05/2022}", "City":"Saint-Priest", "U
 All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for a shared task; PII-Masking-300k synthetic; MultiCoNER~v2 public). \textbf{No real patient data is used.} We release the 250-document subsets and scoring code with license notes. \textbf{Dual-use.} A utility-preserving de-identifier could in principle launder identifiable data into a fluent form; our masked-span/leakage reporting and the privacy-positive framing of \tp{x}-masking keep the privacy accounting explicit. \textbf{Conflict of interest.} The commercial transform (Custodian Guardian Layer) is developed by Custodian Labs, with which the authors are affiliated; this work was conducted with Custodian Labs' support. To limit bias we (i)~frame the contribution as a reusable protocol, (ii)~include open-source baselines so results are reproducible without proprietary access, and (iii)~report leakage and coverage alongside utility.
 
 \section{Limitations}
-Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 are currently demonstrated with a CPU detector (Presidio); a full 11-detector extension is future work. LLM detectors are prompt-sensitive and their behaviour shifts with task framing and structural variation~\citep{gendron2024abstract,bao2024robustness}; we fix one prompt per model and release it with the code and data at the project's reproducibility page. Finally, all seven benchmarks are public or synthetic; validating the protocol on real-EHR corpora (n2c2, MIMIC-IV-Note, CARMEN-I) is future work pending the relevant data-use agreements.
+Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 span four detectors across families (Presidio full-corpus; OBI, Qwen-9B, Gemma-31B on a 120-doc/benchmark subsample); extending them to the full 11-detector panel is straightforward future work. LLM detectors are prompt-sensitive and their behaviour shifts with task framing and structural variation~\citep{gendron2024abstract,bao2024robustness}; we fix one prompt per model and release it with the code and data at the project's reproducibility page. Finally, all seven benchmarks are public or synthetic; validating the protocol on real-EHR corpora (n2c2, MIMIC-IV-Note, CARMEN-I) is future work pending the relevant data-use agreements.
 
 \appendix
 
