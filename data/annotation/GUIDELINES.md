@@ -12,6 +12,15 @@ the `surrogate` the transform put in its place, and a `context` window
 
 ## Workflow
 
+**Fastest: use the web tool.** Open `web/annotate.html` in a browser (works
+offline, no server). It shows one span at a time with the heuristic's guess
+pre-selected; label with the keyboard (`V` valid, `T` type, `0/x/g/s/o` failure,
+`←/→` prev/next), autosaves to the browser, and **Export CSV** gives you a
+`surrogate_quality_reviewed.csv` in the exact schema. Two raters each export
+their file, then run `scripts/annotation_summary.py rater1.csv rater2.csv`.
+
+Or edit the CSV directly:
+
 1. Open `surrogate_quality_prefilled.csv`. The `failure`, `valid`, and
    `type_consistent` columns are **pre-filled by a conservative heuristic**
    (`scripts/prefill_annotation.py`) — treat them as *suggestions*, not truth.

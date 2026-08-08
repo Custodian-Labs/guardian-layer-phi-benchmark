@@ -118,9 +118,14 @@ PYTHONPATH=. python scripts/score_corpus.py --system obi         --all --limit 1
 PYTHONPATH=. python scripts/score_corpus.py --system qwen3_5_9b  --all --limit 120
 PYTHONPATH=. python scripts/score_corpus.py --system gemma_4_31b --all --limit 120
 
-# Assemble Tables 3 (C1) / 4 (C2)
-python scripts/aggregate_c1c2.py</pre>
-    <p class="note"><span data-en>Scripts read the paired result files under <code>results/</code>. Presidio runs on the full corpus (CPU); OBI (CPU) and the open-LLM cells (Qwen-9B, Gemma-31B, GPU) use a 120-doc/benchmark subsample. The equivalence analysis is pure re-analysis (no model inference).</span><span data-zh><code>results/</code> 下的配对结果文件为输入。Presidio 走全量语料（CPU）；OBI（CPU）与开源 LLM（Qwen-9B、Gemma-31B，GPU）取每 benchmark 120 篇子样本。等价分析是纯再分析（不做模型推理）。</span></p>
+# Assemble Tables 3 (C1) / 4 (C2), with 95% bootstrap CIs
+python scripts/aggregate_c1c2.py --ci
+
+# §7 surrogate-quality annotation (200 spans): auto-prefill, then review
+python scripts/prefill_annotation.py            # -> data/annotation/*_prefilled.csv
+#   review in the browser: open web/annotate.html  (offline, keyboard-driven)
+python scripts/annotation_summary.py r1.csv r2.csv   # valid-rate + Cohen's kappa</pre>
+    <p class="note"><span data-en>Scripts read the paired result files under <code>results/</code>. Presidio runs on the full corpus (CPU); OBI (CPU) and the open-LLM cells (Qwen-9B, Gemma-31B, GPU) use a 120-doc/benchmark subsample. The equivalence analysis is pure re-analysis (no model inference). The §7 surrogate-quality annotation of 200 masked spans is reviewed with the offline tool <a href="./annotate.html" style="color:var(--accent);border-bottom:1px solid var(--accent)">annotate.html</a> (guidelines in <code>data/annotation/GUIDELINES.md</code>).</span><span data-zh><code>results/</code> 下的配对结果文件为输入。Presidio 走全量语料（CPU）；OBI（CPU）与开源 LLM（Qwen-9B、Gemma-31B，GPU）取每 benchmark 120 篇子样本。等价分析是纯再分析（不做模型推理）。§7 的 200 条替身质量标注用离线工具 <a href="./annotate.html" style="color:var(--accent);border-bottom:1px solid var(--accent)">annotate.html</a> 复核（指南见 <code>data/annotation/GUIDELINES.md</code>）。</span></p>
   </section>
 
   <section>
