@@ -105,12 +105,21 @@ pip install presidio-analyzer presidio-anonymizer faker
 # C3 — equivalence (pooled + per-benchmark, McNemar, TOST Δ∈{1,2,3})
 python scripts/analyze_equivalence.py
 
-# C1 — redaction floor (Presidio, CPU)
-PYTHONPATH=. python scripts/run_redact_baseline.py
+# Build the C1 (redact) + C2 (faker) corpora for all 7 benchmarks
+PYTHONPATH=. python scripts/build_c1c2_corpora.py
 
-# C2 — open-surrogate baseline (Faker + Presidio, CPU)
-PYTHONPATH=. python scripts/run_faker_baseline.py</pre>
-    <p class="note"><span data-en>Scripts read the paired result files under <code>results/</code>. C1/C2 run on CPU; the equivalence analysis is pure re-analysis (no model inference).</span><span data-zh><code>results/</code> 下的配对结果文件为输入。C1/C2 纯 CPU；等价分析是纯再分析（不做模型推理）。</span></p>
+# C1/C2 — Presidio baseline (CPU)
+PYTHONPATH=. python scripts/run_redact_baseline.py
+PYTHONPATH=. python scripts/run_faker_baseline.py
+
+# C1/C2 — full panel across detector families (OBI CPU; Qwen/Gemma GPU)
+PYTHONPATH=. python scripts/score_corpus.py --system obi         --all
+PYTHONPATH=. python scripts/score_corpus.py --system qwen3_5_9b  --all --limit 120
+PYTHONPATH=. python scripts/score_corpus.py --system gemma_4_31b --all --limit 120
+
+# Assemble Tables 3 (C1) / 4 (C2)
+python scripts/aggregate_c1c2.py</pre>
+    <p class="note"><span data-en>Scripts read the paired result files under <code>results/</code>. The Presidio and OBI cells run on CPU; the open-LLM cells (Qwen-9B, Gemma-31B) use a GPU on a 120-doc/benchmark subsample. The equivalence analysis is pure re-analysis (no model inference).</span><span data-zh><code>results/</code> 下的配对结果文件为输入。Presidio 与 OBI 走 CPU；开源 LLM（Qwen-9B、Gemma-31B）走 GPU，取每 benchmark 120 篇子样本。等价分析是纯再分析（不做模型推理）。</span></p>
   </section>
 
   <section>
