@@ -56,6 +56,29 @@ detectors getting worse at PHI.
 transformed÷original recall on masked spans — the cleaner utility measure.
 Ranking is preserved across a 100× span of detector quality.*
 
+### Comparison experiments: redaction floor (C1) & open-surrogate (C2)
+
+Both comparison experiments now run across **four detectors spanning all three
+families** (not Presidio-only). Masked-span recall (%), mean over 7 benchmarks:
+
+| | Presidio | OBI | Qwen 3.5-9B | Gemma 4 31B |
+|---|--:|--:|--:|--:|
+| **C1 — redaction floor** (`*****`) | 1.3 | 0.6 | 22.0 | 43.1 |
+| **C2 — open-surrogate** (Faker) | 86.0 | 84.2 | 83.9 | 94.5 |
+
+- **C1 is family-dependent.** Rule-based (Presidio) and fine-tuned (OBI) detectors
+  collapse to ≈0 when the surrogate signal is replaced by `*****` — they need real
+  surface tokens. Open LLMs partly *recover* the masked span (Qwen 6–58%, Gemma
+  13–80%) because a `*****` run is itself a redaction cue; this is context-dependent
+  (highest on ASQ short adversarial queries, and on the larger model) but always
+  well below the surrogate recall in C2.
+- **C2 holds across families** (means 84–95%): detectability preservation is a
+  property of well-formed, same-type substitution — not one vendor or one detector.
+
+*Presidio uses the full corpus; OBI/Qwen/Gemma use a 120-doc/benchmark subsample.
+Reproduce with `scripts/build_c1c2_corpora.py` → `scripts/score_corpus.py --all` →
+`scripts/aggregate_c1c2.py`.*
+
 ## Live dashboard
 
 **Official URL** (Cloudflare Pages — auto-redeploys on every push to `main`,
