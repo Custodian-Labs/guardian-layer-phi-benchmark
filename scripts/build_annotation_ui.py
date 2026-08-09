@@ -15,7 +15,11 @@ from __future__ import annotations
 import csv, json, os
 
 ROOT = os.path.join(os.path.dirname(__file__), os.pardir)
-SRC = os.path.join(ROOT, "data", "annotation", "surrogate_quality_prefilled.csv")
+_AUDIT = os.path.join(ROOT, "data", "annotation", "surrogate_quality_audit.csv")
+_PREFILL = os.path.join(ROOT, "data", "annotation", "surrogate_quality_prefilled.csv")
+# Prefer the fuller manual-audit pass as the review starting point (authors
+# confirm 46 flags rather than re-scan 200); fall back to the heuristic sheet.
+SRC = _AUDIT if os.path.exists(_AUDIT) else _PREFILL
 OUT = os.path.join(ROOT, "web", "annotate.html")
 COLS = ["id", "benchmark", "doc_id", "type", "original", "surrogate", "context",
         "failure", "valid", "type_consistent", "reviewed", "notes"]
