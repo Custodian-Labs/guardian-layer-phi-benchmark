@@ -1,10 +1,15 @@
 # Surrogate-quality annotation guidelines (§7 error typology)
 
-**Goal.** Independently quantify *why* the small masked-span recall residual
-happens — i.e. whether the surrogates the transform emits are well-formed,
-same-type values, or defective. This is the human-judged counterpart to the
-automatic detector scores, and turns the §7 error typology from an assertion
-into a measured failure-rate.
+**Goal.** Quantify *why* the small masked-span recall residual happens — i.e.
+whether the surrogates the transform emits are well-formed, same-type values, or
+defective — turning the §7 error typology from an assertion into a measured
+failure-rate.
+
+**Current basis: AI review.** The §7 numbers come from an **AI review** of the
+200-span sample (`data/annotation/surrogate_quality_audit.csv`): an LLM labels
+each surrogate against the typology, with scripted `x`-mask detection. This is
+explicitly *not* human-validated. Optional human double-annotation (below) would
+upgrade it to inter-rater agreement (Cohen's κ); it is left as future work.
 
 **What you're rating.** Each row is one *masked span*: the `original` PHI value,
 the `surrogate` the transform put in its place, and a `context` window
