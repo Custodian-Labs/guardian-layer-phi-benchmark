@@ -230,6 +230,7 @@ OBI \tp{deid\_roberta} & .041 & .040 & $-.002$ & .941 & .944\\
 \textbf{Recall retention on masked spans (overlap).} Restricting to masked spans removes that dilution. When the transform masks a span, detectors still find the surrogate 93--100\% of the time (Table~\ref{tab:ret}); the $\sim$3-point exact-boundary drop is a length-jitter artifact that vanishes under overlap matching. (The two floor detectors, Llama~3.1-8B and OBI \tp{deid\_roberta}, are omitted from Table~\ref{tab:ret}: their original recall is so low that the retention ratio is dominated by noise.)
 
 \begin{table}[t]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lrr}
 \toprule
 Detector & Exact & Overlap\\
@@ -245,6 +246,7 @@ Presidio & 91.3 & \textbf{97.4}\\
 DeepSeek V2-Lite & 87.7 & \textbf{92.8}\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{Recall retention on masked spans (\%), transformed$\div$original.}\label{tab:ret}
 \end{table}
 
@@ -443,6 +445,7 @@ Coverage is reported but not the focus; a transform can preserve utility on what
 Coverage (\S\ref{sec:results}) is the fraction of a benchmark's gold PHI whose characters the transform actually changed (difflib alignment). Table~\ref{tab:covtype} breaks it down by entity type on the clinical sets (ASQ-PHI~+~MEDDOCAN). High-frequency free-text types (names, dates) are masked well; the weak spots are high-sensitivity structured identifiers and geography---exactly the HIPAA Safe Harbor items that most need masking.
 
 \begin{table}[h]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lr}
 \toprule
 Entity type (clinical) & Coverage\\
@@ -454,6 +457,7 @@ ORG / facility & 46.6\%\\
 LOCATION / address & 43.7\%\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{Coverage by entity type on clinical benchmarks. Overall the transform altered 39\% of annotated PII (54\% on clinical sets); general-domain corpora sit near 26\%.}\label{tab:covtype}
 \end{table}
 
