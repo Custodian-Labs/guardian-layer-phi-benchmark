@@ -27,6 +27,8 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{xcolor}
 \usepackage{calc}
+\usepackage{graphicx}
+\usepackage{adjustbox}
 % ---- website palette (custodianai.pages.dev) ----
 \definecolor{caccent}{HTML}{0F6E5C}  % green  (new / surrogate)
 \definecolor{cclay}{HTML}{BD5B36}    % clay   (old / original)
@@ -201,6 +203,7 @@ The core paired study, the equivalence analysis (pooled and per-benchmark), the 
 \textbf{Whole-document view (conservative).} Before restricting to masked spans, Table~\ref{tab:fullf1} reports span-level F1 and leakage on \emph{all} gold spans, per detector. Whole-document $\Delta$F1 ranges from $+0.003$ (Llama~3.3-70B) to $-0.047$ (Qwen~3.5-35B-A3B), and leakage rises by only $+0.3$ to $+4.1$ points. This view is conservative by design---it mixes masked spans with exact-boundary penalties on length-changed surrogates and with spans the transform never touched---yet it already bounds the worst case (no detector's mean F1 moves by more than 4.7 points) and preserves ranking across a 100$\times$ span of detector quality (F1 $0.76\!\rightarrow\!0.04$). The masked-span analysis below isolates the substitution effect from this dilution.
 
 \begin{table}[t]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lrrrrr}
 \toprule
 Detector & \multicolumn{2}{c}{F1} & $\Delta$ & \multicolumn{2}{c}{Leak}\\
@@ -220,6 +223,7 @@ Llama 3.1-8B & .391 & .376 & $-.015$ & .633 & .650\\
 OBI \tp{deid\_roberta} & .041 & .040 & $-.002$ & .941 & .944\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{Whole-document view (all 11 detectors), mean over 7 benchmarks. Span-level F1 (type match) and leakage ($1-$recall). Conservative: it includes untouched spans and boundary penalties. Ranking is preserved and $\Delta$F1 is bounded.}\label{tab:fullf1}
 \end{table}
 
@@ -274,6 +278,7 @@ DeepSeek V2-Lite & 87.7 & \textbf{92.8}\\
 \end{figure}
 
 \begin{table}[t]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lrrrl}
 \toprule
 Benchmark & Masked & O$\rightarrow$T & McN.\ $\chi^2$ & Margin\\
@@ -289,12 +294,14 @@ PII de & 4{,}565 & 76.3$\rightarrow$76.5 & 0.4 & $\pm2$\,\checkmark\\
 \textbf{Pooled} & \textbf{57{,}112} & \textbf{76.1$\rightarrow$74.9} & \textbf{82.1} & $\pm2$\,\checkmark\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{Per-benchmark equivalence. O$\rightarrow$T = masked-span recall, original$\rightarrow$transform (\%). Pooled TOST $\Delta{=}2$: $p{=}3{\times}10^{-9}$.}\label{tab:c3}
 \end{table}
 
 \textbf{Redaction floor (C1).} We replace each masked value with \tp{*****}---destroying the surrogate signal---and re-detect with four detectors spanning all three families (Table~\ref{tab:c1}). The floor is sharply \emph{family-dependent}. Rule-based Presidio and the fine-tuned OBI tagger collapse to $\approx$0--4\% everywhere: they key on real surface tokens, so with the signal gone they recover almost nothing (the residual is spurious overlap on the \tp{*} run). Open LLMs behave differently---they partly \emph{recover} the masked span (Qwen-9B 6--58\%, Gemma-31B 13--80\%)---because a \tp{*****} run is itself a legible redaction cue that a strong reader flags as ``something was here.'' This recovery is \emph{context-dependent}: highest on ASQ-PHI (short adversarial queries where one masked run dominates the prompt) and on the larger model, lowest on the dense multilingual PII sets. Crucially, even Gemma's floor stays far below its surrogate recall (Table~\ref{tab:c2}), so the conclusion holds across families---redaction destroys detectability that structure-preserving substitution keeps, and where a detector recovers anything from \tp{*****} it is reading the mask, not the (absent) PHI.
 
-\begin{table}[t]\centering\small
+\begin{table*}[t]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lrrrrr}
 \toprule
  & & \multicolumn{2}{c}{rule / fine-tuned} & \multicolumn{2}{c}{open LLM}\\
@@ -312,12 +319,14 @@ PII de & \nk{204} & \vc{0.0}{0.0} & \vc{1.0}{1.2} & \vc{11.8}{4.4} & \vc{41.7}{6
 Mean & & \textbf{1.3} & \textbf{0.6} & 22.0 & 43.1\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{C1 redaction floor: masked-span recall (\%) after replacing each masked value with \tp{*****}, across detector families. Rule/fine-tuned detectors collapse to $\approx$0; open LLMs partly recover the redaction cue (context-dependent). All floors sit well below the surrogate recall in Table~\ref{tab:c2}. \nk{N} (khaki) is the masked-span count in the 120-document subsample shared by OBI, Qwen-9B and Gemma-31B; Presidio runs on the full corpus (N${=}$531, 2{,}925, 471, 373, 544, 415 for its six rows). MultiCoNER contributes only 8 masked spans in the subsample, so those cells are illustrative. \nk{$\pm$x} (khaki) is the half-width of the 95\% bootstrap CI over masked spans (5{,}000 resamples), making small-$N$ noise explicit---e.g.\ MultiCoNER's $\pm$19--31. Per-detector means are over each detector's scored benchmarks (Presidio: 6; others: 7).}\label{tab:c1}
-\end{table}
+\end{table*}
 
 \textbf{Open-surrogate baseline (C2).} We replace the commercial generator with Faker on the same masked spans and re-score all four detectors (Table~\ref{tab:c2}); two findings hold \emph{across families}. \emph{Generality}: every detector retains high masked-span recall on the open surrogates---Presidio 78--98\%, OBI 64--100\%, Qwen-9B 77--100\%, Gemma-31B 83--100\% (family means 84--95\%)---so detectability preservation is a property of well-formed, same-type substitution, not of one vendor or one detector, and it reproduces without proprietary access. \emph{The residual is generator quality}: Faker, emitting clean canonical values, matches or exceeds the commercial transform precisely on the hard non-English benchmarks where the commercial surrogates truncate or garble (\S\ref{sec:error}); the stronger the detector, the smaller the residual (Gemma-31B mean 94.5\%).
 
-\begin{table}[t]\centering\small
+\begin{table*}[t]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lrrrrr}
 \toprule
  & & \multicolumn{2}{c}{rule / fine-tuned} & \multicolumn{2}{c}{open LLM}\\
@@ -335,8 +344,9 @@ PII de & \nk{204} & \vc{78.1}{4.1} & \vc{84.8}{4.9} & \vc{77.9}{5.6} & \vc{95.1}
 Mean & & 86.0 & 84.2 & 83.9 & \textbf{94.5}\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{C2 open-surrogate (Faker) retention: masked-span recall (\%) on the same masked spans, across detector families. Every family stays high (means 84--95\%), so detectability preservation is generic to well-formed substitution rather than tool- or detector-specific. \nk{N}, subsampling, and mean denominators as in Table~\ref{tab:c1}.}\label{tab:c2}
-\end{table}
+\end{table*}
 
 \begin{figure}[t]
 \centering
@@ -474,6 +484,7 @@ LOCATION / address & 43.7\%\\
 \textbf{Agreement on well-formed surrogates.} On clean English (ASQ-PHI), a plausible same-type surrogate is caught by nearly the whole panel (Table~\ref{tab:agree}): the substitution is invisible to detection. Divergence is confined to the two floor detectors (Llama~3.1-8B, DeepSeek~V2-Lite).
 
 \begin{table}[h]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{llr}
 \toprule
 Document & Surrogate span (type) & Caught\\
@@ -486,12 +497,14 @@ asq\_00003 & Mt.\ Egypt (LOC) & 11/11\\
 asq\_00003 & Nov 19, 2021 (DATE) & 11/11\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{Number of detectors (of 11) that find each well-formed surrogate. Same-type swaps stay broadly detectable.}\label{tab:agree}
 \end{table}
 
 \textbf{Representative losses, by failure type.} Table~\ref{tab:lost} shows genuine ``lost'' cases (MEDDOCAN): the original value was found by most detectors, but a defective surrogate is found by few. Each maps to one of the three failure types in \S\ref{sec:error}, and the drop is shared across the panel---i.e.\ it is a property of the surrogate, not of any one detector.
 
 \begin{table}[h]\centering\small
+\begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{p{3.5cm}rl}
 \toprule
 Original $\rightarrow$ surrogate & O\,$\rightarrow$\,T & Type\\
@@ -505,6 +518,7 @@ Original $\rightarrow$ surrogate & O\,$\rightarrow$\,T & Type\\
 \oldv{\tp{40}}\arr\newv{\tp{35}} (age) & 9\,$\rightarrow$\,2 & bare number\\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \caption{Representative lost spans on MEDDOCAN. O\,$\rightarrow$\,T = detectors finding the original vs.\ the surrogate (panel of 11--12; original includes one extra decoding variant). Losses are shared across detectors and align with the \S\ref{sec:error} typology.}\label{tab:lost}
 \end{table}
 

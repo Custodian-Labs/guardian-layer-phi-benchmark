@@ -21,7 +21,10 @@ Our `paper/ml4h/main.tex` compiles with a **vanilla `jmlr.cls` + a stubbed
       defines it). **Keep** `\mlhtrack{proceedings}`.
 - [ ] Copy our **preamble extras** into the template preamble:
       packages `tikz` (+libraries `arrows.meta,positioning,fit,backgrounds,calc`),
-      `pgfplots` (`\pgfplotsset{compat=1.16}`), `booktabs`, `calc`, `microtype`;
+      `pgfplots` (`\pgfplotsset{compat=1.16}`), `booktabs`, `calc`, `microtype`,
+      **`graphicx` + `adjustbox`** (the wide tables are wrapped in
+      `\begin{adjustbox}{max width=\columnwidth}…` so they shrink-to-fit the
+      column instead of overflowing/overlapping — keep this when migrating);
       colors `cblue,caccent,cclay,cpaper,cline,cmuted,ckhaki,hgreen,hyellow,hred`;
       macros `\oldv \newv \hg \hy \hr \card \arr \tp \nk \vc` (drop `\pending`).
 - [ ] Paste our body (everything from `\section{Introduction}` to end, incl.
@@ -87,6 +90,9 @@ Our `paper/ml4h/main.tex` compiles with a **vanilla `jmlr.cls` + a stubbed
 
 ## 8. Final build sanity
 - [ ] `pdflatex → bibtex → pdflatex ×2`, zero undefined citations/refs.
-- [ ] No overfull `\hbox` into the margin (our tables use `\vc`/`\nk` khaki
-      annotations — check they fit the official column width).
+- [ ] No overfull `\hbox` into the margin. Wide tables (C1/C2, equivalence,
+      whole-doc F1, lost/agree) are `adjustbox`-capped to `\columnwidth`; the
+      ml4h C1/C2 show **recall + khaki N only** (per-cell 95% CIs live in the
+      arXiv version) so they fit the narrow jmlr column. Re-check visually in
+      the official template.
 - [ ] All 10 tables + figures render; cross-refs resolve.
