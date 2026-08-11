@@ -13,6 +13,7 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{adjustbox}
+\usepackage{placeins}
 \usepackage{microtype}
 % ---- colour palette ----
 \definecolor{cblue}{HTML}{3A6EA5}
@@ -321,10 +322,13 @@ All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for
 \section{Limitations}
 Coverage is reported but not the focus; a transform can preserve utility on what it masks while under-masking (the axes are independent by design). 250~docs/benchmark bounds per-benchmark power (though the pooled masked-span $N$ is large). C1/C2 span four detectors across families (Presidio full-corpus; OBI, Qwen-9B, Gemma-31B on a 120-doc/benchmark subsample); extending them to the full 11-detector panel is straightforward future work. LLM detectors are prompt-sensitive and their behaviour shifts with task framing and structural variation~\citep{gendron2024abstract,bao2024robustness}; we fix one prompt per model and release it with the code and data at the project's reproducibility page. Finally, all seven benchmarks are public or synthetic; validating the protocol on real-EHR corpora (n2c2, MIMIC-IV-Note, CARMEN-I) is future work pending the relevant data-use agreements.
 
+\clearpage
 \appendix
 
 \section{Additional Results}\label{app:addl}
-\begin{figure}[t]
+This appendix collects results referenced from the main text: the conservative whole-document view across all 11 detectors (Table~\ref{tab:fullf1}), the per-benchmark $\Delta$F1 breakdown (Table~\ref{tab:perbench}), the Presidio C1/C2 chart (Figure~\ref{fig:bars}), and worked transform examples (Table~\ref{tab:examples}).
+
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
@@ -363,7 +367,7 @@ PII (French, JSON) & \tp{\{"Date":"\oldv{20/05/2022}", "City":"Saint-Priest", "U
 \caption{Worked transform examples. Only the sensitive value moves; abbreviations (\tp{w/ CHF}, \tp{alt tx}), non-English syntax, and JSON keys/quotes/indentation are preserved, so downstream parsers and detectors keep working. In the JSON case the transform changes only the date value and leaves the (also-sensitive-looking) username untouched---a coverage decision, not a utility one (see below).}\label{tab:examples}
 \end{table*}
 
-\begin{table}[t]\centering\small
+\begin{table}[!ht]\centering\small
 \begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lrrrrr}
 \toprule
@@ -408,6 +412,7 @@ OBI \tp{deid\_roberta} & $+.001$ & $-.008$ & $-.004$ & $-.001$ & $+.003$ & $-.00
 \end{table*}
 
 
+\FloatBarrier
 \section{Coverage Details}\label{app:coverage}
 Coverage (\S\ref{sec:results}) is the fraction of a benchmark's gold PHI whose characters the transform actually changed (difflib alignment). Table~\ref{tab:covtype} breaks it down by entity type on the clinical sets (ASQ-PHI~+~MEDDOCAN). High-frequency free-text types (names, dates) are masked well; the weak spots are high-sensitivity structured identifiers and geography---exactly the HIPAA Safe Harbor items that most need masking.
 
@@ -430,6 +435,7 @@ LOCATION / address & 43.7\%\\
 
 \textbf{Detection vs.\ replacement.} On a sample of 8 MEDDOCAN documents (62 missed ID/location spans), $48/62$ ($\approx$77\%) of the \emph{un}masked identifiers were nonetheless flagged as sensitive by the transform's own detector---they were detected but not substituted; only $14/62$ (23\%) were undetected. The coverage gap is therefore mostly a \emph{replacement-step} issue (act on everything the detector surfaces), which is more tractable than raising detection recall. (Small sample; ``detected'' judged by loose token overlap, so 77\% is directional.) Concrete unmasked HIPAA identifiers included patient IDs (\tp{80926}, \tp{7845693}), care-contact IDs (\tp{4387684}), and facilities/geography (\tp{Hospital de Cruces}, \tp{Espa\~na}, postal codes \tp{41005}, \tp{28047}).
 
+\FloatBarrier
 \section{Representative Per-Detector Examples}\label{app:examples}
 
 \textbf{All-detector overlay on one document (``ranking proof'').} All eleven detectors' predictions on one transformed document (\tp{asq\_00001}), overlaid on the text and sorted by this document's F1: \hg{green}~=~correctly caught PHI, \hy{yellow}~=~false positive, \hr{red}~=~missed PHI (leakage). The four gold surrogate values are \tp{John T.}, the \emph{x}-masked location \tp{Saint. Vxxxxxxxx}, \tp{April 25th, 2018}, and the ID \tp{987654321}. Eight of eleven detectors tag all four cleanly (F1~100); the two floor detectors, Presidio and DeepSeek, miss the \emph{x}-masked location surrogate (§\ref{sec:error} mode~3)---DeepSeek also drops the numeric ID---and OBI over-fragments boundaries and false-fires on the age \tp{60}. The surrogate values shown are the transform's output, not the original PHI.
