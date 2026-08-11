@@ -314,7 +314,7 @@ Mean & & 86.0 & 84.2 & 83.9 & \textbf{94.5}\\
 \textbf{Implication.} Detectors are not getting worse at PHI; the small recall gap is driven by surrogate-generation quality (truncation, garbling, salience, \tp{x}-masking)---generating well-formed, in-distribution synthetic text is itself a hard problem~\citep{bao2024amr}. C2 confirms this: an open generator emitting clean canonical values matches or exceeds the commercial transform on exactly the hard non-English benchmarks where its surrogates truncate---so the residual tracks generator quality, not the act of substitution.
 
 \section{Discussion}
-\textbf{What the evidence supports.} Structure-preserving substitution does not hide well-formed PHI from downstream detection. Because the effect is equivalence-bounded within $\pm2$ points and ranking-preserving across a heterogeneous 11-detector panel, a transform of this quality can be inserted ahead of detection/analytics pipelines built for real clinical text without materially degrading downstream detection. \textbf{Generality (C2).} Faker preserves masked-span recall at least as well as the original across all six benchmarks, so $\pm2$ points appears to be a property of well-formed substitution rather than of one vendor; where the commercial generator trails, a cleaner generator closes the gap, locating the residual squarely in generation quality. \textbf{A reusable protocol.} The paired masked-span design and the TOST margin are not specific to one vendor or language---a template for auditing any structure-preserving privacy transform.
+\textbf{What the evidence supports.} Structure-preserving substitution does not hide well-formed PHI from downstream detection. Because the effect is equivalence-bounded within $\pm2$ points and ranking-preserving across a heterogeneous 11-detector panel, a transform of this quality can be inserted ahead of detection/analytics pipelines built for real clinical text without materially degrading downstream detection. \textbf{Generality (C2).} Faker preserves masked-span recall at least as well as the original across all six benchmarks, so $\pm2$ points appears to be a property of well-formed substitution rather than of one vendor; where the commercial generator trails, a cleaner generator closes the gap, locating the residual squarely in generation quality. \textbf{A reusable protocol.} The paired masked-span design and the TOST margin are not specific to one vendor or language---a template for auditing any structure-preserving privacy transform. \textbf{Deployment guidance.} A structure-preserving transform can be treated as admissible ahead of a detection/analytics pipeline when it clears a three-part check---detectability measured on masked spans only, the change inside an equivalence margin with ranking preserved, and surrogate outputs free of the three generator-side defects (truncation/garbling, salience loss, \tp{x}-masking) that drive the residual.
 
 \section{Ethics and Data Statement}
 All benchmarks are public or synthetic (ASQ-PHI synthetic; MEDDOCAN released for a shared task; PII-Masking-300k synthetic; MultiCoNER~v2 public). \textbf{No real patient data is used.} We release the 250-document subsets and scoring code with license notes. \textbf{Dual-use.} A utility-preserving de-identifier could in principle launder identifiable data into a fluent form; our masked-span/leakage reporting and the privacy-positive framing of \tp{x}-masking keep the privacy accounting explicit. \textbf{Conflict of interest.} The commercial transform evaluated as the case study is developed by a vendor with which one or more authors are affiliated (details withheld for anonymous review); the work was conducted with that vendor's support. To limit bias we (i)~frame the contribution as a reusable protocol, (ii)~include open-source baselines so results are reproducible without proprietary access, and (iii)~report leakage and coverage alongside utility.
@@ -328,7 +328,7 @@ Coverage is reported but not the focus; a transform can preserve utility on what
 \section{Additional Results}\label{app:addl}
 This appendix collects results referenced from the main text: the conservative whole-document view across all 11 detectors (Table~\ref{tab:fullf1}), the per-benchmark $\Delta$F1 breakdown (Table~\ref{tab:perbench}), the Presidio C1/C2 chart (Figure~\ref{fig:bars}), and worked transform examples (Table~\ref{tab:examples}).
 
-\begin{figure}[!ht]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
@@ -350,7 +350,7 @@ This appendix collects results referenced from the main text: the conservative w
 \label{fig:bars}
 \end{figure}
 
-\begin{table*}[t]\centering\small
+\begin{table*}[tbp]\centering\small
 \begin{tabular}{p{2.3cm}p{6.0cm}p{6.0cm}}
 \toprule
 Case & Original & Transformed\\
@@ -367,7 +367,7 @@ PII (French, JSON) & \tp{\{"Date":"\oldv{20/05/2022}", "City":"Saint-Priest", "U
 \caption{Worked transform examples. Only the sensitive value moves; abbreviations (\tp{w/ CHF}, \tp{alt tx}), non-English syntax, and JSON keys/quotes/indentation are preserved, so downstream parsers and detectors keep working. In the JSON case the transform changes only the date value and leaves the (also-sensitive-looking) username untouched---a coverage decision, not a utility one (see below).}\label{tab:examples}
 \end{table*}
 
-\begin{table}[!ht]\centering\small
+\begin{table}[htbp]\centering\small
 \begin{adjustbox}{max width=\columnwidth}%
 \begin{tabular}{lrrrrr}
 \toprule
@@ -392,7 +392,7 @@ OBI \tp{deid\_roberta} & .041 & .040 & $-.002$ & .941 & .944\\
 \caption{Whole-document view (all 11 detectors), mean over 7 benchmarks. Span-level F1 (type match) and leakage ($1-$recall). Conservative: it includes untouched spans and boundary penalties. Ranking is preserved and $\Delta$F1 is bounded.}\label{tab:fullf1}
 \end{table}
 
-\begin{table*}[t]\centering\small
+\begin{table*}[tbp]\centering\small
 \begin{tabular}{lrrrrrrr}
 \toprule
 Detector & ASQ-PHI & MEDDOCAN & PII en & PII nl & PII fr & PII de & MultiCoNER\\
@@ -412,7 +412,6 @@ OBI \tp{deid\_roberta} & $+.001$ & $-.008$ & $-.004$ & $-.001$ & $+.003$ & $-.00
 \end{table*}
 
 
-\FloatBarrier
 \section{Coverage Details}\label{app:coverage}
 Coverage (\S\ref{sec:results}) is the fraction of a benchmark's gold PHI whose characters the transform actually changed (difflib alignment). Table~\ref{tab:covtype} breaks it down by entity type on the clinical sets (ASQ-PHI~+~MEDDOCAN). High-frequency free-text types (names, dates) are masked well; the weak spots are high-sensitivity structured identifiers and geography---exactly the HIPAA Safe Harbor items that most need masking.
 
@@ -435,7 +434,6 @@ LOCATION / address & 43.7\%\\
 
 \textbf{Detection vs.\ replacement.} On a sample of 8 MEDDOCAN documents (62 missed ID/location spans), $48/62$ ($\approx$77\%) of the \emph{un}masked identifiers were nonetheless flagged as sensitive by the transform's own detector---they were detected but not substituted; only $14/62$ (23\%) were undetected. The coverage gap is therefore mostly a \emph{replacement-step} issue (act on everything the detector surfaces), which is more tractable than raising detection recall. (Small sample; ``detected'' judged by loose token overlap, so 77\% is directional.) Concrete unmasked HIPAA identifiers included patient IDs (\tp{80926}, \tp{7845693}), care-contact IDs (\tp{4387684}), and facilities/geography (\tp{Hospital de Cruces}, \tp{Espa\~na}, postal codes \tp{41005}, \tp{28047}).
 
-\FloatBarrier
 \section{Representative Per-Detector Examples}\label{app:examples}
 
 \textbf{All-detector overlay on one document (``ranking proof'').} All eleven detectors' predictions on one transformed document (\tp{asq\_00001}), overlaid on the text and sorted by this document's F1: \hg{green}~=~correctly caught PHI, \hy{yellow}~=~false positive, \hr{red}~=~missed PHI (leakage). The four gold surrogate values are \tp{John T.}, the \emph{x}-masked location \tp{Saint. Vxxxxxxxx}, \tp{April 25th, 2018}, and the ID \tp{987654321}. Eight of eleven detectors tag all four cleanly (F1~100); the two floor detectors, Presidio and DeepSeek, miss the \emph{x}-masked location surrogate (§\ref{sec:error} mode~3)---DeepSeek also drops the numeric ID---and OBI over-fragments boundaries and false-fires on the age \tp{60}. The surrogate values shown are the transform's output, not the original PHI.
