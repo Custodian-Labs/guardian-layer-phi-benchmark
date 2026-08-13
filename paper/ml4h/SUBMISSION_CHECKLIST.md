@@ -96,3 +96,20 @@ Our `paper/ml4h/main.tex` compiles with a **vanilla `jmlr.cls` + a stubbed
       arXiv version) so they fit the narrow jmlr column. Re-check visually in
       the official template.
 - [ ] All 10 tables + figures render; cross-refs resolve.
+
+## 9. References — verification log (all 47 web-verified)
+- [x] Every entry in `refs.bib` was web-verified (ACL Anthology / arXiv / DOI /
+      dblp / PubMed). None fabricated or suspicious.
+- [x] **Fixed:** `carrell2020parrot` had the wrong volume/pages/year (it carried
+      a *different* Carrell JAMIA paper's details). Corrected to **JAMIA
+      26(12):1536–1544, 2019, doi 10.1093/jamia/ocz116** (renders as "Carrell
+      et al., 2019"; the key label still reads "2020" but that is internal only).
+- [x] Confirmed already-correct: `weatherhead2026asqphi` (*Data in Brief*
+      65:112586, 2026 — the ASQ-PHI author's own paper) and `fetahu2023multiconer`
+      (Findings of EMNLP 2023).
+- [x] The 4 Xiong et al. LLM-reasoning refs verified real:
+      `xiong2025deliberate` (ACL 2025, pp 31900–31931),
+      `xiong2025enhancing` (arXiv 2510.11620),
+      `xiong2026enhancing` (ICLR 2026 — exact page range not independently
+      confirmed, venue/paper confirmed),
+      `xiong2026adaptive` (arXiv 2602.01672).
