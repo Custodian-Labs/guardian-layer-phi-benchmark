@@ -1,0 +1,250 @@
+{"doc_id": "ent_5fd803730cbf", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_0eb75ecb1e3d", "n_gold": 5, "spans": [{"start": 11, "end": 14, "label": "ID", "text": " 123"}, {"start": 14, "end": 16, "label": "ID", "text": "45"}, {"start": 31, "end": 38, "label": "DATE", "text": " 2023-03"}], "error": null}
+{"doc_id": "ent_6887f9a29337", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_9c898867bb5c", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_b1b78c2d9546", "n_gold": 5, "spans": [{"start": 109, "end": 109, "label": "ID", "text": " "}], "error": null}
+{"doc_id": "ent_f7918cbb6e1c", "n_gold": 6, "spans": [{"start": 0, "end": 2, "label": "HOSP", "text": " **"}, {"start": 2, "end": 11, "label": "HOSP", "text": "Warehouse"}], "error": null}
+{"doc_id": "ent_0d0e552d9fa5", "n_gold": 4, "spans": [{"start": 93, "end": 100, "label": "DATE", "text": " 2022-06"}, {"start": 101, "end": 103, "label": "DATE", "text": "15"}], "error": null}
+{"doc_id": "ent_595dcbb5aaea", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_594aed7ed6fa", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_27f84990d7e3", "n_gold": 1, "spans": [{"start": 35, "end": 38, "label": "ID", "text": " 123"}, {"start": 38, "end": 41, "label": "ID", "text": "456"}], "error": null}
+{"doc_id": "ent_813716da92f1", "n_gold": 4, "spans": [{"start": 99, "end": 106, "label": "DATE", "text": " June 1,"}, {"start": 107, "end": 111, "label": "DATE", "text": " 2023"}], "error": null}
+{"doc_id": "ent_6a2e161d9a1f", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_39e8a6380743", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5d5d39fa95b8", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_1b298fbb84d5", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b6f05aae5248", "n_gold": 5, "spans": [{"start": 176, "end": 181, "label": "LOC", "text": " North"}, {"start": 182, "end": 189, "label": "LOC", "text": " America"}, {"start": 206, "end": 213, "label": "DATE", "text": " 2023-01"}, {"start": 213, "end": 216, "label": "DATE", "text": "-01"}, {"start": 220, "end": 227, "label": "DATE", "text": " 2028-12"}, {"start": 227, "end": 230, "label": "DATE", "text": "-31"}, {"start": 328, "end": 335, "label": "DATE", "text": " 15th of"}, {"start": 336, "end": 340, "label": "DATE", "text": " June"}, {"start": 345, "end": 353, "label": "DATE", "text": " December"}, {"start": 529, "end": 536, "label": "DATE", "text": " 2023-06"}, {"start": 544, "end": 551, "label": "DATE", "text": " 2023-12"}], "error": null}
+{"doc_id": "ent_ae795b459304", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_f9deb5c82773", "n_gold": 5, "spans": [{"start": 64, "end": 66, "label": "ID", "text": " 64"}, {"start": 67, "end": 69, "label": "PHONE", "text": "45"}, {"start": 70, "end": 73, "label": "PHONE", "text": "244"}, {"start": 74, "end": 77, "label": "ID", "text": "171"}, {"start": 87, "end": 101, "label": "OTHERPHI", "text": " Windows Server"}, {"start": 102, "end": 106, "label": "OTHERPHI", "text": " 2019"}, {"start": 174, "end": 184, "label": "OTHERPHI", "text": " SQL Server"}], "error": null}
+{"doc_id": "ent_265e51314507", "n_gold": 5, "spans": [{"start": 122, "end": 154, "label": "HOSP", "text": " ********************************"}], "error": null}
+{"doc_id": "ent_e58ab8cd0af6", "n_gold": 4, "spans": [{"start": 38, "end": 45, "label": "DATE", "text": " 2023-01"}, {"start": 45, "end": 48, "label": "DATE", "text": "-01"}], "error": null}
+{"doc_id": "ent_859ad4adc598", "n_gold": 4, "spans": [{"start": 36, "end": 47, "label": "ID", "text": " SO-20230328"}, {"start": 47, "end": 48, "label": "DATE", "text": "-"}, {"start": 48, "end": 51, "label": "ID", "text": "001"}, {"start": 62, "end": 66, "label": "DATE", "text": " 2023"}, {"start": 66, "end": 67, "label": "DATE", "text": "-"}, {"start": 67, "end": 69, "label": "DATE", "text": "03"}, {"start": 70, "end": 72, "label": "DATE", "text": "28"}], "error": null}
+{"doc_id": "ent_0e1ea52077b6", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_2a7160dc9add", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b0dd7a0bb199", "n_gold": 5, "spans": [{"start": 64, "end": 71, "label": "DATE", "text": " 2022-05"}], "error": null}
+{"doc_id": "ent_1125acd02a4d", "n_gold": 6, "spans": [{"start": 84, "end": 89, "label": "HOSP", "text": "\n**HS"}, {"start": 98, "end": 100, "label": "ID", "text": " 09"}, {"start": 101, "end": 103, "label": "ID", "text": "01"}, {"start": 214, "end": 222, "label": "DATE", "text": " 25/05/20"}, {"start": 222, "end": 224, "label": "DATE", "text": "23"}], "error": null}
+{"doc_id": "ent_f60a009b2fa4", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_8a8c9d856f0e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4e71fe27b70a", "n_gold": 1, "spans": [{"start": 37, "end": 42, "label": "DATE", "text": " 2023-"}, {"start": 67, "end": 70, "label": "ID", "text": " 123"}, {"start": 70, "end": 72, "label": "ID", "text": "45"}, {"start": 91, "end": 94, "label": "ID", "text": " 678"}, {"start": 94, "end": 96, "label": "ID", "text": "90"}], "error": null}
+{"doc_id": "ent_f080712c61a8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_0a7a5d9c243e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_68c24dff4329", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_e3f265a3351e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_dd444cd36805", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5b537c23a8ca", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_33f5f2beddbd", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_1febff7416c9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_7cb3a3b274cc", "n_gold": 4, "spans": [{"start": 148, "end": 157, "label": "ID", "text": " SHIP12345"}], "error": null}
+{"doc_id": "ent_c52b4bf81fdf", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_d65f0060ae47", "n_gold": 5, "spans": [{"start": 64, "end": 67, "label": "PATORG", "text": " the"}, {"start": 68, "end": 75, "label": "PATORG", "text": " company"}], "error": null}
+{"doc_id": "ent_61a7ddb988ae", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_95b659499559", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8cbbba5445eb", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8e608eee1f61", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_73e6677f9c57", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_1474d0b045aa", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_32e9125fbb90", "n_gold": 1, "spans": [{"start": 46, "end": 50, "label": "ID", "text": " F-16"}, {"start": 50, "end": 54, "label": "ID", "text": "C-50"}], "error": null}
+{"doc_id": "ent_b0e4f689b3c6", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_be70b28baff5", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_dba85964cfaf", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_71d382c81cee", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_555905f852d7", "n_gold": 4, "spans": [{"start": 90, "end": 96, "label": "DATE", "text": " 07/31/"}, {"start": 96, "end": 100, "label": "DATE", "text": "1995"}, {"start": 370, "end": 376, "label": "DATE", "text": " 07/05/"}, {"start": 376, "end": 380, "label": "DATE", "text": "1995"}, {"start": 432, "end": 438, "label": "DATE", "text": " 07/15/"}, {"start": 438, "end": 442, "label": "DATE", "text": "1995"}, {"start": 493, "end": 499, "label": "DATE", "text": " 07/25/"}, {"start": 499, "end": 503, "label": "DATE", "text": "1995"}], "error": null}
+{"doc_id": "ent_9d552a7dca11", "n_gold": 4, "spans": [{"start": 33, "end": 41, "label": "PATIENT", "text": " Brittany"}], "error": null}
+{"doc_id": "ent_030a2881b770", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5152860d9ccc", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6464ccaaf413", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1c4657be0581", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_42c47d782c31", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_3ba0c0cd817b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a6b6e7e6ee3a", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ab0a49c5526d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_c42c231c154c", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_c8fc2fb295a7", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b5a2a62dc9c6", "n_gold": 5, "spans": [{"start": 60, "end": 67, "label": "DATE", "text": " 2023-03"}, {"start": 83, "end": 87, "label": "HOSP", "text": " Lake"}, {"start": 88, "end": 92, "label": "OTHERPHI", "text": " Mart"}, {"start": 92, "end": 94, "label": "HOSP", "text": "yn"}, {"start": 95, "end": 101, "label": "OTHERPHI", "text": " Supply"}, {"start": 102, "end": 107, "label": "PATORG", "text": " Chain"}], "error": null}
+{"doc_id": "ent_7ff890d9de70", "n_gold": 1, "spans": [{"start": 33, "end": 40, "label": "DATE", "text": " 2023-03"}], "error": null}
+{"doc_id": "ent_bec9297d226b", "n_gold": 6, "spans": [{"start": 129, "end": 133, "label": "ID", "text": " 5208"}, {"start": 134, "end": 136, "label": "ID", "text": "90"}, {"start": 146, "end": 151, "label": "LOC", "text": " India"}], "error": null}
+{"doc_id": "ent_4065dc9e7098", "n_gold": 4, "spans": [{"start": 36, "end": 41, "label": "ID", "text": " 2022-"}, {"start": 41, "end": 43, "label": "ID", "text": "AR"}, {"start": 43, "end": 44, "label": "DATE", "text": "-"}, {"start": 44, "end": 47, "label": "ID", "text": "001"}, {"start": 253, "end": 260, "label": "DATE", "text": " 2022-10"}, {"start": 261, "end": 263, "label": "DATE", "text": "15"}], "error": null}
+{"doc_id": "ent_32b9eead84be", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_324de3ce98ad", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_feb33c5e9cdd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_07f19af5f038", "n_gold": 1, "spans": [{"start": 70, "end": 74, "label": "PATIENT", "text": " John"}, {"start": 75, "end": 78, "label": "PATIENT", "text": " Doe"}], "error": null}
+{"doc_id": "ent_1d6bb1f8eb8d", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_c64e0f7bf684", "n_gold": 4, "spans": [{"start": 95, "end": 102, "label": "DATE", "text": " 2021-01"}, {"start": 103, "end": 105, "label": "DATE", "text": "01"}, {"start": 109, "end": 116, "label": "DATE", "text": " 2021-12"}, {"start": 116, "end": 119, "label": "DATE", "text": "-31"}], "error": null}
+{"doc_id": "ent_ba757ab53d82", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e5b145d361b2", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_d1592b457adf", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e925c98e8a23", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_57cfb9f95a3e", "n_gold": 1, "spans": [{"start": 46, "end": 50, "label": "DATE", "text": "http"}], "error": null}
+{"doc_id": "ent_1702375e0d3c", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_d3995f013b93", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_3c7367cb6257", "n_gold": 5, "spans": [{"start": 114, "end": 117, "label": "HOSP", "text": "ABC"}, {"start": 127, "end": 135, "label": "LOC", "text": "123 Main"}, {"start": 136, "end": 138, "label": "LOC", "text": " St"}, {"start": 139, "end": 142, "label": "LOC", "text": "Any"}, {"start": 142, "end": 146, "label": "LOC", "text": "town"}, {"start": 147, "end": 150, "label": "LOC", "text": "USA"}], "error": null}
+{"doc_id": "ent_21de98b85080", "n_gold": 5, "spans": [{"start": 23, "end": 28, "label": "PATIENT", "text": " Alice"}, {"start": 101, "end": 104, "label": "PATIENT", "text": " Bob"}, {"start": 169, "end": 172, "label": "PATIENT", "text": " Bob"}, {"start": 220, "end": 225, "label": "PATIENT", "text": " Alice"}], "error": null}
+{"doc_id": "ent_060641fb7800", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_e9361bca53cc", "n_gold": 6, "spans": [{"start": 37, "end": 44, "label": "DATE", "text": " 2023-01"}, {"start": 45, "end": 47, "label": "DATE", "text": "01"}], "error": null}
+{"doc_id": "ent_0d862f55e498", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_cbdfad2b968a", "n_gold": 1, "spans": [{"start": 49, "end": 55, "label": "HOSP", "text": " London"}, {"start": 56, "end": 72, "label": "PATORG", "text": " Marine Insurance"}, {"start": 73, "end": 75, "label": "PATORG", "text": " Co"}, {"start": 88, "end": 95, "label": "ID", "text": " POL2023"}, {"start": 107, "end": 127, "label": "PATORG", "text": " SeaFreight Logistics"}, {"start": 128, "end": 131, "label": "PATORG", "text": " Inc"}, {"start": 198, "end": 203, "label": "DATE", "text": " 01/01"}, {"start": 203, "end": 208, "label": "DATE", "text": "/2023"}, {"start": 211, "end": 217, "label": "DATE", "text": " 31/12/"}, {"start": 217, "end": 221, "label": "DATE", "text": "2023"}], "error": null}
+{"doc_id": "ent_810eaf68c4ab", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_9b89a8f57eb6", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_efce0872495e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a27de060e3a7", "n_gold": 4, "spans": [{"start": 3, "end": 10, "label": "DATE", "text": " 2023-01"}], "error": null}
+{"doc_id": "ent_23c919aee198", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4089fb2e3a09", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8a6d3562f7dd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_40e27e063c93", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_15cf42608ee6", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_46016c62ccba", "n_gold": 1, "spans": [{"start": 40, "end": 47, "label": "DATE", "text": " 2023-01"}], "error": null}
+{"doc_id": "ent_472754e4fd1e", "n_gold": 4, "spans": [{"start": 40, "end": 45, "label": "PATORG", "text": " Azure"}], "error": null}
+{"doc_id": "ent_ecff0156a71a", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_2d47930317e7", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_22286d6a4017", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_f6fe42c6dceb", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_a80a1ff15d73", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_0566f86abb70", "n_gold": 4, "spans": [{"start": 50, "end": 52, "label": "PATORG", "text": " Co"}, {"start": 54, "end": 57, "label": "PATORG", "text": " Ltd"}], "error": null}
+{"doc_id": "ent_fb7ff9162f67", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_0c73352874d4", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_74127959718b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_aa8d3d4c405e", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_18928433b405", "n_gold": 5, "spans": [{"start": 27, "end": 34, "label": "DATE", "text": " 2023-03"}, {"start": 35, "end": 37, "label": "DATE", "text": "14"}, {"start": 48, "end": 55, "label": "DATE", "text": " 2023-04"}, {"start": 56, "end": 58, "label": "DATE", "text": "13"}], "error": null}
+{"doc_id": "ent_480bef59183c", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_ff43d49bb9bf", "n_gold": 4, "spans": [{"start": 0, "end": 2, "label": "HOSP", "text": " **"}, {"start": 6, "end": 9, "label": "ID", "text": "123"}, {"start": 9, "end": 11, "label": "ID", "text": "45"}], "error": null}
+{"doc_id": "ent_189b60e9afc4", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_216f32abec23", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_36ce02e4cd80", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_af0442e01cdd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_f3f96de40bfd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fae934f1c56d", "n_gold": 3, "spans": [{"start": 36, "end": 38, "label": "DATE", "text": " 20"}, {"start": 38, "end": 41, "label": "ID", "text": "230"}, {"start": 41, "end": 44, "label": "ID", "text": "505"}, {"start": 86, "end": 89, "label": "PATORG", "text": " ABC"}], "error": null}
+{"doc_id": "ent_5eed649fa703", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1e23d49d9d79", "n_gold": 6, "spans": [{"start": 198, "end": 210, "label": "HOSP", "text": "************"}], "error": null}
+{"doc_id": "ent_e05ef5a3a9b9", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_720d9dbede3f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8b9b60acdfc2", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_11429f9c9564", "n_gold": 4, "spans": [{"start": 105, "end": 110, "label": "STAFF", "text": " Jacob"}], "error": null}
+{"doc_id": "ent_fb75c049fab4", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_0a8b1473fb09", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_cab005196163", "n_gold": 4, "spans": [{"start": 51, "end": 55, "label": "HOSP", "text": "Hell"}], "error": null}
+{"doc_id": "ent_77c589d9fb04", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_f5fc4e3e22d3", "n_gold": 2, "spans": [{"start": 38, "end": 41, "label": "ID", "text": "123"}, {"start": 41, "end": 44, "label": "ID", "text": "456"}], "error": null}
+{"doc_id": "ent_b02f34d49564", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5703d50a83c9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_111fe8e74c26", "n_gold": 1, "spans": [{"start": 83, "end": 93, "label": "DATE", "text": " January 1,"}, {"start": 94, "end": 98, "label": "DATE", "text": " 2023"}], "error": null}
+{"doc_id": "ent_29a467e69fc5", "n_gold": 4, "spans": [{"start": 18, "end": 21, "label": "ID", "text": " 123"}], "error": null}
+{"doc_id": "ent_73827a336ed2", "n_gold": 2, "spans": [{"start": 18, "end": 20, "label": "ID", "text": "ey"}, {"start": 20, "end": 23, "label": "ID", "text": "Jhb"}, {"start": 72, "end": 74, "label": "ID", "text": "ey"}], "error": null}
+{"doc_id": "ent_934fc49f60e0", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_242f749346c2", "n_gold": 4, "spans": [{"start": 232, "end": 234, "label": "PATORG", "text": " XY"}, {"start": 234, "end": 235, "label": "PATORG", "text": "Z"}, {"start": 236, "end": 239, "label": "PATORG", "text": " Inc"}, {"start": 290, "end": 293, "label": "PATORG", "text": " ABC"}, {"start": 294, "end": 298, "label": "PATORG", "text": " Corp"}], "error": null}
+{"doc_id": "ent_0bbbed8e5a5b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_dfb4f48e5b77", "n_gold": 4, "spans": [{"start": 159, "end": 165, "label": "PATORG", "text": " Toyota"}, {"start": 191, "end": 195, "label": "DATE", "text": " 2015"}], "error": null}
+{"doc_id": "ent_53c8fa09203e", "n_gold": 5, "spans": [{"start": 101, "end": 105, "label": "PATIENT", "text": "olla"}], "error": null}
+{"doc_id": "ent_05e43b3551e9", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_f6a55d63406b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6ccc3373e945", "n_gold": 4, "spans": [{"start": 98, "end": 99, "label": "ID", "text": " $"}], "error": null}
+{"doc_id": "ent_3d8e6ab38a2e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_42960681e13d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e8eb58eb2b1b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_bf61e031b8d4", "n_gold": 5, "spans": [{"start": 256, "end": 263, "label": "DATE", "text": " 2023-07"}, {"start": 264, "end": 266, "label": "DATE", "text": "15"}], "error": null}
+{"doc_id": "ent_873393c7d981", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_c62550e3ab74", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1bc934540653", "n_gold": 4, "spans": [{"start": 51, "end": 58, "label": "DATE", "text": " 2023-03"}, {"start": 59, "end": 61, "label": "DATE", "text": "14"}], "error": null}
+{"doc_id": "ent_df98ceb49acb", "n_gold": 3, "spans": [{"start": 55, "end": 57, "label": "ID", "text": " AA"}, {"start": 57, "end": 60, "label": "ID", "text": "123"}], "error": null}
+{"doc_id": "ent_fab49f8af533", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_17b31ae653b9", "n_gold": 7, "spans": [{"start": 3, "end": 10, "label": "DATE", "text": " May 15,"}, {"start": 11, "end": 15, "label": "DATE", "text": " 2023"}], "error": null}
+{"doc_id": "ent_f8d27d9692f9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_7cedb614872d", "n_gold": 3, "spans": [{"start": 72, "end": 73, "label": "ID", "text": " I"}, {"start": 95, "end": 102, "label": "DATE", "text": " 2023-07"}], "error": null}
+{"doc_id": "ent_e7b0eee607b8", "n_gold": 5, "spans": [{"start": 43, "end": 75, "label": "HOSP", "text": " ********************************"}], "error": null}
+{"doc_id": "ent_f004adf06afd", "n_gold": 6, "spans": [{"start": 124, "end": 131, "label": "DATE", "text": " 2023-03"}, {"start": 132, "end": 134, "label": "DATE", "text": "15"}, {"start": 181, "end": 185, "label": "DATE", "text": " 2023"}, {"start": 185, "end": 186, "label": "DATE", "text": "-"}, {"start": 186, "end": 188, "label": "DATE", "text": "03"}, {"start": 189, "end": 191, "label": "DATE", "text": "20"}], "error": null}
+{"doc_id": "ent_52be9291794c", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_2e98194f5413", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6e7c3341a164", "n_gold": 4, "spans": [{"start": 182, "end": 183, "label": "STAFF", "text": "\n"}, {"start": 185, "end": 187, "label": "STAFF", "text": " RA"}, {"start": 422, "end": 423, "label": "STAFF", "text": "\n"}, {"start": 425, "end": 427, "label": "STAFF", "text": " RA"}], "error": null}
+{"doc_id": "ent_b8c2fa93984d", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_22372f8e68ce", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_2be493ae2db9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_9ea1230c085e", "n_gold": 6, "spans": [{"start": 45, "end": 51, "label": "DATE", "text": " 6th of"}, {"start": 52, "end": 60, "label": "DATE", "text": " November"}], "error": null}
+{"doc_id": "ent_4ea81b8982c6", "n_gold": 5, "spans": [{"start": 31, "end": 34, "label": "PATORG", "text": " ABC"}], "error": null}
+{"doc_id": "ent_5b30540e90fd", "n_gold": 4, "spans": [{"start": 160, "end": 163, "label": "ID", "text": " INV"}, {"start": 163, "end": 167, "label": "ID", "text": "-123"}, {"start": 167, "end": 169, "label": "ID", "text": "45"}], "error": null}
+{"doc_id": "ent_e0d79a8645ff", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_09a1e46accb2", "n_gold": 5, "spans": [{"start": 98, "end": 106, "label": "DATE", "text": " January,"}, {"start": 107, "end": 111, "label": "DATE", "text": " 2023"}], "error": null}
+{"doc_id": "ent_a26a37b6718a", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_036fbb69523c", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_66cea7e5bc68", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_215726192f06", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4f5840c5c4c2", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fa036135c99e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_b242da9076b8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fcdb904234b6", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5adec6449d99", "n_gold": 4, "spans": [{"start": 74, "end": 90, "label": "PATORG", "text": " McCormick Ashley"}, {"start": 91, "end": 102, "label": "PATORG", "text": " Productions"}], "error": null}
+{"doc_id": "ent_ebaec344b171", "n_gold": 1, "spans": [{"start": 112, "end": 119, "label": "DATE", "text": " 2023-03"}], "error": null}
+{"doc_id": "ent_776fa8d6a62c", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_43941e5f5d00", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_84fb53d0d5b5", "n_gold": 7, "spans": [{"start": 15, "end": 23, "label": "ID", "text": "SO202305"}, {"start": 23, "end": 25, "label": "ID", "text": "01"}, {"start": 38, "end": 46, "label": "DATE", "text": " 05/01/20"}, {"start": 46, "end": 48, "label": "DATE", "text": "23"}, {"start": 271, "end": 273, "label": "ID", "text": " AG"}, {"start": 315, "end": 317, "label": "ID", "text": " FO"}], "error": null}
+{"doc_id": "ent_5836a9ae193f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_05cfcde05e90", "n_gold": 2, "spans": [{"start": 66, "end": 80, "label": "LOC", "text": " 123 Industrial"}, {"start": 81, "end": 84, "label": "LOC", "text": " Ave"}, {"start": 86, "end": 89, "label": "LOC", "text": " Any"}, {"start": 89, "end": 93, "label": "LOC", "text": "town"}, {"start": 95, "end": 98, "label": "LOC", "text": " USA"}, {"start": 108, "end": 111, "label": "PATORG", "text": " ABC"}, {"start": 112, "end": 115, "label": "HOSP", "text": " Log"}, {"start": 115, "end": 121, "label": "PATORG", "text": "istics"}, {"start": 139, "end": 147, "label": "ID", "text": " 12345678"}, {"start": 147, "end": 149, "label": "ID", "text": "90"}], "error": null}
+{"doc_id": "ent_27f10b5757cd", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_03b55524c5bf", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_2d9bc879dcd3", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_14f84ff6573d", "n_gold": 4, "spans": [{"start": 118, "end": 126, "label": "LOC", "text": " Shanghai"}, {"start": 148, "end": 151, "label": "LOC", "text": " Los"}, {"start": 152, "end": 159, "label": "LOC", "text": " Angeles"}], "error": null}
+{"doc_id": "ent_0f96b1ebdc50", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_355943f3f739", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_a985d45d6c3d", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_b540edda24ee", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_d34fd00fbd1e", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_55ae87ad0565", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_3f19c46e91b4", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4245a6c99059", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1d19e109a334", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_0332afcb984e", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_4496e9fb0f67", "n_gold": 5, "spans": [{"start": 157, "end": 160, "label": "ID", "text": " $12"}, {"start": 160, "end": 162, "label": "ID", "text": "34"}], "error": null}
+{"doc_id": "ent_6f4aa4305845", "n_gold": 4, "spans": [{"start": 115, "end": 123, "label": "LOC", "text": " 123 Main"}, {"start": 124, "end": 126, "label": "LOC", "text": " St"}, {"start": 128, "end": 131, "label": "LOC", "text": " Any"}, {"start": 131, "end": 135, "label": "LOC", "text": "town"}, {"start": 137, "end": 140, "label": "LOC", "text": " USA"}, {"start": 166, "end": 174, "label": "ID", "text": " MED17099"}], "error": null}
+{"doc_id": "ent_f8997601ebf1", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_cfa9fa81456e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ea449b39bd6f", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_5fee771d949a", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "ent_2fe14755eee2", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_a96bd63c04a2", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_2b80fa51c247", "n_gold": 5, "spans": [{"start": 89, "end": 98, "label": "PATIENT", "text": " Tennessee"}, {"start": 99, "end": 105, "label": "PATIENT", "text": " Nelson"}, {"start": 153, "end": 160, "label": "STAFF", "text": " William"}, {"start": 161, "end": 166, "label": "STAFF", "text": " Smith"}], "error": null}
+{"doc_id": "ent_d8bbf65b01d2", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_43c7cb90b318", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_9f1208af278e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1fbb46bc619e", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_ee01106e0767", "n_gold": 4, "spans": [{"start": 30, "end": 33, "label": "ID", "text": " 655"}], "error": null}
+{"doc_id": "ent_60961366a127", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_701915d0759a", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1c67f6f1c192", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_96696c130e01", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_619e960dfa4d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_470b6b30b50e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4327afb8a24a", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_53a7330bb43d", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_76e3d138ae1f", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_d24d73c9ae85", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_885b36bfac4b", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_37c8a6d7760d", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_683dac3b3788", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4102dc709262", "n_gold": 3, "spans": [{"start": 267, "end": 274, "label": "DATE", "text": " 2023-03"}], "error": null}
+{"doc_id": "ent_00659c32c8dc", "n_gold": 4, "spans": [{"start": 0, "end": 2, "label": "HOSP", "text": " **"}], "error": null}
+{"doc_id": "ent_ccadcfb76028", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_f3c6ea839e3c", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_81e56d2f761b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_44dca75eb044", "n_gold": 2, "spans": [{"start": 19, "end": 21, "label": "HOSP", "text": "**"}, {"start": 56, "end": 63, "label": "DATE", "text": " 2023-03"}, {"start": 64, "end": 66, "label": "DATE", "text": "15"}, {"start": 130, "end": 134, "label": "ID", "text": "\n123"}], "error": null}
+{"doc_id": "ent_5e37e3442bd2", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_839d431fd980", "n_gold": 4, "spans": [{"start": 68, "end": 72, "label": "PATIENT", "text": " John"}, {"start": 73, "end": 76, "label": "PATIENT", "text": " Doe"}, {"start": 94, "end": 98, "label": "PATIENT", "text": " Jane"}, {"start": 99, "end": 104, "label": "PATIENT", "text": " Smith"}], "error": null}
+{"doc_id": "ent_5adf83d0a2fb", "n_gold": 1, "spans": [{"start": 0, "end": 13, "label": "PATIENT", "text": " ************,"}, {"start": 14, "end": 17, "label": "PATIENT", "text": " EIN"}, {"start": 18, "end": 26, "label": "ID", "text": " 98-76543"}, {"start": 26, "end": 28, "label": "ID", "text": "21"}, {"start": 145, "end": 152, "label": "DATE", "text": " 2022-03"}, {"start": 153, "end": 155, "label": "DATE", "text": "15"}], "error": null}
+{"doc_id": "ent_ee8985e2d58d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4b156d70760b", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_3b58e9cff615", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a02fc8fe1f6e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a576c7b26b47", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8c0bbb4b0788", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_f38b6244b279", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_b6a44966aa34", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_09446d30ce7f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4f72df83fba0", "n_gold": 2, "spans": [{"start": 78, "end": 82, "label": "PHONE", "text": "\n123"}, {"start": 84, "end": 89, "label": "PATIENT", "text": " John,"}, {"start": 90, "end": 93, "label": "PATIENT", "text": " Doe"}], "error": null}
+{"doc_id": "ent_46a601e63dc8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_64c7b0208103", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_0a516bf2ecec", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_56c383ffb79d", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_3c15f5c64d1f", "n_gold": 5, "spans": [{"start": 354, "end": 357, "label": "STAFF", "text": " Ada"}, {"start": 358, "end": 366, "label": "STAFF", "text": " Sterling"}, {"start": 493, "end": 496, "label": "STAFF", "text": " Ada"}, {"start": 497, "end": 505, "label": "STAFF", "text": " Sterling"}], "error": null}
+{"doc_id": "ent_b47aacef4067", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_e4332e161ebc", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_255124e374a9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_41ac0284bcb3", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_7cdb2ce04fb1", "n_gold": 2, "spans": [{"start": 35, "end": 38, "label": "ID", "text": " 123"}, {"start": 38, "end": 40, "label": "ID", "text": "45"}, {"start": 75, "end": 83, "label": "LOC", "text": " 123 Main"}, {"start": 84, "end": 86, "label": "LOC", "text": " St"}, {"start": 88, "end": 91, "label": "LOC", "text": " Any"}, {"start": 91, "end": 95, "label": "LOC", "text": "town"}, {"start": 97, "end": 100, "label": "LOC", "text": " USA"}], "error": null}
+{"doc_id": "ent_0d48d7080bfd", "n_gold": 3, "spans": [], "error": null}

@@ -86,14 +86,16 @@ def build_redact(orig, flags):
             "meta": {"mode": "redact", "n_masked": sum(flags)}}
 
 
-def build_faker(orig, flags, fk):
+def build_faker(orig, flags, fk, surrogate=None):
+    """`surrogate(span_dict) -> str` overrides the default category-based Faker
+    value (used by scripts/build_domain_c1c2.py for domain-aware surrogates)."""
     gs = sorted(range(len(orig["gold_spans"])), key=lambda i: orig["gold_spans"][i]["start"])
     text = orig["text"]; out = []; cursor = 0; shift = 0; new_gold = []
     for i in gs:
         g = orig["gold_spans"][i]; m = flags[i]
         out.append(text[cursor:g["start"]])
         if m:
-            surro = fake_value(fk, category(g.get("label", "")))
+            surro = surrogate(g) if surrogate else fake_value(fk, category(g.get("label", "")))
             ns = g["start"] + shift
             out.append(surro)
             new_gold.append({"start": ns, "end": ns + len(surro), "label": g.get("label", ""), "text": surro, "masked": True})

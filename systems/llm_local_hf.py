@@ -120,9 +120,13 @@ class LocalHFLLM(DeIDSystem):
         if max_memory is None and os.environ.get("CUSTODIAN_AUTO_MAX_MEM") == "1":
             max_memory = _auto_max_memory()
             print(f"[local-hf] auto max_memory = {max_memory}")
+        import transformers
+        # transformers 5.x renamed torch_dtype -> dtype; DeepSeek-V2-Lite's remote
+        # code only loads under 4.x (run it in a separate transformers 4.x env).
+        dtype_kw = "dtype" if int(transformers.__version__.split(".")[0]) >= 5 else "torch_dtype"
         self._model = AutoModelForCausalLM.from_pretrained(
             cfg.model_id,
-            dtype=dtype,
+            **{dtype_kw: dtype},
             device_map=cfg.device_map,
             max_memory=max_memory,
             trust_remote_code=cfg.trust_remote_code,
@@ -158,6 +162,48 @@ class LocalHFLLM(DeIDSystem):
         spans = _parse_spans(completion, text)
         transformed = _mask(text, spans)
         return Prediction(spans=spans, transformed_text=transformed, raw=completion)
+
+
+    def predict_batch(self, texts: list[str]) -> list[Prediction]:
+        """Left-padded batched greedy generation (same prompt/parsing as
+        `predict`). Used by scripts/run_domain_eval.py --batch-size N to make
+        long LLM runs tractable on shared GPUs; batch size 1 == `predict`."""
+        import torch
+
+        if len(texts) == 1:
+            return [self.predict(texts[0])]
+        prompt_text = self._cfg.system_prompt_override or SYSTEM_PROMPT
+        prompts = [
+            self._tokenizer.apply_chat_template(
+                [{"role": "system", "content": prompt_text}, {"role": "user", "content": t}],
+                tokenize=False, add_generation_prompt=True,
+                **(self._cfg.chat_template_kwargs or {}),
+            )
+            for t in texts
+        ]
+        tok = self._tokenizer
+        old_side = tok.padding_side
+        tok.padding_side = "left"
+        if tok.pad_token_id is None:
+            tok.pad_token = tok.eos_token
+        try:
+            inputs = tok(prompts, return_tensors="pt", padding=True).to(self._model.device)
+        finally:
+            tok.padding_side = old_side
+        with torch.no_grad():
+            out = self._model.generate(
+                **inputs,
+                max_new_tokens=self._cfg.max_new_tokens,
+                do_sample=False,
+                pad_token_id=tok.pad_token_id,
+            )
+        preds = []
+        L = inputs["input_ids"].shape[1]
+        for i, t in enumerate(texts):
+            completion = tok.decode(out[i, L:], skip_special_tokens=True)
+            spans = _parse_spans(completion, t)
+            preds.append(Prediction(spans=spans, transformed_text=_mask(t, spans), raw=completion))
+        return preds
 
 
 def _mask(text: str, spans) -> str:

@@ -1,0 +1,250 @@
+{"doc_id": "ent_5fd803730cbf", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_0eb75ecb1e3d", "n_gold": 5, "spans": [{"start": 31, "end": 41, "label": "DATE_TIME", "text": "2023-03-15"}], "error": null}
+{"doc_id": "ent_6887f9a29337", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_9c898867bb5c", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_b1b78c2d9546", "n_gold": 5, "spans": [{"start": 0, "end": 9, "label": "PERSON", "text": "Consignee"}], "error": null}
+{"doc_id": "ent_f7918cbb6e1c", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_0d0e552d9fa5", "n_gold": 4, "spans": [{"start": 93, "end": 103, "label": "DATE_TIME", "text": "2022-06-15"}], "error": null}
+{"doc_id": "ent_595dcbb5aaea", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_594aed7ed6fa", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_27f84990d7e3", "n_gold": 1, "spans": [{"start": 35, "end": 41, "label": "US_DRIVER_LICENSE", "text": "123456"}], "error": null}
+{"doc_id": "ent_813716da92f1", "n_gold": 4, "spans": [{"start": 23, "end": 26, "label": "ORGANIZATION", "text": "SSN"}, {"start": 73, "end": 80, "label": "ORGANIZATION", "text": "Project"}, {"start": 99, "end": 111, "label": "DATE_TIME", "text": "June 1, 2023"}, {"start": 121, "end": 127, "label": "DATE_TIME", "text": "annual"}], "error": null}
+{"doc_id": "ent_6a2e161d9a1f", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_39e8a6380743", "n_gold": 4, "spans": [{"start": 129, "end": 131, "label": "ORGANIZATION", "text": "IP"}], "error": null}
+{"doc_id": "ent_5d5d39fa95b8", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_1b298fbb84d5", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b6f05aae5248", "n_gold": 5, "spans": [{"start": 176, "end": 189, "label": "LOCATION", "text": "North America"}, {"start": 206, "end": 216, "label": "DATE_TIME", "text": "2023-01-01"}, {"start": 324, "end": 340, "label": "DATE_TIME", "text": "the 15th of June"}, {"start": 345, "end": 353, "label": "DATE_TIME", "text": "December"}, {"start": 529, "end": 539, "label": "DATE_TIME", "text": "2023-06-15"}, {"start": 544, "end": 554, "label": "DATE_TIME", "text": "2023-12-15"}, {"start": 220, "end": 230, "label": "DATE_TIME", "text": "2028-12-31"}], "error": null}
+{"doc_id": "ent_ae795b459304", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_f9deb5c82773", "n_gold": 5, "spans": [{"start": 64, "end": 77, "label": "IP_ADDRESS", "text": "64.45.244.171"}, {"start": 33, "end": 35, "label": "ORGANIZATION", "text": "IP"}, {"start": 64, "end": 77, "label": "PERSON", "text": "64.45.244.171"}, {"start": 102, "end": 106, "label": "DATE_TIME", "text": "2019"}, {"start": 144, "end": 146, "label": "ORGANIZATION", "text": "TB"}, {"start": 174, "end": 177, "label": "ORGANIZATION", "text": "SQL"}, {"start": 185, "end": 189, "label": "DATE_TIME", "text": "2019"}, {"start": 190, "end": 206, "label": "ORGANIZATION", "text": "Standard Edition"}, {"start": 64, "end": 77, "label": "PHONE_NUMBER", "text": "64.45.244.171"}], "error": null}
+{"doc_id": "ent_265e51314507", "n_gold": 5, "spans": [{"start": 161, "end": 193, "label": "ORGANIZATION", "text": "Social Security Number *********"}], "error": null}
+{"doc_id": "ent_e58ab8cd0af6", "n_gold": 4, "spans": [{"start": 38, "end": 48, "label": "DATE_TIME", "text": "2023-01-01"}], "error": null}
+{"doc_id": "ent_859ad4adc598", "n_gold": 4, "spans": [{"start": 62, "end": 72, "label": "DATE_TIME", "text": "2023-03-28"}, {"start": 120, "end": 124, "label": "DATE_TIME", "text": "1992"}, {"start": 125, "end": 131, "label": "ORGANIZATION", "text": "Toyota"}, {"start": 389, "end": 396, "label": "DATE_TIME", "text": "Hours:*"}, {"start": 39, "end": 47, "label": "US_BANK_NUMBER", "text": "20230328"}, {"start": 39, "end": 47, "label": "US_DRIVER_LICENSE", "text": "20230328"}], "error": null}
+{"doc_id": "ent_0e1ea52077b6", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_2a7160dc9add", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b0dd7a0bb199", "n_gold": 5, "spans": [{"start": 64, "end": 74, "label": "DATE_TIME", "text": "2022-05-15"}], "error": null}
+{"doc_id": "ent_1125acd02a4d", "n_gold": 6, "spans": [{"start": 214, "end": 224, "label": "DATE_TIME", "text": "25/05/2023"}], "error": null}
+{"doc_id": "ent_f60a009b2fa4", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_8a8c9d856f0e", "n_gold": 4, "spans": [{"start": 0, "end": 40, "label": "ORGANIZATION", "text": "Quality Control Report for *************"}], "error": null}
+{"doc_id": "ent_4e71fe27b70a", "n_gold": 1, "spans": [{"start": 37, "end": 47, "label": "DATE_TIME", "text": "2023-03-15"}, {"start": 0, "end": 5, "label": "PERSON", "text": "Meter"}], "error": null}
+{"doc_id": "ent_f080712c61a8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_0a7a5d9c243e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_68c24dff4329", "n_gold": 5, "spans": [{"start": 24, "end": 27, "label": "ORGANIZATION", "text": "UTC"}], "error": null}
+{"doc_id": "ent_e3f265a3351e", "n_gold": 4, "spans": [{"start": 218, "end": 245, "label": "ORGANIZATION", "text": "Social Security Number ****"}], "error": null}
+{"doc_id": "ent_dd444cd36805", "n_gold": 4, "spans": [{"start": 269, "end": 278, "label": "DATE_TIME", "text": "12 months"}], "error": null}
+{"doc_id": "ent_5b537c23a8ca", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_33f5f2beddbd", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_1febff7416c9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_7cb3a3b274cc", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_c52b4bf81fdf", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_d65f0060ae47", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_61a7ddb988ae", "n_gold": 5, "spans": [{"start": 74, "end": 77, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_95b659499559", "n_gold": 4, "spans": [{"start": 41, "end": 76, "label": "ORGANIZATION", "text": "Social Security Number ************"}], "error": null}
+{"doc_id": "ent_8cbbba5445eb", "n_gold": 4, "spans": [{"start": 121, "end": 124, "label": "ORGANIZATION", "text": "SSN"}, {"start": 335, "end": 343, "label": "DATE_TIME", "text": "72 hours"}, {"start": 373, "end": 384, "label": "DATE_TIME", "text": "end of week"}], "error": null}
+{"doc_id": "ent_8e608eee1f61", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_73e6677f9c57", "n_gold": 6, "spans": [{"start": 60, "end": 65, "label": "ORGANIZATION", "text": "HIPAA"}, {"start": 433, "end": 456, "label": "DATE_TIME", "text": "the 22nd of every month"}], "error": null}
+{"doc_id": "ent_1474d0b045aa", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_32e9125fbb90", "n_gold": 1, "spans": [{"start": 168, "end": 195, "label": "ORGANIZATION", "text": "Communication Control Panel"}], "error": null}
+{"doc_id": "ent_b0e4f689b3c6", "n_gold": 4, "spans": [{"start": 137, "end": 150, "label": "PERSON", "text": "date_of_birth"}], "error": null}
+{"doc_id": "ent_be70b28baff5", "n_gold": 5, "spans": [{"start": 41, "end": 56, "label": "ORGANIZATION", "text": "Social Security"}], "error": null}
+{"doc_id": "ent_dba85964cfaf", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_71d382c81cee", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_555905f852d7", "n_gold": 4, "spans": [{"start": 112, "end": 214, "label": "ORGANIZATION", "text": "Account:** **************\n\n**Address:** ****************************************\n\n**Opening Balance:**"}, {"start": 432, "end": 442, "label": "DATE_TIME", "text": "07/15/1995"}, {"start": 90, "end": 100, "label": "DATE_TIME", "text": "07/31/1995"}, {"start": 370, "end": 380, "label": "DATE_TIME", "text": "07/05/1995"}, {"start": 493, "end": 503, "label": "DATE_TIME", "text": "07/25/1995"}], "error": null}
+{"doc_id": "ent_9d552a7dca11", "n_gold": 4, "spans": [{"start": 33, "end": 41, "label": "PERSON", "text": "Brittany"}], "error": null}
+{"doc_id": "ent_030a2881b770", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5152860d9ccc", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6464ccaaf413", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1c4657be0581", "n_gold": 5, "spans": [{"start": 0, "end": 44, "label": "ORGANIZATION", "text": "Liveness Detection Report for **************"}], "error": null}
+{"doc_id": "ent_42c47d782c31", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_3ba0c0cd817b", "n_gold": 4, "spans": [{"start": 17, "end": 20, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_a6b6e7e6ee3a", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ab0a49c5526d", "n_gold": 4, "spans": [{"start": 150, "end": 157, "label": "DATE_TIME", "text": "monthly"}], "error": null}
+{"doc_id": "ent_c42c231c154c", "n_gold": 5, "spans": [{"start": 76, "end": 79, "label": "ORGANIZATION", "text": "MRN"}], "error": null}
+{"doc_id": "ent_c8fc2fb295a7", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b5a2a62dc9c6", "n_gold": 5, "spans": [{"start": 60, "end": 70, "label": "DATE_TIME", "text": "2023-03-15"}], "error": null}
+{"doc_id": "ent_7ff890d9de70", "n_gold": 1, "spans": [{"start": 33, "end": 43, "label": "DATE_TIME", "text": "2023-03-15"}, {"start": 70, "end": 82, "label": "ORGANIZATION", "text": "Premium Plus"}], "error": null}
+{"doc_id": "ent_bec9297d226b", "n_gold": 6, "spans": [{"start": 71, "end": 74, "label": "ORGANIZATION", "text": "SSN"}, {"start": 146, "end": 151, "label": "LOCATION", "text": "India"}], "error": null}
+{"doc_id": "ent_4065dc9e7098", "n_gold": 4, "spans": [{"start": 253, "end": 263, "label": "DATE_TIME", "text": "2022-10-15"}], "error": null}
+{"doc_id": "ent_32b9eead84be", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_324de3ce98ad", "n_gold": 1, "spans": [{"start": 0, "end": 40, "label": "ORGANIZATION", "text": "Notice of Service Termination: Effective"}], "error": null}
+{"doc_id": "ent_feb33c5e9cdd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_07f19af5f038", "n_gold": 1, "spans": [{"start": 70, "end": 80, "label": "PERSON", "text": "John Doe\n-"}], "error": null}
+{"doc_id": "ent_1d6bb1f8eb8d", "n_gold": 5, "spans": [{"start": 101, "end": 116, "label": "ORGANIZATION", "text": "Social Security"}, {"start": 125, "end": 128, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_c64e0f7bf684", "n_gold": 4, "spans": [{"start": 84, "end": 94, "label": "DATE_TIME", "text": "the period"}, {"start": 95, "end": 105, "label": "DATE_TIME", "text": "2021-01-01"}, {"start": 109, "end": 119, "label": "DATE_TIME", "text": "2021-12-31"}], "error": null}
+{"doc_id": "ent_ba757ab53d82", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e5b145d361b2", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_d1592b457adf", "n_gold": 4, "spans": [{"start": 26, "end": 35, "label": "PERSON", "text": "Consignee"}], "error": null}
+{"doc_id": "ent_e925c98e8a23", "n_gold": 4, "spans": [{"start": 50, "end": 53, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_57cfb9f95a3e", "n_gold": 1, "spans": [{"start": 103, "end": 111, "label": "DATE_TIME", "text": "24 hours"}], "error": null}
+{"doc_id": "ent_1702375e0d3c", "n_gold": 5, "spans": [{"start": 24, "end": 33, "label": "PERSON", "text": "Consignee"}], "error": null}
+{"doc_id": "ent_d3995f013b93", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_3c7367cb6257", "n_gold": 5, "spans": [{"start": 12, "end": 31, "label": "ORGANIZATION", "text": "Contact Information"}, {"start": 32, "end": 46, "label": "ORGANIZATION", "text": "Data Collected"}, {"start": 47, "end": 73, "label": "ORGANIZATION", "text": "Data Processing Activities"}, {"start": 74, "end": 95, "label": "ORGANIZATION", "text": "Data Retention Period"}, {"start": 131, "end": 138, "label": "LOCATION", "text": "Main St"}, {"start": 139, "end": 146, "label": "LOCATION", "text": "Anytown"}, {"start": 337, "end": 344, "label": "DATE_TIME", "text": "7 years"}], "error": null}
+{"doc_id": "ent_21de98b85080", "n_gold": 5, "spans": [{"start": 23, "end": 28, "label": "PERSON", "text": "Alice"}, {"start": 101, "end": 104, "label": "PERSON", "text": "Bob"}, {"start": 169, "end": 172, "label": "PERSON", "text": "Bob"}, {"start": 220, "end": 225, "label": "PERSON", "text": "Alice"}], "error": null}
+{"doc_id": "ent_060641fb7800", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_e9361bca53cc", "n_gold": 6, "spans": [{"start": 37, "end": 47, "label": "DATE_TIME", "text": "2023-01-01"}], "error": null}
+{"doc_id": "ent_0d862f55e498", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_cbdfad2b968a", "n_gold": 1, "spans": [{"start": 49, "end": 76, "label": "ORGANIZATION", "text": "London Marine Insurance Co."}, {"start": 107, "end": 132, "label": "ORGANIZATION", "text": "SeaFreight Logistics Inc."}, {"start": 133, "end": 166, "label": "ORGANIZATION", "text": "Description of Goods: Electronics"}, {"start": 198, "end": 221, "label": "DATE_TIME", "text": "01/01/2023 - 31/12/2023"}, {"start": 246, "end": 284, "label": "ORGANIZATION", "text": "Location of Goods: *******************"}], "error": null}
+{"doc_id": "ent_810eaf68c4ab", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_9b89a8f57eb6", "n_gold": 5, "spans": [{"start": 119, "end": 122, "label": "ORGANIZATION", "text": "SSN"}, {"start": 146, "end": 149, "label": "ORGANIZATION", "text": "EIN"}], "error": null}
+{"doc_id": "ent_efce0872495e", "n_gold": 4, "spans": [{"start": 3, "end": 26, "label": "ORGANIZATION", "text": "the Proof of Stake (PoS"}, {"start": 139, "end": 141, "label": "ORGANIZATION", "text": "IP"}, {"start": 218, "end": 233, "label": "ORGANIZATION", "text": "Social Security"}], "error": null}
+{"doc_id": "ent_a27de060e3a7", "n_gold": 4, "spans": [{"start": 3, "end": 13, "label": "DATE_TIME", "text": "2023-01-15"}], "error": null}
+{"doc_id": "ent_23c919aee198", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4089fb2e3a09", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8a6d3562f7dd", "n_gold": 4, "spans": [{"start": 81, "end": 84, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_40e27e063c93", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_15cf42608ee6", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_46016c62ccba", "n_gold": 1, "spans": [{"start": 40, "end": 50, "label": "DATE_TIME", "text": "2023-01-01"}], "error": null}
+{"doc_id": "ent_472754e4fd1e", "n_gold": 4, "spans": [{"start": 40, "end": 45, "label": "ORGANIZATION", "text": "Azure"}, {"start": 68, "end": 70, "label": "LOCATION", "text": "GB"}, {"start": 82, "end": 85, "label": "ORGANIZATION", "text": "SLA"}], "error": null}
+{"doc_id": "ent_ecff0156a71a", "n_gold": 4, "spans": [{"start": 76, "end": 85, "label": "PERSON", "text": "Consignee"}], "error": null}
+{"doc_id": "ent_2d47930317e7", "n_gold": 5, "spans": [{"start": 189, "end": 192, "label": "ORGANIZATION", "text": "API"}], "error": null}
+{"doc_id": "ent_22286d6a4017", "n_gold": 5, "spans": [{"start": 111, "end": 114, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_f6fe42c6dceb", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_a80a1ff15d73", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_0566f86abb70", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fb7ff9162f67", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_0c73352874d4", "n_gold": 4, "spans": [{"start": 39, "end": 42, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_74127959718b", "n_gold": 4, "spans": [{"start": 123, "end": 125, "label": "ORGANIZATION", "text": "ID"}], "error": null}
+{"doc_id": "ent_aa8d3d4c405e", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_18928433b405", "n_gold": 5, "spans": [{"start": 27, "end": 37, "label": "DATE_TIME", "text": "2023-03-14"}, {"start": 48, "end": 58, "label": "DATE_TIME", "text": "2023-04-13"}], "error": null}
+{"doc_id": "ent_480bef59183c", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_ff43d49bb9bf", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_189b60e9afc4", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_216f32abec23", "n_gold": 6, "spans": [{"start": 285, "end": 288, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_36ce02e4cd80", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_af0442e01cdd", "n_gold": 4, "spans": [{"start": 119, "end": 141, "label": "ORGANIZATION", "text": "Social Security Number"}, {"start": 421, "end": 430, "label": "DATE_TIME", "text": "last year"}], "error": null}
+{"doc_id": "ent_f3f96de40bfd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fae934f1c56d", "n_gold": 3, "spans": [{"start": 86, "end": 98, "label": "ORGANIZATION", "text": "ABC Supplies"}, {"start": 36, "end": 44, "label": "US_BANK_NUMBER", "text": "20230505"}, {"start": 36, "end": 44, "label": "US_DRIVER_LICENSE", "text": "20230505"}], "error": null}
+{"doc_id": "ent_5eed649fa703", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1e23d49d9d79", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_e05ef5a3a9b9", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_720d9dbede3f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8b9b60acdfc2", "n_gold": 6, "spans": [{"start": 25, "end": 28, "label": "ORGANIZATION", "text": "SSN"}, {"start": 43, "end": 63, "label": "ORGANIZATION", "text": "Bank Routing Number:"}], "error": null}
+{"doc_id": "ent_11429f9c9564", "n_gold": 4, "spans": [{"start": 105, "end": 112, "label": "PERSON", "text": "Jacob86"}, {"start": 125, "end": 132, "label": "DATE_TIME", "text": "10 days"}], "error": null}
+{"doc_id": "ent_fb75c049fab4", "n_gold": 2, "spans": [{"start": 0, "end": 9, "label": "LOCATION", "text": "Route Map"}], "error": null}
+{"doc_id": "ent_0a8b1473fb09", "n_gold": 4, "spans": [{"start": 68, "end": 83, "label": "ORGANIZATION", "text": "Social Security"}], "error": null}
+{"doc_id": "ent_cab005196163", "n_gold": 4, "spans": [{"start": 44, "end": 58, "label": "ORGANIZATION", "text": "Diffie-Hellman"}, {"start": 109, "end": 112, "label": "ORGANIZATION", "text": "API"}, {"start": 201, "end": 203, "label": "ORGANIZATION", "text": "IP"}], "error": null}
+{"doc_id": "ent_77c589d9fb04", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_f5fc4e3e22d3", "n_gold": 2, "spans": [{"start": 38, "end": 44, "label": "US_DRIVER_LICENSE", "text": "123456"}], "error": null}
+{"doc_id": "ent_b02f34d49564", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5703d50a83c9", "n_gold": 4, "spans": [{"start": 105, "end": 108, "label": "ORGANIZATION", "text": "MRN"}], "error": null}
+{"doc_id": "ent_111fe8e74c26", "n_gold": 1, "spans": [{"start": 83, "end": 98, "label": "DATE_TIME", "text": "January 1, 2023"}], "error": null}
+{"doc_id": "ent_29a467e69fc5", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_73827a336ed2", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_934fc49f60e0", "n_gold": 4, "spans": [{"start": 52, "end": 67, "label": "ORGANIZATION", "text": "Social Security"}], "error": null}
+{"doc_id": "ent_242f749346c2", "n_gold": 4, "spans": [{"start": 157, "end": 169, "label": "ORGANIZATION", "text": "Market Value"}, {"start": 232, "end": 240, "label": "ORGANIZATION", "text": "XYZ Inc."}, {"start": 290, "end": 299, "label": "ORGANIZATION", "text": "ABC Corp."}], "error": null}
+{"doc_id": "ent_0bbbed8e5a5b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_dfb4f48e5b77", "n_gold": 4, "spans": [{"start": 159, "end": 165, "label": "ORGANIZATION", "text": "Toyota"}, {"start": 185, "end": 189, "label": "DATE_TIME", "text": "Year"}, {"start": 285, "end": 294, "label": "DATE_TIME", "text": "1.5 hours"}], "error": null}
+{"doc_id": "ent_53c8fa09203e", "n_gold": 5, "spans": [{"start": 86, "end": 90, "label": "DATE_TIME", "text": "1996"}, {"start": 91, "end": 97, "label": "ORGANIZATION", "text": "Toyota"}], "error": null}
+{"doc_id": "ent_05e43b3551e9", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_f6a55d63406b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6ccc3373e945", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_3d8e6ab38a2e", "n_gold": 4, "spans": [{"start": 50, "end": 66, "label": "DATE_TIME", "text": "at least 30 days"}, {"start": 159, "end": 175, "label": "DATE_TIME", "text": "14 business days"}], "error": null}
+{"doc_id": "ent_42960681e13d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e8eb58eb2b1b", "n_gold": 4, "spans": [{"start": 215, "end": 218, "label": "ORGANIZATION", "text": "EIN"}], "error": null}
+{"doc_id": "ent_bf61e031b8d4", "n_gold": 5, "spans": [{"start": 256, "end": 266, "label": "DATE_TIME", "text": "2023-07-15"}], "error": null}
+{"doc_id": "ent_873393c7d981", "n_gold": 6, "spans": [{"start": 6, "end": 8, "label": "ORGANIZATION", "text": "Q2"}, {"start": 6, "end": 8, "label": "US_DRIVER_LICENSE", "text": "Q2"}], "error": null}
+{"doc_id": "ent_c62550e3ab74", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1bc934540653", "n_gold": 4, "spans": [{"start": 51, "end": 61, "label": "DATE_TIME", "text": "2023-03-14"}], "error": null}
+{"doc_id": "ent_df98ceb49acb", "n_gold": 3, "spans": [{"start": 55, "end": 60, "label": "US_DRIVER_LICENSE", "text": "AA123"}], "error": null}
+{"doc_id": "ent_fab49f8af533", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_17b31ae653b9", "n_gold": 7, "spans": [{"start": 3, "end": 15, "label": "DATE_TIME", "text": "May 15, 2023"}, {"start": 125, "end": 128, "label": "ORGANIZATION", "text": "SSN"}, {"start": 174, "end": 177, "label": "ORGANIZATION", "text": "SSN"}, {"start": 252, "end": 255, "label": "ORGANIZATION", "text": "MRN"}], "error": null}
+{"doc_id": "ent_f8d27d9692f9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_7cedb614872d", "n_gold": 3, "spans": [{"start": 95, "end": 105, "label": "DATE_TIME", "text": "2023-07-15"}], "error": null}
+{"doc_id": "ent_e7b0eee607b8", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_f004adf06afd", "n_gold": 6, "spans": [{"start": 0, "end": 23, "label": "ORGANIZATION", "text": "Transportation Contract"}, {"start": 124, "end": 134, "label": "DATE_TIME", "text": "2023-03-15"}, {"start": 181, "end": 191, "label": "DATE_TIME", "text": "2023-03-20"}], "error": null}
+{"doc_id": "ent_52be9291794c", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_2e98194f5413", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6e7c3341a164", "n_gold": 4, "spans": [{"start": 352, "end": 355, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_b8c2fa93984d", "n_gold": 6, "spans": [{"start": 221, "end": 244, "label": "ORGANIZATION", "text": "Social Security Numbers"}], "error": null}
+{"doc_id": "ent_22372f8e68ce", "n_gold": 5, "spans": [{"start": 478, "end": 485, "label": "DATE_TIME", "text": "Monthly"}, {"start": 596, "end": 612, "label": "DATE_TIME", "text": "at least 30 days"}], "error": null}
+{"doc_id": "ent_2be493ae2db9", "n_gold": 4, "spans": [{"start": 83, "end": 90, "label": "DATE_TIME", "text": "3 years"}], "error": null}
+{"doc_id": "ent_9ea1230c085e", "n_gold": 6, "spans": [{"start": 41, "end": 71, "label": "DATE_TIME", "text": "the 6th of November every year"}], "error": null}
+{"doc_id": "ent_4ea81b8982c6", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_5b30540e90fd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e0d79a8645ff", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_09a1e46accb2", "n_gold": 5, "spans": [{"start": 83, "end": 106, "label": "DATE_TIME", "text": "the 1st day of January,"}, {"start": 107, "end": 111, "label": "DATE_TIME", "text": "2023"}, {"start": 169, "end": 203, "label": "ORGANIZATION", "text": "Social Security Number ***********"}, {"start": 242, "end": 275, "label": "ORGANIZATION", "text": "Social Security Number **********"}], "error": null}
+{"doc_id": "ent_a26a37b6718a", "n_gold": 5, "spans": [{"start": 108, "end": 113, "label": "DATE_TIME", "text": "08:00"}], "error": null}
+{"doc_id": "ent_036fbb69523c", "n_gold": 4, "spans": [{"start": 60, "end": 75, "label": "ORGANIZATION", "text": "Social Security"}], "error": null}
+{"doc_id": "ent_66cea7e5bc68", "n_gold": 3, "spans": [{"start": 31, "end": 34, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_215726192f06", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4f5840c5c4c2", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fa036135c99e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_b242da9076b8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fcdb904234b6", "n_gold": 4, "spans": [{"start": 20, "end": 22, "label": "ORGANIZATION", "text": "IP"}, {"start": 60, "end": 63, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_5adec6449d99", "n_gold": 4, "spans": [{"start": 74, "end": 102, "label": "ORGANIZATION", "text": "McCormick Ashley Productions"}], "error": null}
+{"doc_id": "ent_ebaec344b171", "n_gold": 1, "spans": [{"start": 112, "end": 122, "label": "DATE_TIME", "text": "2023-03-15"}, {"start": 260, "end": 286, "label": "ORGANIZATION", "text": "Contaminants (Heavy Metals"}], "error": null}
+{"doc_id": "ent_776fa8d6a62c", "n_gold": 4, "spans": [{"start": 49, "end": 51, "label": "ORGANIZATION", "text": "IP"}], "error": null}
+{"doc_id": "ent_43941e5f5d00", "n_gold": 4, "spans": [{"start": 155, "end": 158, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_84fb53d0d5b5", "n_gold": 7, "spans": [{"start": 15, "end": 24, "label": "MEDICAL_LICENSE", "text": "SO2023050"}, {"start": 38, "end": 48, "label": "DATE_TIME", "text": "05/01/2023"}], "error": null}
+{"doc_id": "ent_5836a9ae193f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_05cfcde05e90", "n_gold": 2, "spans": [{"start": 70, "end": 84, "label": "ORGANIZATION", "text": "Industrial Ave"}, {"start": 86, "end": 93, "label": "LOCATION", "text": "Anytown"}, {"start": 95, "end": 98, "label": "LOCATION", "text": "USA"}, {"start": 108, "end": 121, "label": "ORGANIZATION", "text": "ABC Logistics"}, {"start": 139, "end": 149, "label": "PHONE_NUMBER", "text": "1234567890"}, {"start": 139, "end": 149, "label": "US_BANK_NUMBER", "text": "1234567890"}, {"start": 139, "end": 149, "label": "US_DRIVER_LICENSE", "text": "1234567890"}], "error": null}
+{"doc_id": "ent_27f10b5757cd", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_03b55524c5bf", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_2d9bc879dcd3", "n_gold": 4, "spans": [{"start": 116, "end": 119, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_14f84ff6573d", "n_gold": 4, "spans": [{"start": 0, "end": 4, "label": "PERSON", "text": "Bill"}, {"start": 118, "end": 126, "label": "LOCATION", "text": "Shanghai"}, {"start": 148, "end": 159, "label": "LOCATION", "text": "Los Angeles"}], "error": null}
+{"doc_id": "ent_0f96b1ebdc50", "n_gold": 2, "spans": [{"start": 0, "end": 21, "label": "ORGANIZATION", "text": "RADIUS Access-Request"}, {"start": 50, "end": 53, "label": "ORGANIZATION", "text": "NAS"}], "error": null}
+{"doc_id": "ent_355943f3f739", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_a985d45d6c3d", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_b540edda24ee", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_d34fd00fbd1e", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_55ae87ad0565", "n_gold": 3, "spans": [{"start": 0, "end": 6, "label": "ORGANIZATION", "text": "Vessel"}], "error": null}
+{"doc_id": "ent_3f19c46e91b4", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4245a6c99059", "n_gold": 4, "spans": [{"start": 101, "end": 110, "label": "PERSON", "text": "Consignee"}], "error": null}
+{"doc_id": "ent_1d19e109a334", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_0332afcb984e", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_4496e9fb0f67", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_6f4aa4305845", "n_gold": 4, "spans": [{"start": 167, "end": 176, "label": "MEDICAL_LICENSE", "text": "ED1709926"}, {"start": 119, "end": 126, "label": "LOCATION", "text": "Main St"}, {"start": 128, "end": 135, "label": "LOCATION", "text": "Anytown"}, {"start": 137, "end": 140, "label": "LOCATION", "text": "USA"}], "error": null}
+{"doc_id": "ent_f8997601ebf1", "n_gold": 4, "spans": [{"start": 78, "end": 80, "label": "ORGANIZATION", "text": "IP"}], "error": null}
+{"doc_id": "ent_cfa9fa81456e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ea449b39bd6f", "n_gold": 5, "spans": [{"start": 111, "end": 114, "label": "ORGANIZATION", "text": "DNS"}], "error": null}
+{"doc_id": "ent_5fee771d949a", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "ent_2fe14755eee2", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_a96bd63c04a2", "n_gold": 4, "spans": [{"start": 14, "end": 23, "label": "DATE_TIME", "text": "Version 1"}, {"start": 53, "end": 67, "label": "PERSON", "text": "Merkle Root **"}], "error": null}
+{"doc_id": "ent_2b80fa51c247", "n_gold": 5, "spans": [{"start": 50, "end": 53, "label": "ORGANIZATION", "text": "SSN"}, {"start": 89, "end": 105, "label": "PERSON", "text": "Tennessee Nelson"}, {"start": 153, "end": 166, "label": "PERSON", "text": "William Smith"}], "error": null}
+{"doc_id": "ent_d8bbf65b01d2", "n_gold": 5, "spans": [{"start": 173, "end": 176, "label": "LOCATION", "text": "USD"}], "error": null}
+{"doc_id": "ent_43c7cb90b318", "n_gold": 5, "spans": [{"start": 0, "end": 30, "label": "ORGANIZATION", "text": "Service Review for Customer ID"}, {"start": 99, "end": 102, "label": "ORGANIZATION", "text": "MRN"}], "error": null}
+{"doc_id": "ent_9f1208af278e", "n_gold": 5, "spans": [{"start": 35, "end": 38, "label": "ORGANIZATION", "text": "SLA"}, {"start": 235, "end": 238, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_1fbb46bc619e", "n_gold": 6, "spans": [{"start": 231, "end": 234, "label": "ORGANIZATION", "text": "PII"}], "error": null}
+{"doc_id": "ent_ee01106e0767", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_60961366a127", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_701915d0759a", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1c67f6f1c192", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_96696c130e01", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_619e960dfa4d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_470b6b30b50e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4327afb8a24a", "n_gold": 7, "spans": [{"start": 95, "end": 161, "label": "ORGANIZATION", "text": "Contact Patriciaking **** at ************************ or *********"}], "error": null}
+{"doc_id": "ent_53a7330bb43d", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_76e3d138ae1f", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_d24d73c9ae85", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_885b36bfac4b", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_37c8a6d7760d", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_683dac3b3788", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4102dc709262", "n_gold": 3, "spans": [{"start": 267, "end": 277, "label": "DATE_TIME", "text": "2023-03-15"}, {"start": 110, "end": 146, "label": "ORGANIZATION", "text": "Social Security Number - ***********"}, {"start": 267, "end": 278, "label": "DATE_TIME", "text": "2023-03-15'"}], "error": null}
+{"doc_id": "ent_00659c32c8dc", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ccadcfb76028", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_f3c6ea839e3c", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_81e56d2f761b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_44dca75eb044", "n_gold": 2, "spans": [{"start": 56, "end": 66, "label": "DATE_TIME", "text": "2023-03-15"}, {"start": 131, "end": 143, "label": "PHONE_NUMBER", "text": "123456 10 50"}, {"start": 131, "end": 137, "label": "US_DRIVER_LICENSE", "text": "123456"}], "error": null}
+{"doc_id": "ent_5e37e3442bd2", "n_gold": 5, "spans": [{"start": 30, "end": 59, "label": "ORGANIZATION", "text": "This Non-Disclosure Agreement"}], "error": null}
+{"doc_id": "ent_839d431fd980", "n_gold": 4, "spans": [{"start": 68, "end": 76, "label": "PERSON", "text": "John Doe"}, {"start": 94, "end": 104, "label": "PERSON", "text": "Jane Smith"}, {"start": 106, "end": 109, "label": "ORGANIZATION", "text": "SSN"}, {"start": 123, "end": 126, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_5adf83d0a2fb", "n_gold": 1, "spans": [{"start": 145, "end": 155, "label": "DATE_TIME", "text": "2022-03-15"}, {"start": 114, "end": 117, "label": "ORGANIZATION", "text": "IRS"}, {"start": 21, "end": 28, "label": "US_DRIVER_LICENSE", "text": "7654321"}], "error": null}
+{"doc_id": "ent_ee8985e2d58d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4b156d70760b", "n_gold": 5, "spans": [{"start": 0, "end": 4, "label": "PERSON", "text": "Bill"}, {"start": 98, "end": 107, "label": "PERSON", "text": "Consignee"}], "error": null}
+{"doc_id": "ent_3b58e9cff615", "n_gold": 4, "spans": [{"start": 47, "end": 50, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_a02fc8fe1f6e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a576c7b26b47", "n_gold": 4, "spans": [{"start": 148, "end": 155, "label": "DATE_TIME", "text": "Monthly"}, {"start": 187, "end": 195, "label": "DATE_TIME", "text": "30 years"}], "error": null}
+{"doc_id": "ent_8c0bbb4b0788", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_f38b6244b279", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_b6a44966aa34", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_09446d30ce7f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4f72df83fba0", "n_gold": 2, "spans": [{"start": 13, "end": 23, "label": "ORGANIZATION", "text": "First Name"}, {"start": 36, "end": 45, "label": "ORGANIZATION", "text": "Job Title"}, {"start": 59, "end": 64, "label": "PERSON", "text": "Email"}, {"start": 84, "end": 93, "label": "PERSON", "text": "John, Doe"}], "error": null}
+{"doc_id": "ent_46a601e63dc8", "n_gold": 4, "spans": [{"start": 154, "end": 180, "label": "ORGANIZATION", "text": "Incorporation:** *********"}], "error": null}
+{"doc_id": "ent_64c7b0208103", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_0a516bf2ecec", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_56c383ffb79d", "n_gold": 5, "spans": [{"start": 212, "end": 215, "label": "ORGANIZATION", "text": "SSN"}], "error": null}
+{"doc_id": "ent_3c15f5c64d1f", "n_gold": 5, "spans": [{"start": 354, "end": 366, "label": "PERSON", "text": "Ada Sterling"}, {"start": 368, "end": 371, "label": "ORGANIZATION", "text": "SSN"}, {"start": 493, "end": 505, "label": "PERSON", "text": "Ada Sterling"}], "error": null}
+{"doc_id": "ent_b47aacef4067", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_e4332e161ebc", "n_gold": 5, "spans": [{"start": 137, "end": 146, "label": "PERSON", "text": "Consignee"}], "error": null}
+{"doc_id": "ent_255124e374a9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_41ac0284bcb3", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_7cdb2ce04fb1", "n_gold": 2, "spans": [{"start": 79, "end": 86, "label": "LOCATION", "text": "Main St"}, {"start": 88, "end": 95, "label": "LOCATION", "text": "Anytown"}, {"start": 97, "end": 100, "label": "LOCATION", "text": "USA"}], "error": null}
+{"doc_id": "ent_0d48d7080bfd", "n_gold": 3, "spans": [], "error": null}

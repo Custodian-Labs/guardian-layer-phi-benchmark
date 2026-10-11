@@ -47,6 +47,11 @@ SOURCES = {
     "pii_masking_300k_french": "results/pii_french_250.jsonl",
     "pii_masking_300k_german": "results/pii_german_250.jsonl",
     "multiconer_v2": "results/multiconer_v2_250.jsonl",
+    # Non-medical domains (built by scripts/build_domain_corpora.py; same
+    # {doc_id,text,gold_spans} rows, so they can be transformed directly).
+    "finance_gretel": "data/domains/original/finance_gretel.jsonl",
+    "legal_tab": "data/domains/original/legal_tab.jsonl",
+    "enterprise_gretel": "data/domains/original/enterprise_gretel.jsonl",
 }
 
 OUT_DIR = ROOT / "data" / "transformed"

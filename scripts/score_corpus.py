@@ -22,6 +22,10 @@ ORIG = {
     "pii_dutch": ("pii_masking_300k_dutch_250.jsonl", "nl"), "pii_french": ("pii_masking_300k_french_250.jsonl", "fr"),
     "pii_german": ("pii_masking_300k_german_250.jsonl", "de"),
 }
+# Non-medical domains (scripts/build_domain_corpora.py + build_domain_c1c2.py).
+# Corpora live under data/domains/<corpus>/; not part of --all (use
+# scripts/run_domain_eval.py for those, which also keeps per-doc predictions).
+DOMAIN = {"finance_gretel": "en", "legal_tab": "en", "enterprise_gretel": "en"}
 
 
 def load(path):
@@ -41,7 +45,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--system", required=True)
     ap.add_argument("--corpus", choices=["redacted", "faker"])
-    ap.add_argument("--benchmark", choices=list(ORIG))
+    ap.add_argument("--benchmark", choices=list(ORIG) + list(DOMAIN))
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--all", action="store_true", help="score both corpora x all benchmarks, loading the model once")
     ap.add_argument("--exclude", default="", help="comma-separated benchmarks to skip in --all")
@@ -58,7 +62,7 @@ def main():
             from dotenv import load_dotenv; load_dotenv(os.path.join(ROOT, '.env'))
         except Exception:
             pass
-        _lang = ORIG[args.benchmark][1] if args.benchmark else "en"
+        _lang = (ORIG[args.benchmark][1] if args.benchmark in ORIG else DOMAIN[args.benchmark]) if args.benchmark else "en"
         from run_benchmark import _build_system
         sys_obj = _build_system(args.system, _lang)
 
@@ -66,7 +70,7 @@ def main():
         _out = os.path.join(ROOT, "results", "c1c2", f"{corpus}_{bench}_{args.system}.json")
         if os.path.exists(_out) and not args.force:
             print(f"SKIP {args.system} {corpus} {bench} (already exists -> skip)", flush=True); return
-        C = load(os.path.join(ROOT, "data", corpus, f"{bench}.jsonl"))
+        C = load(os.path.join(ROOT, "data", *(("domains",) if bench in DOMAIN else ()), corpus, f"{bench}.jsonl"))
         n = found = 0
         docs = list(C.items())
         if args.limit:

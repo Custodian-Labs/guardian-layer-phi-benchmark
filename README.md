@@ -80,6 +80,27 @@ not scored); OBI/Qwen/Gemma use a 120-doc/benchmark subsample (means over all 7)
 Reproduce with `scripts/build_c1c2_corpora.py` → `scripts/score_corpus.py --all` →
 `scripts/aggregate_c1c2.py`.*
 
+## Paper v2 (arXiv): corrected analysis and non-medical domains
+
+Version 2 of the paper corrects the gold-span re-projection (boundaries are now snapped to word boundaries;
+the original difflib alignment cut 7.1% of replaced spans inside a word), replaces the span-independent TOST with a
+document-level cluster bootstrap plus posterior ROPE probabilities, and adds finance, legal (ECHR / TAB) and
+enterprise text. Everything is re-analysis of the per-span predictions in this repo; no inference is needed.
+
+```bash
+pip install -r requirements.txt numpy scipy faker
+PYTHONPATH=. python scripts/analyze_v2.py               # all v2 paper numbers -> results/v2_numbers.json
+PYTHONPATH=. python scripts/analyze_robustness.py         # unique spans, cluster bootstrap, span selection, matched C2
+PYTHONPATH=. python scripts/analyze_reprojection.py --snap   # re-projection check; typology vs detection outcomes
+PYTHONPATH=. python scripts/analyze_posterior.py --snap # posterior P(|change| < 1/2/3 pts)
+PYTHONPATH=. python scripts/analyze_domains.py          # non-medical study -> results/domains/summary.{md,json}
+```
+
+- Clinical / general-PII per-span predictions (original and transformed, 11 detectors): `results/*_250*.jsonl`, `results/t_*_250*.jsonl`.
+- Non-medical corpora: `data/domains/{original,faker,redacted}/`, transform output `data/transformed/{finance_gretel,legal_tab,enterprise_gretel}.jsonl`; per-document predictions of 10 detectors x 4 conditions: `results/domains/preds/`. Details and dataset cards: `docs/multidomain_results.md`.
+- Known gap: Gemma 4 31B's run on transformed ASQ-PHI covers 101/250 documents.
+- One synthetic API-key value from the Gretel finance dataset (it matches a SendGrid key pattern and trips secret scanning) is replaced everywhere by a same-length placeholder `SG.EXAMPLE…`; offsets and results are unchanged.
+
 ## Live dashboard
 
 **Official URL** (Cloudflare Pages — auto-redeploys on every push to `main`,

@@ -85,3 +85,24 @@ class MultiCoNERv2Transformed(_TransformedBase):
     name = "multiconer_v2_transformed"
     orig_name = "multiconer_v2"
     language = "en"
+
+
+# Non-medical domain benchmarks (see benchmarks/domains.py). Populated by
+#   python scripts/transform_corpus.py --benchmark finance_gretel   (etc.)
+# once a valid CUSTODIAN_SDK_API_KEY is available.
+class FinanceGretelTransformed(_TransformedBase):
+    name = "finance_gretel_transformed"
+    orig_name = "finance_gretel"
+    language = "en"
+
+
+class LegalTABTransformed(_TransformedBase):
+    name = "legal_tab_transformed"
+    orig_name = "legal_tab"
+    language = "en"
+
+
+class EnterpriseGretelTransformed(_TransformedBase):
+    name = "enterprise_gretel_transformed"
+    orig_name = "enterprise_gretel"
+    language = "en"

@@ -1,0 +1,250 @@
+{"doc_id": "fin_36685", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_41883", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_39928", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_32395", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_53883", "n_gold": 9, "spans": [], "error": null}
+{"doc_id": "fin_37891", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_33718", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_25755", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_54960", "n_gold": 3, "spans": [{"start": 62, "end": 81, "label": "NAME", "text": "Annika Jörg Bonbach"}, {"start": 69, "end": 73, "label": "NAME", "text": "Jörg"}, {"start": 74, "end": 81, "label": "NAME", "text": "Bonbach"}, {"start": 62, "end": 68, "label": "NAME", "text": "Annika"}, {"start": 96, "end": 125, "label": "LOCATION", "text": "Hernandez Orchard, Carmenview"}], "error": null}
+{"doc_id": "fin_48629", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_33001", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_55095", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_38749", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_41461", "n_gold": 4, "spans": [{"start": 27, "end": 31, "label": "NAME", "text": "name"}, {"start": 52, "end": 88, "label": "NAME", "text": "01de64d8B2489eF50d403ca5fe0bABA7F0F4"}], "error": null}
+{"doc_id": "fin_51882", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_50104", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_36577", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_39193", "n_gold": 3, "spans": [{"start": 79, "end": 90, "label": "NAME", "text": "JNLRDEKW991"}, {"start": 360, "end": 371, "label": "NAME", "text": "JNLRDEKW991"}, {"start": 809, "end": 820, "label": "ID", "text": "JNLRDEKW991"}], "error": null}
+{"doc_id": "fin_52944", "n_gold": 10, "spans": [], "error": null}
+{"doc_id": "fin_40700", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_52313", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_52264", "n_gold": 9, "spans": [], "error": null}
+{"doc_id": "fin_9515", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_21034", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_40489", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_45616", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_53794", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_35268", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_46793", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_45284", "n_gold": 5, "spans": [{"start": 4, "end": 17, "label": "NAME", "text": "OOFFFUS33DXXX"}, {"start": 22, "end": 31, "label": "ACCOUNT", "text": "USD500000"}], "error": null}
+{"doc_id": "fin_42491", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_41263", "n_gold": 5, "spans": [{"start": 56, "end": 67, "label": "DATE", "text": "this [Date]"}, {"start": 75, "end": 82, "label": "DATE", "text": "[Month]"}, {"start": 84, "end": 90, "label": "DATE", "text": "[Year]"}, {"start": 198, "end": 209, "label": "LOCATION", "text": "the [State]"}, {"start": 243, "end": 252, "label": "LOCATION", "text": "[Address]"}, {"start": 418, "end": 439, "label": "DATE", "text": "as of [Original Date]"}, {"start": 127, "end": 141, "label": "NAME", "text": "[Company Name]"}, {"start": 1173, "end": 1184, "label": "LOCATION", "text": "the [State]"}, {"start": 1512, "end": 1526, "label": "NAME", "text": "[Company Name]"}, {"start": 282, "end": 294, "label": "NAME", "text": "Shareholders"}, {"start": 298, "end": 313, "label": "NAME", "text": "the Corporation"}, {"start": 278, "end": 294, "label": "NAME", "text": "the Shareholders"}, {"start": 325, "end": 340, "label": "NAME", "text": "the Corporation"}, {"start": 345, "end": 361, "label": "NAME", "text": "the Shareholders"}, {"start": 503, "end": 518, "label": "NAME", "text": "the Corporation"}, {"start": 482, "end": 498, "label": "NAME", "text": "the Shareholders"}], "error": null}
+{"doc_id": "fin_9336", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_43996", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_9818", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_51034", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_42084", "n_gold": 2, "spans": [{"start": 35, "end": 67, "label": "DATE", "text": "Application Date: [Current Date]"}, {"start": 97, "end": 110, "label": "NAME", "text": "Business Name"}, {"start": 226, "end": 240, "label": "NAME", "text": "Manolo Peinado"}, {"start": 259, "end": 273, "label": "PHONE", "text": "[Phone Number]"}, {"start": 175, "end": 194, "label": "STATE", "text": "[State or Province]"}, {"start": 195, "end": 208, "label": "POSTAL_CODE", "text": "[Postal Code]"}], "error": null}
+{"doc_id": "fin_36457", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_38048", "n_gold": 8, "spans": [{"start": 0, "end": 38, "label": "NAME", "text": "Electronic Wallet Payment Confirmation"}, {"start": 104, "end": 114, "label": "DATE", "text": "03/14/2023"}, {"start": 202, "end": 220, "label": "NAME", "text": "Jean Perry-Lambert"}, {"start": 238, "end": 247, "label": "ID", "text": "G86027177"}, {"start": 284, "end": 300, "label": "LOCATION", "text": "South Wendyville"}, {"start": 333, "end": 341, "label": "ID", "text": "Sv-96410"}, {"start": 685, "end": 695, "label": "DATE", "text": "03/14/2023"}], "error": null}
+{"doc_id": "fin_37075", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_38151", "n_gold": 13, "spans": [], "error": null}
+{"doc_id": "fin_33311", "n_gold": 3, "spans": [{"start": 49, "end": 66, "label": "NAME", "text": "Volkmar E. Jessel"}, {"start": 74, "end": 84, "label": "LOCATION", "text": "Tanner Dam"}, {"start": 86, "end": 90, "label": "LOCATION", "text": "Apt."}, {"start": 91, "end": 96, "label": "LOCATION", "text": "02727"}], "error": null}
+{"doc_id": "fin_50785", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_4887", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_46013", "n_gold": 10, "spans": [], "error": null}
+{"doc_id": "fin_21173", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_52802", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_43881", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_46455", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_38800", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_46526", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_3013", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_32255", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_38174", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_14380", "n_gold": 2, "spans": [{"start": 530, "end": 555, "label": "NAME", "text": "Pomponio Camanni-Zichichi"}, {"start": 515, "end": 523, "label": "ID", "text": "Ii-24461"}, {"start": 572, "end": 581, "label": "ADDRESS", "text": "Studio 61"}, {"start": 583, "end": 599, "label": "LOCATION", "text": "Mohammed station"}], "error": null}
+{"doc_id": "fin_25925", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_46251", "n_gold": 5, "spans": [{"start": 0, "end": 33, "label": "NAME", "text": "E-Wallet Transaction Confirmation"}, {"start": 118, "end": 131, "label": "NAME", "text": "Dorothy Clark"}, {"start": 86, "end": 96, "label": "DATE", "text": "2022-03-15"}, {"start": 97, "end": 105, "label": "TIME", "text": "14:30:00"}, {"start": 106, "end": 109, "label": "LOCATION", "text": "UTC"}, {"start": 335, "end": 348, "label": "NAME", "text": "Dorothy Clark"}, {"start": 187, "end": 214, "label": "NAME", "text": "Michaelberg E-Commerce Ltd."}, {"start": 458, "end": 485, "label": "NAME", "text": "Michaelberg E-Commerce Ltd."}, {"start": 509, "end": 517, "label": "TIME", "text": "14:30:00"}, {"start": 518, "end": 521, "label": "LOCATION", "text": "UTC"}, {"start": 525, "end": 529, "label": "DATE", "text": "15th"}, {"start": 530, "end": 540, "label": "DATE", "text": "March 2022"}, {"start": 898, "end": 911, "label": "NAME", "text": "Dorothy Clark"}], "error": null}
+{"doc_id": "fin_51664", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_40608", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_37228", "n_gold": 12, "spans": [], "error": null}
+{"doc_id": "fin_53560", "n_gold": 2, "spans": [{"start": 135, "end": 151, "label": "NAME", "text": "Luce Guibert-Rey"}, {"start": 64, "end": 72, "label": "DATE", "text": "20230214"}, {"start": 49, "end": 57, "label": "DATE", "text": "20230214"}, {"start": 399, "end": 407, "label": "DATE", "text": "20230228"}, {"start": 170, "end": 172, "label": "LOCATION", "text": "US"}, {"start": 222, "end": 246, "label": "NAME", "text": "Johnson Squares Apt. 619"}, {"start": 249, "end": 251, "label": "LOCATION", "text": "US"}], "error": null}
+{"doc_id": "fin_32640", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_36483", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_39057", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_52651", "n_gold": 9, "spans": [], "error": null}
+{"doc_id": "fin_49890", "n_gold": 6, "spans": [{"start": 250, "end": 272, "label": "NAME", "text": "Global Investment Bank"}], "error": null}
+{"doc_id": "fin_13469", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_14969", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_51738", "n_gold": 20, "spans": [{"start": 90, "end": 106, "label": "DATE", "text": "[Effective Date]"}, {"start": 120, "end": 140, "label": "NAME", "text": "[Shareholder 1 Name]"}, {"start": 168, "end": 191, "label": "ADDRESS", "text": "[Shareholder 1 Address]"}, {"start": 219, "end": 239, "label": "NAME", "text": "[Shareholder 2 Name]"}, {"start": 267, "end": 290, "label": "ADDRESS", "text": "[Shareholder 2 Address]"}, {"start": 323, "end": 343, "label": "NAME", "text": "[Shareholder 3 Name]"}, {"start": 371, "end": 394, "label": "ADDRESS", "text": "[Shareholder 3 Address]"}, {"start": 614, "end": 621, "label": "STATE", "text": "[State]"}, {"start": 556, "end": 570, "label": "NAME", "text": "[Company Name]"}, {"start": 1085, "end": 1093, "label": "NUMBER", "text": "[Number]"}, {"start": 1308, "end": 1316, "label": "NUMBER", "text": "[Number]"}, {"start": 1530, "end": 1538, "label": "NUMBER", "text": "[Number]"}], "error": null}
+{"doc_id": "fin_45404", "n_gold": 9, "spans": [], "error": null}
+{"doc_id": "fin_50465", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_33323", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_14100", "n_gold": 1, "spans": [{"start": 199, "end": 207, "label": "NAME", "text": "John Doe"}], "error": null}
+{"doc_id": "fin_43409", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_46467", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_34787", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_54093", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_26969", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_36672", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_38285", "n_gold": 8, "spans": [{"start": 5, "end": 27, "label": "NAME", "text": "Gabriele Marina Ginese"}, {"start": 181, "end": 184, "label": "DATE", "text": "1st"}, {"start": 188, "end": 198, "label": "DATE", "text": "next month"}, {"start": 339, "end": 348, "label": "ID", "text": "U08932935"}, {"start": 643, "end": 658, "label": "PHONE", "text": "+1-800-123-4567"}, {"start": 676, "end": 703, "label": "EMAIL", "text": "claims@insurancecompany.com"}, {"start": 773, "end": 782, "label": "ID", "text": "U08932935"}, {"start": 1321, "end": 1332, "label": "ID", "text": "473-75-3981"}, {"start": 1290, "end": 1315, "label": "LOCATION", "text": "045 Kristin Cape Apt. 698"}], "error": null}
+{"doc_id": "fin_10974", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_43125", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_42673", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_12894", "n_gold": 4, "spans": [{"start": 5, "end": 23, "label": "NAME", "text": "Jemma Jordan Patel"}, {"start": 72, "end": 91, "label": "NAME", "text": "Policyholder Portal"}, {"start": 381, "end": 390, "label": "ID", "text": "973834197"}, {"start": 442, "end": 452, "label": "DATE", "text": "01/10/2023"}, {"start": 984, "end": 1013, "label": "LOCATION", "text": "3 Kyrkvägen, 78180, Linköping"}], "error": null}
+{"doc_id": "fin_35515", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_55267", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_53955", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_54159", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_53731", "n_gold": 4, "spans": [{"start": 19, "end": 31, "label": "NAME", "text": "Harvey-Gibbs"}, {"start": 131, "end": 143, "label": "LOCATION", "text": "Taylor Plaza"}, {"start": 145, "end": 158, "label": "LOCATION", "text": "Andreachester"}, {"start": 159, "end": 172, "label": "LOCATION", "text": "Andreachester"}, {"start": 174, "end": 187, "label": "LOCATION", "text": "[Postal Code]"}, {"start": 188, "end": 197, "label": "LOCATION", "text": "[Country]"}, {"start": 225, "end": 239, "label": "PHONE", "text": "[Phone Number]"}, {"start": 247, "end": 262, "label": "EMAIL", "text": "[Email Address]"}], "error": null}
+{"doc_id": "fin_46466", "n_gold": 4, "spans": [{"start": 40, "end": 44, "label": "NAME", "text": "Hugh"}, {"start": 205, "end": 217, "label": "LOCATION", "text": "Moore Unions"}, {"start": 219, "end": 229, "label": "LOCATION", "text": "Apt. 52231"}, {"start": 478, "end": 489, "label": "PHONE", "text": "HChambers20"}], "error": null}
+{"doc_id": "fin_33920", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_1580", "n_gold": 10, "spans": [], "error": null}
+{"doc_id": "fin_40112", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_34830", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_12721", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_46136", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_49173", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_41694", "n_gold": 13, "spans": [], "error": null}
+{"doc_id": "fin_47250", "n_gold": 7, "spans": [{"start": 0, "end": 25, "label": "NAME", "text": "Financial Aid Application"}, {"start": 26, "end": 53, "label": "NAME", "text": "Education Grant Application"}, {"start": 72, "end": 87, "label": "NAME", "text": "Olivia Thompson"}, {"start": 104, "end": 114, "label": "DATE", "text": "05/03/2001"}, {"start": 149, "end": 164, "label": "LOCATION", "text": "London, NW1 6XL"}, {"start": 196, "end": 221, "label": "EMAIL", "text": "olivia.thompson@email.com"}, {"start": 237, "end": 252, "label": "PHONE", "text": "+44 7123 456789"}, {"start": 2055, "end": 2070, "label": "NAME", "text": "Olivia Thompson"}], "error": null}
+{"doc_id": "fin_38044", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_34532", "n_gold": 10, "spans": [{"start": 0, "end": 75, "label": "NAME", "text": "Financial Risk Assessment: Supply Chain Risk Assessment for XYZ Corporation"}, {"start": 97, "end": 240, "label": "DATE", "text": "This report provides a comprehensive assessment of the financial risks faced by XYZ Corporation, with a particular focus on supply chain risks."}, {"start": 558, "end": 664, "label": "LOCATION", "text": "The company's primary suppliers are located in various regions, including North America, Europe, and Asia."}, {"start": 632, "end": 663, "label": "LOCATION", "text": "North America, Europe, and Asia"}, {"start": 719, "end": 744, "label": "PHONE", "text": "high transportation costs"}], "error": null}
+{"doc_id": "fin_41458", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_53642", "n_gold": 13, "spans": [], "error": null}
+{"doc_id": "fin_33909", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_40224", "n_gold": 15, "spans": [], "error": null}
+{"doc_id": "fin_36472", "n_gold": 8, "spans": [{"start": 28, "end": 46, "label": "NAME", "text": "Danielle A. Mendès"}, {"start": 65, "end": 75, "label": "DATE", "text": "01/01/2023"}, {"start": 1708, "end": 1718, "label": "DATE", "text": "01/15/2023"}, {"start": 72, "end": 74, "label": "DATE", "text": "02"}, {"start": 184, "end": 200, "label": "LOCATION", "text": "Christopherburgh"}, {"start": 1532, "end": 1566, "label": "LOCATION", "text": "Christopherburgh Recreation Center"}, {"start": 1593, "end": 1619, "label": "LOCATION", "text": "Nutri-Link Wellness Center"}, {"start": 1649, "end": 1661, "label": "LOCATION", "text": "Well-Connect"}, {"start": 133, "end": 147, "label": "IP", "text": "141.412.89.188"}, {"start": 165, "end": 182, "label": "ADDRESS", "text": "498 Fergus Annual"}, {"start": 1532, "end": 1548, "label": "ADDRESS", "text": "Christopherburgh"}, {"start": 202, "end": 207, "label": "ZIP", "text": "85368"}], "error": null}
+{"doc_id": "fin_43971", "n_gold": 7, "spans": [{"start": 40, "end": 50, "label": "DATE", "text": "01/15/2023"}, {"start": 371, "end": 381, "label": "DATE", "text": "01/15/2023"}, {"start": 151, "end": 177, "label": "NAME", "text": "Christian Danielle Holland"}, {"start": 191, "end": 204, "label": "ID", "text": "O700-K1098-Va"}, {"start": 212, "end": 234, "label": "IBAN", "text": "GB46UFFV59009936245297"}, {"start": 482, "end": 496, "label": "LOCATION", "text": "East Christina"}, {"start": 523, "end": 538, "label": "LOCATION", "text": "Mccullough Port"}, {"start": 540, "end": 554, "label": "LOCATION", "text": "East Christina"}, {"start": 556, "end": 561, "label": "LOCATION", "text": "86193"}, {"start": 482, "end": 506, "label": "STORE_NAME", "text": "East Christina Groceries"}], "error": null}
+{"doc_id": "fin_39523", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_27398", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_51264", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_55694", "n_gold": 5, "spans": [{"start": 0, "end": 20, "label": "NAME", "text": "Payment Confirmation"}, {"start": 140, "end": 158, "label": "NAME", "text": "Erhardt N. Sorgatz"}, {"start": 200, "end": 218, "label": "NAME", "text": "Erhardt N. Sorgatz"}, {"start": 230, "end": 240, "label": "DATE", "text": "2022-03-14"}, {"start": 230, "end": 249, "label": "DATE", "text": "2022-03-14 16:35:18"}, {"start": 299, "end": 306, "label": "LOCATION", "text": "Anytown"}, {"start": 314, "end": 322, "label": "LOCATION", "text": "Anystate"}, {"start": 333, "end": 338, "label": "LOCATION", "text": "12345"}, {"start": 755, "end": 760, "label": "PHONE", "text": "(123)"}, {"start": 755, "end": 769, "label": "PHONE", "text": "(123) 456-7890"}, {"start": 514, "end": 537, "label": "EMAIL", "text": "payments@abccompany.com"}, {"start": 731, "end": 754, "label": "EMAIL", "text": "payments@abccompany.com"}], "error": null}
+{"doc_id": "fin_44445", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_43316", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_39788", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_19361", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_37019", "n_gold": 9, "spans": [], "error": null}
+{"doc_id": "fin_47605", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_29165", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_55224", "n_gold": 6, "spans": [{"start": 99, "end": 113, "label": "NAME", "text": "Corona Requena"}, {"start": 132, "end": 141, "label": "NAME", "text": "Tina Park"}, {"start": 143, "end": 160, "label": "LOCATION", "text": "Anytown, CA 12345"}], "error": null}
+{"doc_id": "fin_35480", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_47634", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_52498", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_21600", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_31901", "n_gold": 1, "spans": [{"start": 26, "end": 33, "label": "NAME", "text": "Manning"}, {"start": 46, "end": 80, "label": "LOCATION", "text": "5240612345/GB89ABC123XYZ5678901234"}, {"start": 330, "end": 343, "label": "NAME", "text": "RUSSELL POTTS"}, {"start": 107, "end": 113, "label": "PHONE", "text": "080253"}], "error": null}
+{"doc_id": "fin_33755", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_39923", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_32844", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_55187", "n_gold": 12, "spans": [], "error": null}
+{"doc_id": "fin_44576", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_55698", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_46537", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_43748", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_37042", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_42945", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_54945", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_7252", "n_gold": 9, "spans": [], "error": null}
+{"doc_id": "fin_38655", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_46424", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_47335", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_43106", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_36875", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_43481", "n_gold": 5, "spans": [{"start": 26, "end": 85, "label": "NAME", "text": "We, the undersigned, being the directors of XYZ Corporation"}, {"start": 195, "end": 210, "label": "NAME", "text": "Michael Dickson"}, {"start": 224, "end": 252, "label": "LOCATION", "text": "398 Terry Turnpike, Apt. 020"}, {"start": 647, "end": 651, "label": "DATE", "text": "2023"}], "error": null}
+{"doc_id": "fin_32628", "n_gold": 16, "spans": [], "error": null}
+{"doc_id": "fin_24548", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_35530", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_50037", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_33918", "n_gold": 7, "spans": [{"start": 23, "end": 43, "label": "NAME", "text": "Ignacio Jenaro Nuñez"}, {"start": 51, "end": 68, "label": "DATE", "text": "November 23, 2019"}, {"start": 151, "end": 163, "label": "LOCATION", "text": "Robin Forges"}, {"start": 165, "end": 170, "label": "LOCATION", "text": "57616"}, {"start": 172, "end": 181, "label": "LOCATION", "text": "New Emily"}, {"start": 438, "end": 450, "label": "LOCATION", "text": "Robin Forges"}, {"start": 452, "end": 457, "label": "LOCATION", "text": "57616"}, {"start": 459, "end": 468, "label": "LOCATION", "text": "New Emily"}, {"start": 112, "end": 132, "label": "NAME", "text": "Ignacio Jenaro Nuñez"}, {"start": 1606, "end": 1626, "label": "NAME", "text": "Ignacio Jenaro Nuñez"}], "error": null}
+{"doc_id": "fin_38190", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_44167", "n_gold": 5, "spans": [{"start": 5, "end": 9, "label": "NAME", "text": "Judy"}, {"start": 158, "end": 168, "label": "DATE", "text": "2023-03-22"}, {"start": 258, "end": 268, "label": "DATE", "text": "2023-09-25"}, {"start": 583, "end": 613, "label": "LOCATION", "text": "08086 Albert Haven, London, UK"}, {"start": 521, "end": 540, "label": "NAME", "text": "Janice Pugh-Griffin"}, {"start": 557, "end": 566, "label": "ID", "text": "123456789"}, {"start": 786, "end": 797, "label": "ID", "text": "464-08-2571"}], "error": null}
+{"doc_id": "fin_43883", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_54418", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_54767", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_48691", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_47458", "n_gold": 7, "spans": [{"start": 47, "end": 64, "label": "DATE", "text": "December 31, 2021"}, {"start": 958, "end": 975, "label": "DATE", "text": "December 31, 2021"}], "error": null}
+{"doc_id": "fin_31501", "n_gold": 13, "spans": [], "error": null}
+{"doc_id": "fin_44528", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_32111", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_32757", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_33980", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_36828", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_51433", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_50768", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_10033", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_11530", "n_gold": 2, "spans": [{"start": 77, "end": 111, "label": "DATE", "text": "01 January 2022 - 31 December 2022"}, {"start": 1110, "end": 1121, "label": "PHONE", "text": "01 49 93 37"}, {"start": 1110, "end": 1123, "label": "PHONE", "text": "01 49 93 37 3"}, {"start": 719, "end": 735, "label": "ID", "text": "2235628466185353"}], "error": null}
+{"doc_id": "fin_17979", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_36842", "n_gold": 9, "spans": [], "error": null}
+{"doc_id": "fin_55454", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_45378", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_46621", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_39856", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_44456", "n_gold": 11, "spans": [], "error": null}
+{"doc_id": "fin_55848", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_54480", "n_gold": 12, "spans": [{"start": 137, "end": 141, "label": "DATE", "text": "2021"}, {"start": 2234, "end": 2238, "label": "DATE", "text": "2021"}], "error": null}
+{"doc_id": "fin_51782", "n_gold": 3, "spans": [{"start": 82, "end": 98, "label": "NAME", "text": "Nicolas É. Petit"}], "error": null}
+{"doc_id": "fin_28675", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_46988", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_45141", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_17951", "n_gold": 17, "spans": [], "error": null}
+{"doc_id": "fin_34582", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_53957", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_28185", "n_gold": 10, "spans": [], "error": null}
+{"doc_id": "fin_39104", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_52636", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_54862", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_24698", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_52895", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_46081", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_32213", "n_gold": 10, "spans": [], "error": null}
+{"doc_id": "fin_36826", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_47722", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_46777", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_44972", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_45873", "n_gold": 5, "spans": [{"start": 1, "end": 5, "label": "NAME", "text": "Bank"}, {"start": 43, "end": 51, "label": "NAME", "text": "John Doe"}, {"start": 68, "end": 77, "label": "ACCOUNT_NUMBER", "text": "123456789"}, {"start": 86, "end": 115, "label": "LOCATION", "text": "567 Main Street, Anytown, USA"}, {"start": 123, "end": 133, "label": "DATE", "text": "01/01/2021"}, {"start": 138, "end": 148, "label": "DATE", "text": "31/01/2021"}, {"start": 249, "end": 259, "label": "DATE", "text": "31/01/2021"}, {"start": 344, "end": 354, "label": "DATE", "text": "15/01/2021"}, {"start": 294, "end": 304, "label": "DATE", "text": "31/01/2021"}, {"start": 576, "end": 586, "label": "DATE", "text": "31/01/2021"}], "error": null}
+{"doc_id": "fin_39173", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_48406", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_15335", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_31824", "n_gold": 6, "spans": [{"start": 2, "end": 20, "label": "LOCATION", "text": "REPUBLIC OF CANADA"}, {"start": 26, "end": 68, "label": "LOCATION", "text": "MINISTRY OF ENVIRONMENT AND CLIMATE CHANGE"}, {"start": 74, "end": 109, "label": "NAME", "text": "ENVIRONMENTAL TAX ASSESSMENT NOTICE"}, {"start": 136, "end": 151, "label": "DATE", "text": "January 1, 2021"}, {"start": 154, "end": 171, "label": "DATE", "text": "December 31, 2021"}, {"start": 187, "end": 199, "label": "NAME", "text": "ABC Co. Ltd."}, {"start": 200, "end": 217, "label": "ADDRESS", "text": "1234 Green Street"}, {"start": 218, "end": 225, "label": "LOCATION", "text": "Toronto"}, {"start": 79, "end": 81, "label": "LOCATION", "text": "ON"}, {"start": 230, "end": 237, "label": "POSTAL_CODE", "text": "M5V 2T9"}, {"start": 258, "end": 273, "label": "ID", "text": "2022-123456-ENV"}, {"start": 435, "end": 450, "label": "DATE", "text": "January 1, 2021"}, {"start": 454, "end": 471, "label": "DATE", "text": "December 31, 2021"}], "error": null}
+{"doc_id": "fin_44328", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_43473", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_990", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_45013", "n_gold": 9, "spans": [{"start": 45, "end": 55, "label": "DATE", "text": "2023-02-14"}, {"start": 329, "end": 339, "label": "DATE", "text": "2024-03-20"}, {"start": 98, "end": 116, "label": "NAME", "text": "Raquel Curro Bayón"}, {"start": 219, "end": 227, "label": "ID", "text": "F8365032"}, {"start": 137, "end": 152, "label": "LOCATION", "text": "Belinda Streets"}, {"start": 154, "end": 164, "label": "LOCATION", "text": "Apt. 97838"}, {"start": 166, "end": 172, "label": "LOCATION", "text": "<City>"}, {"start": 174, "end": 190, "label": "LOCATION", "text": "<State/Province>"}, {"start": 192, "end": 205, "label": "LOCATION", "text": "<Postal Code>"}, {"start": 804, "end": 819, "label": "PHONE", "text": "+1-800-123-4567"}, {"start": 986, "end": 1011, "label": "EMAIL", "text": "info@theluxurygoodsco.com"}, {"start": 512, "end": 527, "label": "LOCATION", "text": "123 Main Street"}, {"start": 167, "end": 171, "label": "LOCATION", "text": "City"}, {"start": 175, "end": 189, "label": "LOCATION", "text": "State/Province"}, {"start": 551, "end": 559, "label": "LOCATION", "text": "Zip Code"}, {"start": 962, "end": 977, "label": "PHONE", "text": "+1-800-123-4567"}, {"start": 1057, "end": 1090, "label": "URL", "text": "https://www.theluxurygoodsco.com/"}], "error": null}
+{"doc_id": "fin_38295", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_34458", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_47788", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_54197", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_54302", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_34930", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_40946", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_34916", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_44565", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_41185", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_13712", "n_gold": 15, "spans": [], "error": null}
+{"doc_id": "fin_23856", "n_gold": 6, "spans": [{"start": 36, "end": 52, "label": "NAME", "text": "Bank of Brighton"}, {"start": 112, "end": 122, "label": "DATE", "text": "09/15/2022"}, {"start": 129, "end": 137, "label": "TIME", "text": "09:50 AM"}, {"start": 145, "end": 165, "label": "NAME", "text": "Dewi Huisman-Kortman"}, {"start": 182, "end": 199, "label": "LOCATION", "text": "94 Canale Gaggini"}, {"start": 217, "end": 286, "label": "ID", "text": "SG.EXAMPLEXXXXXXXXXXXXXXX.REDACTEDSYNTHETICKEYXXXXXXXXXXXXXXXXXXXXXXX"}, {"start": 307, "end": 317, "label": "DATE", "text": "GBP 500.00"}], "error": null}
+{"doc_id": "fin_35248", "n_gold": 1, "spans": [{"start": 75, "end": 83, "label": "DATE", "text": "20220301"}, {"start": 234, "end": 242, "label": "DATE", "text": "20220301"}, {"start": 436, "end": 444, "label": "DATE", "text": "20220301"}], "error": null}
+{"doc_id": "fin_47688", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_37795", "n_gold": 3, "spans": [{"start": 19, "end": 36, "label": "NAME", "text": "Tülay H. Werne Cl"}, {"start": 40, "end": 55, "label": "DATE", "text": "20200320-000001"}, {"start": 69, "end": 97, "label": "LOCATION", "text": "Dickson Junction, Apt. 59075"}, {"start": 130, "end": 139, "label": "ACCOUNT", "text": "123456789"}, {"start": 116, "end": 125, "label": "ACCOUNT", "text": "876543210"}], "error": null}
+{"doc_id": "fin_3448", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_35702", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_41359", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_47116", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_47474", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_4051", "n_gold": 1, "spans": [{"start": 197, "end": 198, "label": "NAME", "text": "8"}], "error": null}
+{"doc_id": "fin_33009", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_44256", "n_gold": 12, "spans": [{"start": 32, "end": 42, "label": "DATE", "text": "2022-09-01"}, {"start": 136, "end": 140, "label": "NAME", "text": "Tami"}, {"start": 142, "end": 145, "label": "NAME", "text": "Ana"}, {"start": 146, "end": 151, "label": "NAME", "text": "Cases"}, {"start": 153, "end": 170, "label": "LOCATION", "text": "85166 Davis Mount"}, {"start": 172, "end": 177, "label": "LOCATION", "text": "90304"}, {"start": 179, "end": 189, "label": "LOCATION", "text": "West Sarah"}, {"start": 200, "end": 204, "label": "NAME", "text": "Tami"}, {"start": 206, "end": 209, "label": "NAME", "text": "Ana"}, {"start": 210, "end": 215, "label": "NAME", "text": "Cases"}, {"start": 217, "end": 234, "label": "LOCATION", "text": "85166 Davis Mount"}, {"start": 236, "end": 241, "label": "LOCATION", "text": "90304"}, {"start": 243, "end": 253, "label": "LOCATION", "text": "West Sarah"}, {"start": 264, "end": 268, "label": "NAME", "text": "Tami"}, {"start": 270, "end": 273, "label": "NAME", "text": "Ana"}, {"start": 274, "end": 279, "label": "NAME", "text": "Cases"}, {"start": 281, "end": 298, "label": "LOCATION", "text": "85166 Davis Mount"}, {"start": 300, "end": 305, "label": "LOCATION", "text": "90304"}, {"start": 307, "end": 317, "label": "LOCATION", "text": "West Sarah"}, {"start": 328, "end": 332, "label": "NAME", "text": "Tami"}, {"start": 334, "end": 337, "label": "NAME", "text": "Ana"}, {"start": 338, "end": 343, "label": "NAME", "text": "Cases"}, {"start": 345, "end": 362, "label": "LOCATION", "text": "85166 Davis Mount"}, {"start": 364, "end": 369, "label": "LOCATION", "text": "90304"}, {"start": 371, "end": 381, "label": "LOCATION", "text": "West Sarah"}], "error": null}
+{"doc_id": "fin_46033", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_35904", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_55516", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_41264", "n_gold": 6, "spans": [{"start": 92, "end": 111, "label": "NAME", "text": "Eligia Prats-Blanco"}, {"start": 119, "end": 133, "label": "NAME", "text": "Aguiló-Bárcena"}, {"start": 141, "end": 151, "label": "DATE", "text": "2022-03-14"}, {"start": 152, "end": 160, "label": "DATE", "text": "16:35:21"}, {"start": 162, "end": 165, "label": "DATE", "text": "UTC"}, {"start": 272, "end": 291, "label": "NAME", "text": "Eligia Prats-Blanco"}, {"start": 337, "end": 351, "label": "NAME", "text": "Aguiló-Bárcena"}, {"start": 301, "end": 317, "label": "LOCATION", "text": "6830 Robert Club"}, {"start": 319, "end": 328, "label": "LOCATION", "text": "Apt. 8312"}, {"start": 48, "end": 64, "label": "ID", "text": "1234567890ABCDEF"}, {"start": 498, "end": 512, "label": "PHONE", "text": "1-800-935-9355"}, {"start": 537, "end": 553, "label": "URL", "text": "www.zellepay.com"}], "error": null}
+{"doc_id": "fin_37586", "n_gold": 10, "spans": [], "error": null}
+{"doc_id": "fin_4025", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_52899", "n_gold": 5, "spans": [{"start": 5, "end": 19, "label": "NAME", "text": "Susan Williams"}, {"start": 11, "end": 19, "label": "NAME", "text": "Williams"}, {"start": 526, "end": 535, "label": "PASSPORT_NUMBER", "text": "S17933286"}, {"start": 559, "end": 577, "label": "ADDRESS", "text": "Jeffrey Throughway"}, {"start": 579, "end": 584, "label": "ZIP_CODE", "text": "06049"}, {"start": 586, "end": 596, "label": "ADDRESS", "text": "Justinside"}, {"start": 739, "end": 748, "label": "PHONE", "text": "your area"}, {"start": 758, "end": 768, "label": "PHONE", "text": "hurricanes"}, {"start": 770, "end": 781, "label": "PHONE", "text": "earthquakes"}, {"start": 786, "end": 792, "label": "PHONE", "text": "floods"}], "error": null}
+{"doc_id": "fin_32784", "n_gold": 11, "spans": [], "error": null}
+{"doc_id": "fin_31614", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_38350", "n_gold": 6, "spans": [{"start": 35, "end": 45, "label": "ID", "text": "1234567890"}, {"start": 60, "end": 70, "label": "DATE", "text": "09/29/1985"}, {"start": 71, "end": 79, "label": "TIME", "text": "10:04 AM"}, {"start": 88, "end": 97, "label": "NAME", "text": "Ana Galan"}, {"start": 117, "end": 147, "label": "LOCATION", "text": "68950 Ellen Islands, Suite 010"}, {"start": 156, "end": 167, "label": "ID", "text": "LKRGGBCZ694"}, {"start": 177, "end": 184, "label": "AMOUNT", "text": "$125.99"}], "error": null}
+{"doc_id": "fin_38208", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_45978", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "fin_47619", "n_gold": 5, "spans": [{"start": 12, "end": 21, "label": "NAME", "text": "Jill Neal"}, {"start": 116, "end": 147, "label": "ADDRESS", "text": "4321 Maple Street, Anytown, USA"}, {"start": 194, "end": 208, "label": "PHONE", "text": "1-800-123-4567"}, {"start": 222, "end": 240, "label": "URL", "text": "www.globalbank.com"}, {"start": 262, "end": 270, "label": "DATE", "text": "20220201"}, {"start": 290, "end": 298, "label": "DATE", "text": "20220228"}, {"start": 592, "end": 600, "label": "DATE", "text": "20220303"}, {"start": 612, "end": 620, "label": "DATE", "text": "20220303"}, {"start": 650, "end": 658, "label": "DATE", "text": "20220202"}, {"start": 739, "end": 747, "label": "DATE", "text": "20220210"}, {"start": 839, "end": 847, "label": "DATE", "text": "20220215"}, {"start": 948, "end": 956, "label": "DATE", "text": "20220228"}, {"start": 96, "end": 105, "label": "ID", "text": "000123456"}, {"start": 382, "end": 392, "label": "ID", "text": "1234567890"}, {"start": 99, "end": 105, "label": "ID", "text": "123456"}, {"start": 725, "end": 731, "label": "ID", "text": "123457"}, {"start": 825, "end": 831, "label": "ID", "text": "123458"}, {"start": 934, "end": 940, "label": "ID", "text": "123459"}], "error": null}
+{"doc_id": "fin_50268", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_48471", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_55590", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "fin_24530", "n_gold": 1, "spans": [{"start": 7, "end": 14, "label": "NAME", "text": "Outlook"}, {"start": 200, "end": 205, "label": "DATE", "text": "10:30"}, {"start": 111, "end": 120, "label": "LOCATION", "text": "iPhone XR"}, {"start": 122, "end": 130, "label": "LOCATION", "text": "iOS 14.3"}, {"start": 111, "end": 117, "label": "PHONE", "text": "iPhone"}, {"start": 206, "end": 218, "label": "EMAIL", "text": "this morning"}, {"start": 161, "end": 172, "label": "LOCATION", "text": "web version"}, {"start": 96, "end": 109, "label": "LOCATION", "text": "mobile device"}, {"start": 255, "end": 266, "label": "LOCATION", "text": "web version"}, {"start": 288, "end": 301, "label": "LOCATION", "text": "mobile device"}, {"start": 721, "end": 732, "label": "LOCATION", "text": "web version"}, {"start": 737, "end": 750, "label": "LOCATION", "text": "mobile device"}], "error": null}
+{"doc_id": "fin_38162", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_31985", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "fin_37117", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "fin_3631", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "fin_42587", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "fin_50596", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "fin_36769", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "fin_35088", "n_gold": 4, "spans": [{"start": 5, "end": 8, "label": "NAME", "text": "Mr."}, {"start": 9, "end": 33, "label": "NAME", "text": "Ciro Massimiliano Ovadia"}, {"start": 90, "end": 96, "label": "DATE", "text": "recent"}, {"start": 97, "end": 102, "label": "DATE", "text": "claim"}, {"start": 397, "end": 411, "label": "LOCATION", "text": "50-mile radius"}, {"start": 417, "end": 431, "label": "LOCATION", "text": "your residence"}, {"start": 494, "end": 513, "label": "LOCATION", "text": "17.743577,26.614573"}, {"start": 808, "end": 822, "label": "LOCATION", "text": "50-mile radius"}, {"start": 1152, "end": 1166, "label": "LOCATION", "text": "West Scotttown"}, {"start": 1135, "end": 1138, "label": "PHONE", "text": "141"}, {"start": 1139, "end": 1150, "label": "PHONE", "text": "David Hills"}, {"start": 1062, "end": 1087, "label": "EMAIL", "text": "your earliest convenience"}, {"start": 79, "end": 81, "label": "EMAIL", "text": "us"}, {"start": 916, "end": 927, "label": "EMAIL", "text": "convenience"}, {"start": 269, "end": 271, "label": "EMAIL", "text": "us"}, {"start": 1199, "end": 1238, "label": "ID", "text": "3371:445d:c79c:6756:cd51:a902:4b0c:aeb6"}], "error": null}
+{"doc_id": "fin_42496", "n_gold": 10, "spans": [], "error": null}

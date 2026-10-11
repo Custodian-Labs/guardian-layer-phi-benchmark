@@ -1,0 +1,250 @@
+{"doc_id": "ent_5fd803730cbf", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_0eb75ecb1e3d", "n_gold": 5, "spans": [{"start": 11, "end": 16, "label": "ID", "text": "12345"}, {"start": 31, "end": 41, "label": "DATE", "text": "2023-03-15"}, {"start": 52, "end": 61, "label": "ID", "text": "*********"}, {"start": 69, "end": 80, "label": "ID", "text": "***********"}, {"start": 82, "end": 93, "label": "ID", "text": "***********"}, {"start": 143, "end": 159, "label": "ID", "text": "****************"}], "error": null}
+{"doc_id": "ent_6887f9a29337", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_9c898867bb5c", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_b1b78c2d9546", "n_gold": 5, "spans": [{"start": 11, "end": 28, "label": "NAME", "text": "*****************"}, {"start": 30, "end": 63, "label": "NAME", "text": "********************************."}, {"start": 73, "end": 83, "label": "ID", "text": "**********"}, {"start": 109, "end": 120, "label": "ID", "text": "***********"}, {"start": 112, "end": 119, "label": "ID", "text": "*******"}], "error": null}
+{"doc_id": "ent_f7918cbb6e1c", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_0d0e552d9fa5", "n_gold": 4, "spans": [{"start": 93, "end": 103, "label": "DATE", "text": "2022-06-15"}], "error": null}
+{"doc_id": "ent_595dcbb5aaea", "n_gold": 6, "spans": [{"start": 3, "end": 13, "label": "DATE", "text": "**********"}, {"start": 15, "end": 35, "label": "ID", "text": "Customer ID ********"}, {"start": 73, "end": 97, "label": "ID", "text": "routing number *********"}, {"start": 101, "end": 125, "label": "ID", "text": "routing number *********"}, {"start": 156, "end": 166, "label": "DATE", "text": "**********"}, {"start": 177, "end": 210, "label": "ID", "text": "medical record number ***********"}], "error": null}
+{"doc_id": "ent_594aed7ed6fa", "n_gold": 4, "spans": [{"start": 40, "end": 60, "label": "NAME", "text": "***** **************"}, {"start": 70, "end": 92, "label": "EMAIL", "text": "**********************"}, {"start": 78, "end": 89, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_27f84990d7e3", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_813716da92f1", "n_gold": 4, "spans": [{"start": 0, "end": 21, "label": "ID", "text": "Employee ***** ******"}, {"start": 23, "end": 37, "label": "ID", "text": "SSN: *********"}, {"start": 39, "end": 62, "label": "ID", "text": "Employee ID: **********"}, {"start": 99, "end": 111, "label": "DATE", "text": "June 1, 2023"}], "error": null}
+{"doc_id": "ent_6a2e161d9a1f", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_39e8a6380743", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5d5d39fa95b8", "n_gold": 6, "spans": [{"start": 49, "end": 62, "label": "ID", "text": "*************"}, {"start": 67, "end": 80, "label": "ID", "text": "*************"}, {"start": 84, "end": 104, "label": "DATE", "text": "********************"}, {"start": 93, "end": 104, "label": "ID", "text": "***********"}, {"start": 147, "end": 158, "label": "ID", "text": "***********"}, {"start": 151, "end": 158, "label": "ID", "text": "*******"}], "error": null}
+{"doc_id": "ent_1b298fbb84d5", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b6f05aae5248", "n_gold": 5, "spans": [{"start": 206, "end": 216, "label": "DATE", "text": "2023-01-01"}, {"start": 220, "end": 230, "label": "DATE", "text": "2028-12-31"}, {"start": 328, "end": 332, "label": "AGE", "text": "15th"}, {"start": 336, "end": 340, "label": "DATE", "text": "June"}, {"start": 345, "end": 353, "label": "DATE", "text": "December"}], "error": null}
+{"doc_id": "ent_ae795b459304", "n_gold": 7, "spans": [{"start": 3, "end": 22, "label": "DATE", "text": "*******************"}, {"start": 41, "end": 56, "label": "ID", "text": "***************"}, {"start": 61, "end": 76, "label": "ID", "text": "***************"}, {"start": 63, "end": 76, "label": "ID", "text": "*************"}, {"start": 142, "end": 157, "label": "ID", "text": "***************"}, {"start": 124, "end": 133, "label": "NAME", "text": "*********"}, {"start": 142, "end": 153, "label": "NAME", "text": "***********"}], "error": null}
+{"doc_id": "ent_f9deb5c82773", "n_gold": 5, "spans": [{"start": 46, "end": 59, "label": "ID", "text": "*************"}, {"start": 64, "end": 77, "label": "ID", "text": "64.45.244.171"}, {"start": 221, "end": 232, "label": "ID", "text": "***********"}, {"start": 237, "end": 248, "label": "ID", "text": "***********"}, {"start": 221, "end": 230, "label": "NAME", "text": "*********"}, {"start": 221, "end": 228, "label": "NAME", "text": "*******"}], "error": null}
+{"doc_id": "ent_265e51314507", "n_gold": 5, "spans": [{"start": 30, "end": 52, "label": "DATE", "text": "**********************"}, {"start": 62, "end": 84, "label": "NAME", "text": "**********************"}, {"start": 89, "end": 108, "label": "NAME", "text": "*******************"}, {"start": 122, "end": 154, "label": "LOCATION", "text": "********************************"}, {"start": 140, "end": 151, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_e58ab8cd0af6", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_859ad4adc598", "n_gold": 4, "spans": [{"start": 36, "end": 51, "label": "ID", "text": "SO-20230328-001"}, {"start": 62, "end": 72, "label": "DATE", "text": "2023-03-28"}, {"start": 120, "end": 139, "label": "ID", "text": "1992 Toyota Corolla"}, {"start": 159, "end": 174, "label": "ID", "text": "***************"}, {"start": 159, "end": 169, "label": "ID", "text": "**********"}, {"start": 161, "end": 174, "label": "ID", "text": "*************"}], "error": null}
+{"doc_id": "ent_0e1ea52077b6", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_2a7160dc9add", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b0dd7a0bb199", "n_gold": 5, "spans": [{"start": 0, "end": 13, "label": "ID", "text": "Employee ****"}, {"start": 14, "end": 40, "label": "PHONE", "text": "*************** (********)"}, {"start": 64, "end": 74, "label": "DATE", "text": "2022-05-15"}, {"start": 31, "end": 39, "label": "NAME", "text": "********"}, {"start": 85, "end": 93, "label": "NAME", "text": "********"}], "error": null}
+{"doc_id": "ent_1125acd02a4d", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_f60a009b2fa4", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_8a8c9d856f0e", "n_gold": 4, "spans": [{"start": 32, "end": 40, "label": "NAME", "text": "********"}, {"start": 55, "end": 63, "label": "NAME", "text": "********"}, {"start": 67, "end": 75, "label": "DATE", "text": "********"}, {"start": 69, "end": 77, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_4e71fe27b70a", "n_gold": 1, "spans": [{"start": 10, "end": 21, "label": "ID", "text": "***********"}, {"start": 37, "end": 47, "label": "DATE", "text": "2023-03-15"}, {"start": 67, "end": 72, "label": "ID", "text": "12345"}, {"start": 91, "end": 96, "label": "ID", "text": "67890"}, {"start": 111, "end": 116, "label": "ID", "text": "55565"}], "error": null}
+{"doc_id": "ent_f080712c61a8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_0a7a5d9c243e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_68c24dff4329", "n_gold": 5, "spans": [{"start": 3, "end": 11, "label": "LOCATION", "text": "********"}, {"start": 15, "end": 23, "label": "DATE", "text": "********"}, {"start": 51, "end": 77, "label": "LOCATION", "text": "**************************"}, {"start": 64, "end": 72, "label": "ID", "text": "********"}, {"start": 67, "end": 77, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_e3f265a3351e", "n_gold": 4, "spans": [{"start": 59, "end": 86, "label": "ID", "text": "IPv4 address **************"}, {"start": 106, "end": 133, "label": "DATE", "text": "date of birth as **********"}, {"start": 144, "end": 182, "label": "ID", "text": "biometric identifier as **************"}, {"start": 218, "end": 252, "label": "ID", "text": "Social Security Number ***********"}], "error": null}
+{"doc_id": "ent_dd444cd36805", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5b537c23a8ca", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_33f5f2beddbd", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_1febff7416c9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_7cb3a3b274cc", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_c52b4bf81fdf", "n_gold": 4, "spans": [{"start": 36, "end": 44, "label": "ID", "text": "********"}, {"start": 51, "end": 61, "label": "DATE", "text": "**********"}, {"start": 78, "end": 88, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_d65f0060ae47", "n_gold": 5, "spans": [{"start": 6, "end": 16, "label": "DATE", "text": "**********"}, {"start": 39, "end": 49, "label": "NAME", "text": "**********"}, {"start": 82, "end": 92, "label": "DATE", "text": "**********"}, {"start": 82, "end": 90, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_61a7ddb988ae", "n_gold": 5, "spans": [{"start": 42, "end": 52, "label": "DATE", "text": "**********"}, {"start": 57, "end": 67, "label": "DATE", "text": "**********"}, {"start": 78, "end": 89, "label": "ID", "text": "***********"}, {"start": 126, "end": 151, "label": "LOCATION", "text": "*************************"}, {"start": 130, "end": 138, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_95b659499559", "n_gold": 4, "spans": [{"start": 3, "end": 14, "label": "NAME", "text": "***** *****"}, {"start": 24, "end": 34, "label": "DATE", "text": "**********"}, {"start": 64, "end": 77, "label": "ID", "text": "*************"}], "error": null}
+{"doc_id": "ent_8cbbba5445eb", "n_gold": 4, "spans": [{"start": 60, "end": 68, "label": "ID", "text": "********"}, {"start": 60, "end": 70, "label": "DATE", "text": "**********"}, {"start": 98, "end": 115, "label": "NAME", "text": "Employee ********"}, {"start": 121, "end": 136, "label": "ID", "text": "SSN ***********"}], "error": null}
+{"doc_id": "ent_8e608eee1f61", "n_gold": 4, "spans": [{"start": 15, "end": 23, "label": "LOCATION", "text": "********"}, {"start": 31, "end": 41, "label": "DATE", "text": "**********"}, {"start": 46, "end": 68, "label": "LOCATION", "text": "**********************"}, {"start": 93, "end": 101, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_73e6677f9c57", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_1474d0b045aa", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_32e9125fbb90", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_b0e4f689b3c6", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_be70b28baff5", "n_gold": 5, "spans": [{"start": 29, "end": 39, "label": "DATE", "text": "**********"}, {"start": 65, "end": 76, "label": "ID", "text": "***********"}, {"start": 66, "end": 76, "label": "ID", "text": "**********"}, {"start": 110, "end": 120, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_dba85964cfaf", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_71d382c81cee", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_555905f852d7", "n_gold": 4, "spans": [{"start": 39, "end": 53, "label": "ID", "text": "**************"}, {"start": 90, "end": 100, "label": "DATE", "text": "07/31/1995"}, {"start": 123, "end": 137, "label": "ID", "text": "**************"}, {"start": 152, "end": 192, "label": "LOCATION", "text": "****************************************"}, {"start": 370, "end": 380, "label": "DATE", "text": "07/05/1995"}, {"start": 432, "end": 442, "label": "DATE", "text": "07/15/1995"}, {"start": 493, "end": 503, "label": "DATE", "text": "07/25/1995"}], "error": null}
+{"doc_id": "ent_9d552a7dca11", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_030a2881b770", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5152860d9ccc", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6464ccaaf413", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1c4657be0581", "n_gold": 5, "spans": [{"start": 30, "end": 44, "label": "ID", "text": "**************"}, {"start": 49, "end": 61, "label": "ID", "text": "************"}, {"start": 73, "end": 85, "label": "ID", "text": "************"}, {"start": 90, "end": 96, "label": "ID", "text": "******"}, {"start": 110, "end": 155, "label": "LOCATION", "text": "*********************************************"}], "error": null}
+{"doc_id": "ent_42c47d782c31", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_3ba0c0cd817b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a6b6e7e6ee3a", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ab0a49c5526d", "n_gold": 4, "spans": [{"start": 0, "end": 12, "label": "NAME", "text": "************"}, {"start": 23, "end": 33, "label": "DATE", "text": "**********"}, {"start": 80, "end": 94, "label": "ID", "text": "**************"}, {"start": 126, "end": 143, "label": "ID", "text": "*****************"}], "error": null}
+{"doc_id": "ent_c42c231c154c", "n_gold": 5, "spans": [{"start": 25, "end": 35, "label": "ID", "text": "**********"}, {"start": 43, "end": 53, "label": "ID", "text": "**********"}, {"start": 43, "end": 74, "label": "ID", "text": "*******************************"}, {"start": 64, "end": 74, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_c8fc2fb295a7", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b5a2a62dc9c6", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_7ff890d9de70", "n_gold": 1, "spans": [{"start": 33, "end": 43, "label": "DATE", "text": "2023-03-15"}], "error": null}
+{"doc_id": "ent_bec9297d226b", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_4065dc9e7098", "n_gold": 4, "spans": [{"start": 36, "end": 47, "label": "ID", "text": "2022-AR-001"}, {"start": 253, "end": 263, "label": "DATE", "text": "2022-10-15"}], "error": null}
+{"doc_id": "ent_32b9eead84be", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_324de3ce98ad", "n_gold": 1, "spans": [{"start": 41, "end": 59, "label": "DATE", "text": "[termination date]"}, {"start": 72, "end": 80, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_feb33c5e9cdd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_07f19af5f038", "n_gold": 1, "spans": [{"start": 70, "end": 78, "label": "NAME", "text": "John Doe"}], "error": null}
+{"doc_id": "ent_1d6bb1f8eb8d", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_c64e0f7bf684", "n_gold": 4, "spans": [{"start": 13, "end": 37, "label": "OTHER", "text": "************************"}, {"start": 95, "end": 105, "label": "DATE", "text": "2021-01-01"}, {"start": 109, "end": 119, "label": "DATE", "text": "2021-12-31"}, {"start": 245, "end": 253, "label": "ID", "text": "********"}, {"start": 285, "end": 296, "label": "ID", "text": "***********"}, {"start": 285, "end": 295, "label": "AGE", "text": "**********"}], "error": null}
+{"doc_id": "ent_ba757ab53d82", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e5b145d361b2", "n_gold": 4, "spans": [{"start": 41, "end": 49, "label": "ID", "text": "********"}, {"start": 59, "end": 69, "label": "DATE", "text": "**********"}, {"start": 95, "end": 106, "label": "ID", "text": "***********"}, {"start": 123, "end": 136, "label": "ID", "text": "*************"}], "error": null}
+{"doc_id": "ent_d1592b457adf", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e925c98e8a23", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_57cfb9f95a3e", "n_gold": 1, "spans": [{"start": 46, "end": 73, "label": "URL", "text": "http://*************/verify"}, {"start": 103, "end": 105, "label": "AGE", "text": "24"}], "error": null}
+{"doc_id": "ent_1702375e0d3c", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_d3995f013b93", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_3c7367cb6257", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_21de98b85080", "n_gold": 5, "spans": [{"start": 46, "end": 60, "label": "ID", "text": "**************"}, {"start": 51, "end": 61, "label": "DATE", "text": "**********"}, {"start": 50, "end": 61, "label": "ID", "text": "***********"}, {"start": 195, "end": 214, "label": "ID", "text": "*******************"}, {"start": 112, "end": 123, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_060641fb7800", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_e9361bca53cc", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_0d862f55e498", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_cbdfad2b968a", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_810eaf68c4ab", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_9b89a8f57eb6", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_efce0872495e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a27de060e3a7", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_23c919aee198", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4089fb2e3a09", "n_gold": 4, "spans": [{"start": 9, "end": 17, "label": "ID", "text": "********"}, {"start": 89, "end": 104, "label": "ID", "text": "***************"}, {"start": 89, "end": 101, "label": "ID", "text": "************"}], "error": null}
+{"doc_id": "ent_8a6d3562f7dd", "n_gold": 4, "spans": [{"start": 13, "end": 21, "label": "ID", "text": "********"}, {"start": 38, "end": 48, "label": "DATE", "text": "**********"}, {"start": 57, "end": 79, "label": "EMAIL", "text": "**********************"}, {"start": 86, "end": 97, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_40e27e063c93", "n_gold": 5, "spans": [{"start": 62, "end": 70, "label": "ID", "text": "********"}, {"start": 80, "end": 88, "label": "ID", "text": "********"}, {"start": 117, "end": 125, "label": "ID", "text": "********"}, {"start": 135, "end": 145, "label": "DATE", "text": "**********"}, {"start": 173, "end": 183, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_15cf42608ee6", "n_gold": 5, "spans": [{"start": 38, "end": 49, "label": "NAME", "text": "***********"}, {"start": 63, "end": 87, "label": "LOCATION", "text": "************************"}, {"start": 63, "end": 81, "label": "EMAIL", "text": "******************"}, {"start": 68, "end": 87, "label": "EMAIL", "text": "*******************"}, {"start": 119, "end": 138, "label": "ID", "text": "*******************"}], "error": null}
+{"doc_id": "ent_46016c62ccba", "n_gold": 1, "spans": [{"start": 40, "end": 50, "label": "DATE", "text": "2023-01-01"}], "error": null}
+{"doc_id": "ent_472754e4fd1e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ecff0156a71a", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_2d47930317e7", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_22286d6a4017", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_f6fe42c6dceb", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_a80a1ff15d73", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_0566f86abb70", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fb7ff9162f67", "n_gold": 6, "spans": [{"start": 34, "end": 49, "label": "PHONE", "text": "***************"}, {"start": 54, "end": 68, "label": "PHONE", "text": "**************"}, {"start": 116, "end": 124, "label": "PHONE", "text": "********"}, {"start": 118, "end": 126, "label": "PHONE", "text": "********"}, {"start": 212, "end": 226, "label": "ID", "text": "**************"}, {"start": 257, "end": 287, "label": "EMAIL", "text": "******************************"}], "error": null}
+{"doc_id": "ent_0c73352874d4", "n_gold": 4, "spans": [{"start": 12, "end": 21, "label": "ID", "text": "*********"}, {"start": 27, "end": 37, "label": "DATE", "text": "**********"}, {"start": 43, "end": 54, "label": "ID", "text": "***********"}, {"start": 44, "end": 54, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_74127959718b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_aa8d3d4c405e", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_18928433b405", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_480bef59183c", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_ff43d49bb9bf", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_189b60e9afc4", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_216f32abec23", "n_gold": 6, "spans": [{"start": 59, "end": 74, "label": "ID", "text": "***************"}, {"start": 59, "end": 73, "label": "ID", "text": "**************"}, {"start": 79, "end": 89, "label": "DATE", "text": "**********"}, {"start": 84, "end": 94, "label": "DATE", "text": "**********"}, {"start": 80, "end": 94, "label": "ID", "text": "**************"}, {"start": 191, "end": 202, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_36ce02e4cd80", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_af0442e01cdd", "n_gold": 4, "spans": [{"start": 102, "end": 111, "label": "ID", "text": "*********"}, {"start": 145, "end": 156, "label": "ID", "text": "***********"}, {"start": 188, "end": 199, "label": "ID", "text": "***********"}, {"start": 190, "end": 199, "label": "ID", "text": "*********"}], "error": null}
+{"doc_id": "ent_f3f96de40bfd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fae934f1c56d", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_5eed649fa703", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1e23d49d9d79", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_e05ef5a3a9b9", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_720d9dbede3f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8b9b60acdfc2", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_11429f9c9564", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fb75c049fab4", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_0a8b1473fb09", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_cab005196163", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_77c589d9fb04", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_f5fc4e3e22d3", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_b02f34d49564", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5703d50a83c9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_111fe8e74c26", "n_gold": 1, "spans": [{"start": 83, "end": 98, "label": "DATE", "text": "January 1, 2023"}], "error": null}
+{"doc_id": "ent_29a467e69fc5", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_73827a336ed2", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_934fc49f60e0", "n_gold": 4, "spans": [{"start": 13, "end": 23, "label": "ID", "text": "**********"}, {"start": 40, "end": 50, "label": "DATE", "text": "**********"}, {"start": 76, "end": 87, "label": "ID", "text": "***********"}, {"start": 98, "end": 164, "label": "LOCATION", "text": "******************************************************************"}], "error": null}
+{"doc_id": "ent_242f749346c2", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_0bbbed8e5a5b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_dfb4f48e5b77", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_53c8fa09203e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_05e43b3551e9", "n_gold": 6, "spans": [{"start": 49, "end": 65, "label": "NAME", "text": "****************"}, {"start": 49, "end": 59, "label": "DATE", "text": "**********"}, {"start": 52, "end": 62, "label": "DATE", "text": "**********"}, {"start": 197, "end": 239, "label": "LOCATION", "text": "******************************************"}, {"start": 197, "end": 205, "label": "ID", "text": "********"}, {"start": 211, "end": 221, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_f6a55d63406b", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6ccc3373e945", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_3d8e6ab38a2e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_42960681e13d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e8eb58eb2b1b", "n_gold": 4, "spans": [{"start": 50, "end": 66, "label": "EMAIL", "text": "****************"}, {"start": 70, "end": 96, "label": "EMAIL", "text": "**************************"}, {"start": 132, "end": 150, "label": "EMAIL", "text": "******************"}, {"start": 139, "end": 150, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_bf61e031b8d4", "n_gold": 5, "spans": [{"start": 38, "end": 47, "label": "ID", "text": "*********"}, {"start": 62, "end": 82, "label": "NAME", "text": "********************"}, {"start": 105, "end": 141, "label": "LOCATION", "text": "************************************"}, {"start": 105, "end": 131, "label": "LOCATION", "text": "**************************"}, {"start": 130, "end": 141, "label": "PHONE", "text": "***********"}, {"start": 256, "end": 266, "label": "DATE", "text": "2023-07-15"}], "error": null}
+{"doc_id": "ent_873393c7d981", "n_gold": 6, "spans": [{"start": 14, "end": 26, "label": "ID", "text": "customer IDs"}, {"start": 28, "end": 36, "label": "ID", "text": "********"}, {"start": 41, "end": 51, "label": "ID", "text": "**********"}, {"start": 90, "end": 102, "label": "ID", "text": "Employee IDs"}, {"start": 43, "end": 51, "label": "ID", "text": "********"}, {"start": 116, "end": 125, "label": "ID", "text": "*********"}, {"start": 168, "end": 177, "label": "DATE", "text": "Birthdate"}, {"start": 178, "end": 188, "label": "ID", "text": "**********"}, {"start": 193, "end": 214, "label": "ID", "text": "medical record number"}, {"start": 178, "end": 186, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_c62550e3ab74", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1bc934540653", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_df98ceb49acb", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_fab49f8af533", "n_gold": 5, "spans": [{"start": 104, "end": 118, "label": "ID", "text": "**************"}, {"start": 110, "end": 118, "label": "ID", "text": "********"}, {"start": 107, "end": 118, "label": "ID", "text": "***********"}, {"start": 227, "end": 241, "label": "ID", "text": "**************"}, {"start": 191, "end": 201, "label": "DATE", "text": "**********"}], "error": null}
+{"doc_id": "ent_17b31ae653b9", "n_gold": 7, "spans": [{"start": 3, "end": 15, "label": "DATE", "text": "May 15, 2023"}, {"start": 130, "end": 140, "label": "ID", "text": "**********"}, {"start": 130, "end": 141, "label": "ID", "text": "***********"}, {"start": 157, "end": 168, "label": "ID", "text": "***********"}, {"start": 147, "end": 155, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_f8d27d9692f9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_7cedb614872d", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_e7b0eee607b8", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_f004adf06afd", "n_gold": 6, "spans": [{"start": 124, "end": 134, "label": "DATE", "text": "2023-03-15"}, {"start": 181, "end": 191, "label": "DATE", "text": "2023-03-20"}], "error": null}
+{"doc_id": "ent_52be9291794c", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_2e98194f5413", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_6e7c3341a164", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_b8c2fa93984d", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_22372f8e68ce", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_2be493ae2db9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_9ea1230c085e", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_4ea81b8982c6", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_5b30540e90fd", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_e0d79a8645ff", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_09a1e46accb2", "n_gold": 5, "spans": [{"start": 87, "end": 111, "label": "DATE", "text": "1st day of January, 2023"}, {"start": 128, "end": 148, "label": "NAME", "text": "******* ************"}, {"start": 136, "end": 147, "label": "ID", "text": "***********"}, {"start": 209, "end": 225, "label": "NAME", "text": "****************"}, {"start": 192, "end": 203, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_a26a37b6718a", "n_gold": 5, "spans": [{"start": 16, "end": 26, "label": "ID", "text": "**********"}, {"start": 30, "end": 41, "label": "ID", "text": "***********"}, {"start": 51, "end": 61, "label": "ID", "text": "**********"}, {"start": 71, "end": 106, "label": "LOCATION", "text": "***********************************"}], "error": null}
+{"doc_id": "ent_036fbb69523c", "n_gold": 4, "spans": [{"start": 47, "end": 55, "label": "ID", "text": "********"}, {"start": 84, "end": 95, "label": "ID", "text": "***********"}, {"start": 87, "end": 95, "label": "ID", "text": "********"}, {"start": 265, "end": 278, "label": "ID", "text": "*************"}], "error": null}
+{"doc_id": "ent_66cea7e5bc68", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_215726192f06", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_4f5840c5c4c2", "n_gold": 4, "spans": [{"start": 93, "end": 100, "label": "ID", "text": "*******"}, {"start": 130, "end": 142, "label": "ID", "text": "************"}, {"start": 130, "end": 140, "label": "DATE", "text": "**********"}, {"start": 160, "end": 170, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_fa036135c99e", "n_gold": 5, "spans": [{"start": 10, "end": 22, "label": "ID", "text": "************"}, {"start": 25, "end": 46, "label": "NAME", "text": "*********************"}, {"start": 32, "end": 46, "label": "ID", "text": "**************"}, {"start": 57, "end": 67, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_b242da9076b8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_fcdb904234b6", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_5adec6449d99", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ebaec344b171", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_776fa8d6a62c", "n_gold": 4, "spans": [{"start": 60, "end": 72, "label": "ID", "text": "************"}, {"start": 86, "end": 96, "label": "ID", "text": "**********"}, {"start": 163, "end": 173, "label": "DATE", "text": "**********"}, {"start": 215, "end": 225, "label": "ID", "text": "**********"}], "error": null}
+{"doc_id": "ent_43941e5f5d00", "n_gold": 4, "spans": [{"start": 86, "end": 123, "label": "LOCATION", "text": "*************************************"}, {"start": 140, "end": 153, "label": "ID", "text": "****** ******"}, {"start": 155, "end": 171, "label": "ID", "text": "SSN: ***********"}], "error": null}
+{"doc_id": "ent_84fb53d0d5b5", "n_gold": 7, "spans": [], "error": null}
+{"doc_id": "ent_5836a9ae193f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_05cfcde05e90", "n_gold": 2, "spans": [{"start": 139, "end": 149, "label": "ID", "text": "1234567890"}], "error": null}
+{"doc_id": "ent_27f10b5757cd", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_03b55524c5bf", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_2d9bc879dcd3", "n_gold": 4, "spans": [{"start": 3, "end": 13, "label": "DATE", "text": "**********"}, {"start": 69, "end": 80, "label": "ID", "text": "***********"}, {"start": 73, "end": 81, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_14f84ff6573d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_0f96b1ebdc50", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_355943f3f739", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_a985d45d6c3d", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_b540edda24ee", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_d34fd00fbd1e", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_55ae87ad0565", "n_gold": 3, "spans": [{"start": 27, "end": 39, "label": "DATE", "text": "************"}, {"start": 45, "end": 55, "label": "NAME", "text": "**********"}, {"start": 66, "end": 90, "label": "PHONE", "text": "************************"}], "error": null}
+{"doc_id": "ent_3f19c46e91b4", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4245a6c99059", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_1d19e109a334", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_0332afcb984e", "n_gold": 6, "spans": [{"start": 21, "end": 38, "label": "ID", "text": "Event ID ********"}, {"start": 53, "end": 73, "label": "ID", "text": "customer ID ********"}, {"start": 75, "end": 105, "label": "EMAIL", "text": "email ************************"}, {"start": 107, "end": 132, "label": "DATE", "text": "time of purchase ********"}, {"start": 133, "end": 145, "label": "DATE", "text": "(**********)"}, {"start": 147, "end": 174, "label": "DATE", "text": "date of purchase **********"}], "error": null}
+{"doc_id": "ent_4496e9fb0f67", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_6f4aa4305845", "n_gold": 4, "spans": [{"start": 115, "end": 140, "label": "LOCATION", "text": "123 Main St, Anytown, USA"}, {"start": 166, "end": 177, "label": "ID", "text": "MED17099262"}], "error": null}
+{"doc_id": "ent_f8997601ebf1", "n_gold": 4, "spans": [{"start": 41, "end": 51, "label": "DATE", "text": "**********"}, {"start": 63, "end": 73, "label": "NAME", "text": "**********"}, {"start": 89, "end": 104, "label": "ID", "text": "***************"}, {"start": 96, "end": 104, "label": "LOCATION", "text": "********"}], "error": null}
+{"doc_id": "ent_cfa9fa81456e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ea449b39bd6f", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_5fee771d949a", "n_gold": 8, "spans": [], "error": null}
+{"doc_id": "ent_2fe14755eee2", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_a96bd63c04a2", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_2b80fa51c247", "n_gold": 5, "spans": [{"start": 13, "end": 21, "label": "ID", "text": "********"}, {"start": 38, "end": 48, "label": "DATE", "text": "**********"}, {"start": 55, "end": 66, "label": "ID", "text": "***********"}, {"start": 89, "end": 105, "label": "NAME", "text": "Tennessee Nelson"}, {"start": 107, "end": 126, "label": "OTHER", "text": "*******************"}, {"start": 153, "end": 166, "label": "NAME", "text": "William Smith"}, {"start": 168, "end": 188, "label": "OTHER", "text": "********************"}], "error": null}
+{"doc_id": "ent_d8bbf65b01d2", "n_gold": 5, "spans": [{"start": 19, "end": 42, "label": "ID", "text": "Transaction ID ********"}, {"start": 44, "end": 65, "label": "ID", "text": "Customer ID *********"}, {"start": 67, "end": 105, "label": "ID", "text": "credit card number *******************"}, {"start": 107, "end": 140, "label": "EMAIL", "text": "email ***************************"}, {"start": 129, "end": 140, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_43c7cb90b318", "n_gold": 5, "spans": [{"start": 31, "end": 49, "label": "ID", "text": "******** (*******)"}, {"start": 55, "end": 65, "label": "DATE", "text": "**********"}, {"start": 76, "end": 97, "label": "NAME", "text": "*********************"}, {"start": 84, "end": 95, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_9f1208af278e", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1fbb46bc619e", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_ee01106e0767", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_60961366a127", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_701915d0759a", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_1c67f6f1c192", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_96696c130e01", "n_gold": 5, "spans": [{"start": 0, "end": 13, "label": "ID", "text": "*************"}, {"start": 19, "end": 29, "label": "DATE", "text": "**********"}, {"start": 42, "end": 59, "label": "LOCATION", "text": "*****************"}, {"start": 46, "end": 59, "label": "ID", "text": "*************"}, {"start": 96, "end": 110, "label": "LOCATION", "text": "**************"}], "error": null}
+{"doc_id": "ent_619e960dfa4d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_470b6b30b50e", "n_gold": 5, "spans": [{"start": 29, "end": 43, "label": "NAME", "text": "**** *********"}, {"start": 53, "end": 63, "label": "DATE", "text": "**********"}, {"start": 93, "end": 103, "label": "ID", "text": "**********"}, {"start": 108, "end": 119, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_4327afb8a24a", "n_gold": 7, "spans": [{"start": 13, "end": 19, "label": "PHONE", "text": "******"}, {"start": 20, "end": 24, "label": "PHONE", "text": "****"}, {"start": 28, "end": 47, "label": "PHONE", "text": "*******************"}, {"start": 35, "end": 47, "label": "PHONE", "text": "************"}, {"start": 103, "end": 115, "label": "NAME", "text": "Patriciaking"}, {"start": 59, "end": 63, "label": "PHONE", "text": "****"}, {"start": 124, "end": 148, "label": "PHONE", "text": "************************"}, {"start": 124, "end": 133, "label": "PHONE", "text": "*********"}], "error": null}
+{"doc_id": "ent_53a7330bb43d", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_76e3d138ae1f", "n_gold": 5, "spans": [{"start": 15, "end": 25, "label": "DATE", "text": "**********"}, {"start": 58, "end": 69, "label": "ID", "text": "***********"}, {"start": 74, "end": 85, "label": "ID", "text": "***********"}, {"start": 129, "end": 142, "label": "ID", "text": "*************"}, {"start": 206, "end": 219, "label": "ID", "text": "*************"}], "error": null}
+{"doc_id": "ent_d24d73c9ae85", "n_gold": 1, "spans": [], "error": null}
+{"doc_id": "ent_885b36bfac4b", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_37c8a6d7760d", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_683dac3b3788", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4102dc709262", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_00659c32c8dc", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_ccadcfb76028", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_f3c6ea839e3c", "n_gold": 3, "spans": [{"start": 24, "end": 46, "label": "NAME", "text": "**********************"}, {"start": 56, "end": 66, "label": "DATE", "text": "**********"}, {"start": 80, "end": 107, "label": "LOCATION", "text": "***************************"}], "error": null}
+{"doc_id": "ent_81e56d2f761b", "n_gold": 4, "spans": [{"start": 15, "end": 25, "label": "ID", "text": "**********"}, {"start": 34, "end": 56, "label": "EMAIL", "text": "**********************"}, {"start": 65, "end": 79, "label": "PHONE", "text": "**************"}, {"start": 72, "end": 80, "label": "ID", "text": "********"}], "error": null}
+{"doc_id": "ent_44dca75eb044", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_5e37e3442bd2", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_839d431fd980", "n_gold": 4, "spans": [{"start": 68, "end": 76, "label": "NAME", "text": "John Doe"}, {"start": 94, "end": 104, "label": "NAME", "text": "Jane Smith"}, {"start": 110, "end": 121, "label": "ID", "text": "***********"}, {"start": 127, "end": 138, "label": "ID", "text": "***********"}], "error": null}
+{"doc_id": "ent_5adf83d0a2fb", "n_gold": 1, "spans": [{"start": 18, "end": 28, "label": "ID", "text": "98-7654321"}, {"start": 145, "end": 155, "label": "DATE", "text": "2022-03-15"}], "error": null}
+{"doc_id": "ent_ee8985e2d58d", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4b156d70760b", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_3b58e9cff615", "n_gold": 4, "spans": [{"start": 4, "end": 15, "label": "ID", "text": "***********"}, {"start": 146, "end": 165, "label": "ID", "text": "*******************"}, {"start": 146, "end": 156, "label": "DATE", "text": "**********"}], "error": null}
+{"doc_id": "ent_a02fc8fe1f6e", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_a576c7b26b47", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_8c0bbb4b0788", "n_gold": 4, "spans": [{"start": 0, "end": 8, "label": "ID", "text": "Order ID"}, {"start": 10, "end": 22, "label": "ID", "text": "************"}, {"start": 34, "end": 44, "label": "DATE", "text": "**********"}, {"start": 36, "end": 44, "label": "ID", "text": "********"}, {"start": 120, "end": 132, "label": "NAME", "text": "************"}], "error": null}
+{"doc_id": "ent_f38b6244b279", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_b6a44966aa34", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_09446d30ce7f", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_4f72df83fba0", "n_gold": 2, "spans": [{"start": 0, "end": 11, "label": "ID", "text": "Employee ID"}, {"start": 13, "end": 23, "label": "NAME", "text": "First Name"}, {"start": 25, "end": 34, "label": "NAME", "text": "Last Name"}, {"start": 36, "end": 45, "label": "NAME", "text": "Job Title"}, {"start": 47, "end": 57, "label": "NAME", "text": "Department"}, {"start": 59, "end": 64, "label": "EMAIL", "text": "Email"}, {"start": 66, "end": 78, "label": "PHONE", "text": "Phone Number"}, {"start": 79, "end": 82, "label": "ID", "text": "123"}, {"start": 84, "end": 88, "label": "NAME", "text": "John"}, {"start": 90, "end": 93, "label": "NAME", "text": "Doe"}, {"start": 95, "end": 102, "label": "NAME", "text": "Manager"}, {"start": 104, "end": 106, "label": "NAME", "text": "IT"}, {"start": 108, "end": 126, "label": "PHONE", "text": "******************"}, {"start": 128, "end": 139, "label": "PHONE", "text": "***********"}], "error": null}
+{"doc_id": "ent_46a601e63dc8", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_64c7b0208103", "n_gold": 4, "spans": [{"start": 34, "end": 46, "label": "NAME", "text": "****** *****"}, {"start": 71, "end": 82, "label": "ID", "text": "***********"}, {"start": 92, "end": 108, "label": "LOCATION", "text": "****************"}], "error": null}
+{"doc_id": "ent_0a516bf2ecec", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_56c383ffb79d", "n_gold": 5, "spans": [{"start": 212, "end": 227, "label": "ID", "text": "SSN ***********"}], "error": null}
+{"doc_id": "ent_3c15f5c64d1f", "n_gold": 5, "spans": [{"start": 350, "end": 366, "label": "NAME", "text": "Dr. Ada Sterling"}, {"start": 255, "end": 266, "label": "ID", "text": "***********"}, {"start": 255, "end": 265, "label": "DATE", "text": "**********"}, {"start": 489, "end": 505, "label": "NAME", "text": "Dr. Ada Sterling"}], "error": null}
+{"doc_id": "ent_b47aacef4067", "n_gold": 6, "spans": [], "error": null}
+{"doc_id": "ent_e4332e161ebc", "n_gold": 5, "spans": [], "error": null}
+{"doc_id": "ent_255124e374a9", "n_gold": 4, "spans": [], "error": null}
+{"doc_id": "ent_41ac0284bcb3", "n_gold": 3, "spans": [], "error": null}
+{"doc_id": "ent_7cdb2ce04fb1", "n_gold": 2, "spans": [], "error": null}
+{"doc_id": "ent_0d48d7080bfd", "n_gold": 3, "spans": [], "error": null}
