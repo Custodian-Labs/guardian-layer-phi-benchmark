@@ -1,4 +1,4 @@
-# Experimental Protocol — CustodianAI PHI Benchmark
+# Experimental Protocol — Custodian Labs PHI Benchmark
 
 This document specifies how the benchmark was run, so that another team can
 reproduce the numbers exactly. Written in the style expected by a typical
@@ -185,7 +185,7 @@ sub-samples (PII-Masking-300k), the loader is parameterised by
 | Per-run dashboard manifest | `web/data/index.json` |
 | Source for offsets recovery | `systems/llm_openai_compatible.py` |
 | Source for local-HF inference | `systems/llm_local_hf.py` |
-| GitHub Pages dashboard | `https://14h034160212.github.io/Custodianai/` |
+| GitHub Pages dashboard | `https://14h034160212.github.io/CustodianLabs/` |
 
 ## 8. Roadmap
 

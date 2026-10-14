@@ -23,9 +23,9 @@ Llama 3.3-70B, DeepSeek V2-Lite; and OpenAI GPT-5 — across **7 benchmarks /
 ### Links
 | | |
 |---|---|
-| 📊 Interactive dashboard | **https://custodianai.pages.dev** |
+| 📊 Interactive dashboard | **https://custodianlabs.pages.dev** |
 | 📝 Paper (PDF) | http://arxiv.org/abs/2608.03172 |
-| 💾 Reproducibility package (scripts + data subsets) | https://custodianai.pages.dev/code |
+| 💾 Reproducibility package (scripts + data subsets) | https://custodianlabs.pages.dev/code |
 | ▶️ Run the demo in Google Colab (one click) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Custodian-Labs/guardian-layer-phi-benchmark/blob/main/notebooks/custodian_guardian_layer_demo.ipynb) |
 | 📓 Notebook source | [`notebooks/custodian_guardian_layer_demo.ipynb`](notebooks/custodian_guardian_layer_demo.ipynb) |
 
@@ -106,7 +106,7 @@ PYTHONPATH=. python scripts/analyze_domains.py          # non-medical study -> r
 **Official URL** (Cloudflare Pages — auto-redeploys on every push to `main`,
 serves a private repo, Auckland POP for low NZ latency):
 
-**https://custodianai.pages.dev**
+**https://custodianlabs.pages.dev**
 
 Three top-level views, no navigation needed:
 
@@ -339,7 +339,7 @@ the wanted behaviour.
 ## Project layout
 
 ```
-custodianai/
+guardian-layer-phi-benchmark/
 ├── benchmarks/        # Dataset loaders → Document(text, gold_spans)
 │   ├── base.py
 │   ├── asq_phi.py            # English clinical-queries synthetic, no DUA

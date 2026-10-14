@@ -130,4 +130,4 @@ The Guardian Layer transform preserves downstream PHI-detection performance. On 
 
 All eleven systems are fully scored (original + transformed) on all seven benchmarks: Presidio, OBI, GPT-5, Qwen 4B/9B/35B, Gemma E4B/31B, Llama 8B/70B, and DeepSeek V2-Lite.
 
-**Live results & data:** https://custodianai.pages.dev — report at `/report`; switch *Data → Δ* for the per-cell view; datasets downloadable under *Datasets*.
+**Live results & data:** https://custodianlabs.pages.dev — report at `/report`; switch *Data → Δ* for the per-cell view; datasets downloadable under *Datasets*.

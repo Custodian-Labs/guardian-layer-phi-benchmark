@@ -3,7 +3,7 @@
 Pure HTML + Tailwind + Chart.js. No build step, no backend, no secrets ever
 shipped to the client. Reads pre-aggregated JSON out of `web/data/`.
 
-**Live URL:** https://custodianai.pages.dev
+**Live URL:** https://custodianlabs.pages.dev
 
 ## Local preview
 
@@ -27,10 +27,10 @@ private repos).
 1. Sign in at https://dash.cloudflare.com/
 2. **Workers & Pages → Create application → Pages → Connect to Git**
 3. Authorise GitHub to expose just this repo (`Only select repositories`)
-4. Select `Custodianai`
+4. Select `CustodianLabs`
 5. Build configuration:
    ```
-   Project name:              custodianai
+   Project name:              custodianlabs
    Production branch:         main
    Framework preset:          None
    Build command:             (leave blank)

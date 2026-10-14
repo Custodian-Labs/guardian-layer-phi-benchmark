@@ -63,7 +63,7 @@ Our `paper/ml4h/main.tex` compiles with a **vanilla `jmlr.cls` + a stubbed
 ## 5. Camera-ready additions (only if accepted) — do NOT add for submission
 - [ ] `\finaltrue`; real authors: **Qiming Bao, Sherry J. H. Feng, Kim Chester
       Eugenio, Meng Fon** — **Custodian Labs**.
-- [ ] Restore URLs: dashboard `https://custodianai.pages.dev`, code repo
+- [ ] Restore URLs: dashboard `https://custodianlabs.pages.dev`, code repo
       `https://github.com/Custodian-Labs/guardian-layer-phi-benchmark`, Colab.
 - [ ] Name the commercial transform (Custodian Labs Guardian Layer) + re-add the
       `\citep{custodian_labs}` case-study citation (or the patent once it issues).

@@ -54,7 +54,7 @@ class Custodian(DeIDSystem):
         self,
         config: CustodianConfig | None = None,
         api_key: str | None = None,
-        base_url: str = "https://api.custodianai.com",
+        base_url: str = "https://privacy.custodianlabs.io",
         timeout: float = 30.0,
     ):
         import httpx
