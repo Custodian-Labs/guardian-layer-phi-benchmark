@@ -28,6 +28,8 @@ Llama 3.3-70B, DeepSeek V2-Lite; and OpenAI GPT-5 — across **7 benchmarks /
 | 💾 Reproducibility package (scripts + data subsets) | https://custodianlabs.pages.dev/code |
 | ▶️ Run the demo in Google Colab (one click) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Custodian-Labs/guardian-layer-phi-benchmark/blob/main/notebooks/custodian_guardian_layer_demo.ipynb) |
 | 📓 Notebook source | [`notebooks/custodian_guardian_layer_demo.ipynb`](notebooks/custodian_guardian_layer_demo.ipynb) |
+| 🌍 Beyond medicine (finance, legal, enterprise) | https://custodianlabs.pages.dev/domains · [`docs/multidomain_results.md`](docs/multidomain_results.md) |
+| 🎬 Video de-identification (faces, plates, on-screen text, speech) | https://custodianlabs.pages.dev/video · code and examples in [`custodian_video/`](custodian_video/) |
 
 ### Headline result
 On the **57,112 spans the transform masks** (pooled over all 11 detectors),

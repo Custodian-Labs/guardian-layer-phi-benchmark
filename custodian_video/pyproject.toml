@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "custodian-video"
+version = "0.1.0"
+description = "Custodian Video Guardian: local (no-cloud) video de-identification prototype"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy", "opencv-python-headless", "requests", "soundfile", "pillow",
+  "onnxruntime-gpu>=1.20,<1.23",   # CUDA-12 build; use onnxruntime on CPU-only hosts
+  "deface",                         # CenterFace ONNX (MIT)
+  "open-image-models",              # licence-plate YOLOv9 ONNX (MIT)
+  "rapidocr",                       # PaddleOCR PP-OCRv5 in ONNX (Apache-2.0)
+  "faster-whisper",                 # ASR with word timestamps (MIT)
+  "imageio-ffmpeg",                 # static ffmpeg with libx264
+]
+
+[project.optional-dependencies]
+transform = ["torch", "diffusers>=0.30", "transformers", "accelerate", "safetensors"]
+tts = ["piper-tts"]                 # NOTE: piper-tts>=1.3 is GPL-3.0 -- keep optional
+eval = []
+
+[project.scripts]
+custodian-video = "custodian_video.cli:main"
+
+[tool.setuptools]
+packages = ["custodian_video"]

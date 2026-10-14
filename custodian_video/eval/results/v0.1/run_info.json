@@ -1,0 +1,75 @@
+{
+ "tag": "v0.1",
+ "started": "2026-10-02T12:30:23",
+ "python": "/data/qbao775/miniconda3/envs/custodian-video/bin/python",
+ "pipeline": {
+  "source": "git:4dd3004",
+  "commit": "4dd3004c7de4764a2ca43440ab6a8fdfa636867a",
+  "files_sha256": "783100026e12ea77",
+  "snapshotted": "2026-10-02T06:34:20"
+ },
+ "snapshot_dir": "/data/qbao775/custodianai/data/video_eval/pipeline_snapshots/v0.1",
+ "arms": {
+  "reencode": [
+   "--channels",
+   "faces",
+   "--mode",
+   "redact",
+   "--face-threshold",
+   "1.01"
+  ],
+  "redact_blur": [
+   "--channels",
+   "faces",
+   "--mode",
+   "redact",
+   "--face-style",
+   "blur"
+  ],
+  "redact_box": [
+   "--channels",
+   "faces",
+   "--mode",
+   "redact",
+   "--face-style",
+   "box"
+  ],
+  "transform": [
+   "--channels",
+   "faces",
+   "--mode",
+   "transform"
+  ]
+ },
+ "cuda_visible_devices": "3",
+ "custodian_video_version": "0.1.0 /data/qbao775/custodianai/data/video_eval/pipeline_snapshots/v0.1/custodian_video/__init__.py",
+ "history": [
+  {
+   "started": "2026-10-02T06:34:20",
+   "pipeline": {
+    "source": "git:4dd3004",
+    "commit": "4dd3004c7de4764a2ca43440ab6a8fdfa636867a",
+    "files_sha256": "783100026e12ea77",
+    "snapshotted": "2026-10-02T06:34:20"
+   }
+  },
+  {
+   "started": "2026-10-02T06:56:38",
+   "pipeline": {
+    "source": "git:4dd3004",
+    "commit": "4dd3004c7de4764a2ca43440ab6a8fdfa636867a",
+    "files_sha256": "783100026e12ea77",
+    "snapshotted": "2026-10-02T06:34:20"
+   }
+  },
+  {
+   "started": "2026-10-02T07:45:48",
+   "pipeline": {
+    "source": "git:4dd3004",
+    "commit": "4dd3004c7de4764a2ca43440ab6a8fdfa636867a",
+    "files_sha256": "783100026e12ea77",
+    "snapshotted": "2026-10-02T06:34:20"
+   }
+  }
+ ]
+}
