@@ -95,6 +95,25 @@ python scripts/summarize_medical_decisions.py                    # ICD-10 downst
 python scripts/audit_transform_properties.py                     # what the transform preserves
 ```
 
+## Citation
+
+If you use this benchmark, the protocol or the data, please cite:
+
+```bibtex
+@InProceedings{bao2026surrogate,
+  title     = {Surrogate Substitution Preserves {PHI} Detectability: A Multi-Detector Equivalence Study},
+  author    = {Bao, Qiming and Feng, Jia Hui and Eugenio, Kim Chester V. and Foon, Meng},
+  booktitle = {Proceedings of the Sixth Machine Learning for Health Symposium},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {346},
+  publisher = {PMLR},
+  year      = {2026}
+}
+```
+
+Page numbers and the PMLR URL will be added once volume 346 is published. A preprint is available at
+[arXiv:2608.03172](https://arxiv.org/abs/2608.03172).
+
 ## Paper v2 (arXiv): corrected analysis and non-medical domains
 
 Version 2 of the paper corrects the gold-span re-projection (boundaries are now snapped to word boundaries;
