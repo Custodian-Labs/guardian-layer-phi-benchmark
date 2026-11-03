@@ -1,5 +1,6 @@
 {
   "system": "qwen3_5_9b",
+  "prompt": "default",
   "corpus": "faker",
   "benchmark": "meddocan",
   "masked": 1419,

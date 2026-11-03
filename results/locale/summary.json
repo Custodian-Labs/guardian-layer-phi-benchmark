@@ -1,0 +1,116 @@
+{
+ "qwen3_5_9b|all|all": {
+  "n": 2114,
+  "original": 85.43046357615894,
+  "custodian": 73.55723746452223,
+  "faker": 87.79564806054873
+ },
+ "qwen3_5_9b|asq_phi|all": {
+  "n": 268,
+  "original": 98.13432835820896,
+  "custodian": 76.11940298507463,
+  "faker": 61.19402985074627
+ },
+ "qwen3_5_9b|asq_phi|loc": {
+  "n": 82,
+  "original": 98.78048780487805,
+  "custodian": 36.58536585365854,
+  "faker": 9.75609756097561
+ },
+ "qwen3_5_9b|asq_phi|name": {
+  "n": 186,
+  "original": 97.84946236559139,
+  "custodian": 93.54838709677419,
+  "faker": 83.87096774193549
+ },
+ "qwen3_5_9b|meddocan|all": {
+  "n": 1525,
+  "original": 89.90163934426229,
+  "custodian": 79.47540983606558,
+  "faker": 97.50819672131148
+ },
+ "qwen3_5_9b|meddocan|loc": {
+  "n": 855,
+  "original": 87.953216374269,
+  "custodian": 76.14035087719299,
+  "faker": 96.37426900584795
+ },
+ "qwen3_5_9b|meddocan|name": {
+  "n": 670,
+  "original": 92.38805970149254,
+  "custodian": 83.73134328358209,
+  "faker": 98.95522388059702
+ },
+ "qwen3_5_9b|pii_dutch|all": {
+  "n": 65,
+  "original": 49.23076923076923,
+  "custodian": 44.61538461538461,
+  "faker": 70.76923076923077
+ },
+ "qwen3_5_9b|pii_dutch|loc": {
+  "n": 39,
+  "original": 74.35897435897436,
+  "custodian": 66.66666666666667,
+  "faker": 71.7948717948718
+ },
+ "qwen3_5_9b|pii_dutch|name": {
+  "n": 26,
+  "original": 11.538461538461538,
+  "custodian": 11.538461538461538,
+  "faker": 69.23076923076923
+ },
+ "qwen3_5_9b|pii_french|all": {
+  "n": 85,
+  "original": 67.05882352941177,
+  "custodian": 63.529411764705884,
+  "faker": 57.64705882352941
+ },
+ "qwen3_5_9b|pii_french|loc": {
+  "n": 67,
+  "original": 83.58208955223881,
+  "custodian": 76.11940298507463,
+  "faker": 50.74626865671642
+ },
+ "qwen3_5_9b|pii_french|name": {
+  "n": 18,
+  "original": 5.555555555555555,
+  "custodian": 16.666666666666668,
+  "faker": 83.33333333333333
+ },
+ "qwen3_5_9b|pii_german|all": {
+  "n": 84,
+  "original": 40.476190476190474,
+  "custodian": 35.714285714285715,
+  "faker": 95.23809523809524
+ },
+ "qwen3_5_9b|pii_german|loc": {
+  "n": 41,
+  "original": 78.04878048780488,
+  "custodian": 68.29268292682927,
+  "faker": 100.0
+ },
+ "qwen3_5_9b|pii_german|name": {
+  "n": 43,
+  "original": 4.651162790697675,
+  "custodian": 4.651162790697675,
+  "faker": 90.69767441860465
+ },
+ "qwen3_5_9b|pii_masking_300k|all": {
+  "n": 87,
+  "original": 56.32183908045977,
+  "custodian": 29.885057471264368,
+  "faker": 34.48275862068966
+ },
+ "qwen3_5_9b|pii_masking_300k|loc": {
+  "n": 51,
+  "original": 88.23529411764706,
+  "custodian": 45.09803921568628,
+  "faker": 13.72549019607843
+ },
+ "qwen3_5_9b|pii_masking_300k|name": {
+  "n": 36,
+  "original": 11.11111111111111,
+  "custodian": 8.333333333333334,
+  "faker": 63.888888888888886
+ }
+}

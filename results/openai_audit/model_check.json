@@ -1,0 +1,15 @@
+{
+ "summary": {
+  "gpt-4o-mini": {
+   "identical_span_sets": 17,
+   "n": 20,
+   "mean_jaccard": 0.951
+  },
+  "gpt-5": {
+   "identical_span_sets": 2,
+   "n": 20,
+   "mean_jaccard": 0.652
+  }
+ },
+ "est_cost_usd": 0.616
+}

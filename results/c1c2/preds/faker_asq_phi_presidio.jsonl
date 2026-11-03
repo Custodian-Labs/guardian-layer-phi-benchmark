@@ -1,0 +1,97 @@
+{"doc_id": "asq_00000", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00001", "masked_idx": [0, 1, 2], "found": [1, 0, 1]}
+{"doc_id": "asq_00003", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00004", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00005", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00006", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00007", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00008", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00009", "masked_idx": [1, 2], "found": [1, 1]}
+{"doc_id": "asq_00010", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00011", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00012", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00013", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00014", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00015", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00016", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00017", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00018", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00019", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00020", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00022", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00024", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00025", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00027", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00029", "masked_idx": [2], "found": [1]}
+{"doc_id": "asq_00030", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00031", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00032", "masked_idx": [0, 1, 2, 3], "found": [1, 0, 1, 1]}
+{"doc_id": "asq_00033", "masked_idx": [0, 1, 2], "found": [1, 0, 1]}
+{"doc_id": "asq_00034", "masked_idx": [0, 1, 2, 3], "found": [1, 0, 1, 1]}
+{"doc_id": "asq_00035", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00036", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00038", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00039", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00040", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00041", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00043", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00044", "masked_idx": [0, 1, 2], "found": [1, 0, 1]}
+{"doc_id": "asq_00045", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00046", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00047", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00048", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00049", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00050", "masked_idx": [0, 1, 2, 3], "found": [1, 0, 1, 1]}
+{"doc_id": "asq_00051", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00052", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00054", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00055", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00056", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00057", "masked_idx": [0], "found": [1]}
+{"doc_id": "asq_00059", "masked_idx": [0, 1], "found": [1, 1]}
+{"doc_id": "asq_00060", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00062", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00063", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00065", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00066", "masked_idx": [1, 2, 3], "found": [0, 1, 1]}
+{"doc_id": "asq_00069", "masked_idx": [0, 1, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00070", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00071", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00072", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00073", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00074", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00075", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00076", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00077", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00079", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00080", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00082", "masked_idx": [0], "found": [1]}
+{"doc_id": "asq_00083", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00085", "masked_idx": [0, 1, 2], "found": [1, 0, 1]}
+{"doc_id": "asq_00086", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00087", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00088", "masked_idx": [1], "found": [1]}
+{"doc_id": "asq_00089", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00090", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00091", "masked_idx": [0, 1, 2], "found": [1, 0, 1]}
+{"doc_id": "asq_00092", "masked_idx": [0], "found": [1]}
+{"doc_id": "asq_00093", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00094", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00095", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00096", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00098", "masked_idx": [0, 1, 2], "found": [1, 0, 1]}
+{"doc_id": "asq_00099", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00100", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00101", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00103", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00105", "masked_idx": [0, 1, 2, 3], "found": [1, 1, 1, 1]}
+{"doc_id": "asq_00106", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00107", "masked_idx": [0, 1], "found": [1, 1]}
+{"doc_id": "asq_00108", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00109", "masked_idx": [0, 2, 3], "found": [1, 1, 1]}
+{"doc_id": "asq_00110", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00112", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00114", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00115", "masked_idx": [0, 1, 2], "found": [1, 1, 1]}
+{"doc_id": "asq_00117", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "asq_00118", "masked_idx": [0, 2], "found": [1, 1]}

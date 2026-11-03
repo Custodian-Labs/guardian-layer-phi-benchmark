@@ -1,0 +1,9 @@
+{
+  "system": "presidio",
+  "prompt": "default",
+  "corpus": "faker",
+  "benchmark": "pii_french",
+  "masked": 220,
+  "found": 145,
+  "recall_pct": 65.9
+}

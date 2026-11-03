@@ -1,0 +1,312 @@
+{
+ "repeated_mentions": {
+  "values": 478,
+  "consistent": 459
+ },
+ "format": {
+  "id": {
+   "n": 631,
+   "exact": 548,
+   "collapsed": 612,
+   "xmasked": 6
+  },
+  "phone": {
+   "n": 159,
+   "exact": 137,
+   "collapsed": 151,
+   "xmasked": 0
+  },
+  "email": {
+   "n": 560,
+   "exact": 404,
+   "collapsed": 546,
+   "xmasked": 417
+  },
+  "date": {
+   "n": 1280,
+   "exact": 961,
+   "collapsed": 1268,
+   "xmasked": 11
+  },
+  "age": {
+   "n": 207,
+   "exact": 206,
+   "collapsed": 207,
+   "xmasked": 0
+  },
+  "name": {
+   "n": 1005,
+   "exact": 156,
+   "collapsed": 951,
+   "xmasked": 14
+  },
+  "location": {
+   "n": 1210,
+   "exact": 280,
+   "collapsed": 1131,
+   "xmasked": 40
+  },
+  "other": {
+   "n": 221,
+   "exact": 114,
+   "collapsed": 203,
+   "xmasked": 16
+  }
+ },
+ "dates": {
+  "numeric_originals": 704,
+  "surrogate_invalid": 24,
+  "surrogate_not_numeric_date": 7,
+  "examples_invalid": [
+   [
+    "2021-09-30",
+    "2022-09-31"
+   ],
+   [
+    "28/02/1954",
+    "29/02/1955"
+   ],
+   [
+    "31/07/2014",
+    "32/07/2015"
+   ],
+   [
+    "31/03/2018",
+    "32/03/2019"
+   ],
+   [
+    "30/11/1969",
+    "31/11/1970"
+   ],
+   [
+    "30/06/1977",
+    "31/06/1978"
+   ],
+   [
+    "30/04/2018",
+    "31/04/2019"
+   ],
+   [
+    "31/10/1965",
+    "32/10/1966"
+   ],
+   [
+    "30/11/2013",
+    "31/11/2014"
+   ],
+   [
+    "29/02/2013",
+    "30/02/2014"
+   ]
+  ],
+  "examples_not_numeric": [
+   [
+    "06/12/1950",
+    "7xxxxxxxx"
+   ],
+   [
+    "05/08/2023",
+    "6xxxxxxx"
+   ],
+   [
+    "04/22/2023",
+    "5xxxxxxxx"
+   ],
+   [
+    "04/06/1981",
+    "5xxxxxxx"
+   ],
+   [
+    "6/9/05",
+    "7xxxxx"
+   ],
+   [
+    "25/09/1969",
+    "2xxxxxxxxx"
+   ],
+   [
+    "23/07/1948",
+    "2xxxxxxxx"
+   ]
+  ]
+ },
+ "date_deltas": {
+  "n": 1280,
+  "kinds": {
+   "other change": 385,
+   "every field +0 or +1": 877,
+   "different number of numeric fields": 12,
+   "numbers unchanged": 6
+  },
+  "by_bench": {
+   "ASQ-PHI": {
+    "other change": 157,
+    "every field +0 or +1": 21,
+    "different number of numeric fields": 3
+   },
+   "MEDDOCAN": {
+    "every field +0 or +1": 542,
+    "other change": 31,
+    "different number of numeric fields": 4
+   },
+   "PII en": {
+    "other change": 67,
+    "every field +0 or +1": 89,
+    "different number of numeric fields": 1,
+    "numbers unchanged": 2
+   },
+   "PII nl": {
+    "other change": 40,
+    "every field +0 or +1": 58,
+    "different number of numeric fields": 1
+   },
+   "PII fr": {
+    "every field +0 or +1": 85,
+    "other change": 51,
+    "different number of numeric fields": 1
+   },
+   "PII de": {
+    "numbers unchanged": 4,
+    "every field +0 or +1": 82,
+    "different number of numeric fields": 2,
+    "other change": 39
+   }
+  },
+  "examples": {
+   "other change": [
+    [
+     "April 12, 2023",
+     "March 13, 2021"
+    ],
+    [
+     "May 30th, 2022",
+     "April 25th, 2018"
+    ],
+    [
+     "Feb 21, 2023",
+     "Nov 19, 2021"
+    ],
+    [
+     "March 5th, 2021",
+     "February 6th, 2019"
+    ],
+    [
+     "Jan 15th, 2023",
+     "Feb 16th, 2021"
+    ],
+    [
+     "November 22nd, 2022",
+     "October 23rd, 2018"
+    ]
+   ],
+   "every field +0 or +1": [
+    [
+     "02/14/2022",
+     "3/14/2023"
+    ],
+    [
+     "5/25/2023",
+     "6/25/2024"
+    ],
+    [
+     "08/18/2023",
+     "9/18/2024"
+    ],
+    [
+     "9/14/2020",
+     "10/14/2021"
+    ],
+    [
+     "02/14/2024",
+     "3/14/2025"
+    ],
+    [
+     "4/22/22",
+     "5/22/23"
+    ]
+   ],
+   "different number of numeric fields": [
+    [
+     "06/12/1950",
+     "7xxxxxxxx"
+    ],
+    [
+     "05/08/2023",
+     "6xxxxxxx"
+    ],
+    [
+     "04/22/2023",
+     "5xxxxxxxx"
+    ],
+    [
+     "04/06/1981",
+     "5xxxxxxx"
+    ],
+    [
+     "6/9/05",
+     "7xxxxx"
+    ],
+    [
+     "25/09/1969",
+     "2xxxxxxxxx"
+    ]
+   ],
+   "numbers unchanged": [
+    [
+     "30th October 1948",
+     "30th November 1948"
+    ],
+    [
+     "September/06",
+     "October/06"
+    ],
+    [
+     "Februar 18., 1996",
+     "Dezember 18., 1996"
+    ],
+    [
+     "Juli/06",
+     "Juni/06"
+    ],
+    [
+     "Mai/64",
+     "Chaing/64"
+    ],
+    [
+     "Dezember/55",
+     "M\u00e4rz/55"
+    ]
+   ]
+  }
+ },
+ "xmask_by_bench": {
+  "ASQ-PHI": {
+   "n": 534,
+   "xmasked": 28
+  },
+  "MEDDOCAN": {
+   "n": 2943,
+   "xmasked": 236
+  },
+  "MultiCoNER v2": {
+   "n": 20,
+   "xmasked": 2
+  },
+  "PII en": {
+   "n": 480,
+   "xmasked": 47
+  },
+  "PII nl": {
+   "n": 378,
+   "xmasked": 60
+  },
+  "PII fr": {
+   "n": 520,
+   "xmasked": 86
+  },
+  "PII de": {
+   "n": 398,
+   "xmasked": 45
+  }
+ }
+}
