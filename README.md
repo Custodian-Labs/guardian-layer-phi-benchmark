@@ -31,56 +31,69 @@ Llama 3.3-70B, DeepSeek V2-Lite; and OpenAI GPT-5 — across **7 benchmarks /
 | 🌍 Beyond medicine (finance, legal, enterprise) | https://custodianlabs.pages.dev/domains · [`docs/multidomain_results.md`](docs/multidomain_results.md) |
 | 🎬 Video de-identification (faces, plates, on-screen text, speech) | https://custodianlabs.pages.dev/video · code and examples in [`custodian_video/`](custodian_video/) |
 
-### Headline result
-On the **57,112 spans the transform masks** (pooled over all 11 detectors),
-recall moves **76.1% → 74.9%** (−1.2 pts). A **TOST equivalence test**
-(margin ±2 pts) gives **p ≈ 3×10⁻⁹** — the change is statistically equivalent
-to zero, and detector ranking is preserved. The small residual traces to
-surrogate-generation quality (truncation, salience loss, `x`-masking), not to
-detectors getting worse at PHI.
+### Headline result (ML4H 2026, camera-ready)
+On the **5,273 gold PHI spans the transform replaces** (57,035 span × detector outcomes, 11 detectors,
+1,142 documents), recall moves **75.9% → 74.7%**: Δ = −1.24 points, 90% document-level cluster-bootstrap CI
+[−1.65, −0.84], posterior P(|Δ| < 2) > 0.99. The change is within ±2 points **pooled and under overlap
+matching**; it is not uniform:
 
-### Latest model comparison (whole-document span-F1, mean over 7 benchmarks)
-| Detector | Orig F1 | Transf F1 | ΔF1 | Overlap retention |
+- Identifier-dense non-English benchmarks exceed ±2 (MEDDOCAN needs ±2.43, PII-nl ±3.08, PII-fr ±2.80).
+- Only Gemma 4 31B and Qwen 3.5 9B are equivalent within ±2 on their own.
+- With exact-boundary matching the loss is about 2 points.
+
+Two-rater human labels of surrogates (Cohen's κ = 0.79), a same-slot counterfactual with Faker values and
+detector test–retest show that the residual has both generator-side and detector-side causes. On ICD-10
+diagnosis classification of the MEDDOCAN case reports (CodiEsp labels), accuracy changes by at most 1 point
+under substitution, Faker surrogates or redaction.
+
+### Detector comparison (corrected re-projection)
+| Detector | Whole-doc F1 orig → transf | Replaced-span recall orig → transf | Δ (pts) | 90% CI |
 |---|--:|--:|--:|--:|
-| Gemma 4 31B | .755 | .710 | −.045 | 99.8% |
-| Gemma 4 E4B | .737 | .698 | −.038 | 98.2% |
-| Llama 3.3-70B | .725 | .728 | +.003 | 98.3% |
-| Qwen 3.5-35B-A3B | .715 | .668 | −.047 | 98.4% |
-| OpenAI GPT-5 | .705 | .674 | −.032 | 98.3% |
-| Qwen 3.5-9B | .655 | .621 | −.034 | 100.0% |
-| Qwen 3.5-4B | .567 | .533 | −.034 | 98.0% |
-| Presidio | .416 | .398 | −.018 | 97.4% |
-| DeepSeek V2-Lite | .409 | .384 | −.025 | 92.8% |
-| Llama 3.1-8B | .391 | .376 | −.015 | — |
-| OBI `deid_roberta` | .041 | .040 | −.002 | — |
+| Gemma 4 31B† | .744 → .735 | 91.9 → 91.9 | +0.08 | [−0.51, +0.70] |
+| Llama 3.3 70B† | .725 → .719 | 90.6 → 89.2 | −1.40 | [−2.15, −0.64] |
+| Qwen 3.5 35B-A3B | .715 → .693 | 86.6 → 85.0 | −1.56 | [−2.56, −0.57] |
+| GPT-4o-mini | .706 → .696 | 89.3 → 87.4 | −1.92 | [−2.76, −1.10] |
+| Gemma 4 E4B | .737 → .725 | 87.3 → 85.4 | −1.90 | [−2.73, −1.07] |
+| Qwen 3.5 9B | .655 → .647 | 79.7 → 79.7 | +0.06 | [−0.88, +1.01] |
+| Qwen 3.5 4B | .568 → .554 | 65.9 → 64.8 | −1.10 | [−2.72, +0.48] |
+| Presidio | .415 → .414 | 74.9 → 72.9 | −2.01 | [−2.73, −1.30] |
+| DeepSeek V2-Lite | .411 → .401 | 51.4 → 47.4 | −4.02 | [−5.69, −2.37] |
+| Llama 3.1 8B | .392 → .392 | 47.4 → 50.2 | +2.84 | [+0.51, +5.27] |
+| OBI `deid_roberta` | .041 → .042 | 73.3 → 70.6 | −2.69 | [−3.27, −2.10] |
 
-*Whole-document F1 is a conservative (diluted) view; "overlap retention" is
-transformed÷original recall on masked spans — the cleaner utility measure.
-Ranking is preserved across a 100× span of detector quality.*
+*† incomplete run (Gemma 4 31B: 101/250 transformed ASQ-PHI documents; Llama 3.3 70B: parts of MEDDOCAN and
+PII-nl). The panel's OpenAI detector is GPT-4o-mini (OpenAI API, temperature 0); earlier versions of this README
+labelled it GPT-5. GPT-5 itself was run on a stratified 199-document subset: whole-document F1 .787, the highest
+of the panel on those documents (`results/openai_audit/gpt5_comparison.md`). OBI's low whole-document F1 comes from
+boundary fragmentation, not missed PHI.*
 
-### Comparison experiments: redaction floor (C1) & open-surrogate (C2)
+### Redaction (C1) and open surrogates (C2)
+Replaced-span recall (%), first 120 documents per benchmark, mean over the six benchmarks other than MultiCoNER:
 
-Both comparison experiments now run across **four detectors spanning all three
-families** (not Presidio-only). Masked-span recall (%), mean over 7 benchmarks:
-
-| | Presidio | OBI | Qwen 3.5-9B | Gemma 4 31B |
+| | Presidio | OBI | Qwen 3.5 9B | Gemma 4 31B |
 |---|--:|--:|--:|--:|
-| **C1 — redaction floor** (`*****`) | 1.3 | 0.6 | 22.0 | 43.1 |
-| **C2 — open-surrogate** (Faker) | 86.0 | 84.2 | 83.9 | 94.5 |
+| **C1, redaction** (`*****`) | 1.6 | 0.7 | 21.5 | 48.2 |
+| **C1, Qwen 3.5 9B told that `*` runs mark removed PHI** | | | 71.1 | |
+| **C2, Faker surrogates** | 76.9 | 81.6 | 83.3 | 93.6 |
 
-- **C1 is family-dependent.** Rule-based (Presidio) and fine-tuned (OBI) detectors
-  collapse to ≈0 when the surrogate signal is replaced by `*****` — they need real
-  surface tokens. Open LLMs partly *recover* the masked span (Qwen 6–58%, Gemma
-  13–80%) because a `*****` run is itself a redaction cue; this is context-dependent
-  (highest on ASQ short adversarial queries, and on the larger model) but always
-  well below the surrogate recall in C2.
-- **C2 holds across families** (means 84–95%): detectability preservation is a
-  property of well-formed, same-type substitution — not one vendor or one detector.
+The redaction floor applies only to detectors that are not adapted to the mask token. Faker values are
+canonical and often easier to detect than real PHI, so Faker is not a neutral control.
 
-*Presidio uses the full corpus (means over its 6 baseline benchmarks — MultiCoNER
-not scored); OBI/Qwen/Gemma use a 120-doc/benchmark subsample (means over all 7).
-Reproduce with `scripts/build_c1c2_corpora.py` → `scripts/score_corpus.py --all` →
-`scripts/aggregate_c1c2.py`.*
+## ML4H 2026 camera-ready: reproduction
+
+All camera-ready numbers are re-analyses of stored predictions, except the runs listed under "new inference".
+See [`docs/camera_ready.md`](docs/camera_ready.md) for the full list of commands and outputs.
+
+```bash
+python -m unittest discover -s tests -v                          # RUN_DATA_TESTS=1 also checks the paper's denominators
+python scripts/camera_ready_numbers.py                           # every number and table -> paper/ml4h/camera_ready/
+python scripts/analyze_matching_margins.py                       # matching criteria, per-benchmark/detector margins, margin curve
+python scripts/analyze_counterfactual.py --det presidio obi qwen3_5_9b   # same-slot counterfactual
+python scripts/analyze_human_annotation.py data/annotation/human/surrogate_quality_audit197_rater1.csv \
+       data/annotation/human/surrogate_quality_audit197_rater2.csv       # kappa + outcome linkage
+python scripts/summarize_medical_decisions.py                    # ICD-10 downstream comparison
+python scripts/audit_transform_properties.py                     # what the transform preserves
+```
 
 ## Paper v2 (arXiv): corrected analysis and non-medical domains
 

@@ -1,0 +1,86 @@
+{"doc_id": "pii_validation_101A", "masked_idx": [0, 5], "found": [0, 0]}
+{"doc_id": "pii_validation_116A", "masked_idx": [1, 8], "found": [0, 0]}
+{"doc_id": "pii_validation_116B", "masked_idx": [0, 1, 2, 3, 4, 5, 6, 7], "found": [0, 0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_116C", "masked_idx": [0, 1, 2, 3, 4, 5, 6, 7, 8], "found": [0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_116D", "masked_idx": [0, 1, 2, 3, 4, 5, 6, 7], "found": [0, 0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_119C", "masked_idx": [5], "found": [0]}
+{"doc_id": "pii_validation_122", "masked_idx": [1, 2, 6, 7, 8, 14, 15, 17, 19, 20, 21, 27, 28, 29], "found": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_126A", "masked_idx": [3, 5], "found": [1, 0]}
+{"doc_id": "pii_validation_126B", "masked_idx": [3, 4], "found": [0, 1]}
+{"doc_id": "pii_validation_126C", "masked_idx": [2], "found": [1]}
+{"doc_id": "pii_validation_132B", "masked_idx": [0, 3], "found": [0, 0]}
+{"doc_id": "pii_validation_135A", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_135B", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_135C", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_13A", "masked_idx": [0, 2, 3, 5, 7], "found": [0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_13B", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_141B", "masked_idx": [2, 5], "found": [0, 0]}
+{"doc_id": "pii_validation_152A", "masked_idx": [4], "found": [0]}
+{"doc_id": "pii_validation_152B", "masked_idx": [11], "found": [0]}
+{"doc_id": "pii_validation_15A", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_15B", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_15C", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_15D", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_161B", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_161C", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_161D", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_163", "masked_idx": [8], "found": [0]}
+{"doc_id": "pii_validation_172A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_175A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_175B", "masked_idx": [1, 2, 4, 5, 7, 8, 10], "found": [0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_175C", "masked_idx": [1, 4, 7, 8], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_177B", "masked_idx": [6], "found": [0]}
+{"doc_id": "pii_validation_182B", "masked_idx": [0, 3, 10], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_182C", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_186A", "masked_idx": [10], "found": [0]}
+{"doc_id": "pii_validation_187A", "masked_idx": [1, 2, 3, 4], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_187B", "masked_idx": [2, 5], "found": [0, 0]}
+{"doc_id": "pii_validation_190A", "masked_idx": [3, 5], "found": [0, 0]}
+{"doc_id": "pii_validation_190B", "masked_idx": [1, 3, 5], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_190C", "masked_idx": [1, 3, 5], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_195A", "masked_idx": [0, 1], "found": [0, 0]}
+{"doc_id": "pii_validation_195B", "masked_idx": [0, 3, 5, 7, 14, 16], "found": [0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_195C", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_200", "masked_idx": [4, 5, 11, 12], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_215A", "masked_idx": [1, 2, 6], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_215B", "masked_idx": [4], "found": [0]}
+{"doc_id": "pii_validation_215C", "masked_idx": [1, 3], "found": [0, 0]}
+{"doc_id": "pii_validation_219B", "masked_idx": [1, 4], "found": [0, 0]}
+{"doc_id": "pii_validation_219C", "masked_idx": [4, 7], "found": [0, 0]}
+{"doc_id": "pii_validation_21B", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_21C", "masked_idx": [2], "found": [1]}
+{"doc_id": "pii_validation_234A", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_234B", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_234D", "masked_idx": [2, 4], "found": [0, 0]}
+{"doc_id": "pii_validation_234E", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_239A", "masked_idx": [1, 3, 4], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_239B", "masked_idx": [2, 5], "found": [0, 0]}
+{"doc_id": "pii_validation_242A", "masked_idx": [0, 2], "found": [0, 0]}
+{"doc_id": "pii_validation_242B", "masked_idx": [0, 1, 2, 3, 4, 5], "found": [0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_242C", "masked_idx": [0, 2, 3], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_247A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_248", "masked_idx": [8], "found": [0]}
+{"doc_id": "pii_validation_257A", "masked_idx": [0, 2, 4, 5], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_25B", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_25C", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_260C", "masked_idx": [0, 2, 8, 10, 11, 14, 16, 17, 19, 20, 21, 23, 24], "found": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_269B", "masked_idx": [4, 7], "found": [0, 0]}
+{"doc_id": "pii_validation_269C", "masked_idx": [2, 3, 6, 7], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_273A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_273B", "masked_idx": [3, 5], "found": [0, 0]}
+{"doc_id": "pii_validation_27A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_27B", "masked_idx": [8], "found": [0]}
+{"doc_id": "pii_validation_27C", "masked_idx": [1, 2, 3, 8, 11], "found": [0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_282A", "masked_idx": [0, 3, 5], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_282B", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_285A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_285B", "masked_idx": [3, 6, 7], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_290A", "masked_idx": [3, 4], "found": [0, 0]}
+{"doc_id": "pii_validation_290B", "masked_idx": [2, 3, 4, 10], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_292A", "masked_idx": [3, 5], "found": [1, 1]}
+{"doc_id": "pii_validation_292B", "masked_idx": [0, 2], "found": [1, 1]}
+{"doc_id": "pii_validation_292C", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_293", "masked_idx": [0, 1, 5, 8, 10, 11], "found": [0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_296A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_299A", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_299B", "masked_idx": [3, 7, 11, 12, 13], "found": [0, 0, 0, 0, 0]}

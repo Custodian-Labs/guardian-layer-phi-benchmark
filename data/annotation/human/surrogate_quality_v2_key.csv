@@ -1,0 +1,398 @@
+id,origin,audit_id,benchmark,doc_id,span_index
+1,audit200,26,PII nl,pii_validation_67269,14
+2,audit200,75,PII fr,pii_validation_363B,3
+3,audit200,79,PII fr,pii_validation_363B,1
+4,loss_enriched,,MEDDOCAN,S0210-48062007001000004-4,5
+5,audit200,102,PII en,pii_validation_40992B,10
+6,audit200,163,PII en,pii_validation_40834B,14
+7,audit200,68,PII en,pii_validation_41195C,5
+8,loss_enriched,,MEDDOCAN,S0210-56912011000500009-3,13
+9,loss_enriched,,MEDDOCAN,S1132-62552015000100006-1,11
+10,audit200,199,PII nl,pii_validation_67160B,6
+11,loss_enriched,,MEDDOCAN,S0211-69952011000500011-3,2
+12,loss_enriched,,MEDDOCAN,S1137-66272010000300010-1,9
+13,loss_enriched,,MEDDOCAN,S1130-01082009000600013-1,7
+14,loss_enriched,,MEDDOCAN,S0210-48062009000200019-1,19
+15,loss_enriched,,MEDDOCAN,S0004-06142009000500011-1,22
+16,loss_enriched,,PII nl,pii_validation_67168B,10
+17,audit200,173,PII fr,pii_validation_21B,3
+18,audit200,62,ASQ-PHI,asq_00006,1
+19,audit200,155,PII fr,pii_validation_215C,1
+20,audit200,53,PII nl,pii_validation_67135B,3
+21,loss_enriched,,MEDDOCAN,S1139-76322015000100013-1,21
+22,loss_enriched,,MEDDOCAN,S1130-01082005001200013-1,16
+23,loss_enriched,,PII en,pii_validation_40947B,6
+24,audit200,99,PII fr,pii_validation_383B,2
+25,audit200,8,MEDDOCAN,S1130-01082007001100010-1,3
+26,loss_enriched,,PII en,pii_validation_41087B,0
+27,loss_enriched,,MEDDOCAN,S1130-05582016000100005-1,1
+28,audit200,180,PII de,pii_validation_14011C,10
+29,audit200,15,ASQ-PHI,asq_00007,0
+30,audit200,48,PII en,pii_validation_40950A,6
+31,loss_enriched,,PII fr,pii_validation_393D,1
+32,audit200,148,PII fr,pii_validation_219B,1
+33,loss_enriched,,MEDDOCAN,S0210-56912009000900008-1,7
+34,loss_enriched,,PII nl,pii_validation_67159B,0
+35,audit200,42,MEDDOCAN,S0376-78922009000200008-2,6
+36,loss_enriched,,PII en,pii_validation_40783,3
+37,audit200,171,ASQ-PHI,asq_00071,2
+38,audit200,159,ASQ-PHI,asq_00027,3
+39,audit200,188,MEDDOCAN,S1139-76322017000200016-3,9
+40,loss_enriched,,MEDDOCAN,S1698-44472004000100009-1,15
+41,loss_enriched,,PII nl,pii_validation_67030A,0
+42,audit200,119,PII fr,pii_validation_30C,0
+43,loss_enriched,,MEDDOCAN,S1134-80462005000300004-1,1
+44,audit200,38,PII en,pii_validation_40834B,13
+45,loss_enriched,,MEDDOCAN,S0210-56912006000800008-1,9
+46,loss_enriched,,ASQ-PHI,asq_00013,2
+47,loss_enriched,,PII de,pii_validation_14175C,1
+48,loss_enriched,,MEDDOCAN,S1130-05582016000100005-1,12
+49,audit200,116,PII nl,pii_validation_67370A,3
+50,audit200,67,MEDDOCAN,S1130-01082009000900012-1,16
+51,audit200,131,PII fr,pii_validation_299B,12
+52,loss_enriched,,PII fr,pii_validation_92B,4
+53,loss_enriched,,MEDDOCAN,S0210-56912006000800008-1,12
+54,audit200,120,PII en,pii_validation_40783,6
+55,audit200,186,MEDDOCAN,S0210-48062006000300014-1,3
+56,audit200,145,ASQ-PHI,asq_00046,2
+57,audit200,5,MEDDOCAN,S0211-69952014000400020-1,0
+58,loss_enriched,,PII de,pii_validation_14294A,7
+59,audit200,25,MultiCoNER v2,mc2_en_test_15afb6d2-5558-4b45-8704-f32bab341832,0
+60,audit200,88,PII fr,pii_validation_396D,6
+61,loss_enriched,,MEDDOCAN,S1130-01082008000500017-2,0
+62,audit200,1,ASQ-PHI,asq_00041,2
+63,loss_enriched,,MEDDOCAN,S1139-76322011000200007-1,13
+64,audit200,165,MEDDOCAN,S0213-12852006000600002-1,25
+65,loss_enriched,,PII en,pii_validation_41081C,10
+66,loss_enriched,,MEDDOCAN,S0376-78922012000300005-1,3
+67,loss_enriched,,MEDDOCAN,S0365-66912004001100012-1,4
+68,audit200,156,PII de,pii_validation_14252B,0
+69,audit200,109,MultiCoNER v2,mc2_en_test_b95321c0-51af-455c-b0da-efbf5829e621,1
+70,loss_enriched,,MEDDOCAN,S1130-05582013000400006-1,0
+71,loss_enriched,,MEDDOCAN,S0211-57352015000100011-2,11
+72,loss_enriched,,MEDDOCAN,S1137-66272012000100018-1,0
+73,audit200,22,ASQ-PHI,asq_00076,0
+74,loss_enriched,,PII fr,pii_validation_308A,5
+75,audit200,168,PII en,pii_validation_40838B,1
+76,audit200,69,ASQ-PHI,asq_00099,2
+77,loss_enriched,,MEDDOCAN,S1137-66272013000200023-1,9
+78,loss_enriched,,MEDDOCAN,S1130-63432013000600017-1,14
+79,audit200,87,PII fr,pii_validation_30A,1
+80,audit200,121,MultiCoNER v2,mc2_en_test_8684710b-2856-4836-a614-18c278b37d88,0
+81,loss_enriched,,MEDDOCAN,S1137-66272006000300009-1,18
+82,audit200,83,MEDDOCAN,S0210-48062009000600018-1,6
+83,audit200,184,PII nl,pii_validation_67209B,13
+84,audit200,141,PII de,pii_validation_14110C,4
+85,loss_enriched,,MEDDOCAN,S1130-05582017000300150-3,13
+86,loss_enriched,,MEDDOCAN,S1130-05582011000300005-1,14
+87,audit200,33,ASQ-PHI,asq_00215,2
+88,loss_enriched,,ASQ-PHI,asq_00127,2
+89,audit200,17,PII de,pii_validation_14237B,0
+90,loss_enriched,,PII de,pii_validation_14082,0
+91,audit200,98,ASQ-PHI,asq_00044,0
+92,audit200,103,ASQ-PHI,asq_00150,0
+93,loss_enriched,,MEDDOCAN,S1139-76322015000100013-1,3
+94,audit200,49,PII de,pii_validation_14021C,4
+95,audit200,65,ASQ-PHI,asq_00103,0
+96,loss_enriched,,MEDDOCAN,S0376-78922015000100011-1,18
+97,audit200,60,ASQ-PHI,asq_00235,2
+98,loss_enriched,,MEDDOCAN,S0004-06142008000500015-1,1
+99,audit200,76,MEDDOCAN,S0211-69952016000300015-1,17
+100,audit200,13,ASQ-PHI,asq_00143,1
+101,loss_enriched,,MEDDOCAN,S0210-48062004000500011-1,14
+102,audit200,3,MultiCoNER v2,mc2_en_test_e548f2bb-7cab-4278-9c70-8413f11a1bdd,0
+103,audit200,187,ASQ-PHI,asq_00107,1
+104,loss_enriched,,MEDDOCAN,S0210-48062007001000004-4,18
+105,audit200,150,PII de,pii_validation_14023C,2
+106,loss_enriched,,MEDDOCAN,S0212-16112012000500042-1,7
+107,audit200,122,PII nl,pii_validation_67276,5
+108,loss_enriched,,MEDDOCAN,S1699-695X2016000200010-1,2
+109,audit200,52,PII fr,pii_validation_66B,5
+110,audit200,153,PII nl,pii_validation_67155C,10
+111,audit200,118,PII de,pii_validation_13941C,1
+112,audit200,133,PII fr,pii_validation_260C,24
+113,loss_enriched,,MEDDOCAN,S1130-14732006000200011-1,15
+114,loss_enriched,,MEDDOCAN,S0210-48062005000800014-1,20
+115,loss_enriched,,MEDDOCAN,S0004-06142008000500015-1,11
+116,audit200,10,PII fr,pii_validation_92E,7
+117,loss_enriched,,PII nl,pii_validation_67421B,6
+118,audit200,50,ASQ-PHI,asq_00160,1
+119,audit200,35,PII fr,pii_validation_318A,5
+120,audit200,45,PII fr,pii_validation_2B,6
+121,loss_enriched,,PII en,pii_validation_40898,16
+122,loss_enriched,,MEDDOCAN,S1130-63432013000400011-2,1
+123,audit200,174,PII en,pii_validation_40915,12
+124,loss_enriched,,MEDDOCAN,S0365-66912011000900005-1,1
+125,loss_enriched,,MEDDOCAN,S0213-12852005000400003-1,14
+126,audit200,78,PII nl,pii_validation_67103A,2
+127,audit200,197,MEDDOCAN,S1130-01082007000400015-1,1
+128,audit200,128,PII en,pii_validation_40939C,0
+129,loss_enriched,,MEDDOCAN,S1699-695X2016000200010-1,6
+130,audit200,90,PII de,pii_validation_14250B,3
+131,audit200,86,PII nl,pii_validation_67255B,1
+132,audit200,200,PII en,pii_validation_41081B,2
+133,audit200,29,PII nl,pii_validation_67385B,1
+134,audit200,64,PII nl,pii_validation_67404A,1
+135,loss_enriched,,MEDDOCAN,S0211-57352015000100011-2,21
+136,loss_enriched,,MEDDOCAN,S0210-48062006000200017-1,0
+137,audit200,196,ASQ-PHI,asq_00063,0
+138,audit200,41,PII fr,pii_validation_307B,4
+139,loss_enriched,,PII de,pii_validation_14162A,3
+140,loss_enriched,,PII nl,pii_validation_67135B,1
+141,audit200,135,ASQ-PHI,asq_00015,0
+142,loss_enriched,,MEDDOCAN,S0212-71992005001200008-1,19
+143,loss_enriched,,MEDDOCAN,S1137-66272009000100013-1,12
+144,audit200,96,ASQ-PHI,asq_00205,2
+145,audit200,126,PII de,pii_validation_14220C,4
+146,loss_enriched,,MEDDOCAN,S0465-546X2014000400012-1,12
+147,audit200,140,PII de,pii_validation_14175A,1
+148,loss_enriched,,MEDDOCAN,S1134-80462006000600005-1,10
+149,loss_enriched,,PII fr,pii_validation_260C,21
+150,loss_enriched,,ASQ-PHI,asq_00049,0
+151,audit200,100,PII de,pii_validation_14265B,15
+152,audit200,32,PII nl,pii_validation_67202A,3
+153,audit200,2,PII de,pii_validation_14250B,13
+154,audit200,112,MultiCoNER v2,mc2_en_test_fee4c183-3cef-4cd2-901d-80a73e9e0593,1
+155,audit200,44,PII de,pii_validation_14073A,2
+156,loss_enriched,,MEDDOCAN,S1130-63432015000500008-1,13
+157,loss_enriched,,MEDDOCAN,S0004-06142008000400011-2,5
+158,loss_enriched,,PII nl,pii_validation_67155A,4
+159,loss_enriched,,MEDDOCAN,S1137-66272011000100013-2,18
+160,loss_enriched,,PII fr,pii_validation_186A,10
+161,loss_enriched,,MEDDOCAN,S1130-05582017000200099-1,22
+162,loss_enriched,,MEDDOCAN,S1130-01082010000100021-1,16
+163,loss_enriched,,MEDDOCAN,S0210-48062005000800014-1,17
+164,loss_enriched,,MEDDOCAN,S0004-06142008000500015-1,5
+165,loss_enriched,,PII de,pii_validation_14092C,2
+166,loss_enriched,,PII nl,pii_validation_67288B,11
+167,audit200,72,PII fr,pii_validation_187A,3
+168,audit200,183,PII nl,pii_validation_67379B,1
+169,loss_enriched,,MEDDOCAN,S1139-76322017000200009-1,1
+170,audit200,195,MEDDOCAN,S0365-66912012000800005-1,13
+171,audit200,95,PII nl,pii_validation_67314C,3
+172,loss_enriched,,MEDDOCAN,S1889-836X2015000200005-2,0
+173,loss_enriched,,PII nl,pii_validation_67242,8
+174,loss_enriched,,MEDDOCAN,S0211-69952014000400020-1,3
+175,loss_enriched,,MEDDOCAN,S1130-01082008000800009-1,4
+176,audit200,6,PII en,pii_validation_40809A,0
+177,loss_enriched,,MEDDOCAN,S1130-01082008000800010-1,0
+178,loss_enriched,,MEDDOCAN,S0376-78922009000400010-1,4
+179,audit200,82,PII de,pii_validation_13959B,7
+180,loss_enriched,,PII fr,pii_validation_37B,2
+181,audit200,105,PII de,pii_validation_14299B,5
+182,audit200,142,MultiCoNER v2,mc2_en_test_6a0b6fcb-2b50-4100-8b5c-96238dcfbe9f,1
+183,loss_enriched,,PII fr,pii_validation_326A,1
+184,loss_enriched,,ASQ-PHI,asq_00174,2
+185,loss_enriched,,PII de,pii_validation_13941A,0
+186,loss_enriched,,MEDDOCAN,S0211-57352015000100011-2,17
+187,audit200,80,PII fr,pii_validation_363B,7
+188,loss_enriched,,MEDDOCAN,S1132-62552015000100006-1,2
+189,loss_enriched,,PII en,pii_validation_40793C,3
+190,loss_enriched,,PII en,pii_validation_40898,0
+191,loss_enriched,,PII nl,pii_validation_67294B,2
+192,loss_enriched,,MEDDOCAN,S1139-76322011000300007-2,17
+193,audit200,139,ASQ-PHI,asq_00165,2
+194,audit200,158,PII en,pii_validation_41163A,0
+195,loss_enriched,,MEDDOCAN,S1130-14732006000200011-1,19
+196,loss_enriched,,PII fr,pii_validation_53B,7
+197,audit200,81,MEDDOCAN,S1130-63432014000100012-1,9
+198,loss_enriched,,MEDDOCAN,S1130-14732006000200011-1,24
+199,audit200,164,PII nl,pii_validation_67411,8
+200,loss_enriched,,MEDDOCAN,S0004-06142007000600016-2,9
+201,audit200,179,MultiCoNER v2,mc2_en_test_790154c0-3a1f-428b-89ad-e6da6670fbfc,0
+202,loss_enriched,,MEDDOCAN,S0365-66912012000800005-1,0
+203,audit200,132,PII fr,pii_validation_97B,5
+204,audit200,28,MultiCoNER v2,mc2_en_test_18464ca8-4107-4ddb-b42c-5af66c6164b8,2
+205,loss_enriched,,MEDDOCAN,S1130-01082007001100010-1,23
+206,audit200,84,PII nl,pii_validation_67347C,4
+207,loss_enriched,,ASQ-PHI,asq_00103,2
+208,audit200,106,ASQ-PHI,asq_00114,2
+209,loss_enriched,,MEDDOCAN,S1130-01082008000500017-2,7
+210,audit200,101,PII en,pii_validation_40779B,1
+211,loss_enriched,,MEDDOCAN,S1137-66272011000300022-1,3
+212,loss_enriched,,MEDDOCAN,S0210-56912006000600007-1,4
+213,audit200,51,PII de,pii_validation_14188A,0
+214,loss_enriched,,MEDDOCAN,S1137-66272014000200013-1,9
+215,audit200,34,ASQ-PHI,asq_00248,2
+216,audit200,181,PII fr,pii_validation_132B,0
+217,audit200,176,PII nl,pii_validation_67209B,16
+218,loss_enriched,,MEDDOCAN,S0211-69952013000500035-1,9
+219,loss_enriched,,PII de,pii_validation_14305B,5
+220,audit200,152,PII en,pii_validation_40954B,1
+221,audit200,107,PII de,pii_validation_14277A,13
+222,audit200,138,PII de,pii_validation_13925,2
+223,loss_enriched,,MEDDOCAN,S1130-05582011000300005-1,1
+224,loss_enriched,,PII fr,pii_validation_273A,0
+225,audit200,77,PII nl,pii_validation_67404A,0
+226,loss_enriched,,MEDDOCAN,S1130-05582008000500006-1,5
+227,audit200,39,PII nl,pii_validation_67160C,8
+228,loss_enriched,,MEDDOCAN,S1130-05582008000500006-1,11
+229,loss_enriched,,MEDDOCAN,S0212-16112009000300015-1,1
+230,loss_enriched,,MEDDOCAN,S0212-71992005000400009-1,22
+231,audit200,63,MultiCoNER v2,mc2_en_test_00940b3c-0f94-4e5e-a1b3-601e41e037a3,0
+232,loss_enriched,,MEDDOCAN,S0212-71992006000100005-1,12
+233,audit200,66,PII en,pii_validation_40994,0
+234,loss_enriched,,PII en,pii_validation_40939D,0
+235,loss_enriched,,MEDDOCAN,S0004-06142009000500011-1,4
+236,loss_enriched,,PII en,pii_validation_41001A,8
+237,audit200,30,PII de,pii_validation_14299B,0
+238,audit200,89,PII nl,pii_validation_67216B,0
+239,audit200,19,MEDDOCAN,S0210-48062007000100004-1,2
+240,loss_enriched,,MEDDOCAN,S0365-66912012000800005-1,18
+241,audit200,143,MultiCoNER v2,mc2_en_test_f4c33f1c-21ad-43f8-b3bb-e177582f42ca,0
+242,audit200,115,PII en,pii_validation_41040A,4
+243,audit200,182,MEDDOCAN,S1134-80462008000200008-1,24
+244,loss_enriched,,MEDDOCAN,S1130-63432013000600017-1,13
+245,loss_enriched,,MEDDOCAN,S1130-05582011000200005-1,12
+246,loss_enriched,,MEDDOCAN,S0365-66912012000200003-1,12
+247,loss_enriched,,PII de,pii_validation_14258A,7
+248,audit200,91,MEDDOCAN,S1889-836X2015000100003-1,14
+249,loss_enriched,,PII de,pii_validation_14184A,0
+250,loss_enriched,,PII en,pii_validation_41158C,0
+251,loss_enriched,,MEDDOCAN,S0210-56912008000100008-1,1
+252,audit200,166,PII nl,pii_validation_67231A,2
+253,loss_enriched,,MEDDOCAN,S1130-01082008000800009-1,17
+254,audit200,108,PII de,pii_validation_13925,6
+255,audit200,127,PII fr,pii_validation_310C,1
+256,audit200,172,MultiCoNER v2,mc2_en_test_8afcbc6e-9669-457d-9bb8-834022be6246,0
+257,loss_enriched,,MEDDOCAN,S0004-06142008000300015-1,7
+258,audit200,169,MEDDOCAN,S1130-05582017000200099-1,2
+259,loss_enriched,,MEDDOCAN,S1130-05582008000500006-1,2
+260,loss_enriched,,MEDDOCAN,S1134-80462008000800003-1,14
+261,audit200,151,PII fr,pii_validation_242B,4
+262,loss_enriched,,PII en,pii_validation_41081C,8
+263,audit200,4,PII nl,pii_validation_67380B,2
+264,audit200,160,MEDDOCAN,S1134-80462009000800008-1,2
+265,audit200,61,PII nl,pii_validation_67380C,8
+266,loss_enriched,,MEDDOCAN,S1130-01082008001200016-1,8
+267,loss_enriched,,PII nl,pii_validation_67184C,4
+268,loss_enriched,,PII fr,pii_validation_260C,10
+269,audit200,190,PII en,pii_validation_41044B,1
+270,loss_enriched,,MEDDOCAN,S0004-06142006000500002-2,2
+271,audit200,125,MultiCoNER v2,mc2_en_test_26d29745-9778-4ecc-9634-d15bc30d1cf7,3
+272,loss_enriched,,ASQ-PHI,asq_00025,2
+273,loss_enriched,,PII nl,pii_validation_67184C,12
+274,loss_enriched,,MEDDOCAN,S0210-48062004000500008-1,19
+275,audit200,12,PII de,pii_validation_14285A,4
+276,audit200,11,PII en,pii_validation_40790D,1
+277,audit200,123,PII en,pii_validation_41053A,4
+278,loss_enriched,,MEDDOCAN,S0004-06142007000900013-1,2
+279,loss_enriched,,MEDDOCAN,S1130-05582008000600006-1,2
+280,audit200,40,ASQ-PHI,asq_00246,2
+281,audit200,144,PII nl,pii_validation_67286B,1
+282,audit200,57,MultiCoNER v2,mc2_en_test_773e34b7-20b5-4dd9-b4d5-ddf69c7700f6,0
+283,loss_enriched,,PII fr,pii_validation_27C,8
+284,audit200,7,MultiCoNER v2,mc2_en_test_63c4c09c-4a7b-4dcc-a60f-6cb8bdc93456,1
+285,loss_enriched,,MEDDOCAN,S0212-71992007000600008-1,5
+286,loss_enriched,,MEDDOCAN,S1698-69462006000400002-1,10
+287,audit200,18,PII nl,pii_validation_67240C,4
+288,audit200,73,MEDDOCAN,S1130-01082010000100021-1,2
+289,audit200,97,PII en,pii_validation_41165B,1
+290,audit200,192,PII en,pii_validation_40878B,5
+291,audit200,104,ASQ-PHI,asq_00098,2
+292,audit200,167,MEDDOCAN,S0213-12852005000400003-1,16
+293,loss_enriched,,PII fr,pii_validation_172A,0
+294,loss_enriched,,PII fr,pii_validation_53B,2
+295,loss_enriched,,ASQ-PHI,asq_00150,2
+296,loss_enriched,,MEDDOCAN,S0213-12852006000600002-1,6
+297,audit200,157,PII fr,pii_validation_310A,3
+298,loss_enriched,,MEDDOCAN,S1130-05582013000200007-1,1
+299,audit200,178,MultiCoNER v2,mc2_en_test_c162d643-c6da-4899-b21d-bc83c6c4e04a,1
+300,loss_enriched,,MEDDOCAN,S0365-66912007001200011-1,2
+301,loss_enriched,,MEDDOCAN,S0210-48062009000200018-1,13
+302,loss_enriched,,PII en,pii_validation_40790D,7
+303,loss_enriched,,PII en,pii_validation_41134C,5
+304,loss_enriched,,PII nl,pii_validation_67155C,4
+305,audit200,24,MEDDOCAN,S0212-16112012000500042-1,10
+306,audit200,137,PII fr,pii_validation_13A,5
+307,audit200,92,PII en,pii_validation_41071A,1
+308,loss_enriched,,MEDDOCAN,S0004-06142007000500014-1,6
+309,audit200,189,PII en,pii_validation_40939A,6
+310,loss_enriched,,MEDDOCAN,S1130-05582008000500006-1,14
+311,loss_enriched,,PII fr,pii_validation_30A,2
+312,audit200,74,PII fr,pii_validation_101A,5
+313,loss_enriched,,ASQ-PHI,asq_00075,3
+314,audit200,129,ASQ-PHI,asq_00115,0
+315,loss_enriched,,MEDDOCAN,S0210-48062007000100004-1,10
+316,audit200,185,MultiCoNER v2,mc2_en_test_9f33d6e3-6a05-4455-a177-71e6488cbd82,1
+317,audit200,111,MEDDOCAN,S0212-71992005000400009-1,1
+318,loss_enriched,,PII fr,pii_validation_92A,7
+319,loss_enriched,,PII de,pii_validation_14258A,6
+320,audit200,23,MEDDOCAN,S0365-66912011000700004-1,14
+321,audit200,59,PII nl,pii_validation_67288B,18
+322,audit200,21,PII de,pii_validation_14110A,0
+323,loss_enriched,,MEDDOCAN,S0211-57352015000100011-2,9
+324,audit200,58,PII de,pii_validation_14151C,0
+325,loss_enriched,,PII nl,pii_validation_67131B,0
+326,audit200,130,MEDDOCAN,S1130-14732006000500005-1,9
+327,loss_enriched,,MEDDOCAN,S0210-48062005000800014-1,11
+328,loss_enriched,,PII de,pii_validation_14092C,9
+329,audit200,113,PII nl,pii_validation_67024B,1
+330,audit200,191,PII en,pii_validation_40939C,4
+331,audit200,134,ASQ-PHI,asq_00210,3
+332,audit200,54,MultiCoNER v2,mc2_en_test_d709afb4-11fa-41bc-a177-30ea576570e0,0
+333,audit200,17,PII de,pii_validation_14237B,0
+334,audit200,14,PII en,pii_validation_41151B,4
+335,audit200,177,PII en,pii_validation_40798C,0
+336,audit200,20,PII fr,pii_validation_58B,4
+337,audit200,56,MEDDOCAN,S1698-44472004000100009-1,42
+338,audit200,146,MultiCoNER v2,mc2_en_test_e44d7d70-9587-4fe7-aff1-8d079c3cbd09,1
+339,loss_enriched,,MEDDOCAN,S0004-06142008000500015-1,19
+340,loss_enriched,,MEDDOCAN,S0211-69952013000200018-1,0
+341,loss_enriched,,PII fr,pii_validation_51,9
+342,loss_enriched,,MEDDOCAN,S0212-16112012000500042-1,6
+343,loss_enriched,,MEDDOCAN,S1130-05582011000300005-1,12
+344,loss_enriched,,PII de,pii_validation_13931C,1
+345,loss_enriched,,MEDDOCAN,S1698-44472004000500007-1,19
+346,audit200,124,PII nl,pii_validation_67207A,0
+347,audit200,193,MultiCoNER v2,mc2_en_test_c162d643-c6da-4899-b21d-bc83c6c4e04a,2
+348,loss_enriched,,PII nl,pii_validation_67298A,1
+349,audit200,175,MEDDOCAN,S0211-69952014000400020-1,12
+350,loss_enriched,,MEDDOCAN,S0376-78922011000500012-1,8
+351,loss_enriched,,PII en,pii_validation_41055A,0
+352,loss_enriched,,MEDDOCAN,S1134-80462005000300004-1,6
+353,audit200,117,PII fr,pii_validation_310B,3
+354,loss_enriched,,MEDDOCAN,S0378-48352006000300005-1,1
+355,loss_enriched,,MEDDOCAN,S1130-63432014000100011-1,15
+356,audit200,43,PII fr,pii_validation_425B,0
+357,audit200,70,PII nl,pii_validation_67272A,2
+358,audit200,27,ASQ-PHI,asq_00145,3
+359,audit200,114,PII de,pii_validation_14302A,3
+360,loss_enriched,,MEDDOCAN,S1699-695X2014000300010-1,29
+361,audit200,55,MEDDOCAN,S1139-76322010000100009-1,0
+362,audit200,94,PII de,pii_validation_14274B,6
+363,loss_enriched,,MEDDOCAN,S0210-48062007000500016-1,2
+364,audit200,149,PII nl,pii_validation_67096B,3
+365,audit200,85,MEDDOCAN,S0212-71992007000600008-1,20
+366,loss_enriched,,ASQ-PHI,asq_00200,1
+367,loss_enriched,,MEDDOCAN,S0210-48062009000200018-1,16
+368,loss_enriched,,MEDDOCAN,S1130-01082007001000017-1,17
+369,loss_enriched,,ASQ-PHI,asq_00085,1
+370,loss_enriched,,MEDDOCAN,S0211-69952017000200225-1,8
+371,audit200,16,MEDDOCAN,S0004-06142006000600014-1,4
+372,audit200,110,PII en,pii_validation_41001A,4
+373,loss_enriched,,MEDDOCAN,S0376-78922009000100011-1,14
+374,loss_enriched,,PII en,pii_validation_40992C,1
+375,audit200,46,PII en,pii_validation_40990B,3
+376,loss_enriched,,MEDDOCAN,S0004-06142007000900010-1,7
+377,audit200,198,ASQ-PHI,asq_00246,3
+378,audit200,194,MEDDOCAN,S1139-76322011000300007-2,14
+379,loss_enriched,,MEDDOCAN,S0004-06142007000500014-1,5
+380,loss_enriched,,MEDDOCAN,S0365-66912009000100008-1,19
+381,loss_enriched,,MEDDOCAN,S1130-05582008000500006-1,18
+382,audit200,162,PII en,pii_validation_40795A,4
+383,loss_enriched,,MEDDOCAN,S1130-01082007001000017-1,18
+384,loss_enriched,,MEDDOCAN,S0210-56912009000900008-1,1
+385,loss_enriched,,MEDDOCAN,S1130-05582011000300005-1,19
+386,loss_enriched,,MEDDOCAN,S0210-56912006000600007-1,6
+387,audit200,71,PII fr,pii_validation_92B,5
+388,audit200,47,ASQ-PHI,asq_00018,0
+389,loss_enriched,,MEDDOCAN,S1137-66272009000100013-1,21
+390,audit200,36,MEDDOCAN,S0213-12852005000400003-1,15
+391,audit200,161,PII en,pii_validation_40947B,3
+392,audit200,136,PII de,pii_validation_13959B,5
+393,audit200,170,ASQ-PHI,asq_00244,2
+394,audit200,37,PII de,pii_validation_14274A,3
+395,loss_enriched,,PII en,pii_validation_40950A,5
+396,loss_enriched,,MEDDOCAN,S1130-01082008000900016-1,8
+397,audit200,31,MultiCoNER v2,mc2_en_test_dbb47331-348f-4186-b17c-c749c64bba74,1

@@ -1,0 +1,9 @@
+{
+  "system": "qwen3_5_9b",
+  "prompt": "mask_aware",
+  "corpus": "redacted",
+  "benchmark": "pii_german",
+  "masked": 204,
+  "found": 149,
+  "recall_pct": 73.0
+}

@@ -1,5 +1,6 @@
 {
   "system": "obi",
+  "prompt": "default",
   "corpus": "faker",
   "benchmark": "asq_phi",
   "masked": 267,

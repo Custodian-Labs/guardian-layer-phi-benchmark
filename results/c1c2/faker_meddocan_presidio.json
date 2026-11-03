@@ -1,0 +1,9 @@
+{
+  "system": "presidio",
+  "prompt": "default",
+  "corpus": "faker",
+  "benchmark": "meddocan",
+  "masked": 1419,
+  "found": 1112,
+  "recall_pct": 78.4
+}
