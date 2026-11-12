@@ -1,0 +1,9 @@
+{
+  "system": "presidio",
+  "prompt": "default",
+  "corpus": "redacted",
+  "benchmark": "pii_dutch",
+  "masked": 195,
+  "found": 10,
+  "recall_pct": 5.1
+}

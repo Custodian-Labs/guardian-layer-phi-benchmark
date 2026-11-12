@@ -1,0 +1,110 @@
+{
+ "agreement": {
+  "n": 197,
+  "category": {
+   "raw": 0.8883248730964467,
+   "kappa": 0.7862813748212437
+  },
+  "boundary": {
+   "raw": 0.9949238578680203,
+   "kappa": 0.0
+  }
+ },
+ "vs_ai_A": {
+  "n": 197,
+  "raw": 0.751269035532995,
+  "kappa": 0.46674400618716166
+ },
+ "vs_ai_B": {
+  "n": 197,
+  "raw": 0.7614213197969543,
+  "kappa": 0.48478103611373863
+ },
+ "linkage": {
+  "audit200|well_formed": {
+   "spans": 128,
+   "found_orig": 1058,
+   "lost": 54,
+   "rate": 5.103969754253308,
+   "ci95": [
+    3.730017761989343,
+    6.582768635043562
+   ]
+  },
+  "audit200|malformed_truncated": {
+   "spans": 10,
+   "found_orig": 69,
+   "lost": 5,
+   "rate": 7.246376811594203,
+   "ci95": [
+    0.0,
+    18.46153846153846
+   ]
+  },
+  "audit200|x_masked": {
+   "spans": 18,
+   "found_orig": 156,
+   "lost": 13,
+   "rate": 8.333333333333334,
+   "ci95": [
+    4.216867469879518,
+    12.987012987012987
+   ]
+  },
+  "audit200|type_inconsistent": {
+   "spans": 4,
+   "found_orig": 27,
+   "lost": 3,
+   "rate": 11.11111111111111,
+   "ci95": [
+    0.0,
+    30.0
+   ]
+  },
+  "audit200|locale_inconsistent": {
+   "spans": 1,
+   "found_orig": 10,
+   "lost": 1,
+   "rate": 10.0,
+   "ci95": [
+    10.0,
+    10.0
+   ]
+  },
+  "audit200|context_inconsistent": {
+   "spans": 12,
+   "found_orig": 75,
+   "lost": 7,
+   "rate": 9.333333333333334,
+   "ci95": [
+    1.3888888888888888,
+    20.338983050847457
+   ]
+  },
+  "audit200|other_uncertain": {
+   "spans": 2,
+   "found_orig": 16,
+   "lost": 1,
+   "rate": 6.25,
+   "ci95": [
+    0.0,
+    12.5
+   ]
+  },
+  "audit200|disagreement": {
+   "spans": 22,
+   "found_orig": 169,
+   "lost": 18,
+   "rate": 10.650887573964496,
+   "ci95": [
+    5.2631578947368425,
+    16.96969696969697
+   ]
+  }
+ },
+ "attribution_lost_outcomes": {
+  "generator defect": 29,
+  "detector sensitivity": 54,
+  "uncertain": 19
+ }
+}

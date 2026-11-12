@@ -1,0 +1,8 @@
+{
+  "system": "obi",
+  "corpus": "faker",
+  "benchmark": "multiconer_v2",
+  "masked": 8,
+  "found": 8,
+  "recall_pct": 100.0
+}

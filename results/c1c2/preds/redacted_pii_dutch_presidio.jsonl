@@ -1,0 +1,77 @@
+{"doc_id": "pii_validation_67020B", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_67024B", "masked_idx": [0, 1, 3], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_67029A", "masked_idx": [3, 5], "found": [0, 0]}
+{"doc_id": "pii_validation_67029B", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_67029C", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_67029D", "masked_idx": [2, 7], "found": [0, 0]}
+{"doc_id": "pii_validation_67030A", "masked_idx": [0, 4], "found": [0, 0]}
+{"doc_id": "pii_validation_67037B", "masked_idx": [0, 2, 3, 4, 5, 6, 8], "found": [0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67037C", "masked_idx": [0, 1], "found": [0, 0]}
+{"doc_id": "pii_validation_67045B", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_67047A", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67047B", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67050B", "masked_idx": [1, 3, 9], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_67061A", "masked_idx": [1, 3, 6, 11], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_67061B", "masked_idx": [1, 4, 6, 15], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_67065B", "masked_idx": [1, 5, 9, 14], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_67065C", "masked_idx": [3, 9, 11], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_67065D", "masked_idx": [5, 7, 8], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_67070A", "masked_idx": [1, 3], "found": [0, 0]}
+{"doc_id": "pii_validation_67070B", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67070C", "masked_idx": [0, 1], "found": [0, 0]}
+{"doc_id": "pii_validation_67070D", "masked_idx": [0, 2], "found": [0, 0]}
+{"doc_id": "pii_validation_67071A", "masked_idx": [4, 8], "found": [0, 0]}
+{"doc_id": "pii_validation_67077", "masked_idx": [0, 2, 3, 4, 6, 7, 8, 11, 13, 15, 17, 20, 22], "found": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67087", "masked_idx": [4, 6, 8], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_67092B", "masked_idx": [0, 6], "found": [0, 0]}
+{"doc_id": "pii_validation_67096A", "masked_idx": [2, 3], "found": [0, 0]}
+{"doc_id": "pii_validation_67096B", "masked_idx": [0, 1, 3], "found": [0, 0, 0]}
+{"doc_id": "pii_validation_67099A", "masked_idx": [7], "found": [0]}
+{"doc_id": "pii_validation_67099B", "masked_idx": [0, 4], "found": [0, 0]}
+{"doc_id": "pii_validation_67103A", "masked_idx": [2, 11, 12], "found": [0, 1, 1]}
+{"doc_id": "pii_validation_67103C", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67106A", "masked_idx": [0, 4], "found": [0, 0]}
+{"doc_id": "pii_validation_67106B", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67115A", "masked_idx": [2, 11], "found": [0, 0]}
+{"doc_id": "pii_validation_67115B", "masked_idx": [1, 4], "found": [0, 0]}
+{"doc_id": "pii_validation_67115C", "masked_idx": [0, 14], "found": [0, 0]}
+{"doc_id": "pii_validation_67119B", "masked_idx": [5], "found": [0]}
+{"doc_id": "pii_validation_67128", "masked_idx": [0, 3, 6, 7, 8], "found": [0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67131A", "masked_idx": [0, 4, 6, 8], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_67131B", "masked_idx": [0, 1, 5, 6, 8], "found": [0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67135B", "masked_idx": [0, 1, 2, 3], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_67143A", "masked_idx": [2], "found": [0]}
+{"doc_id": "pii_validation_67143B", "masked_idx": [1, 2], "found": [0, 0]}
+{"doc_id": "pii_validation_67147A", "masked_idx": [4], "found": [0]}
+{"doc_id": "pii_validation_67147B", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67151A", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_67151C", "masked_idx": [2], "found": [1]}
+{"doc_id": "pii_validation_67155A", "masked_idx": [1, 2, 4, 7, 10], "found": [0, 0, 1, 1, 1]}
+{"doc_id": "pii_validation_67155B", "masked_idx": [1, 2, 7, 13], "found": [0, 1, 1, 0]}
+{"doc_id": "pii_validation_67155C", "masked_idx": [4, 10], "found": [0, 1]}
+{"doc_id": "pii_validation_67159B", "masked_idx": [0, 7], "found": [0, 0]}
+{"doc_id": "pii_validation_67160B", "masked_idx": [1, 2, 4, 6, 7, 8], "found": [0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67160C", "masked_idx": [0, 1, 2, 3, 6, 8], "found": [0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67162B", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_67166A", "masked_idx": [0], "found": [1]}
+{"doc_id": "pii_validation_67166C", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_67168A", "masked_idx": [0, 3], "found": [0, 0]}
+{"doc_id": "pii_validation_67168B", "masked_idx": [10, 12], "found": [0, 0]}
+{"doc_id": "pii_validation_67168C", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67178B", "masked_idx": [0, 7], "found": [0, 0]}
+{"doc_id": "pii_validation_67184A", "masked_idx": [19, 20], "found": [0, 0]}
+{"doc_id": "pii_validation_67184B", "masked_idx": [2, 19], "found": [0, 0]}
+{"doc_id": "pii_validation_67184C", "masked_idx": [4, 5, 7, 11, 12, 20], "found": [0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67186B", "masked_idx": [9], "found": [0]}
+{"doc_id": "pii_validation_67189C", "masked_idx": [0], "found": [0]}
+{"doc_id": "pii_validation_67191C", "masked_idx": [4], "found": [0]}
+{"doc_id": "pii_validation_67202A", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_67202B", "masked_idx": [3], "found": [0]}
+{"doc_id": "pii_validation_67207A", "masked_idx": [0, 1], "found": [0, 0]}
+{"doc_id": "pii_validation_67207B", "masked_idx": [0, 3, 4, 5, 6, 8, 10, 12], "found": [0, 0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67207C", "masked_idx": [0, 1, 2, 4], "found": [0, 0, 0, 0]}
+{"doc_id": "pii_validation_67209A", "masked_idx": [1], "found": [0]}
+{"doc_id": "pii_validation_67209B", "masked_idx": [0, 6, 8, 13, 14, 16, 18], "found": [0, 0, 0, 0, 0, 0, 0]}
+{"doc_id": "pii_validation_67212A", "masked_idx": [4, 7], "found": [0, 0]}
+{"doc_id": "pii_validation_67212B", "masked_idx": [9], "found": [0]}
+{"doc_id": "pii_validation_67212C", "masked_idx": [0], "found": [0]}

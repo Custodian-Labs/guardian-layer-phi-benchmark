@@ -1,0 +1,17 @@
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+ & & \multicolumn{5}{c}{C1: redaction (\tp{*****})} & \multicolumn{4}{c}{C2: Faker surrogates}\\
+\cmidrule(lr){3-7}\cmidrule(lr){8-11}
+Benchmark & $N$ & Presidio & OBI & Qwen-9B & Gemma-31B & Qwen-9B$^{\ddagger}$ & Presidio & OBI & Qwen-9B & Gemma-31B\\
+\midrule
+ASQ-PHI & 267 & 0.0 & 0.7 & 58.1 & 79.8 & 76.0 & 96.3 & 100.0 & 100.0 & 100.0\\
+MEDDOCAN & 1{,}419 & 0.0 & 0.1 & 22.9 & 52.6 & 54.9 & 78.4 & 64.0 & 79.6 & 96.5\\
+MultiCoNER & 8 & 0.0 & 0.0 & 25.0 & 12.5 & 87.5 & 100.0 & 100.0 & 87.5 & 100.0\\
+PII-en & 210 & 1.0 & 1.0 & 10.0 & 37.6 & 71.4 & 77.1 & 89.5 & 76.7 & 90.0\\
+PII-nl & 195 & 5.1 & 1.0 & 20.5 & 39.5 & 74.4 & 76.4 & 71.8 & 84.1 & 96.9\\
+PII-fr & 220 & 3.6 & 0.5 & 5.9 & 38.2 & 76.8 & 65.9 & 79.5 & 81.4 & 83.2\\
+PII-de & 204 & 0.0 & 1.0 & 11.8 & 41.7 & 73.0 & 67.2 & 84.8 & 77.9 & 95.1\\
+\midrule
+Mean (excl.\ MultiCoNER) & & 1.6 & 0.7 & 21.5 & 48.2 & 71.1 & 76.9 & 81.6 & 83.3 & 93.6\\
+\bottomrule
+\end{tabular}
