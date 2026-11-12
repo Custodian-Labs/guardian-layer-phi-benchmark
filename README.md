@@ -281,7 +281,7 @@ If you use this benchmark, the protocol or the data, please cite:
 ```bibtex
 @InProceedings{bao2026surrogate,
   title     = {Surrogate Substitution Preserves {PHI} Detectability: A Multi-Detector Equivalence Study},
-  author    = {Bao, Qiming and Feng, Jia Hui and Eugenio, Kim Chester V. and Foon, Meng},
+  author    = {Bao, Qiming and Feng, Sherry J. H. and Eugenio, Kim Chester V. and Foon, Meng},
   booktitle = {Proceedings of the Sixth Machine Learning for Health Symposium},
   series    = {Proceedings of Machine Learning Research},
   volume    = {346},
