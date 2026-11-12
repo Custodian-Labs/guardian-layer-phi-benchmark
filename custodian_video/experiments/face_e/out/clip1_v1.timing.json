@@ -1,0 +1,18 @@
+{
+ "pass1_face_det_s": 32.49840259552002,
+ "prepare_s": 13.878568887710571,
+ "render_s": 59.811728954315186,
+ "face_apply_s": 56.21599507331848,
+ "face_frames": 634,
+ "face_apply_fps": 11.277928980410636,
+ "render_fps_incl_decode_encode": 7.590484474153387,
+ "backend_stats": {
+  "reenact": 447,
+  "static": 7,
+  "none": 180,
+  "guard_retry": 9,
+  "guard_static": 7
+ },
+ "backend": "sd15-keyframe+liveportrait-reenact (SD-1.5 identity, CreativeML OpenRAIL-M; LivePortrait motion, MIT code+weights, no InsightFace)",
+ "surrogate_tracks": 2
+}

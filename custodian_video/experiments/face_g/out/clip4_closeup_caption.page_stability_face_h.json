@@ -1,0 +1,17 @@
+{
+ "face_h": {
+  "face-0": {
+   "frames": 360,
+   "swap_share": 0.994,
+   "fade_frames": 0,
+   "transitions": 1,
+   "blur_runs": 1,
+   "longest_blur": 2,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.026,
+   "jitter_orig": 0.0287,
+   "jitter_ratio": 0.906,
+   "jitter_n": 356
+  }
+ }
+}

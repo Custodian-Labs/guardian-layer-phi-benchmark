@@ -1,0 +1,19 @@
+{
+ "rows": [
+  {
+   "tid": 0,
+   "f0": 0,
+   "f1": 359,
+   "n": 360,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  }
+ ],
+ "changed": [],
+ "n_tracks": 1,
+ "old_unmasked": 0,
+ "new_unmasked": 0
+}

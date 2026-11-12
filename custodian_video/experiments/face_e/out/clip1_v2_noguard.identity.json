@@ -1,0 +1,119 @@
+{
+ "frames": 454,
+ "pairs": 454,
+ "original": {
+  "identity_consistency_to_track_mean": 0.902,
+  "cross_track_cos_of_track_means": 0.083
+ },
+ "v2ng": {
+  "identity_consistency_to_track_mean": 0.907,
+  "cross_track_cos_of_track_means": 0.161,
+  "reid_rate": 0.8921,
+  "n": 454,
+  "mean_cos": 0.5,
+  "p95_cos": 0.594,
+  "max_cos": 0.64,
+  "reid_frames": [
+   [
+    0,
+    "face-0",
+    0.543
+   ],
+   [
+    1,
+    "face-0",
+    0.528
+   ],
+   [
+    2,
+    "face-0",
+    0.543
+   ],
+   [
+    3,
+    "face-0",
+    0.532
+   ],
+   [
+    4,
+    "face-0",
+    0.532
+   ],
+   [
+    5,
+    "face-0",
+    0.557
+   ],
+   [
+    6,
+    "face-0",
+    0.572
+   ],
+   [
+    7,
+    "face-0",
+    0.578
+   ],
+   [
+    8,
+    "face-0",
+    0.538
+   ],
+   [
+    9,
+    "face-0",
+    0.55
+   ],
+   [
+    10,
+    "face-0",
+    0.531
+   ],
+   [
+    11,
+    "face-0",
+    0.556
+   ],
+   [
+    12,
+    "face-0",
+    0.546
+   ],
+   [
+    13,
+    "face-0",
+    0.52
+   ],
+   [
+    14,
+    "face-0",
+    0.515
+   ],
+   [
+    15,
+    "face-0",
+    0.525
+   ],
+   [
+    16,
+    "face-0",
+    0.502
+   ],
+   [
+    17,
+    "face-0",
+    0.495
+   ],
+   [
+    18,
+    "face-0",
+    0.524
+   ],
+   [
+    19,
+    "face-0",
+    0.501
+   ]
+  ]
+ }
+}

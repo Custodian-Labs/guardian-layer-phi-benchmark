@@ -58,3 +58,12 @@ paper/latex/tl.log
 COVERAGE_MEMO.md
 docs/guardian_layer_internal.pptx
 docs/guardian_layer_internal_zh.pdf
+
+# custodian_video experiments: keep media, face tracks, models and logs out of the repository
+custodian_video/experiments/**/media/
+custodian_video/experiments/**/*.jpg
+custodian_video/experiments/**/*.mp4
+custodian_video/experiments/**/*.pkl
+custodian_video/experiments/**/*.tflite
+custodian_video/experiments/**/logs/
+custodian_video/experiments/**/__pycache__/

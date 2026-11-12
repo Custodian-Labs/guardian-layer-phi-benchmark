@@ -1,0 +1,39 @@
+{
+ "hybrid_g13": {
+  "per_track": {
+   "face-0": {
+    "n": 373,
+    "corr_mouth_open": 0.936,
+    "corr_jawOpen": 0.771,
+    "corr_eyeBlink": 0.968,
+    "corr_yaw": 0.992,
+    "corr_pitch": 0.832,
+    "mae_mouth_open": 0.0341,
+    "std_mouth_open_orig": 0.0831,
+    "std_mouth_open_out": 0.1064
+   },
+   "face-1": {
+    "n": 81,
+    "corr_mouth_open": 0.936,
+    "corr_jawOpen": 0.848,
+    "corr_eyeBlink": 0.598,
+    "corr_yaw": 0.997,
+    "corr_pitch": 0.966,
+    "mae_mouth_open": 0.0689,
+    "std_mouth_open_orig": 0.1198,
+    "std_mouth_open_out": 0.155
+   }
+  },
+  "corr_mouth_open": 0.924,
+  "corr_jawOpen": 0.689,
+  "corr_eyeBlink": 0.766,
+  "corr_yaw": 0.991,
+  "corr_pitch": 0.802,
+  "landmarker_detect_rate_on_output": 1.0,
+  "flicker_2nd_diff": 4.323,
+  "flicker_ratio_vs_original": 0.943
+ },
+ "original": {
+  "flicker_2nd_diff": 4.584
+ }
+}

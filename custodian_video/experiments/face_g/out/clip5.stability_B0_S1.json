@@ -1,0 +1,32 @@
+{
+ "B0": {
+  "face-0": {
+   "frames": 360,
+   "swap_share": 1.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 0,
+   "longest_blur": 0,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0179,
+   "jitter_orig": 0.0205,
+   "jitter_ratio": 0.872,
+   "jitter_n": 358
+  }
+ },
+ "S1": {
+  "face-0": {
+   "frames": 360,
+   "swap_share": 1.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 0,
+   "longest_blur": 0,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0177,
+   "jitter_orig": 0.0205,
+   "jitter_ratio": 0.864,
+   "jitter_n": 358
+  }
+ }
+}

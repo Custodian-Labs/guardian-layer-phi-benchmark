@@ -1,0 +1,17 @@
+{
+ "page_before": {
+  "face-0": {
+   "frames": 360,
+   "swap_share": 0.944,
+   "fade_frames": 0,
+   "transitions": 5,
+   "blur_runs": 3,
+   "longest_blur": 9,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0214,
+   "jitter_orig": 0.0214,
+   "jitter_ratio": 1.0,
+   "jitter_n": 334
+  }
+ }
+}

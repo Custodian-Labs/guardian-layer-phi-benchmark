@@ -1,0 +1,39 @@
+{
+ "pass1_face_det_s": 109.04544425010681,
+ "prepare_s": 202.88130450248718,
+ "render_s": 94.12508893013,
+ "face_apply_s": 92.76811981201172,
+ "face_frames": 1803,
+ "face_apply_fps": 19.435556133439558,
+ "render_fps_incl_decode_encode": 3.1872479846759347,
+ "backend_stats": {
+  "reenact": 1,
+  "static": 24,
+  "none": 1778,
+  "guard_retry": 112,
+  "guard_blur": 111,
+  "static_guard_blur": 468,
+  "v2_gate_blur": 623
+ },
+ "backend": "sd15-keyframe-v2+liveportrait-reenact (SD-1.5 identity, CreativeML OpenRAIL-M; LivePortrait motion, MIT code+weights, no InsightFace) + v2 realism (Qwen3-VL attributes Apache-2.0; ControlNet-depth OpenRAIL; Depth-Anything-V2-Small Apache-2.0; sd-vae-ft-mse MIT)",
+ "v3_stats": null,
+ "surrogate_tracks": 4,
+ "gen_info": {
+  "3": {
+   "p75_guard_cos_sampled": null,
+   "tries": 1
+  },
+  "5": {
+   "p75_guard_cos_sampled": 0.433,
+   "tries": 3
+  },
+  "0": {
+   "p75_guard_cos_sampled": 0.484,
+   "tries": 1
+  },
+  "12": {
+   "p75_guard_cos_sampled": 0.377,
+   "tries": 2
+  }
+ }
+}

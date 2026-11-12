@@ -1,0 +1,34 @@
+{
+ "frames": 454,
+ "pairs": 454,
+ "original": {
+  "identity_consistency_to_track_mean": 0.902,
+  "cross_track_cos_of_track_means": 0.083
+ },
+ "reenact_noguard": {
+  "identity_consistency_to_track_mean": 0.808,
+  "cross_track_cos_of_track_means": 0.148,
+  "reid_rate": 0.0066,
+  "n": 454,
+  "mean_cos": 0.116,
+  "p95_cos": 0.24,
+  "max_cos": 0.399,
+  "reid_frames": [
+   [
+    432,
+    "face-1",
+    0.381
+   ],
+   [
+    433,
+    "face-1",
+    0.399
+   ],
+   [
+    434,
+    "face-1",
+    0.37
+   ]
+  ]
+ }
+}

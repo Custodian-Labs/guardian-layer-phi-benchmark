@@ -1,0 +1,25 @@
+{
+ "pass1_face_det_s": 17.370373249053955,
+ "prepare_s": 227.47854781150818,
+ "render_s": 55.55488705635071,
+ "face_apply_s": 51.61262249946594,
+ "face_frames": 360,
+ "face_apply_fps": 6.975037937739456,
+ "render_fps_incl_decode_encode": 6.480077974685521,
+ "backend_stats": {
+  "reenact": 64,
+  "static": 0,
+  "none": 296,
+  "guard_blur": 296
+ },
+ "backend": "research-swap (hyperswap_1a_256; RESEARCH-ONLY models, non-commercial licences: HyperSwap 256 (FaceFusion, ResearchRAIL - research only); InsightFace ArcFace w600k_r50 / buffalo_l (non-commercial research only); BiSeNet face parsing, FaceFusion bisenet_resnet_34 (MIT; trained on CelebAMask-HQ, non-commercial dataset); XSeg occlusion mask, FaceFusion xseg_3 (GPL-3.0); Stable Diffusion 1.5 text-to-image (CreativeML OpenRAIL-M); Qwen3-VL-8B attributes (Apache-2.0); SFace guard + YuNet landmarks (OpenCV zoo, Apache-2.0 / MIT))",
+ "v3_stats": null,
+ "surrogate_tracks": 1,
+ "gen_info": {
+  "0": {
+   "p75_sface": 0.364,
+   "candidates": 6,
+   "pick": 2
+  }
+ }
+}

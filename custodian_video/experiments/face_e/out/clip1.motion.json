@@ -1,0 +1,227 @@
+{
+ "v1": {
+  "per_track": {
+   "face-0": {
+    "n": 373,
+    "corr_mouth_open": 0.926,
+    "corr_jawOpen": 0.612,
+    "corr_eyeBlink": 0.936,
+    "corr_yaw": 0.984,
+    "corr_pitch": 0.808,
+    "mae_mouth_open": 0.0533,
+    "std_mouth_open_orig": 0.084,
+    "std_mouth_open_out": 0.0668
+   },
+   "face-1": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-2": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-3": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-4": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-5": {
+    "n": 81,
+    "corr_mouth_open": 0.838,
+    "corr_jawOpen": 0.819,
+    "corr_eyeBlink": 0.531,
+    "corr_yaw": 0.936,
+    "corr_pitch": 0.935,
+    "mae_mouth_open": 0.1503,
+    "std_mouth_open_orig": 0.1214,
+    "std_mouth_open_out": 0.0786
+   },
+   "face-6": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-7": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-8": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   }
+  },
+  "corr_mouth_open": 0.538,
+  "corr_jawOpen": 0.653,
+  "corr_eyeBlink": 0.769,
+  "corr_yaw": 0.968,
+  "corr_pitch": 0.767,
+  "landmarker_detect_rate_on_output": 0.996,
+  "flicker_2nd_diff": 3.347,
+  "flicker_ratio_vs_original": 0.92
+ },
+ "v2": {
+  "per_track": {
+   "face-0": {
+    "n": 364,
+    "corr_mouth_open": 0.933,
+    "corr_jawOpen": 0.702,
+    "corr_eyeBlink": 0.909,
+    "corr_yaw": 0.988,
+    "corr_pitch": 0.936,
+    "mae_mouth_open": 0.0422,
+    "std_mouth_open_orig": 0.0839,
+    "std_mouth_open_out": 0.0569
+   },
+   "face-1": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-2": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-3": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-4": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-5": {
+    "n": 81,
+    "corr_mouth_open": 0.84,
+    "corr_jawOpen": 0.789,
+    "corr_eyeBlink": 0.648,
+    "corr_yaw": 0.993,
+    "corr_pitch": 0.948,
+    "mae_mouth_open": 0.1501,
+    "std_mouth_open_orig": 0.1214,
+    "std_mouth_open_out": 0.0829
+   },
+   "face-6": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-7": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   },
+   "face-8": {
+    "n": 0,
+    "corr_mouth_open": null,
+    "corr_jawOpen": null,
+    "corr_eyeBlink": null,
+    "corr_yaw": null,
+    "corr_pitch": null,
+    "mae_mouth_open": null,
+    "std_mouth_open_orig": null,
+    "std_mouth_open_out": null
+   }
+  },
+  "corr_mouth_open": 0.538,
+  "corr_jawOpen": 0.725,
+  "corr_eyeBlink": 0.806,
+  "corr_yaw": 0.991,
+  "corr_pitch": 0.93,
+  "landmarker_detect_rate_on_output": 0.976,
+  "flicker_2nd_diff": 3.402,
+  "flicker_ratio_vs_original": 0.935
+ },
+ "original": {
+  "flicker_2nd_diff": 3.637
+ }
+}

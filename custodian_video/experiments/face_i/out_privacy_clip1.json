@@ -1,0 +1,79 @@
+{
+ "clip1_interview_synthpii": {
+  "blur": {
+   "n_ref": 139,
+   "coverage": 0.9928,
+   "sface_reid": 0.0072,
+   "arc_reid": 0.0072,
+   "sface_reid_masked": 0.0,
+   "arc_reid_masked": 0.0,
+   "sface_max_masked": 0.259,
+   "n_ref_confident": 138,
+   "coverage_confident": 1.0,
+   "coverage_confident_egoblur_only": 1.0,
+   "sface_reid_confident": 0.0,
+   "arc_reid_confident": 0.0,
+   "by_size": {
+    "96-10000px": {
+     "n": 139,
+     "coverage": 0.993,
+     "sface_reid": 0.007,
+     "arc_reid": 0.007
+    }
+   },
+   "impostor_sface": 0.0,
+   "impostor_arc": 0.5,
+   "n_impostor_pairs": 2
+  },
+  "box": {
+   "n_ref": 139,
+   "coverage": 0.9928,
+   "sface_reid": 0.0072,
+   "arc_reid": 0.0072,
+   "sface_reid_masked": 0.0,
+   "arc_reid_masked": 0.0,
+   "sface_max_masked": 0.142,
+   "n_ref_confident": 138,
+   "coverage_confident": 1.0,
+   "coverage_confident_egoblur_only": 1.0,
+   "sface_reid_confident": 0.0,
+   "arc_reid_confident": 0.0,
+   "by_size": {
+    "96-10000px": {
+     "n": 139,
+     "coverage": 0.993,
+     "sface_reid": 0.007,
+     "arc_reid": 0.007
+    }
+   },
+   "impostor_sface": 0.5,
+   "impostor_arc": 0.5,
+   "n_impostor_pairs": 2
+  },
+  "surrogate_research": {
+   "n_ref": 139,
+   "coverage": 0.9928,
+   "sface_reid": 0.0072,
+   "arc_reid": 0.0072,
+   "sface_reid_masked": 0.0,
+   "arc_reid_masked": 0.0,
+   "sface_max_masked": 0.254,
+   "n_ref_confident": 138,
+   "coverage_confident": 1.0,
+   "coverage_confident_egoblur_only": 1.0,
+   "sface_reid_confident": 0.0,
+   "arc_reid_confident": 0.0,
+   "by_size": {
+    "96-10000px": {
+     "n": 139,
+     "coverage": 0.993,
+     "sface_reid": 0.007,
+     "arc_reid": 0.007
+    }
+   },
+   "impostor_sface": 0.0,
+   "impostor_arc": 0.0,
+   "n_impostor_pairs": 2
+  }
+ }
+}

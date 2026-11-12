@@ -1,0 +1,22 @@
+{
+ "v1": {
+  "n": 180,
+  "dE_flat": 10.859,
+  "seam_flat": 0.666,
+  "dE_excess": 7.495,
+  "grad_ratio": 1.263,
+  "seam_frac": 0.428,
+  "edited_frac": 0.184,
+  "dE_excess_p90": 9.469
+ },
+ "v2": {
+  "n": 180,
+  "dE_flat": 11.267,
+  "seam_flat": 0.676,
+  "dE_excess": 4.886,
+  "grad_ratio": 0.909,
+  "seam_frac": 0.322,
+  "edited_frac": 0.023,
+  "dE_excess_p90": 7.473
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "frames": 454,
+ "pairs": 454,
+ "original": {
+  "identity_consistency_to_track_mean": 0.902,
+  "cross_track_cos_of_track_means": 0.083
+ },
+ "v1": {
+  "identity_consistency_to_track_mean": 0.784,
+  "cross_track_cos_of_track_means": 0.215,
+  "reid_rate": 0.0,
+  "n": 454,
+  "mean_cos": 0.054,
+  "p95_cos": 0.18,
+  "max_cos": 0.31,
+  "reid_frames": []
+ }
+}

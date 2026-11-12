@@ -1,0 +1,191 @@
+{
+ "static": {
+  "mouth_open_corr": 0.22,
+  "mouth_open_corr_per_track": {
+   "face-0": 0.054,
+   "face-1": 0.173
+  },
+  "mouth_open_mae_per_track": {
+   "face-0": 0.1412,
+   "face-1": 0.1066
+  },
+  "jawOpen_corr": -0.225,
+  "eyeBlink_corr": -0.22,
+  "yaw_corr": 0.415,
+  "pitch_corr": -0.037,
+  "flicker_2nd_diff": 5.495,
+  "flicker_ratio_vs_original": 1.199,
+  "reid_rate_every_frame": 0.0,
+  "mean_cos": 0.076,
+  "max_cos": 0.253,
+  "identity_consistency": 0.948,
+  "face_apply_fps": 8.56,
+  "render_fps_incl_decode_encode": 7.51,
+  "backend_stats": {
+   "reenact": 0,
+   "static": 460,
+   "none": 0
+  },
+  "demo_evaluate_step5": {
+   "face_reid_rate_masked_faces": 0.0,
+   "mean_cos_to_original_masked_faces": 0.072,
+   "face_still_detected": 0.969,
+   "output_identity_consistency": 0.918
+  }
+ },
+ "reenact": {
+  "mouth_open_corr": 0.862,
+  "mouth_open_corr_per_track": {
+   "face-0": 0.944,
+   "face-1": 0.801
+  },
+  "mouth_open_mae_per_track": {
+   "face-0": 0.0265,
+   "face-1": 0.0929
+  },
+  "jawOpen_corr": 0.749,
+  "eyeBlink_corr": 0.816,
+  "yaw_corr": 0.917,
+  "pitch_corr": 0.787,
+  "flicker_2nd_diff": 4.485,
+  "flicker_ratio_vs_original": 0.978,
+  "reid_rate_every_frame": 0.0,
+  "mean_cos": 0.111,
+  "max_cos": 0.31,
+  "identity_consistency": 0.803,
+  "face_apply_fps": 13.09,
+  "render_fps_incl_decode_encode": 11.26,
+  "backend_stats": {
+   "reenact": 447,
+   "static": 7,
+   "none": 6,
+   "guard_retry": 7,
+   "guard_static": 7
+  },
+  "demo_evaluate_step5": {
+   "face_reid_rate_masked_faces": 0.0,
+   "mean_cos_to_original_masked_faces": 0.107,
+   "face_still_detected": 0.979,
+   "output_identity_consistency": 0.748
+  }
+ },
+ "reenact_noguard": {
+  "mouth_open_corr": 0.929,
+  "mouth_open_corr_per_track": {
+   "face-0": 0.946,
+   "face-1": 0.951
+  },
+  "mouth_open_mae_per_track": {
+   "face-0": 0.0265,
+   "face-1": 0.0678
+  },
+  "jawOpen_corr": 0.749,
+  "eyeBlink_corr": 0.8,
+  "yaw_corr": 0.992,
+  "pitch_corr": 0.789,
+  "flicker_2nd_diff": 4.345,
+  "flicker_ratio_vs_original": 0.948,
+  "reid_rate_every_frame": 0.0066,
+  "mean_cos": 0.116,
+  "max_cos": 0.399,
+  "identity_consistency": 0.808,
+  "face_apply_fps": 4.07,
+  "render_fps_incl_decode_encode": 3.45,
+  "backend_stats": {
+   "reenact": 454,
+   "static": 0,
+   "none": 6
+  },
+  "demo_evaluate_step5": {
+   "face_reid_rate_masked_faces": 0.0,
+   "mean_cos_to_original_masked_faces": 0.113,
+   "face_still_detected": 0.979,
+   "output_identity_consistency": 0.745
+  }
+ },
+ "hybrid": {
+  "mouth_open_corr": 0.924,
+  "mouth_open_corr_per_track": {
+   "face-0": 0.943,
+   "face-1": 0.947
+  },
+  "mouth_open_mae_per_track": {
+   "face-0": 0.0268,
+   "face-1": 0.0702
+  },
+  "jawOpen_corr": 0.726,
+  "eyeBlink_corr": 0.805,
+  "yaw_corr": 0.991,
+  "pitch_corr": 0.784,
+  "flicker_2nd_diff": 4.293,
+  "flicker_ratio_vs_original": 0.936,
+  "reid_rate_every_frame": 0.0044,
+  "mean_cos": 0.12,
+  "max_cos": 0.399,
+  "identity_consistency": 0.806,
+  "face_apply_fps": 8.44,
+  "render_fps_incl_decode_encode": 7.5,
+  "backend_stats": {
+   "reenact": 454,
+   "static": 0,
+   "none": 6
+  }
+ },
+ "absolute": {
+  "mouth_open_corr": 0.841,
+  "mouth_open_corr_per_track": {
+   "face-0": 0.782,
+   "face-1": 0.937
+  },
+  "mouth_open_mae_per_track": {
+   "face-0": 0.0825,
+   "face-1": 0.0776
+  },
+  "jawOpen_corr": 0.642,
+  "eyeBlink_corr": 0.867,
+  "yaw_corr": 0.989,
+  "pitch_corr": 0.738,
+  "flicker_2nd_diff": 4.169,
+  "flicker_ratio_vs_original": 0.909,
+  "reid_rate_every_frame": 0.0088,
+  "mean_cos": 0.098,
+  "max_cos": 0.44,
+  "identity_consistency": 0.768,
+  "face_apply_fps": 7.99,
+  "render_fps_incl_decode_encode": 7.01,
+  "backend_stats": {
+   "reenact": 454,
+   "static": 0,
+   "none": 6
+  }
+ },
+ "hybrid_g13": {
+  "mouth_open_corr": 0.924,
+  "mouth_open_corr_per_track": {
+   "face-0": 0.936,
+   "face-1": 0.936
+  },
+  "mouth_open_mae_per_track": {
+   "face-0": 0.0341,
+   "face-1": 0.0689
+  },
+  "jawOpen_corr": 0.689,
+  "eyeBlink_corr": 0.766,
+  "yaw_corr": 0.991,
+  "pitch_corr": 0.802,
+  "flicker_2nd_diff": 4.323,
+  "flicker_ratio_vs_original": 0.943,
+  "reid_rate_every_frame": 0.0044,
+  "mean_cos": 0.126,
+  "max_cos": 0.406,
+  "identity_consistency": 0.796,
+  "face_apply_fps": 8.27,
+  "render_fps_incl_decode_encode": 7.3,
+  "backend_stats": {
+   "reenact": 454,
+   "static": 0,
+   "none": 6
+  }
+ },
+ "original_identity_consistency": 0.902
+}
