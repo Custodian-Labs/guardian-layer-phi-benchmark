@@ -1,0 +1,39 @@
+{
+ "static": {
+  "per_track": {
+   "face-0": {
+    "n": 373,
+    "corr_mouth_open": 0.054,
+    "corr_jawOpen": -0.016,
+    "corr_eyeBlink": 0.291,
+    "corr_yaw": -0.406,
+    "corr_pitch": -0.372,
+    "mae_mouth_open": 0.1412,
+    "std_mouth_open_orig": 0.0831,
+    "std_mouth_open_out": 0.0028
+   },
+   "face-1": {
+    "n": 81,
+    "corr_mouth_open": 0.173,
+    "corr_jawOpen": 0.291,
+    "corr_eyeBlink": 0.438,
+    "corr_yaw": -0.654,
+    "corr_pitch": -0.629,
+    "mae_mouth_open": 0.1066,
+    "std_mouth_open_orig": 0.1198,
+    "std_mouth_open_out": 0.0172
+   }
+  },
+  "corr_mouth_open": 0.22,
+  "corr_jawOpen": -0.225,
+  "corr_eyeBlink": -0.22,
+  "corr_yaw": 0.415,
+  "corr_pitch": -0.037,
+  "landmarker_detect_rate_on_output": 1.0,
+  "flicker_2nd_diff": 5.495,
+  "flicker_ratio_vs_original": 1.199
+ },
+ "original": {
+  "flicker_2nd_diff": 4.584
+ }
+}

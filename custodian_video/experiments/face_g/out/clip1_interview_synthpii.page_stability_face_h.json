@@ -1,0 +1,43 @@
+{
+ "face_h": {
+  "face-0": {
+   "frames": 376,
+   "swap_share": 0.965,
+   "fade_frames": 0,
+   "transitions": 3,
+   "blur_runs": 2,
+   "longest_blur": 8,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0377,
+   "jitter_orig": 0.0432,
+   "jitter_ratio": 0.873,
+   "jitter_n": 359
+  },
+  "face-5": {
+   "frames": 84,
+   "swap_share": 0.869,
+   "fade_frames": 0,
+   "transitions": 2,
+   "blur_runs": 2,
+   "longest_blur": 6,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.038,
+   "jitter_orig": 0.0428,
+   "jitter_ratio": 0.888,
+   "jitter_n": 71
+  },
+  "face-7": {
+   "frames": 28,
+   "swap_share": 0.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 1,
+   "longest_blur": 28,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": null,
+   "jitter_orig": null,
+   "jitter_ratio": null,
+   "jitter_n": 0
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "frames": 358,
+ "surrogate_research": {
+  "sface": {
+   "n": 358,
+   "reid_rate": 0.0,
+   "mean": 0.127,
+   "p95": 0.186,
+   "max": 0.214,
+   "frames_over": []
+  },
+  "arc": {
+   "n": 358,
+   "reid_rate": 0.0,
+   "mean": 0.061,
+   "p95": 0.133,
+   "max": 0.156,
+   "frames_over": []
+  },
+  "glint": {
+   "n": 358,
+   "reid_rate": 0.0,
+   "mean": 0.053,
+   "p95": 0.107,
+   "max": 0.134,
+   "frames_over": []
+  }
+ }
+}

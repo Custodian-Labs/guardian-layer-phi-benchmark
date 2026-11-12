@@ -1,0 +1,55 @@
+{
+ "frames": 360,
+ "B0": {
+  "sface": {
+   "n": 360,
+   "reid_rate": 0.0,
+   "mean": 0.087,
+   "p95": 0.143,
+   "max": 0.178,
+   "frames_over": []
+  },
+  "arc": {
+   "n": 360,
+   "reid_rate": 0.0,
+   "mean": 0.015,
+   "p95": 0.066,
+   "max": 0.094,
+   "frames_over": []
+  },
+  "glint": {
+   "n": 360,
+   "reid_rate": 0.0,
+   "mean": 0.029,
+   "p95": 0.079,
+   "max": 0.121,
+   "frames_over": []
+  }
+ },
+ "S1": {
+  "sface": {
+   "n": 360,
+   "reid_rate": 0.0,
+   "mean": 0.089,
+   "p95": 0.142,
+   "max": 0.174,
+   "frames_over": []
+  },
+  "arc": {
+   "n": 360,
+   "reid_rate": 0.0,
+   "mean": 0.016,
+   "p95": 0.063,
+   "max": 0.091,
+   "frames_over": []
+  },
+  "glint": {
+   "n": 360,
+   "reid_rate": 0.0,
+   "mean": 0.028,
+   "p95": 0.072,
+   "max": 0.095,
+   "frames_over": []
+  }
+ }
+}

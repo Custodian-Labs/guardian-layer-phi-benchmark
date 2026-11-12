@@ -1,0 +1,8 @@
+{
+ "thr_far1e-3": 0.2367,
+ "n_impostor_pairs": 1767168,
+ "n_genuine_pairs": 14160,
+ "tar_at_thr": 0.9961,
+ "n_ids": 118,
+ "n_frames": 1888
+}

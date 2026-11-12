@@ -1,0 +1,191 @@
+diff --git a/custodian_video/custodian_video/surrogate_face_swap.py b/custodian_video/custodian_video/surrogate_face_swap.py
+index df3be51..cad6b81 100644
+--- a/custodian_video/custodian_video/surrogate_face_swap.py
++++ b/custodian_video/custodian_video/surrogate_face_swap.py
+@@ -157,7 +157,7 @@ def _gauss_smooth(x, sigma):
+ class SwapNets:
+     """ONNX Runtime wrappers for the research-only face models."""
+ 
+-    def __init__(self, device="cuda", swapper="hyperswap_1b_256", enhancer=None, occluder=True):
++    def __init__(self, device="cuda", swapper="hyperswap_1b_256", enhancer=None, occluder=True, parse_restore=None):
+         self.device = device
+         self.swapper_name = swapper
+         self.arc = _session(ARCFACE, device)
+@@ -173,6 +173,8 @@ class SwapNets:
+         self.occl = _session(os.path.join(RESEARCH_DIR, "xseg_3.onnx"), device) if occluder else None
+         self.enh = _session(os.path.join(RESEARCH_DIR, f"{enhancer}.onnx"), device) if enhancer else None
+         self.enhancer_name = enhancer
++        # restorer used ONLY to find the face region on blurry crops (never pasted)
++        self.prest = _session(os.path.join(RESEARCH_DIR, f"{parse_restore}.onnx"), device) if parse_restore else None
+ 
+     # identity embedding (raw, un-normalised) -------------------------------
+     def embed(self, img, lm5):
+@@ -222,14 +224,29 @@ class SwapNets:
+         m = self.occl.run(None, {"input": x})[0][0, :, :, 0].clip(0, 1)
+         return cv2.resize(m, crop.shape[:2][::-1])
+ 
+-    def enhance(self, crop512, weight=0.5):
++    def enhance(self, crop512, weight=0.5, sess=None):
++        sess = sess or self.enh
+         x = ((crop512[:, :, ::-1].astype(np.float32) / 255.0 - 0.5) / 0.5).transpose(2, 0, 1)[None]
+         feed = {"input": x}
+-        if any(i.name == "weight" for i in self.enh.get_inputs()):
++        if any(i.name == "weight" for i in sess.get_inputs()):
+             feed["weight"] = np.array([weight], np.float64)
+-        o = self.enh.run(None, feed)[0][0].clip(-1, 1)
++        o = sess.run(None, feed)[0][0].clip(-1, 1)
+         return ((o.transpose(1, 2, 0) + 1) / 2 * 255)[:, :, ::-1]
+ 
++    def restore_for_parse(self, crop):
++        """arcface_128-aligned crop -> restored (sharp) crop in the same space, or None.
++        Low-resolution / blurry faces leave BiSeNet, XSeg and the swapper's mask with almost
++        no face region (meeting clip: ~10% of the crop vs ~40% after restoration), so the
++        swap would never be pasted."""
++        if self.prest is None:
++            return None
++        B = crop.shape[0]
++        E = align_matrix(TEMPLATES["arcface_128"] * B, "ffhq_512", 512)
++        c = cv2.warpAffine(crop, E, (512, 512), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
++        e = self.enhance(c, 1.0, self.prest).clip(0, 255).astype(np.uint8)
++        return cv2.warpAffine(e, cv2.invertAffineTransform(E), (B, B), flags=cv2.INTER_CUBIC,
++                              borderMode=cv2.BORDER_REPLICATE)
++
+ 
+ class ResearchSwapSurrogate(SDKeyframeSurrogate):
+     """Opt-in research backend (see module docstring)."""
+@@ -247,7 +264,9 @@ class ResearchSwapSurrogate(SDKeyframeSurrogate):
+                  track_levels: tuple = ((0.0, None), (0.3, None), (0.6, None), (0.9, None)),
+                  level_ok: float = 0.10, track_blur_trip: float = 0.25, min_swap_run: int = 12, fade: int = 4,
+                  euro: tuple | None = (1.5, 0.01), generator: str | None = None, verify: bool = True,
+-                 n_quality: int = 12, p75_margin: float = 0.03, p75_target: float = 0.18, **kw):
++                 n_quality: int = 12, p75_margin: float = 0.03, p75_target: float = 0.18,
++                 parse_restore: str | None = None, parse_restore_below: float = 0.25,
++                 restore_max_yaw: float = 0.45, restore_below_scale: float = 0.45, **kw):
+         super().__init__(device, min_face=min_face, min_score=min_score, seed_salt=seed_salt,
+                          realism="v2", guard_thr=guard_thr, verbose=verbose, motion="reenact")
+         self.swapper = swapper or os.environ.get("CUSTODIAN_RESEARCH_SWAPPER", "hyperswap_1b_256")
+@@ -276,6 +295,16 @@ class ResearchSwapSurrogate(SDKeyframeSurrogate):
+         # <= p75_target (attribute-matched photoreal identities sit closer to the person than the old
+         # SD-1.5 ones; 0.18 ~ the previous clip-4 pick), else the next, stronger level is tried
+         self.p75_target = p75_target
++        # blurry / low-res faces: when BiSeNet finds less than `parse_restore_below` of the crop
++        # as face, a GFPGAN-restored copy is swapped and segmented and the swap is downsampled
++        # back to the frame's resolution ("none" disables); strongly turned faces are blurred.
++        pr = parse_restore or os.environ.get("CUSTODIAN_RESEARCH_PARSE_RESTORE", "gfpgan_1.4")
++        self.parse_restore = None if pr == "none" else pr
++        self.parse_restore_below = parse_restore_below
++        self.restore_max_yaw = restore_max_yaw   # |nose - eye midpoint| / eye distance
++        # ... and always for faces this small (frame px per aligned-crop px; 0.45 ~ a face < ~200 px)
++        self.restore_below_scale = restore_below_scale
++        self.restore_mouth_keep = float(os.environ.get("CUSTODIAN_RESEARCH_RESTORE_MOUTH_KEEP", "0.0"))
+         self.cand_quality: dict[int, dict] = {}   # tid -> {candidate index: quality}
+         self.cand_info: dict[int, dict] = {}      # tid -> summary (no attributes of the real face)
+         self.weight: dict[tuple, float] = {}   # (tid, frame) -> swap weight (cross-fade to blur)
+@@ -289,8 +318,9 @@ class ResearchSwapSurrogate(SDKeyframeSurrogate):
+                LICENCES["arcface"], LICENCES["bisenet"], LICENCES["xseg"],
+                LICENCES["realvisxl" if self.generator == "realvisxl" else "sd15"], LICENCES["qwen3vl"],
+                LICENCES["sface_yunet"]]
+-        if self.enhancer:
+-            lic.append(LICENCES.get(self.enhancer, self.enhancer))
++        for e in dict.fromkeys([self.enhancer, self.parse_restore]):
++            if e:
++                lic.append(LICENCES.get(e, e))
+         self.name = (f"research-swap ({self.swapper}; RESEARCH-ONLY models, non-commercial licences: "
+                      + "; ".join(lic) + ")")
+         self.licences = lic
+@@ -562,7 +592,7 @@ class ResearchSwapSurrogate(SDKeyframeSurrogate):
+             import torch; torch.cuda.empty_cache()
+         except Exception:
+             pass
+-        self.nets = SwapNets(self.device, self.swapper, self.enhancer)
++        self.nets = SwapNets(self.device, self.swapper, self.enhancer, parse_restore=self.parse_restore)
+         if self.stabilize:
+             self._prepare_stable(video_path, todo, pts, ports)
+             self.nets = None
+@@ -701,6 +731,18 @@ class ResearchSwapSurrogate(SDKeyframeSurrogate):
+                     continue
+                 comp = fr.copy(); self._paste(comp, *o)
+                 cos.append((self._id_cos(fr, comp, d[g][1], d[g][2], {}), self._thr_for(d[g][1])))
++                _dbg = os.environ.get("CUSTODIAN_SWAP_DEBUG")  # TEMP debug
++                if _dbg:
++                    os.makedirs(_dbg, exist_ok=True)
++                    rows = self._guard_rows(d[g][1], d[g][2], {}, fr)
++                    per = [float(self._emb(fr, r) @ self._emb(comp, r)) for r in rows]
++                    diff = float(np.abs(comp.astype(np.int16) - fr.astype(np.int16)).mean())
++                    self._log(f"DBG g={g} box={[round(float(v)) for v in d[g][1]]} alpha_mean={float(o[2].mean()):.3f} "
++                              f"alpha_max={float(o[2].max()):.3f} img_diff={diff:.4f} rows={len(rows)} per_row={[round(p,3) for p in per]}")
++                    x1, y1, x2, y2 = [int(v) for v in d[g][1]]
++                    bw, bh = x2 - x1, y2 - y1
++                    sl = (slice(max(0, y1 - bh), y2 + bh), slice(max(0, x1 - bw), x2 + bw))
++                    cv2.imwrite(f"{_dbg}/g{g}_x{x1}.jpg", np.hstack([fr[sl], comp[sl]]))
+             if not cos:
+                 return 9.0, 9.0
+             return (float(np.mean([c > th for c, th in cos])), float(np.percentile([c for c, _ in cos], 75)))
+@@ -923,27 +965,62 @@ class ResearchSwapSurrogate(SDKeyframeSurrogate):
+         if M is None:
+             return None
+         crop = cv2.warpAffine(fr, M, (B, B), flags=cv2.INTER_AREA, borderMode=cv2.BORDER_REPLICATE)
+-        sw, smask = N.swap(crop, src)
+-        for _ in range(self.iters - 1):   # re-swap the swapped crop: stronger identity transfer
+-            sw, smask2 = N.swap(sw.clip(0, 255).astype(np.uint8), src)
+-            smask = np.minimum(smask, smask2)
+         lab = cv2.resize(N.parse(crop), (B, B), interpolation=cv2.INTER_NEAREST)
+         keep = PARSE_FACE + ([PARSE_GLASSES] if self.glasses else [])
+         reg = np.isin(lab, keep).astype(np.float32)
++        seg = crop   # image that is swapped and segmented
++        restored = False
++        _raw_reg0 = float(reg.mean())  # TEMP debug
++        sc = 1.0 / max(1e-6, float(np.sqrt(abs(np.linalg.det(M[:, :2])))))   # frame px per crop px
++        if reg.mean() < self.parse_restore_below or sc < self.restore_below_scale:
++            # blurry / low-res face: BiSeNet, XSeg and/or the swapper's own mask collapse on it
++            # (meeting clip, ~100 px faces: alpha max ~0.15-0.5 -> nothing pasted).  Swap and segment a restored copy,
++            # then bring the swap back down to the frame's resolution.  Strongly turned faces
++            # ghost on this path -> no render (fail closed: blurred).
++            lm = np.asarray(lm5, np.float32).reshape(5, 2)
++            iod = float(np.linalg.norm(lm[1] - lm[0])) + 1e-6
++            if abs(float(lm[2][0] - (lm[0][0] + lm[1][0]) / 2)) / iod > self.restore_max_yaw:
++                return None
++            rc = N.restore_for_parse(crop)
++            if rc is not None:
++                lab_r = cv2.resize(N.parse(rc), (B, B), interpolation=cv2.INTER_NEAREST)
++                reg_r = np.isin(lab_r, keep).astype(np.float32)
++                if reg_r.mean() > 0.5 * reg.mean():
++                    lab, reg, seg, restored = lab_r, reg_r, rc, True
++        sw, smask = N.swap(seg, src)
++        for _ in range(self.iters - 1):   # re-swap the swapped crop: stronger identity transfer
++            sw, smask2 = N.swap(sw.clip(0, 255).astype(np.uint8), src)
++            smask = np.minimum(smask, smask2)
++        if restored:   # match the frame's sharpness
++            if sc < 0.9:
++                lo = max(16, int(round(B * sc)))
++                sw = cv2.resize(cv2.resize(sw, (lo, lo), interpolation=cv2.INTER_AREA), (B, B),
++                                interpolation=cv2.INTER_CUBIC)
+         if self.parse_swap:   # never paste what the SWAPPED face shows as hair / background / clothing
+             lab2 = cv2.resize(N.parse(sw.clip(0, 255).astype(np.uint8)), (B, B), interpolation=cv2.INTER_NEAREST)
+             reg *= np.isin(lab2, keep + [PARSE_GLASSES]).astype(np.float32)
+         k = max(1, int(self.m_erode * B))
+         reg = cv2.erode(reg, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * k + 1, 2 * k + 1)))
+-        occ = N.occlusion(crop)
++        occ = N.occlusion(seg)
+         box = np.zeros((B, B), np.float32)
+         pad = int(0.04 * B); box[pad:-pad, pad:-pad] = 1
+         parts = [reg, occ, box]
+         if self.swap_mask and N.kind == "hyperswap":
+             parts.append(cv2.GaussianBlur(smask, (0, 0), 2))
+         a = np.minimum.reduce(parts)
++        if os.environ.get("CUSTODIAN_SWAP_DEBUG"):  # TEMP debug
++            self._log("DBG parts " + " ".join(f"{n}={float(p.mean()):.3f}/{float(p.max()):.2f}" for n, p in
++                      zip(["reg", "occ", "box", "smask"], parts)) +
++                      f" restored={restored} raw_reg0={_raw_reg0:.3f} lab_face={float(np.isin(lab, keep).mean()):.3f} B={B}")
++            _d = os.environ["CUSTODIAN_SWAP_DEBUG"]
++            cv2.imwrite(f"{_d}/crop_{int(time.time()*1000)%100000}.jpg",
++                        np.hstack([crop, sw.clip(0, 255).astype(np.uint8),
++                                   cv2.cvtColor((np.minimum.reduce(parts) * 255).astype(np.uint8), cv2.COLOR_GRAY2BGR),
++                                   cv2.cvtColor((occ * 255).astype(np.uint8), cv2.COLOR_GRAY2BGR)]))
+         a = cv2.GaussianBlur(a, (0, 0), max(1.0, self.m_blur * B))
+         mk = self.mouth_keep if mk is None else mk
++        if restored:   # small faces: the original mouth / moustache alone keeps them recognisable
++            mk = min(mk, self.restore_mouth_keep)
+         if mk > 0:   # mouth opening / lips follow the ORIGINAL speech exactly
+             mo = np.isin(lab, [11, 12, 13]).astype(np.float32)
+             d = max(1, int(0.015 * B))

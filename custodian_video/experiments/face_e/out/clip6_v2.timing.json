@@ -1,0 +1,20 @@
+{
+ "pass1_face_det_s": 20.372700691223145,
+ "prepare_s": 326.9804172515869,
+ "render_s": 74.45440363883972,
+ "face_apply_s": 73.3414843082428,
+ "face_frames": 2724,
+ "face_apply_fps": 37.141326299744,
+ "render_fps_incl_decode_encode": 4.109897938130454,
+ "backend_stats": {
+  "reenact": 425,
+  "static": 1417,
+  "none": 882,
+  "static_guard_blur": 660,
+  "guard_retry": 479,
+  "guard_static": 362,
+  "guard_grow": 22
+ },
+ "backend": "sd15-keyframe-v2+liveportrait-reenact (SD-1.5 identity, CreativeML OpenRAIL-M; LivePortrait motion, MIT code+weights, no InsightFace) + v2 realism (Qwen3-VL attributes Apache-2.0; ControlNet-depth OpenRAIL; Depth-Anything-V2-Small Apache-2.0; sd-vae-ft-mse MIT)",
+ "surrogate_tracks": 22
+}

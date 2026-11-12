@@ -1,0 +1,58 @@
+{
+ "B0": {
+  "face-0": {
+   "frames": 376,
+   "swap_share": 0.864,
+   "fade_frames": 0,
+   "transitions": 7,
+   "blur_runs": 4,
+   "longest_blur": 24,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0387,
+   "jitter_orig": 0.0409,
+   "jitter_ratio": 0.945,
+   "jitter_n": 317
+  },
+  "face-5": {
+   "frames": 84,
+   "swap_share": 0.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 1,
+   "longest_blur": 84,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": null,
+   "jitter_orig": null,
+   "jitter_ratio": null,
+   "jitter_n": 0
+  }
+ },
+ "S1": {
+  "face-0": {
+   "frames": 376,
+   "swap_share": 0.973,
+   "fade_frames": 12,
+   "transitions": 3,
+   "blur_runs": 2,
+   "longest_blur": 5,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0365,
+   "jitter_orig": 0.0425,
+   "jitter_ratio": 0.858,
+   "jitter_n": 350
+  },
+  "face-5": {
+   "frames": 84,
+   "swap_share": 0.869,
+   "fade_frames": 8,
+   "transitions": 2,
+   "blur_runs": 2,
+   "longest_blur": 6,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0451,
+   "jitter_orig": 0.0416,
+   "jitter_ratio": 1.083,
+   "jitter_n": 63
+  }
+ }
+}

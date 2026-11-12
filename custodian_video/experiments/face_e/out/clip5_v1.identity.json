@@ -1,0 +1,16 @@
+{
+ "frames": 360,
+ "pairs": 360,
+ "original": {
+  "identity_consistency_to_track_mean": 0.949
+ },
+ "v1": {
+  "identity_consistency_to_track_mean": 0.888,
+  "reid_rate": 0.0,
+  "n": 360,
+  "mean_cos": 0.175,
+  "p95_cos": 0.237,
+  "max_cos": 0.292,
+  "reid_frames": []
+ }
+}

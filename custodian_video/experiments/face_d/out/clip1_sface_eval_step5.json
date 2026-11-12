@@ -1,0 +1,119 @@
+{
+ "orig": "demo/inputs/clip1_interview_synthpii.mp4",
+ "faces": {
+  "reference_faces(YuNet)": 96,
+  "mask_coverage_of_reference_faces": 0.948,
+  "static": {
+   "face_reid_rate_all_ref_faces": 0.052,
+   "face_reid_rate_masked_faces": 0.0,
+   "mean_cos_to_original_masked_faces": 0.072,
+   "face_still_detected": 0.969,
+   "output_identity_consistency": 0.918,
+   "by_face_size_masked": {
+    "64-10000px": {
+     "n": 91,
+     "reid_rate": 0.0,
+     "mean_cos": 0.072
+    }
+   }
+  },
+  "reenact": {
+   "face_reid_rate_all_ref_faces": 0.052,
+   "face_reid_rate_masked_faces": 0.0,
+   "mean_cos_to_original_masked_faces": 0.107,
+   "face_still_detected": 0.979,
+   "output_identity_consistency": 0.748,
+   "by_face_size_masked": {
+    "64-10000px": {
+     "n": 91,
+     "reid_rate": 0.0,
+     "mean_cos": 0.107
+    }
+   }
+  },
+  "reenact_noguard": {
+   "face_reid_rate_all_ref_faces": 0.052,
+   "face_reid_rate_masked_faces": 0.0,
+   "mean_cos_to_original_masked_faces": 0.113,
+   "face_still_detected": 0.979,
+   "output_identity_consistency": 0.745,
+   "by_face_size_masked": {
+    "64-10000px": {
+     "n": 91,
+     "reid_rate": 0.0,
+     "mean_cos": 0.113
+    }
+   }
+  },
+  "impostor_baseline_orig_vs_other_person": {
+   "large": {
+    "n_pairs": 5,
+    "mean_cos": -0.052,
+    "false_match_rate": 0.0
+   }
+  }
+ },
+ "throughput": {
+  "static": {
+   "fps_end_to_end": null,
+   "fps_pass1_detect": null,
+   "total_s": null,
+   "faces_s": null,
+   "plates_s": null,
+   "text_ocr_llm_s": null,
+   "audio_s": null,
+   "face_surrogate_prep_s": null
+  },
+  "reenact": {
+   "fps_end_to_end": null,
+   "fps_pass1_detect": null,
+   "total_s": null,
+   "faces_s": null,
+   "plates_s": null,
+   "text_ocr_llm_s": null,
+   "audio_s": null,
+   "face_surrogate_prep_s": null
+  },
+  "reenact_noguard": {
+   "fps_end_to_end": null,
+   "fps_pass1_detect": null,
+   "total_s": null,
+   "faces_s": null,
+   "plates_s": null,
+   "text_ocr_llm_s": null,
+   "audio_s": null,
+   "face_surrogate_prep_s": null
+  }
+ },
+ "audit_summary": {
+  "static": {
+   "faces": 2,
+   "motion": "static",
+   "stats": {
+    "reenact": 0,
+    "static": 460,
+    "none": 0
+   }
+  },
+  "reenact": {
+   "faces": 2,
+   "motion": "reenact",
+   "stats": {
+    "reenact": 447,
+    "static": 7,
+    "none": 6,
+    "guard_retry": 7,
+    "guard_static": 7
+   }
+  },
+  "reenact_noguard": {
+   "faces": 2,
+   "motion": "reenact",
+   "stats": {
+    "reenact": 454,
+    "static": 0,
+    "none": 6
+   }
+  }
+ }
+}

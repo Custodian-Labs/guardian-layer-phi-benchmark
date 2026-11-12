@@ -1,0 +1,29 @@
+{
+ "frames": 454,
+ "S4": {
+  "sface": {
+   "n": 454,
+   "reid_rate": 0.0,
+   "mean": 0.131,
+   "p95": 0.235,
+   "max": 0.336,
+   "frames_over": []
+  },
+  "arc": {
+   "n": 454,
+   "reid_rate": 0.0,
+   "mean": 0.057,
+   "p95": 0.126,
+   "max": 0.16,
+   "frames_over": []
+  },
+  "glint": {
+   "n": 454,
+   "reid_rate": 0.0,
+   "mean": 0.029,
+   "p95": 0.097,
+   "max": 0.131,
+   "frames_over": []
+  }
+ }
+}

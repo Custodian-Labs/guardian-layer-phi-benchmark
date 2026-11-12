@@ -1,0 +1,130 @@
+{
+ "rows": [
+  {
+   "tid": 0,
+   "f0": 0,
+   "f1": 372,
+   "n": 373,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 1,
+   "f0": 5,
+   "f1": 9,
+   "n": 5,
+   "max": 0.149,
+   "old": "unmasked",
+   "old_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames",
+   "new": "unmasked",
+   "new_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames"
+  },
+  {
+   "tid": 2,
+   "f0": 61,
+   "f1": 66,
+   "n": 5,
+   "max": 0.177,
+   "old": "unmasked",
+   "old_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames",
+   "new": "unmasked",
+   "new_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames"
+  },
+  {
+   "tid": 3,
+   "f0": 137,
+   "f1": 137,
+   "n": 1,
+   "max": 0.1,
+   "old": "masked",
+   "old_why": "single_detection_unexplained",
+   "new": "masked",
+   "new_why": "single_detection_unexplained"
+  },
+  {
+   "tid": 4,
+   "f0": 241,
+   "f1": 262,
+   "n": 10,
+   "max": 0.124,
+   "old": "unmasked",
+   "old_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames",
+   "new": "unmasked",
+   "new_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames"
+  },
+  {
+   "tid": 5,
+   "f0": 373,
+   "f1": 453,
+   "n": 81,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 6,
+   "f0": 374,
+   "f1": 453,
+   "n": 65,
+   "max": 0.368,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "unmasked",
+   "new_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames;head_region_explained+graze"
+  },
+  {
+   "tid": 7,
+   "f0": 375,
+   "f1": 396,
+   "n": 5,
+   "max": 0.59,
+   "old": "masked",
+   "old_why": "yunet_recall_net",
+   "new": "masked",
+   "new_why": "yunet_recall_net"
+  },
+  {
+   "tid": 8,
+   "f0": 414,
+   "f1": 430,
+   "n": 11,
+   "max": 0.147,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "unmasked",
+   "new_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames;head_region_explained+graze"
+  }
+ ],
+ "changed": [
+  {
+   "tid": 6,
+   "f0": 374,
+   "f1": 453,
+   "n": 65,
+   "max": 0.368,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "unmasked",
+   "new_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames;head_region_explained+graze"
+  },
+  {
+   "tid": 8,
+   "f0": 414,
+   "f1": 430,
+   "n": 11,
+   "max": 0.147,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "unmasked",
+   "new_why": "no_person_head;score<0.50;no_recall_net;off_edge;>=2_frames;head_region_explained+graze"
+  }
+ ],
+ "n_tracks": 9,
+ "old_unmasked": 3,
+ "new_unmasked": 5
+}

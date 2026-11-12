@@ -1,0 +1,16 @@
+{
+ "pass1_face_det_s": 13.445571184158325,
+ "prepare_s": 13.99276328086853,
+ "render_s": 60.45343899726868,
+ "face_apply_s": 53.75218367576599,
+ "face_frames": 460,
+ "face_apply_fps": 8.557791861531193,
+ "render_fps_incl_decode_encode": 7.509911884756663,
+ "backend_stats": {
+  "reenact": 0,
+  "static": 460,
+  "none": 0
+ },
+ "backend": "sd15-keyframe (Stable Diffusion 1.5 img2img, CreativeML OpenRAIL-M)",
+ "motion_effective": "static"
+}

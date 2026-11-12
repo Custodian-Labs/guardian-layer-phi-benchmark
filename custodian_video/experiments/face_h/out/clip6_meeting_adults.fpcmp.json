@@ -1,0 +1,250 @@
+{
+ "rows": [
+  {
+   "tid": 0,
+   "f0": 0,
+   "f1": 299,
+   "n": 300,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 1,
+   "f0": 0,
+   "f1": 299,
+   "n": 300,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 2,
+   "f0": 0,
+   "f1": 299,
+   "n": 300,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 3,
+   "f0": 0,
+   "f1": 31,
+   "n": 32,
+   "max": 0.997,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 4,
+   "f0": 0,
+   "f1": 17,
+   "n": 8,
+   "max": 0.929,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 5,
+   "f0": 0,
+   "f1": 299,
+   "n": 300,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 6,
+   "f0": 4,
+   "f1": 6,
+   "n": 3,
+   "max": 0.59,
+   "old": "masked",
+   "old_why": "yunet_recall_net",
+   "new": "masked",
+   "new_why": "yunet_recall_net"
+  },
+  {
+   "tid": 7,
+   "f0": 11,
+   "f1": 13,
+   "n": 3,
+   "max": 0.26,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "masked",
+   "new_why": "near_frame_edge"
+  },
+  {
+   "tid": 8,
+   "f0": 36,
+   "f1": 82,
+   "n": 29,
+   "max": 0.754,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 9,
+   "f0": 52,
+   "f1": 52,
+   "n": 1,
+   "max": 0.122,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "masked",
+   "new_why": "near_frame_edge"
+  },
+  {
+   "tid": 10,
+   "f0": 68,
+   "f1": 87,
+   "n": 12,
+   "max": 0.59,
+   "old": "masked",
+   "old_why": "yunet_recall_net",
+   "new": "masked",
+   "new_why": "yunet_recall_net"
+  },
+  {
+   "tid": 11,
+   "f0": 83,
+   "f1": 83,
+   "n": 1,
+   "max": 0.59,
+   "old": "masked",
+   "old_why": "yunet_recall_net",
+   "new": "masked",
+   "new_why": "yunet_recall_net"
+  },
+  {
+   "tid": 12,
+   "f0": 155,
+   "f1": 299,
+   "n": 145,
+   "max": 0.997,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 13,
+   "f0": 171,
+   "f1": 171,
+   "n": 1,
+   "max": 0.139,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "masked",
+   "new_why": "near_frame_edge"
+  },
+  {
+   "tid": 14,
+   "f0": 172,
+   "f1": 299,
+   "n": 128,
+   "max": 1.0,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 15,
+   "f0": 173,
+   "f1": 173,
+   "n": 1,
+   "max": 0.106,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "masked",
+   "new_why": "near_frame_edge"
+  },
+  {
+   "tid": 16,
+   "f0": 194,
+   "f1": 299,
+   "n": 101,
+   "max": 0.994,
+   "old": "masked",
+   "old_why": "score>=0.50",
+   "new": "masked",
+   "new_why": "score>=0.50"
+  },
+  {
+   "tid": 17,
+   "f0": 226,
+   "f1": 229,
+   "n": 4,
+   "max": 0.445,
+   "old": "masked",
+   "old_why": "person_head_region",
+   "new": "masked",
+   "new_why": "person_head_region"
+  },
+  {
+   "tid": 18,
+   "f0": 230,
+   "f1": 230,
+   "n": 1,
+   "max": 0.119,
+   "old": "masked",
+   "old_why": "near_frame_edge",
+   "new": "masked",
+   "new_why": "near_frame_edge"
+  },
+  {
+   "tid": 19,
+   "f0": 245,
+   "f1": 245,
+   "n": 1,
+   "max": 0.1,
+   "old": "masked",
+   "old_why": "person_head_region",
+   "new": "masked",
+   "new_why": "person_head_region"
+  },
+  {
+   "tid": 20,
+   "f0": 249,
+   "f1": 269,
+   "n": 5,
+   "max": 0.414,
+   "old": "masked",
+   "old_why": "person_head_region",
+   "new": "masked",
+   "new_why": "person_head_region"
+  },
+  {
+   "tid": 21,
+   "f0": 299,
+   "f1": 299,
+   "n": 1,
+   "max": 0.13,
+   "old": "masked",
+   "old_why": "person_head_region",
+   "new": "masked",
+   "new_why": "person_head_region"
+  }
+ ],
+ "changed": [],
+ "n_tracks": 22,
+ "old_unmasked": 0,
+ "new_unmasked": 0
+}

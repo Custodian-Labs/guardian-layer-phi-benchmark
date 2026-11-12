@@ -1,0 +1,69 @@
+{
+ "page_after": {
+  "face-0": {
+   "frames": 376,
+   "swap_share": 0.987,
+   "fade_frames": 0,
+   "transitions": 1,
+   "blur_runs": 1,
+   "longest_blur": 5,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0386,
+   "jitter_orig": 0.0437,
+   "jitter_ratio": 0.883,
+   "jitter_n": 369
+  },
+  "face-5": {
+   "frames": 84,
+   "swap_share": 0.869,
+   "fade_frames": 0,
+   "transitions": 2,
+   "blur_runs": 2,
+   "longest_blur": 6,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0396,
+   "jitter_orig": 0.0428,
+   "jitter_ratio": 0.925,
+   "jitter_n": 71
+  },
+  "face-6": {
+   "frames": 83,
+   "swap_share": 0.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 1,
+   "longest_blur": 83,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": null,
+   "jitter_orig": null,
+   "jitter_ratio": null,
+   "jitter_n": 0
+  },
+  "face-7": {
+   "frames": 28,
+   "swap_share": 0.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 1,
+   "longest_blur": 28,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": null,
+   "jitter_orig": null,
+   "jitter_ratio": null,
+   "jitter_n": 0
+  },
+  "face-8": {
+   "frames": 23,
+   "swap_share": 0.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 1,
+   "longest_blur": 23,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": null,
+   "jitter_orig": null,
+   "jitter_ratio": null,
+   "jitter_n": 0
+  }
+ }
+}

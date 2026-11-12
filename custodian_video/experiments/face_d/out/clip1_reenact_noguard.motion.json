@@ -1,0 +1,39 @@
+{
+ "reenact_noguard": {
+  "per_track": {
+   "face-0": {
+    "n": 373,
+    "corr_mouth_open": 0.946,
+    "corr_jawOpen": 0.767,
+    "corr_eyeBlink": 0.964,
+    "corr_yaw": 0.991,
+    "corr_pitch": 0.831,
+    "mae_mouth_open": 0.0265,
+    "std_mouth_open_orig": 0.0831,
+    "std_mouth_open_out": 0.0896
+   },
+   "face-1": {
+    "n": 81,
+    "corr_mouth_open": 0.951,
+    "corr_jawOpen": 0.859,
+    "corr_eyeBlink": 0.639,
+    "corr_yaw": 0.997,
+    "corr_pitch": 0.966,
+    "mae_mouth_open": 0.0678,
+    "std_mouth_open_orig": 0.1198,
+    "std_mouth_open_out": 0.1267
+   }
+  },
+  "corr_mouth_open": 0.929,
+  "corr_jawOpen": 0.749,
+  "corr_eyeBlink": 0.8,
+  "corr_yaw": 0.992,
+  "corr_pitch": 0.789,
+  "landmarker_detect_rate_on_output": 1.0,
+  "flicker_2nd_diff": 4.345,
+  "flicker_ratio_vs_original": 0.948
+ },
+ "original": {
+  "flicker_2nd_diff": 4.584
+ }
+}

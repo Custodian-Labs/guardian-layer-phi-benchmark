@@ -1,0 +1,30 @@
+{
+ "S4": {
+  "face-0": {
+   "frames": 376,
+   "swap_share": 0.96,
+   "fade_frames": 12,
+   "transitions": 3,
+   "blur_runs": 2,
+   "longest_blur": 10,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": 0.0383,
+   "jitter_orig": 0.0424,
+   "jitter_ratio": 0.905,
+   "jitter_n": 345
+  },
+  "face-5": {
+   "frames": 84,
+   "swap_share": 0.0,
+   "fade_frames": 0,
+   "transitions": 0,
+   "blur_runs": 1,
+   "longest_blur": 84,
+   "short_swap_runs_lt12": 0,
+   "jitter_out": null,
+   "jitter_orig": null,
+   "jitter_ratio": null,
+   "jitter_n": 0
+  }
+ }
+}
