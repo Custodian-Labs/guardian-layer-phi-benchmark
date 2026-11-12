@@ -1,37 +1,34 @@
-# Custodian Guardian Layer · PHI/PII Benchmark Harness
+# Custodian Guardian Layer · PHI/PII Benchmark
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Custodian-Labs/guardian-layer-phi-benchmark/blob/main/notebooks/custodian_guardian_layer_demo.ipynb)
 
-End-to-end evaluation harness measuring whether **Custodian Labs' Guardian
-Layer** `transform` (structure-preserving de-identification: replace each PHI
-value with a realistic same-type *surrogate*) keeps clinical text **detectable**
-by downstream PHI/PII systems. Companion code for the paper *"Surrogate
-Substitution Preserves PHI Detectability: A Multi-Detector Equivalence Study."*
+Evaluation harness for **Custodian Labs' Guardian Layer** `transform`, a structure-preserving de-identification
+method that replaces each PHI value with a realistic same-type *surrogate*. The harness measures whether the
+replaced text stays **detectable** by downstream PHI/PII systems. It is the companion code for the ML4H 2026
+paper *"Surrogate Substitution Preserves PHI Detectability: A Multi-Detector Equivalence Study."*
 
-**Detector panel (11):** Microsoft Presidio, OBI `deid_roberta_i2b2`;
-open LLMs Gemma 4 (31B, E4B), Qwen 3.5 (4B, 9B, 35B-A3B), Llama 3.1-8B,
-Llama 3.3-70B, DeepSeek V2-Lite; and OpenAI GPT-5 — across **7 benchmarks /
-7 languages / 1,750 documents**.
+**Detector panel (11):**
+- rule-based: Microsoft Presidio;
+- encoder tagger: OBI `deid_roberta_i2b2`;
+- LLMs: Gemma 4 (31B, E4B), Qwen 3.5 (4B, 9B, 35B-A3B), Llama 3.1-8B, Llama 3.3-70B, DeepSeek V2-Lite and
+  GPT-4o-mini.
 
-> **Benchmark data / citation.** ASQ-PHI is from Weatherhead, Golovko & McCaffrey,
-> *ASQ-PHI: An adversarial synthetic data benchmark for clinical de-identification
-> and search utility*, **Data in Brief 65:112586, 2026**
-> ([doi:10.1016/j.dib.2026.112586](https://doi.org/10.1016/j.dib.2026.112586)) —
-> please cite it if you use ASQ-PHI. Other benchmarks: MEDDOCAN, MultiCoNER v2,
-> PII-Masking-300k (see the paper for full citations).
+They are evaluated on **7 benchmarks in 7 languages, 1,750 documents**.
 
 ### Links
 | | |
 |---|---|
 | 📊 Interactive dashboard | **https://custodianlabs.pages.dev** |
-| 📝 Paper (PDF) | http://arxiv.org/abs/2608.03172 |
+| 📝 Paper | ML4H 2026, PMLR 346 (preprint: [arXiv:2608.03172](https://arxiv.org/abs/2608.03172)) |
 | 💾 Reproducibility package (scripts + data subsets) | https://custodianlabs.pages.dev/code |
 | ▶️ Run the demo in Google Colab (one click) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Custodian-Labs/guardian-layer-phi-benchmark/blob/main/notebooks/custodian_guardian_layer_demo.ipynb) |
 | 📓 Notebook source | [`notebooks/custodian_guardian_layer_demo.ipynb`](notebooks/custodian_guardian_layer_demo.ipynb) |
 | 🌍 Beyond medicine (finance, legal, enterprise) | https://custodianlabs.pages.dev/domains · [`docs/multidomain_results.md`](docs/multidomain_results.md) |
 | 🎬 Video de-identification (faces, plates, on-screen text, speech) | https://custodianlabs.pages.dev/video · code and examples in [`custodian_video/`](custodian_video/) |
 
-### Headline result (ML4H 2026, camera-ready)
+## Results
+
+### Headline result
 On the **5,273 gold PHI spans the transform replaces** (57,035 span × detector outcomes, 11 detectors,
 1,142 documents), recall moves **75.9% → 74.7%**: Δ = −1.24 points, 90% document-level cluster-bootstrap CI
 [−1.65, −0.84], posterior P(|Δ| < 2) > 0.99. The change is within ±2 points **pooled and under overlap
@@ -46,7 +43,7 @@ detector test–retest show that the residual has both generator-side and detect
 diagnosis classification of the MEDDOCAN case reports (CodiEsp labels), accuracy changes by at most 1 point
 under substitution, Faker surrogates or redaction.
 
-### Detector comparison (corrected re-projection)
+### Detector comparison
 | Detector | Whole-doc F1 orig → transf | Replaced-span recall orig → transf | Δ (pts) | 90% CI |
 |---|--:|--:|--:|--:|
 | Gemma 4 31B† | .744 → .735 | 91.9 → 91.9 | +0.08 | [−0.51, +0.70] |
@@ -62,8 +59,7 @@ under substitution, Faker surrogates or redaction.
 | OBI `deid_roberta` | .041 → .042 | 73.3 → 70.6 | −2.69 | [−3.27, −2.10] |
 
 *† incomplete run (Gemma 4 31B: 101/250 transformed ASQ-PHI documents; Llama 3.3 70B: parts of MEDDOCAN and
-PII-nl). The panel's OpenAI detector is GPT-4o-mini (OpenAI API, temperature 0); earlier versions of this README
-labelled it GPT-5. GPT-5 itself was run on a stratified 199-document subset: whole-document F1 .787, the highest
+PII-nl). The panel's OpenAI detector is GPT-4o-mini (OpenAI API, temperature 0). GPT-5 itself was run on a stratified 199-document subset: whole-document F1 .787, the highest
 of the panel on those documents (`results/openai_audit/gpt5_comparison.md`). OBI's low whole-document F1 comes from
 boundary fragmentation, not missed PHI.*
 
@@ -79,7 +75,10 @@ Replaced-span recall (%), first 120 documents per benchmark, mean over the six b
 The redaction floor applies only to detectors that are not adapted to the mask token. Faker values are
 canonical and often easier to detect than real PHI, so Faker is not a neutral control.
 
-## ML4H 2026 camera-ready: reproduction
+**Beyond medicine.** The same protocol applied to finance, legal (ECHR / TAB) and enterprise text is described in
+[`docs/multidomain_results.md`](docs/multidomain_results.md) and at https://custodianlabs.pages.dev/domains.
+
+## Reproducing the paper
 
 All camera-ready numbers are re-analyses of stored predictions, except the runs listed under "new inference".
 See [`docs/camera_ready.md`](docs/camera_ready.md) for the full list of commands and outputs.
@@ -95,280 +94,31 @@ python scripts/summarize_medical_decisions.py                    # ICD-10 downst
 python scripts/audit_transform_properties.py                     # what the transform preserves
 ```
 
-## Citation
+**Where the data are**
+- Per-span predictions for the clinical and general-PII benchmarks (original and transformed, 11 detectors):
+  `results/*_250*.jsonl` and `results/t_*_250*.jsonl`.
+- Non-medical corpora: `data/domains/`, with per-document predictions in `results/domains/preds/`.
+- Known gap: Gemma 4 31B's run on transformed ASQ-PHI covers 101 of the 250 documents.
+- One synthetic API-key value in the Gretel finance data matches a SendGrid key pattern. It is replaced everywhere
+  by a same-length placeholder `SG.EXAMPLE…`; offsets and results are unchanged.
 
-If you use this benchmark, the protocol or the data, please cite:
+## Data
 
-```bibtex
-@InProceedings{bao2026surrogate,
-  title     = {Surrogate Substitution Preserves {PHI} Detectability: A Multi-Detector Equivalence Study},
-  author    = {Bao, Qiming and Feng, Jia Hui and Eugenio, Kim Chester V. and Foon, Meng},
-  booktitle = {Proceedings of the Sixth Machine Learning for Health Symposium},
-  series    = {Proceedings of Machine Learning Research},
-  volume    = {346},
-  publisher = {PMLR},
-  year      = {2026}
-}
-```
+**Benchmark data.** ASQ-PHI is from Weatherhead, Golovko & McCaffrey,
+*ASQ-PHI: An adversarial synthetic data benchmark for clinical de-identification
+and search utility*, **Data in Brief 65:112586, 2026**
+([doi:10.1016/j.dib.2026.112586](https://doi.org/10.1016/j.dib.2026.112586)) —
+please cite it if you use ASQ-PHI. Other benchmarks: MEDDOCAN, MultiCoNER v2,
+PII-Masking-300k (see the paper for full citations).
 
-Page numbers and the PMLR URL will be added once volume 346 is published. A preprint is available at
-[arXiv:2608.03172](https://arxiv.org/abs/2608.03172).
-
-## Paper v2 (arXiv): corrected analysis and non-medical domains
-
-Version 2 of the paper corrects the gold-span re-projection (boundaries are now snapped to word boundaries;
-the original difflib alignment cut 7.1% of replaced spans inside a word), replaces the span-independent TOST with a
-document-level cluster bootstrap plus posterior ROPE probabilities, and adds finance, legal (ECHR / TAB) and
-enterprise text. Everything is re-analysis of the per-span predictions in this repo; no inference is needed.
-
-```bash
-pip install -r requirements.txt numpy scipy faker
-PYTHONPATH=. python scripts/analyze_v2.py               # all v2 paper numbers -> results/v2_numbers.json
-PYTHONPATH=. python scripts/analyze_robustness.py         # unique spans, cluster bootstrap, span selection, matched C2
-PYTHONPATH=. python scripts/analyze_reprojection.py --snap   # re-projection check; typology vs detection outcomes
-PYTHONPATH=. python scripts/analyze_posterior.py --snap # posterior P(|change| < 1/2/3 pts)
-PYTHONPATH=. python scripts/analyze_domains.py          # non-medical study -> results/domains/summary.{md,json}
-```
-
-- Clinical / general-PII per-span predictions (original and transformed, 11 detectors): `results/*_250*.jsonl`, `results/t_*_250*.jsonl`.
-- Non-medical corpora: `data/domains/{original,faker,redacted}/`, transform output `data/transformed/{finance_gretel,legal_tab,enterprise_gretel}.jsonl`; per-document predictions of 10 detectors x 4 conditions: `results/domains/preds/`. Details and dataset cards: `docs/multidomain_results.md`.
-- Known gap: Gemma 4 31B's run on transformed ASQ-PHI covers 101/250 documents.
-- One synthetic API-key value from the Gretel finance dataset (it matches a SendGrid key pattern and trips secret scanning) is replaced everywhere by a same-length placeholder `SG.EXAMPLE…`; offsets and results are unchanged.
+ICD-10 labels for the MEDDOCAN documents come from CodiEsp (CC BY 4.0); see `data/external/codiesp/README.md`.
 
 ## Live dashboard
 
-**Official URL** (Cloudflare Pages — auto-redeploys on every push to `main`,
-serves a private repo, Auckland POP for low NZ latency):
-
-**https://custodianlabs.pages.dev**
-
-Three top-level views, no navigation needed:
-
-1. **Overall results matrix** — every system as a row, every benchmark
-   as a column, F1 in each cell, heat-mapped from red (low) to green
-   (high). The right-most "Mean" column is sticky so it stays visible
-   on any viewport. A metric switcher lets you flip to Recall /
-   Precision / Leakage without leaving the overview.
-2. **Ranking proof** — same document rendered by every system, panels
-   sorted by per-doc F1 (top = best, bottom = worst). Spans are
-   colour-coded: green = true positive, yellow = false positive, red
-   strikethrough = missed gold (leakage). Cycles through 12 sample
-   docs per benchmark.
-3. **Per-benchmark detail view** (collapsible) — the original
-   single-benchmark drilldown: dataset intro, worked example, per-doc
-   highlights.
-
-## Current numbers (2026-05-24, full 250-doc runs)
-
-**Seven benchmarks, 250 documents each, six systems each (MultiCoNER adds a
-7th system as a diagnostic) — 10,550 system×doc inference cells in total.**
-All datasets are synthetic or public-license; no DUA was required for any
-of them. Matching mode is `type` (span-exact, label-agnostic) throughout.
-
-### Cross-language trend on PII-Masking-300k (Gemma vs GPT-5)
-
-The cleanest cross-language signal in the matrix: same corpus, same labels,
-four languages. **The further from English, the larger Gemma 4 E4B's lead
-over GPT-5.**
-
-| Language | Gemma F1 | GPT-5 F1 | **Δ** |
-| --- | ---: | ---: | ---: |
-| English | 0.734 | 0.734 | **0.0** |
-| Dutch | 0.763 | 0.752 | **+1.1** |
-| French | 0.754 | 0.730 | **+2.4** |
-| German | 0.767 | 0.731 | **+3.6** |
-
-### MEDDOCAN test, **all 250 docs**, Spanish clinical synthetic
-
-| System | P | R | **F1** | Leakage |
-| --- | ---: | ---: | ---: | ---: |
-| **OpenAI GPT-5** | 0.80 | 0.62 | **0.699** | 0.38 |
-| **Gemma 4 E4B** (8B, local) | 0.77 | **0.64** | **0.697** | 0.36 |
-| **Qwen 3.5-4B** (local, no thinking) | 0.53 | 0.35 | **0.42** | 0.65 |
-| **DeepSeek V2-Lite** (16B MoE, local) | 0.59 | 0.32 | **0.42** | 0.68 |
-| **Presidio** (es spaCy `lg`) | 0.39 | 0.41 | **0.40** | 0.59 |
-| **OBI `deid_roberta_i2b2`** (English) | 0.07 | 0.08 | **0.07** | 0.92 |
-
-On the full 250-doc test split (4× the earlier 25-doc subset), the gap
-between Gemma 4 E4B and GPT-5 collapses to **0.002 F1** — statistically
-indistinguishable. Gemma's *recall* (0.637) is actually higher than
-GPT-5's (0.619); GPT-5 wins overall only by being slightly more precise.
-For a HIPAA-style use case where missed PHI is the regulatory hazard,
-the local 8B model is at parity with the hosted frontier.
-
-### ASQ-PHI, English adversarial clinical queries (250 docs)
-
-| System | P | R | **F1** | Leakage |
-| --- | ---: | ---: | ---: | ---: |
-| **Gemma 4 E4B** (8B, local) | 0.70 | **0.91** | **0.79** | **0.10** |
-| **OpenAI GPT-5** | 0.66 | 0.84 | **0.74** | 0.16 |
-| **Qwen 3.5-4B** (local) | 0.46 | 0.69 | **0.55** | 0.31 |
-| **Presidio** (en spaCy `lg`) | 0.43 | 0.70 | **0.53** | 0.30 |
-| **DeepSeek V2-Lite** (local) | 0.61 | 0.43 | **0.51** | 0.57 |
-| **OBI `deid_roberta_i2b2`** | 0.03 | 0.08 | **0.05** | 0.92 |
-
-Notes:
-- Gemma 4 E4B leads by 5 F1 — driven entirely by recall (0.91 vs GPT-5's
-  0.84). Its leakage rate of 0.10 is the lowest single number in the
-  entire matrix.
-- DeepSeek V2-Lite is "conservative" — high precision (0.61) but only
-  flags spans it's certain about (recall 0.43). Inverse of the recall-
-  optimised approach Gemma takes.
-- Presidio's recall (0.70) is much higher on ASQ-PHI than on MEDDOCAN
-  (0.41) or PII-Masking-300k (0.37), because ASQ-PHI's NAME / DATE /
-  GEOGRAPHIC_LOCATION labels match Presidio's English recognizers exactly.
-
-### PII-Masking-300k validation, English general PII (250 docs)
-
-| System | P | R | **F1** | Leakage |
-| --- | ---: | ---: | ---: | ---: |
-| **OpenAI GPT-5** | 0.79 | **0.69** | **0.734** | **0.31** |
-| **Gemma 4 E4B** (8B, local) | **0.82** | 0.67 | **0.734** | 0.33 |
-| **Qwen 3.5-4B** (local) | 0.79 | 0.59 | **0.68** | 0.41 |
-| **DeepSeek V2-Lite** (local) | 0.66 | 0.31 | **0.42** | 0.69 |
-| **Presidio** (en) | 0.34 | 0.37 | **0.35** | 0.63 |
-| **OBI `deid_roberta_i2b2`** | 0.04 | 0.09 | **0.06** | 0.91 |
-
-GPT-5 and Gemma 4 E4B tie at F1=0.734 to the third decimal. GPT-5 wins
-slightly on recall (0.685 vs 0.666), Gemma slightly on precision (0.817
-vs 0.791). The 25-doc subset over-estimated Gemma's lead on this
-benchmark — at 250 docs the two are indistinguishable.
-
-### PII-Masking-300k Dutch (250 docs)
-
-Same corpus and label set as the English run, different language. Direct
-cross-language comparison.
-
-| System | P | R | **F1** | Leakage |
-| --- | ---: | ---: | ---: | ---: |
-| **Gemma 4 E4B** (8B, local) | **0.82** | **0.71** | **0.763** | **0.29** |
-| **OpenAI GPT-5** | 0.82 | 0.70 | **0.752** | 0.31 |
-| **Qwen 3.5-4B** (local) | 0.80 | 0.61 | **0.69** | 0.39 |
-| **DeepSeek V2-Lite** (local) | 0.67 | 0.33 | **0.44** | 0.67 |
-| **Presidio** (nl `nl_core_news_lg`) | 0.39 | 0.45 | **0.42** | 0.55 |
-| **OBI `deid_roberta_i2b2`** | 0.02 | 0.04 | **0.03** | 0.96 |
-
-Gemma 4 E4B wins by 1 F1, with both higher precision and higher recall
-than GPT-5. Compared to the English version of the same dataset, every
-LLM-tier system gains +2-3 F1 on Dutch; non-LLM baselines stay flat.
-
-### PII-Masking-300k French (250 docs)
-
-| System | P | R | **F1** | Leakage |
-| --- | ---: | ---: | ---: | ---: |
-| **Gemma 4 E4B** (8B, local) | **0.84** | **0.69** | **0.754** | **0.31** |
-| **OpenAI GPT-5** | 0.81 | 0.66 | **0.730** | 0.34 |
-| **Qwen 3.5-4B** (local) | 0.82 | 0.62 | **0.70** | 0.38 |
-| **DeepSeek V2-Lite** (local) | 0.62 | 0.28 | **0.38** | 0.72 |
-| **Presidio** (fr `fr_core_news_lg`) | 0.38 | 0.31 | **0.34** | 0.69 |
-| **OBI `deid_roberta_i2b2`** | 0.02 | 0.04 | **0.03** | 0.96 |
-
-Gemma wins +2.4 F1 over GPT-5. DeepSeek hits a precision/recall split very
-similar to its profile on every other PII-Masking variant: respectable P,
-poor R.
-
-### PII-Masking-300k German (250 docs)
-
-| System | P | R | **F1** | Leakage |
-| --- | ---: | ---: | ---: | ---: |
-| **Gemma 4 E4B** (8B, local) | **0.83** | **0.71** | **0.767** | **0.29** |
-| **OpenAI GPT-5** | 0.80 | 0.68 | **0.731** | 0.33 |
-| **Qwen 3.5-4B** (local) | 0.81 | 0.60 | **0.69** | 0.40 |
-| **DeepSeek V2-Lite** (local) | 0.59 | 0.31 | **0.40** | 0.69 |
-| **Presidio** (de `de_core_news_lg`) | 0.49 | 0.30 | **0.38** | 0.70 |
-| **OBI `deid_roberta_i2b2`** | 0.03 | 0.05 | **0.03** | 0.95 |
-
-The widest Gemma > GPT-5 gap on the PII-Masking family (+3.6 F1). The
-fourth language data point in the cross-language trend.
-
-### MultiCoNER v2, English fine-grained NER (250 docs)
-
-33 fine-grained entity classes on noisy Wikipedia-derived sentences —
-people, locations, medical, products, organisations. Stress-tests how
-the systems handle out-of-clinical-domain entities.
-
-| System | P | R | **F1** | Leakage |
-| --- | ---: | ---: | ---: | ---: |
-| **Gemma 4 E4B** (8B, local) | 0.58 | **0.75** | **0.657** | **0.25** |
-| **OpenAI GPT-5** | 0.47 | 0.67 | **0.556** | 0.33 |
-| **Presidio** (en) | 0.42 | 0.58 | **0.489** | 0.42 |
-| **DeepSeek V2-Lite** (local) | 0.27 | 0.31 | **0.29** | 0.69 |
-| **Qwen 3.5-4B** (local) | 0.41 | 0.17 | **0.24** | 0.83 |
-| **OBI `deid_roberta_i2b2`** | 0.02 | 0.04 | **0.02** | 0.96 |
-
-**Gemma's largest absolute win — +10 F1 over GPT-5.** Recall 0.75 vs
-0.67. Qwen 3.5-4B unexpectedly collapses on this benchmark (F1=0.24);
-its precision is normal but recall is 0.17, suggesting it is too
-conservative on noisy / typoed inputs.
-
-**Qwen-thinking diagnostic (50-doc subset, enable_thinking=True):**
-| Variant | P | R | F1 |
-| --- | ---: | ---: | ---: |
-| Qwen 3.5-4B (thinking OFF, 250 docs) | 0.41 | 0.17 | 0.24 |
-| Qwen 3.5-4B (thinking ON, 50 docs) | **1.00** | 0.11 | 0.20 |
-
-Turning chain-of-thought on flips Qwen's profile to **perfect precision /
-even-lower recall** — every span it returns is correct, but it now returns
-even fewer of them. The collapse is therefore *not* a reasoning gap; Qwen's
-RLHF objective drives it to abstain when uncertain, and CoT amplifies that
-exact tendency. For HIPAA-style high-recall use, this is the opposite of
-the wanted behaviour.
-
-### Headlines (5 benchmarks, all 250-doc)
-
-- **A small *local* 8B model matches or beats hosted GPT-5 on every
-  benchmark we measured.** Gemma 4 E4B's Δ vs GPT-5 across the five
-  datasets:
-
-  | Benchmark | Gemma F1 | GPT-5 F1 | Δ | Notes |
-  | --- | ---: | ---: | ---: | --- |
-  | ASQ-PHI | **0.786** | 0.737 | **+5** | English clinical queries |
-  | MEDDOCAN | 0.697 | 0.699 | −0.2 | Spanish clinical (tied) |
-  | PII-Masking-300k EN | **0.734** | 0.734 | 0 | English general PII (tied) |
-  | PII-Masking-300k NL | **0.763** | 0.752 | **+1** | Dutch general PII |
-  | PII-Masking-300k FR | **0.754** | 0.730 | **+2** | French general PII |
-  | PII-Masking-300k DE | **0.767** | 0.731 | **+4** | German general PII |
-  | MultiCoNER v2 | **0.657** | 0.556 | **+10** | English fine-grained NER |
-
-  **Gemma wins 6/7; the only MEDDOCAN loss is 0.2 F1, well inside noise.**
-  Across the four PII-Masking languages, the trend is monotone: the
-  further the language is from English, the larger Gemma's lead.
-
-- **On recall — the HIPAA-critical axis — Gemma leads almost everywhere.**
-  Leakage rate (1 − recall):
-    - ASQ-PHI: Gemma **0.10** vs GPT-5 0.16 (1.7× lower).
-    - MEDDOCAN: Gemma 0.36 vs GPT-5 0.38.
-    - PII-Masking EN: Gemma 0.33 vs GPT-5 0.31 (GPT-5 hair-thin lead).
-    - PII-Masking NL: Gemma **0.29** vs GPT-5 0.31.
-    - MultiCoNER: Gemma **0.25** vs GPT-5 0.33.
-
-- **Non-LLM baselines lag by 15–25 F1 points** on every benchmark.
-  Presidio is competitive only on tasks where its built-in recognizers
-  (NAME/DATE/EMAIL) match the gold labels (e.g. F1=0.53 on ASQ-PHI).
-
-- **Domain-specific transformers do not transfer.** OBI
-  `deid_roberta_i2b2` predicts a clinical PHI label set (PATIENT, DOCTOR,
-  HOSP, …); on every non-clinical-en benchmark its F1 collapses to ≤0.07,
-  and on Spanish clinical (MEDDOCAN) it sits at F1=0.07 even though
-  MEDDOCAN's labels overlap with i2b2 — it's the language change that
-  kills it.
-
-- **Qwen 3.5-4B's MultiCoNER collapse** (F1=0.24) is the only place a
-  capable LLM falls below Presidio. Hypothesis: Qwen with `enable_thinking
-  =False` is too aggressive at rejecting low-confidence spans on noisy
-  Wikipedia-style text. Worth a follow-up with thinking re-enabled.
-
-### Models attempted but blocked
-
-- **Moonshot Kimi-VL-A3B-Thinking-2506** — custom modeling code imports
-  symbols absent from both transformers 4.57 and 5.5; requires an
-  intermediate transformers version to load.
-- **Moonshot Moonlight-16B-A3B-Instruct** — attention-mask shape
-  off-by-one with our transformers; modeling code expects an older mask
-  broadcasting convention.
-- For "Kimi family" coverage, we used **Qwen 3.5-4B** as an Alibaba
-  substitute (similar geographic / vendor profile to Moonshot, fully
-  compatible with our transformers).
+**https://custodianlabs.pages.dev** has three views:
+1. the overall results matrix (systems × benchmarks);
+2. a ranking proof: one document rendered by every system;
+3. per-benchmark detail views.
 
 ## Project layout
 
@@ -396,10 +146,14 @@ guardian-layer-phi-benchmark/
 │   └── run_benchmark.py
 ├── data/              # Local datasets (git-ignored, see data/README.md)
 ├── results/           # Per-doc JSONL + summary JSON
-└── web/               # Static dashboard, deploys to Vercel (see web/README.md)
+├── custodian_video/   # Local video de-identification (faces, plates, on-screen text, speech) + experiments
+├── docs/              # Write-ups, incl. docs/camera_ready.md (paper analyses and commands)
+├── paper/ml4h/camera_ready/   # Generated numbers and tables of the ML4H 2026 paper
+├── tests/             # Unit tests for re-projection, matching, statistics, annotation
+└── web/               # Static dashboard (see web/README.md)
 ```
 
-## Web dashboard
+## Updating the dashboard
 
 A self-contained static dashboard lives in `web/`. After running benchmarks,
 publish the numbers to the dashboard:
@@ -480,14 +234,21 @@ independently of F1.
 - Results may quote PHI verbatim in the `predictions[].spans[].text` field.
   Keep `results/` local-only when working with non-synthetic corpora.
 
-## Reproducibility checklist (for the eventual paper)
+## Citation
 
-- [ ] Pin `requirements.txt` versions
-- [ ] Log the `OPENAI_MODEL` / `KIMI_MODEL` / etc. used per run (the runner
-      already records the system `name`, but extend to record `model` and
-      `temperature` if you tweak)
-- [ ] Re-run with seeded sampling (`--limit` + a fixed seed) for cost-bounded
-      ablations
-- [ ] Report Custodian SDK version (`pip show custodian-labs`)
-- [ ] Document any prompt changes; if you change `SYSTEM_PROMPT`, re-run every
-      LLM, not just the new one
+If you use this benchmark, the protocol or the data, please cite:
+
+```bibtex
+@InProceedings{bao2026surrogate,
+  title     = {Surrogate Substitution Preserves {PHI} Detectability: A Multi-Detector Equivalence Study},
+  author    = {Bao, Qiming and Feng, Jia Hui and Eugenio, Kim Chester V. and Foon, Meng},
+  booktitle = {Proceedings of the Sixth Machine Learning for Health Symposium},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {346},
+  publisher = {PMLR},
+  year      = {2026}
+}
+```
+
+Page numbers and the PMLR URL will be added once volume 346 is published. A preprint is available at
+[arXiv:2608.03172](https://arxiv.org/abs/2608.03172).
